@@ -58,11 +58,11 @@ namespace StuffFinder
             //    appId: "",
             //    appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "915674078507-ersdkqkfl2nah49s5ier2drnlstajqov.apps.googleusercontent.com",
+                ClientSecret = "EYybwkuBG5GwuXZYAetcvVlO"
+            });
         }
     }
 }
