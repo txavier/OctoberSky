@@ -1,3 +1,12 @@
  -- To enable OAuth2 the following guide was used.
 
 	http://bitoftech.net/2014/06/01/token-based-authentication-asp-net-web-api-2-owin-asp-net-identity/
+
+ -- After disabling https the website would not work.  This is because the require https attribute 
+	([RequireHttps]) has to be disabled.  The below issue and problem resolution identifies a similar problem.
+
+	http://stackoverflow.com/questions/18338368/unable-to-disable-ssl-for-website
+
+ -- Bootstrap theme was downloaded from the below link.
+
+	http://www.bootply.com
