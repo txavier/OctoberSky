@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
+using StuffFinder.AuthenticationApi.Entities;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -13,6 +15,9 @@ namespace StuffFinder.AuthenticationApi
         {
 
         }
+
+        public DbSet<Client> Clients { get; set; }
+
     }
 }
 
