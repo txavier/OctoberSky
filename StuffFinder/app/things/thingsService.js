@@ -6,9 +6,11 @@ app.factory('thingsService', ['$http', function ($http) {
 
     var _getThings = function () {
 
-        return $http.get(serviceBase + 'api/things').then(function (results) {
-            return results;
-        });
+        return { id: 1 };
+
+        //return $http.get(serviceBase + 'api/things').then(function (results) {
+        //    return results;
+        //});
     };
 
     thingsServiceFactory.getThings = _getThings;
