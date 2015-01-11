@@ -22,6 +22,11 @@ app.config(function ($routeProvider) {
         templateUrl: "/app/templates/things.html"
     });
 
+    $routeProvider.when("/start", {
+        controller: "startController",
+        templateUrl: "/app/templates/start.html"
+    });
+
     $routeProvider.otherwise({ redirectTo: "/home" });
 });
 

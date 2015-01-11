@@ -15,6 +15,7 @@
     @Styles.Render("~/Content/css")
     @*<link rel="stylesheet" href="~/Content/animate.css">*@
     <link href="content/loading-bar.css" rel="stylesheet" />
+    <link href="content/site.css" rel="stylesheet" />
     @*@Scripts.Render("~/bundles/modernizr")*@
 </head>
 <body>
@@ -62,7 +63,7 @@
                     <hr />
                     <ul class="list-unstyled hidden-xs" id="sidebar-footer">
                         <li>
-                            <a href="#"><h3><i class="glyphicon glyphicon-heart-empty"></i>WheresMyStuff</h3></a>
+                            <a href="#"><h3><i class="glyphicon glyphicon-heart-empty red"></i></h3></a>
                         </li>
                     </ul>
 
@@ -173,6 +174,7 @@
     <script src="app/login/loginController.js"></script>
     <script src="app/signup/signupController.js"></script>
     <script src="app/things/thingsController.js"></script>
+    <script src="app/start/startController.js"></script>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/scripts")

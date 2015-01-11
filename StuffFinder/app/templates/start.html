@@ -1,0 +1,34 @@
+﻿<div class="jumbotron">
+    <div class="container">
+        <div class="page-header text-center">
+            <h1><i class="glyphicon glyphicon-heart-empty red"></i>WheresMyStuff.com</h1>
+        </div>
+        <p class="lead">
+            Living out-and-about it can be hard to find the stuff you love. Sometimes hunting down that last thing you need can be hard.
+            Let WheresMyStuff.com notify you when it finds the stuff you want.  Its easy, give it a try!
+        </p>
+        <p>Are you someone who could supply the most requested items to the UAE?  Contact us today.</p>
+    </div>
+</div>
+<ul class="thumbnail" style="list-style-type: none;">
+    <li ng-repeat="thing in mostMeTooed.things">
+        <div class="row session">
+            <div class="col-sm-9">
+                <h4 class="well-title">{{ thing.name }}</h4>
+                <div class="col-xs-6 col-sm-3">
+                    <img ng-src="{{ thing.imageUrl }}" height="168" width="114" />
+                </div>
+                <div class="col-xs-6 col-sm-30">
+                    <h4 class="well-title">{{ thing.category }}</h4>
+                    <h6 style="margin-top:-10px">{{ thing.date }}</h6>
+                    <span>Me2: {{ thing.me2 }}</span><br />
+                    <p>{{ thing.description }}</p>
+                </div>
+                <div class="col-xs-6 col-sm-30">
+                    hello
+                </div>
+            </div>
+        </div>
+        <hr />
+    </li>
+</ul>
