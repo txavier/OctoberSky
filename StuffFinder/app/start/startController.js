@@ -1,7 +1,7 @@
 ﻿'use strict'
 app.controller('startController',
     function StartController($scope) {
-    
+
         $scope.mostMeTooed = {
             things: [
                 {
@@ -33,13 +33,38 @@ app.controller('startController',
                     ]
                 },
                 {
-                    imageUrl: '/assets/example/trader joes vanilla.jpg',
-                    name: 'name2',
-                    address: 'address2',
-                    duration: 'duration2',
-                    me2: '3',
-                    description: 'description2'
-                }
+                    //imageUrl: '/assets/example/trader joes vanilla.jpg',
+                    imageUrl: '/assets/example/bobs_red_mill_brown_rice_flour_072G.jpg',
+                    name: "Bob's Red Mill Brown Rice Flour",
+                    location: 'address1',
+                    category: 'Cooking Ingredients',
+                    me2: '12',
+                    description: 'Organic flour',
+                    date: '1 January 2015',
+                    comments: [
+                        {
+                            originalPoster: true,
+                            name: 'TinaBaker',
+                            comment: "Running a bakery shop, or atleast trying to start one up.  We need this supplied to us.  If anyone knows of a shipper or someone that can get this to us on a regular basis we would really appreciate it. Thanks.",
+                        },
+                        {
+                            name: 'M1thhews123',
+                            comment: "I dont run a bakery, but I need this to bake my wife's favorite bread on mornings.",
+                        },
+                        {
+                            name: 'SocialAnaconda',
+                            comment: "My relatives here love this when I bring it to them from New York.  They could really use this!!",
+                        },
+                        {
+                            name: 'gruGu',
+                            comment: "I dont mind paying $1 jto see this onstoreshelves..",
+                        },
+                        {
+                            name: 'youTWooo',
+                            comment: "I second on that."
+                        }
+                    ]
+                },
             ],
         };
     }
