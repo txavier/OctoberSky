@@ -232,10 +232,12 @@
   <ItemGroup>
     <Content Include="app\authInterceptor\authInterceptorService.js" />
     <Content Include="app\auth\authService.js" />
+    <Content Include="app\found-it\foundItController.js" />
     <Content Include="app\home\homeController.js" />
     <Content Include="app\index\indexController.js" />
     <Content Include="app\login\loginController.js" />
     <Content Include="app\start\startController.js" />
+    <Content Include="app\templates\found-it.html" />
     <Content Include="app\templates\start.html" />
     <Content Include="app\templates\things.html" />
     <Content Include="app\things\thingsController.js" />

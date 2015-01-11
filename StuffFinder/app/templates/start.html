@@ -10,6 +10,8 @@
         <p>Are you someone who could supply the most requested items to the UAE?  Contact us today.</p>
     </div>
 </div>
+<p><a class="btn btn-info" href="#/things" role="button">Check the feed &raquo;</a></p>
+<h3>Top Ten Me2'd Items</h3>
 <ul class="thumbnail" style="list-style-type: none;">
     <li ng-repeat="thing in mostMeTooed.things">
         <div class="row session">
@@ -25,7 +27,7 @@
                     <p>{{ thing.description }}</p>
                 </div>
                 <div class="col-xs-6 col-sm-30">
-                    hello
+                    <p><a class="btn btn-info" href="#/found-it" role="button">I found it!</a></p>
                 </div>
             </div>
         </div>
