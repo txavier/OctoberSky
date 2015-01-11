@@ -65,7 +65,58 @@ app.controller('startController',
                         }
                     ]
                 },
+                {
+                    imageUrl: '/assets/example/ny03-pizza1.jpg',
+                    name: "New York Style Pizza",
+                    location: 'address1',
+                    category: 'Food',
+                    me2: '54',
+                    description: 'Pizza',
+                    date: '17 December 2014',
+                    comments: [
+                        {
+                            originalPoster: true,
+                            name: 'DanTheMan',
+                            comment: "There's nothing like a new york slice. $2 to anyone who can find one inn a 50 mile radius of Abu Dabhi.",
+                        },
+                        {
+                            name: 'Natalie234234',
+                            comment: "Yes, this please!!! :)!",
+                        },
+                    ]
+                },
+                {
+                    imageUrl: '/assets/example/betty-crocker chocolate frosting.jpg',
+                    name: "Betty Crocker Chocolate Frosting",
+                    location: 'address1',
+                    category: 'Cooking Ingredients',
+                    me2: '4',
+                    description: 'Pizza',
+                    date: '17 December 2014',
+                    comments: [
+                        {
+                            originalPoster: true,
+                            name: 'JennFire',
+                            comment: "This is the best chocolate bar none. $5 dollars to the nice person that can reunite this chocolate with me.",
+                        },
+                        {
+                            name: 'hoolahoop12',
+                            comment: "This is great for cakes. $12!!",
+                        },
+                        {
+                            name: 'TonyFRado',
+                            comment: "Baking a cake this month. Bounty!! $.58",
+                        },
+                        {
+                            name: 'fredicat',
+                            comment: "MMMmmmm I would so love this. I have no money for bounty but would rjlly wanted this.",
+                        },
+                    ]
+                },
             ],
-        };
+        }; 
+    
+    
+   
     }
 );
