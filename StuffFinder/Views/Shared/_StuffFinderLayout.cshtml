@@ -32,7 +32,7 @@
                     </ul>
 
                     <ul class="nav hidden-xs" id="lg-menu">
-                        <li class="active"><a href="#featured"><i class="glyphicon glyphicon-list-alt"></i> Featured</a></li>
+                        <li class="active"><a href="#/start"><i class="glyphicon glyphicon-list-alt"></i> Featured</a></li>
                         <li><a href="#/things"><i class="glyphicon glyphicon-list"></i> Feed</a></li>
                         <li><a href="#"><i class="glyphicon glyphicon-paperclip"></i> Saved</a></li>
                         <li><a href="#"><i class="glyphicon glyphicon-refresh"></i> Refresh</a></li>
@@ -94,7 +94,7 @@
                         <nav class="collapse navbar-collapse" role="navigation">
                             <ul class="nav navbar-nav">
                                 <li>
-                                    <a href="#"><i class="glyphicon glyphicon-home"></i> Home</a>
+                                    <a href="#/start"><i class="glyphicon glyphicon-home"></i> Home</a>
                                 </li>
                                 <li>
                                     <a href="#postModal" role="button" data-toggle="modal"><i class="glyphicon glyphicon-plus"></i> Post</a>
@@ -184,6 +184,7 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/scripts")
+    <script src="http://pupunzi.com/mb.components/mb.YTPlayer/demo/inc/jquery.mb.YTPlayer.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

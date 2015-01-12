@@ -32,7 +32,12 @@ app.config(function ($routeProvider) {
         templateUrl: "/app/templates/found-it.html"
     });
 
-    $routeProvider.otherwise({ redirectTo: "/start" });
+    $routeProvider.when("/index", {
+        controller: 'indexController',
+        templateUrl: '/index.html'
+    });
+
+    $routeProvider.otherwise({ redirectTo: "/index" });
 });
 
 app.run(['authService', function (authService) {

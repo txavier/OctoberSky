@@ -116,7 +116,11 @@ app.controller('startController',
             ],
         }; 
     
-    
+        $(document).ready(function () {
+
+            $(".player").mb_YTPlayer();
+
+        });
    
     }
 );

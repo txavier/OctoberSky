@@ -10,3 +10,7 @@
  -- Bootstrap theme was downloaded from the below link.
 
 	http://www.bootply.com
+
+ -- Index theme provided by.
+
+	http://www.bootstrapstage.com/agency-start/

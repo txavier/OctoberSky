@@ -77,8 +77,9 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 .jumbotron p {
     margin-bottom: 15px;
-    font-size: 23px;
+    font-size: 14px;
     font-weight: 200;
+    color: #fff;
 }
 
 .container .jumbotron {
@@ -91,8 +92,8 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 @media screen and (min-width:768px) {
     .jumbotron {
-        padding-top: 48px;
-        padding-bottom: 48px;
+        padding-top: 5px;
+        padding-bottom: 5px;
     }
 
     .container .jumbotron {
@@ -101,9 +102,14 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     }
 
     .jumbotron h1, .jumbotron .h1 {
-        font-size: 67.5px;
+        font-size: 18px;
     }
 }
+
+
+.jumbotron .splash .h1 {
+        font-size: 36px
+    }
 
 body {
     font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -116,3 +122,34 @@ body {
 .red {
     color: #CC0001;
 }
+
+
+/*-Video Section*/
+.video-section .pattern-overlay {
+background-color: rgba(71, 71, 71, 0.59);
+/*padding: 110px 0 32px;
+min-height: 496px;*/ 
+/* Incase of overlay problems just increase the min-height*/
+}
+.video-section h1, .video-section h3{
+text-align:center;
+color:#fff;
+}
+.video-section h1 p{
+/*font-size:110px;
+font-family: 'Buenard', serif;
+font-weight:bold;
+text-transform: uppercase;*/
+/*margin: 40px auto 0px;*/
+color: #fff;
+text-shadow: 1px 1px 1px #000;
+-webkit-text-shadow: 1px 1px 1px #000;
+-moz-text-shadow: 1px 1px 1px #000;
+}
+.video-section h3{
+font-size: 25px;
+font-weight:lighter;
+/*margin: 0px auto 15px;*/
+}
+.video-section .buttonBar{display:none;}
+.player {font-size: 1px;}
