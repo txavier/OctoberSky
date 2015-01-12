@@ -32,4 +32,10 @@ app.controller('loginController', ['$scope', '$location', 'authService', functio
         var oauthWindow = window.open(externalProviderUrl, "Authenticate Account", "location=0,status=0,width=600,height=750");
     };
 
+    $(document).ready(function () {
+
+        $(".player").mb_YTPlayer();
+
+    });
+
 }]);

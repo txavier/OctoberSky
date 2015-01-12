@@ -37,4 +37,10 @@ app.controller('signupController', ['$scope', '$location', '$timeout', 'authServ
         }, 2000);
     }
 
+    $(document).ready(function () {
+
+        $(".player").mb_YTPlayer();
+
+    });
+
 }]);

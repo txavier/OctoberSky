@@ -123,6 +123,11 @@ body {
     color: #CC0001;
 }
 
+.btn-info {
+color: #fff;
+background-color: #fed136;
+border-color: #fed136;
+}
 
 /*-Video Section*/
 .video-section .pattern-overlay {

@@ -3,12 +3,18 @@ app.controller('thingsController', ['$scope', 'thingsService', function ($scope,
 
     $scope.things = [];
 
-    thingsService.getThings().then(function (results) {
+    //thingsService.getThings().then(function (results) {
 
-        $scope.things = results.data;
+    //    $scope.things = results.data;
 
-    }, function (error) {
-        //alert(error.data.message);
+    //}, function (error) {
+    //    //alert(error.data.message);
+    //});
+
+    $(document).ready(function () {
+
+        $(".player").mb_YTPlayer();
+
     });
 
 }]);
