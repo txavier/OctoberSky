@@ -135,15 +135,28 @@
     <Compile Include="AuthContext.cs" />
     <Compile Include="AuthRepository.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\RefreshTokensController.cs" />
     <Compile Include="Controllers\ThingsController.cs" />
     <Compile Include="Entities\Client.cs" />
-    <Compile Include="Models\Enums.cs" />
+    <Compile Include="Entities\RefreshToken.cs" />
+    <Compile Include="Helper.cs" />
+    <Compile Include="Migrations\201501012344469_InitialCreate.cs" />
+    <Compile Include="Migrations\201501012344469_InitialCreate.Designer.cs">
+      <DependentUpon>201501012344469_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201501172018188_RefreshTokens.cs" />
+    <Compile Include="Migrations\201501172018188_RefreshTokens.Designer.cs">
+      <DependentUpon>201501172018188_RefreshTokens.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Enum.cs" />
     <Compile Include="Models\ExternalLoginModels.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\FacebookAuthProvider.cs" />
     <Compile Include="Providers\GoogleAuthProvider.cs" />
     <Compile Include="Providers\SimpleAuthorizationServerProvider.cs" />
+    <Compile Include="Providers\SimpleRefreshTokenProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -158,6 +171,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201501012344469_InitialCreate.resx">
+      <DependentUpon>201501012344469_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501172018188_RefreshTokens.resx">
+      <DependentUpon>201501172018188_RefreshTokens.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

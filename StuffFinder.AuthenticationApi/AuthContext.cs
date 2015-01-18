@@ -17,6 +17,7 @@ namespace StuffFinder.AuthenticationApi
         }
 
         public DbSet<Client> Clients { get; set; }
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
 
     }
 }

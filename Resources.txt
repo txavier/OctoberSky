@@ -14,3 +14,9 @@
  -- Index theme provided by.
 
 	http://www.bootstrapstage.com/agency-start/
+
+ -- The following guide was used for code-first entity framework setup.
+
+	http://msdn.microsoft.com/en-us/data/jj591621.aspx#model
+
+ -- ngAuthApp: attempt having give off

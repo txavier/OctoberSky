@@ -10,4 +10,9 @@ namespace StuffFinder.AuthenticationApi.Models
         JavaScript = 0,
         NativeConfidential = 1
     };
+
+    public class Enum
+    {
+        
+    }
 }
