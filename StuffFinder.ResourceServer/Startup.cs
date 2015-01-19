@@ -4,6 +4,7 @@ using Microsoft.Owin;
 using Owin;
 using System.Web.Http;
 using Microsoft.Owin.Security.OAuth;
+using StuffFinder.ResourceServer.App_Start;
 
 [assembly: OwinStartup(typeof(StuffFinder.ResourceServer.Startup))]
 
