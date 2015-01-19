@@ -32,10 +32,10 @@
                     </ul>
 
                     <ul class="nav hidden-xs" id="lg-menu">
+                        <li><a href="/areas/dashboard/"><i class="glyphicon glyphicon-wrench"></i> Admin Dashboard</a></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-user"></i> [UserName]</a></li>
                         <li class="active"><a href="#/start"><i class="glyphicon glyphicon-list-alt"></i> Featured</a></li>
                         <li><a href="#/things"><i class="glyphicon glyphicon-list"></i> Feed</a></li>
-                        <li><a href="#"><i class="glyphicon glyphicon-paperclip"></i> Saved</a></li>
-                        <li><a href="#"><i class="glyphicon glyphicon-refresh"></i> Refresh</a></li>
                     </ul>
                     <hr />
                     <div class="form-group-sm">
@@ -81,7 +81,7 @@
                 <div class="column col-sm-10 col-xs-11" id="main">
 
                     <!-- top nav -->
-                    <div class="navbar navbar-blue navbar-static-top">
+                    @*<div class="navbar navbar-blue navbar-static-top">
                         <div class="navbar-header">
                             <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
                                 <span class="sr-only">Toggle</span>
@@ -108,7 +108,7 @@
                                     <a href="#/home" style="padding-right:100px"><i class="glyphicon glyphicon-user"></i></a>
                                 </li>
                             </ul>
-                            @*<ul class="nav navbar-nav navbar-right">
+                            <ul class="nav navbar-nav navbar-right">
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i></a>
                                     <ul class="dropdown-menu">
@@ -119,9 +119,9 @@
                                         <li><a href="">More</a></li>
                                     </ul>
                                 </li>
-                            </ul>*@
+                            </ul>
                         </nav>
-                    </div>
+                    </div>*@
                     <!-- /top nav -->
 
                     <div class="padding">
@@ -181,6 +181,7 @@
     <script src="app/things/thingsController.js"></script>
     <script src="app/start/startController.js"></script>
     <script src="app/found-it/foundItController.js"></script>
+    <script src="app/admin/adminController.js"></script>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/scripts")

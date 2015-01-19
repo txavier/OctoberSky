@@ -31,3 +31,7 @@
  -- For full screen video the following javascript package was used.
 
 	http://bootsnipp.com/snippets/featured/ful-screen-video-background
+
+ -- To create areas the following information was used.
+
+	http://msdn.microsoft.com/en-us/library/ee671793(v=vs.100).aspx

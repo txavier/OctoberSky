@@ -37,6 +37,11 @@ app.config(function ($routeProvider) {
         templateUrl: '/index.html'
     });
 
+    $routeProvider.when("/admin", {
+        controller: 'adminController',
+        templateUrl: '/app/templates/admin.html'
+    });
+
     $routeProvider.otherwise({ redirectTo: "/index" });
 });
 
