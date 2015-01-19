@@ -14,9 +14,20 @@
  -- Index theme provided by.
 
 	http://www.bootstrapstage.com/agency-start/
+	http://startbootstrap.com/template-overviews/agency/
 
  -- The following guide was used for code-first entity framework setup.
 
 	http://msdn.microsoft.com/en-us/data/jj591621.aspx#model
 
  -- ngAuthApp: attempt having give off
+
+ -- Dubai photo for cover page.
+
+	http://www.contrib.andrew.cmu.edu/~htasnim/qtraveldoha/img/holidaypackages/dubai-full.jpg
+	http://www.contrib.andrew.cmu.edu/~htasnim/qtraveldoha/holidaypackages.html
+	http://wallpaperscraft.com/download/beauty_city_dubai_lights_evening_water_58630/3840x1200
+
+ -- For full screen video the following javascript package was used.
+
+	http://bootsnipp.com/snippets/featured/ful-screen-video-background
