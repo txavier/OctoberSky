@@ -11,7 +11,7 @@ body {
 
     #sidebar, #sidebar a, #sidebar-footer a {
         color: #fafafa;
-        background-color: #006687;
+        background-color: #2A4888;
         text-shadow: 0 0 2px #000000;
         padding-left: 5px;
         padding-right: 5px;
@@ -22,7 +22,7 @@ body {
         }
 
 #sidebar-footer {
-    background-color: #006687;
+    background-color: #2A4888;
     position: absolute;
     bottom: 5px;
     padding: 5px;
