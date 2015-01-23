@@ -35,3 +35,7 @@
  -- To create areas the following information was used.
 
 	http://msdn.microsoft.com/en-us/library/ee671793(v=vs.100).aspx
+
+ -- Underscore library to be implemented as per this link.
+
+	https://www.airpair.com/angularjs/posts/top-10-mistakes-angularjs-developers-make
