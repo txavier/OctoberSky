@@ -39,3 +39,7 @@
  -- Underscore library to be implemented as per this link.
 
 	https://www.airpair.com/angularjs/posts/top-10-mistakes-angularjs-developers-make
+
+ -- To include the javascript underscore library use the following link.
+
+	https://www.airpair.com/angularjs/posts/top-10-mistakes-angularjs-developers-make
