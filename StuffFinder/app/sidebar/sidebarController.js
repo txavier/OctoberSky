@@ -5,6 +5,9 @@ app.controller('sidebarController', ['$scope', 'authService', function ($scope, 
 
     $scope.authentication.userName = authService.authentication.userName;
 
+    $scope.authentication.sidebarAuthenticationLabel = authService.authentication.userName ?
+        authService.authentication.userName + ' ' + 'Sign Out' : 'Sign In';
+
     var logout = function () {
         authService.logOut();
     }
