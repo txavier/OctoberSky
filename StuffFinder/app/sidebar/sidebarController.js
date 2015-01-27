@@ -1,5 +1,4 @@
-﻿
-(function () {
+﻿(function () {
     'use strict';
 
     app.controller('sidebarController', sidebarController);
@@ -17,6 +16,7 @@
         vm.authentication.loginlogout = loginlogout;
 
         // Scope references needed for deep watch on service variable.
+        // http://stackoverflow.com/questions/12576798/how-to-watch-service-variables
         $scope.authService = authService;
         $scope.authService.authentication = authService.authentication;
         $scope.authService.authentication.userName = authService.authentication.userName;

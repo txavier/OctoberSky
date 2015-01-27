@@ -216,6 +216,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\bootstrapSettingsApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -237,6 +238,7 @@
     <Content Include="app\home\homeController.js" />
     <Content Include="app\index\indexController.js" />
     <Content Include="app\login\loginController.js" />
+    <Content Include="app\services\dataService.js" />
     <Content Include="app\sidebar\sidebarController.js" />
     <Content Include="app\start\startController.js" />
     <Content Include="app\templates\admin.html" />
@@ -733,6 +735,13 @@
     <Content Include="index.html" />
     <Content Include="Scripts\angular-local-storage.js" />
     <Content Include="Scripts\angular-local-storage.min.js" />
+    <Content Include="Scripts\angular-mocks.js" />
+    <Content Include="Scripts\angular-resource.js" />
+    <Content Include="Scripts\angular-resource.min.js" />
+    <Content Include="Scripts\angular-route.js" />
+    <Content Include="Scripts\angular-route.min.js" />
+    <Content Include="Scripts\angular.js" />
+    <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -1071,6 +1080,9 @@
     <Content Include="Areas\dashboard\LICENSE" />
     <Content Include="Areas\dashboard\README.md" />
     <None Include="Properties\PublishProfiles\deltanovember.xaviersoftware.com - Web Deploy.pubxml" />
+    <Content Include="Scripts\angular.min.js.map" />
+    <Content Include="Scripts\angular-route.min.js.map" />
+    <Content Include="Scripts\angular-resource.min.js.map" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\cbpAnimatedHeader.js" />
     <Content Include="Scripts\cbpAnimatedHeader.min.js" />

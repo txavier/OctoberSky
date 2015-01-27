@@ -1,4 +1,4 @@
-﻿var app = angular.module('stuffFinderModule', ['ngRoute', 'LocalStorageModule', 'angular-loading-bar']);
+﻿var app = angular.module('stuffFinderModule', ['ngRoute', 'LocalStorageModule', 'angular-loading-bar', 'ngResource']);
 
 app.config(function ($routeProvider) {
 
@@ -45,7 +45,8 @@ app.config(function ($routeProvider) {
     $routeProvider.otherwise({ redirectTo: "/index" });
 });
 
-app.run(['authService', function (authService) {
+app.run(['dataService', 'authService', function (dataService, authService) {
+    dataService.fillBootstrapSettings();
     authService.fillAuthData();
 }]);
 

@@ -43,3 +43,7 @@
  -- To include the javascript underscore library use the following link.
 
 	https://www.airpair.com/angularjs/posts/top-10-mistakes-angularjs-developers-make
+
+ -- To deep watch a service variable the following implementation was used.
+
+	http://stackoverflow.com/questions/12576798/how-to-watch-service-variables

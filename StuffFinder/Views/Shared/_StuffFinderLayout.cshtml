@@ -163,13 +163,17 @@
     </div>
 
     <!-- 3rd party libraries -->
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-route.min.js"></script>
+    @*<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>*@
+    @*<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-route.min.js"></script>*@
+    <script src="scripts/angular.min.js"></script>
+    <script src="scripts/angular-route.min.js"></script>
+    <script src="scripts/angular-resource.min.js"></script>
     <script src="scripts/angular-local-storage.min.js"></script>
     <script src="scripts/loading-bar.min.js"></script>
     <!-- Load app main script -->
     <script src="app/stuffFinder-module.js"></script>
     <!-- Load services -->
+    <script src="app/services/dataService.js"></script>
     <script src="app/authInterceptor/authInterceptorService.js"></script>
     <script src="app/auth/authService.js"></script>
     <script src="app/things/thingsService.js"></script>
