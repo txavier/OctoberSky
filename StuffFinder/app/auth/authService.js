@@ -49,7 +49,6 @@ app.factory('authService', ['$http', '$q', 'localStorageService', function ($htt
 
         _authentication.isAuth = false;
         _authentication.userName = "";
-
     };
 
     var _fillAuthData = function () {

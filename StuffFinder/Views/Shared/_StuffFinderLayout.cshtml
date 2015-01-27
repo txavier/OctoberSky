@@ -25,7 +25,7 @@
 
 
                 <!-- sidebar -->
-                <div class="column col-sm-2 col-xs-1 sidebar-offcanvas" id="sidebar" data-ng-controller="sidebarController">
+                <div class="column col-sm-2 col-xs-1 sidebar-offcanvas" id="sidebar" data-ng-controller="sidebarController as vm">
 
                     <ul class="nav">
                         <li><a href="#" data-toggle="offcanvas" class="visible-xs text-center"><i class="glyphicon glyphicon-chevron-right"></i></a></li>
@@ -33,7 +33,7 @@
 
                     <ul class="nav hidden-xs" id="lg-menu">
                         <li><a href="/areas/dashboard/"><i class="glyphicon glyphicon-wrench"></i> Admin Dashboard</a></li>
-                        <li><a href="#" data-ng-click="logout()"><i class="glyphicon glyphicon-user"></i> {{ authentication.sidebarAuthenticationLabel }} </a></li>
+                        <li><a href="#/home" data-ng-click="vm.authentication.loginlogout()"><i class="glyphicon glyphicon-user"></i> {{ vm.authentication.sidebarAuthenticationLabel }} </a></li>
                         <li class="active"><a href="#/start"><i class="glyphicon glyphicon-list-alt"></i> Featured</a></li>
                         <li><a href="#/things"><i class="glyphicon glyphicon-list"></i> Feed</a></li>
                     </ul>

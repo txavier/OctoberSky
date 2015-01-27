@@ -1,20 +1,68 @@
-﻿'use strict';
-app.controller('sidebarController', ['$scope', 'authService', function ($scope, authService) {
+﻿
+(function () {
+    'use strict';
 
-    $scope.authentication = {};
+    app.controller('sidebarController', sidebarController);
 
-    $scope.authentication.userName = authService.authentication.userName;
+    sidebarController.$inject = ['$scope', '$location', '$log', 'authService'];
 
-    $scope.authentication.sidebarAuthenticationLabel = authService.authentication.userName ?
-        authService.authentication.userName + ' ' + 'Sign Out' : 'Sign In';
+    function sidebarController($scope, $location, $log, authService) {
 
-    var logout = function () {
-        authService.logOut();
+        var vm = this;
+
+        vm.authentication = {};
+        vm.authentication.userName = authService.authentication.userName;
+        vm.authentication.sidebarAuthenticationLabel = '';
+        vm.authentication.getSidebarAuthenticationLabel = getSidebarAuthenticationLabel;
+        vm.authentication.loginlogout = loginlogout;
+
+        // Scope references needed for deep watch on service variable.
+        $scope.authService = authService;
+        $scope.authService.authentication = authService.authentication;
+        $scope.authService.authentication.userName = authService.authentication.userName;
+
+        activate();
+
+        function activate() {
+            playJumbotronVideo();
+            getSidebarAuthenticationLabel();
+        }
+
+        $scope.$watch('authService.authentication.userName', function (current, original) {
+            $log.info('authService.authentication.userName was %s', original);
+            $log.info('authService.authentication.userName is now %s', current);
+
+            vm.authentication.userName = current;
+            getSidebarAuthenticationLabel();
+        });
+
+        function getSidebarAuthenticationLabel() {
+            vm.authentication.sidebarAuthenticationLabel = vm.authentication.userName ? vm.authentication.userName + ' ' + 'Sign Out' : 'Sign In';
+
+            return vm.authentication.sidebarAuthenticationLabel;
+        }
+
+        // If the person is logged in then this method will log them out.
+        // If the person is logged out then this method will take them to
+        // the log in page.
+        function loginlogout() {
+
+            // If the is auth is false then we want to login now.
+            if (authService.authentication.isAuth) {
+                authService.logOut();
+            }
+            else {
+                $location.path("/home");
+            }
+        }
+
+        // When the page is ready this plays the youtube video.
+        function playJumbotronVideo() {
+            $(document).ready(function () {
+
+                $(".player").mb_YTPlayer();
+
+            });
+        }
     }
-
-    $(document).ready(function () {
-
-        $(".player").mb_YTPlayer();
-
-    });
-}]);
+})();
