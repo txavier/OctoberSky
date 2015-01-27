@@ -45,8 +45,7 @@ app.config(function ($routeProvider) {
     $routeProvider.otherwise({ redirectTo: "/index" });
 });
 
-app.run(['dataService', 'authService', function (dataService, authService) {
-    dataService.fillBootstrapSettings();
+app.run(['authService', function (authService) {
     authService.fillAuthData();
 }]);
 

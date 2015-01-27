@@ -20,8 +20,8 @@ namespace StuffFinder.Controllers
 #else
             var result = new
             {
-                authenticationServerUrl = "http://authenticationapi.deltanovember.xaviersoftware.com",
-                resourceServerUrl = "http://resourceserver.deltanovember.xaviersoftware.com",
+                authenticationServerUrl = "http://authenticationapi.deltanovember.xaviersoftware.com/",
+                resourceServerUrl = "http://resourceserver.deltanovember.xaviersoftware.com/",
             };
 #endif
 

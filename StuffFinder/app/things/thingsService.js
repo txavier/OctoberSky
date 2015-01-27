@@ -1,8 +1,12 @@
 ﻿'use strict';
 app.factory('thingsService', ['$http', 'dataService', function ($http, dataService) {
 
-    //var serviceBase = 'https://localhost:44302/';
-    var serviceBase = dataService.serverUrl.authenticationServerUrl;
+    var serviceBase = '';
+
+    dataService.getServerUrl().then(function (resource) {
+        serviceBase = resource.resourceServerUrl;
+    });
+
     var thingsServiceFactory = {};
 
     var _getFoundThings = function () {

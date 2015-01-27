@@ -1,7 +1,6 @@
 ﻿'use strict';
 app.factory('authService', ['$http', '$q', 'localStorageService', 'dataService', function ($http, $q, localStorageService, dataService) {
 
-    //var serviceBase = 'https://localhost:44302/';
     var serviceBase = '';
 
     dataService.getServerUrl().then(function (resource) {
