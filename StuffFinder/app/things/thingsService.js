@@ -14,56 +14,67 @@ app.factory('thingsService', ['$http', 'dataService', function ($http, dataServi
         var result = {
             things: [
                 {
-                    found: true,
-                    verifiedByOriginalPoster: true,
-                    imageUrl: '/assets/example/bg_5.jpg',
-                    name: 'Black Futon!',
-                    pricesFound: [
-                        {
-                            date: '19 January 2015',
-                            price: '$239.56'
-                        }
-                    ],
-                    location: 'FutonsRUs! 5 kleinstraat 4th district, Nijmegen, UAE 66778965',
                     category: 'Furniture',
-                    me2: '4',
-                    description: 'Leather couch',
-                    postedDate: '10 January 2015',
-                    foundDate: '19 January 2015',
                     comments: [
                         {
                             date: '19 January 2015',
-                            finder: true,
-                            name: 'DoctorNoWho12',
-                            comment: 'Finally found it.  After looking high and low I finally found a furniture store here that sells a futon that folds out to a bed AND the arm rests fold out.',
+                            name: 'hoolahoop12',
+                            comment: "This is great for cakes. $12!!",
                         },
-                    ]
+                    ],
+                    description: 'Leather couch',
+                    findings: [
+                        {
+                            comments: [
+                                {
+                                    date: '19 January 2015',
+                                    finder: true,
+                                    name: 'DoctorNoWho12',
+                                    comment: 'Finally found it.  After looking high and low I finally found a furniture store here that sells a futon that folds out to a bed AND the arm rests fold out.',
+                                },
+                            ],
+                            date: '19 January 2015',
+                            downVote: 23,
+                            location: 'FutonsRUs! 5 kleinstraat 4th district, Nijmegen, UAE 66778965',
+                            price: '$239.56',
+                            upVote: 1
+                        }
+                    ],
+                    found: true,
+                    foundDate: '19 January 2015',
+                    imageUrl: '/assets/example/bg_5.jpg',
+                    me2: '4',
+                    name: 'Black Futon!',
+                    postedDate: '10 January 2015',
                 },
                 {
-                    found: true,
-                    verifiedByOriginalPoster: true,
-                    imageUrl: '/assets/example/Walls-Selection-Hersheys.jpg',
-                    name: 'Walls Selection Hershey\'s Ice Cream!',
-                    pricesFound: [
+                    category: 'Furniture',
+                    comments: [{}],
+                    description: 'Leather couch',
+                    findings: [
                         {
+                            comments: [
+                                {
+                                    date: '12/2/2014',
+                                    finder: true,
+                                    name: 'LesLion54',
+                                    comment: 'Some people were looking for this. I dont care for plain chocolate ice cream much but I found this at the local store.',
+                                },
+                            ],
                             date: '12/2/2014',
-                            price: '$6.78'
+                            downVotes: 0,
+                            location: 'QueensGrocer 6 Grotestraat, Amesterdam, UAE',
+                            price: '$6.78',
+                            upcCode: null,
+                            upVotes: 20,
                         }
                     ],
-                    location: 'QueensGrocer 6 Grotestraat, Amesterdam, UAE',
-                    category: 'Furniture',
-                    me2: '86',
-                    description: 'Leather couch',
-                    postedDate: '10 January 2015',
                     foundDate: '12/2/2014',
-                    comments: [
-                        {
-                            date: '12/2/2014',
-                            finder: true,
-                            name: 'LesLion54',
-                            comment: 'Some people were looking for this. I dont care for plain chocolate ice cream much but I found this at the local store.',
-                        },
-                    ],
+                    found: true,
+                    imageUrl: '/assets/example/Walls-Selection-Hersheys.jpg',
+                    me2: '86',
+                    name: 'Walls Selection Hershey\'s Ice Cream!',
+                    postedDate: '10 January 2015',
                     upcCode: '44393529',
                 },
                 {
@@ -81,10 +92,11 @@ app.factory('thingsService', ['$http', 'dataService', function ($http, dataServi
                                 },
                             ],
                             date: '3/23/2014',
+                            downVotes: 0,
                             location: 'CornerGrocer, 23 SteinStraat The Hague, UAE 34243123',
                             price: '$23.16',
                             upcCode: '239823414',
-                            verifiedByOriginalPoster: true,
+                            upVotes: 20,
                         }
                     ],
                     found: true,
@@ -108,10 +120,11 @@ app.factory('thingsService', ['$http', 'dataService', function ($http, dataServi
                                 },
                             ],
                             date: '12/8/2014',
+                            downVotes: 12,
                             location: 'OpaShop 35 FrontStraat, Rotterdam, UAE',
                             price: '$5.56',
                             upcCode: null,
-                            verifiedByOriginalPoster: true,
+                            upVotes: 1,
                         }
                     ],
                     found: true,
@@ -135,10 +148,11 @@ app.factory('thingsService', ['$http', 'dataService', function ($http, dataServi
                                 },
                             ],
                             date: '1/2/2014',
+                            downVotes: 3,
                             location: 'Grocery4AmericansAndDutch2 43 Haasstraat Utrect, UAE',
                             price: '$9.98',
                             upcCode: null,
-                            verifiedByOriginalPoster: true,
+                            upVotes: 12,
                         }
                     ],
                     found: true,
@@ -158,13 +172,7 @@ app.factory('thingsService', ['$http', 'dataService', function ($http, dataServi
         var result = {
             things: [
                 {
-                    imageUrl: '/assets/example/wn-crunchy-amaretti-tradizionale.png',
-                    name: 'Amaretti Tradizionale',
-                    location: 'address1',
                     category: 'Food->Confectionary',
-                    me2: '210',
-                    description: 'Best chocolate anywhere!',
-                    postedDate: '10 January 2015',
                     comments: [
                         {
                             date: '19 January 2015',
@@ -187,16 +195,19 @@ app.factory('thingsService', ['$http', 'dataService', function ($http, dataServi
                             name: 'AmanDaMan',
                             comment: "I dont mind chipping in $1 fo this.",
                         }
-                    ]
+                    ],
+                    description: 'Best chocolate anywhere!',
+                    findings: [
+                        {
+                        }
+                    ],
+                    imageUrl: '/assets/example/wn-crunchy-amaretti-tradizionale.png',
+                    me2: '210',
+                    name: 'Amaretti Tradizionale',
+                    postedDate: '10 January 2015',
                 },
                 {
-                    imageUrl: '/assets/example/bobs_red_mill_brown_rice_flour_072G.jpg',
-                    name: "Bob's Red Mill Brown Rice Flour",
-                    location: 'address1',
                     category: 'Cooking Ingredients',
-                    me2: '12',
-                    description: 'Organic flour',
-                    postedDate: '1 January 2015',
                     comments: [
                         {
                             date: '19 January 2015',
@@ -224,16 +235,20 @@ app.factory('thingsService', ['$http', 'dataService', function ($http, dataServi
                             name: 'youTWooo',
                             comment: "I second on that."
                         }
-                    ]
+                    ],
+                    description: 'Organic flour',
+                    findings: [
+                        {
+                        }
+                    ],
+                    imageUrl: '/assets/example/bobs_red_mill_brown_rice_flour_072G.jpg',
+                    location: 'address1',
+                    me2: '12',
+                    name: "Bob's Red Mill Brown Rice Flour",
+                    postedDate: '1 January 2015',
                 },
                 {
-                    imageUrl: '/assets/example/ny03-pizza1.jpg',
-                    name: "New York Style Pizza",
-                    location: 'address1',
                     category: 'Food',
-                    me2: '54',
-                    description: 'Pizza',
-                    postedDate: '17 December 2014',
                     comments: [
                         {
                             date: '19 January 2015',
@@ -246,16 +261,20 @@ app.factory('thingsService', ['$http', 'dataService', function ($http, dataServi
                             name: 'Natalie234234',
                             comment: "Yes, this please!!! :)!",
                         },
-                    ]
+                    ],
+                    description: 'Pizza',
+                    findings: [
+                        {
+                        }
+                    ],
+                    imageUrl: '/assets/example/ny03-pizza1.jpg',
+                    location: 'address1',
+                    me2: '54',
+                    name: "New York Style Pizza",
+                    postedDate: '17 December 2014',
                 },
                 {
-                    imageUrl: '/assets/example/betty-crocker chocolate frosting.jpg',
-                    name: "Betty Crocker Chocolate Frosting",
-                    location: 'address1',
                     category: 'Cooking Ingredients',
-                    me2: '4',
-                    description: 'Pizza',
-                    postedDate: '17 December 2014',
                     comments: [
                         {
                             date: '19 January 2015',
@@ -278,7 +297,17 @@ app.factory('thingsService', ['$http', 'dataService', function ($http, dataServi
                             name: 'fredicat',
                             comment: "MMMmmmm I would so love this. I have no money for bounty but would rjlly wanted this.",
                         },
-                    ]
+                    ],
+                    description: 'Pizza',
+                    findings: [
+                        {
+                        }
+                    ],
+                    imageUrl: '/assets/example/betty-crocker chocolate frosting.jpg',
+                    location: 'address1',
+                    me2: '4',
+                    name: "Betty Crocker Chocolate Frosting",
+                    postedDate: '17 December 2014',
                 },
             ],
         }; 
