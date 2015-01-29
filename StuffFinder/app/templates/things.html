@@ -17,23 +17,26 @@
         <!-- main col left -->
         <div class="col-sm-5">
 
-            <div class="panel panel-default" id="animatePanel">
+            <div ng-repeat="thing in foundThings.things" class="panel panel-default" id="animatePanel">
                 <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Found!</h4></div>
-                <div class="panel-thumbnail"><img src="/assets/example/bg_5.jpg" class="img-responsive"></div>
+                <div class="panel-thumbnail"><img src="{{ thing.imageUrl }}" class="img-responsive"></div>
                 <div class="panel-body">
-                    <p class="lead">Black Futon!</p>
+                    <p class="lead">{{ thing.name }}</p>
                     <p>
-                        Finally found it.  After looking high and low I finally found a furniture store here
-                        that sells a futon that folds out to a bed AND the arm rests fold out.
+                        {{ thing.findings[0].comments[0].comment }}
                     </p>
                     <ul>
-                        <li>Location: FutonsRUs! 5 kleinstraat 4th district, Nijmegen, UAE 66778965</li>
-                        <li>Last date spotted in the wild: 1/23/2013</li>
-                        <li>Number of People that wanted this item: 4</li>
-                        <li>Last price posted: $239.56</li>
+                        <li>Location: {{ thing.findings[0].location }}</li>
+                        <li>Last date spotted in the wild: {{ thing.findings[0].date }}</li>
+                        <li>Number of People that wanted this item: {{ thing.me2 }}</li>
+                        <li>Last price posted: {{ thing.findings[0].price }}</li>
+                        <li ng-if="thing.findings[0].upcCode">UPC code: {{ thing.findings[0].upcCode }}</li>
                     </ul>
+                    <!--<p>
+                        <img src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s28" width="28px" height="28px"> {{ thing.findings[0].comments[0].name }} found this!
+                    </p>-->
                     <p>
-                        <img src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s28" width="28px" height="28px"> DoctorNoWho12 found this!
+                        <div class="fb-comments" width="100%" data-href="http://developers.facebook.com/docs/plugins/comments/" data-numposts="4" data-colorscheme="light"></div>
                     </p>
                     <p><a href="#" class="btn btn-default">Email me when this is in my area! &raquo;</a></p>
                     <p>
@@ -63,7 +66,7 @@
                 </form>
             </div>
 
-            <div class="panel panel-default" id="animatePanel">
+            <!--<div class="panel panel-default" id="animatePanel">
                 <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Found!</h4></div>
                 <div class="panel-thumbnail"><img src="/assets/example/Walls-Selection-Hersheys.jpg" class="img-responsive"></div>
                 <div class="panel-body">
@@ -163,7 +166,7 @@
                         <img src="https://lh4.googleusercontent.com/-6aFMDiaLg5M/AAAAAAAAAAI/AAAAAAAABdM/XjnG8z60Ug0/s28-c-k-no/photo.jpg" width="28px" height="28px">
                     </p>
                 </div>
-            </div>
+            </div>-->
 
         </div>
 
@@ -180,188 +183,40 @@
                 </form>
             </div>-->
 
-            <div class="panel panel-default">
+            <div ng-repeat="thing in mostMeTooed.things" class=" panel panel-default">
                 <div class="panel-heading">
                     <!--<a href="#" class="pull-right">Bounty currently set at: $246</a>-->
-                    <h4>Wanted: Amaretti Tradizionale</h4>
+                    <h4>Wanted: {{ thing.name }}</h4>
                 </div>
-                <div class="panel-thumbnail"><img src="/assets/example/wn-crunchy-amaretti-tradizionale.png" class="img-responsive"></div>
+                <div class="panel-thumbnail"><img src="{{ thing.imageUrl }}" class="img-responsive"></div>
                 <div class="panel-body">
                     <div class="clearfix"></div>
                     <hr>
-                    <img src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s28" width="28px" height="28px"> MandyK writes: I need these in my life again.  I used to get these from the Trader Joe's down the street
-                    from where i used to live.  Up here I cant find them anywhere. Please people we have to get this item!!
-                    <hr />
-                    <ul>
-                        <li>
-                            <img src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s28" width="28px" height="28px"> Gerbil112 writes: OH MAN!! I love these I want them so much!
+                    <img src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s28" width="28px" height="28px"> {{ thing.comments[0].name }} writes: {{ thing.comments[0].comment }}
+                    <!--<ul>
+                        <li ng-repeat="comment in thing.comments | filter: { originalPoster: false }">
+                            <img src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s28" width="28px" height="28px"> {{ comment.name }} writes: {{ comment.comment }}
                         </li>
-                        <li>
-                            <img src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s28" width="28px" height="28px"> RobertK writes: Whoa this brings me back.  Wish these were here.  Can someone find these ASAP!!
-                        </li>
-                        <li>
-                            <img src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s28" width="28px" height="28px"> AmanDaMan writes: I dont mind chipping in $1 fo this.
-                        </li>
-                    </ul>
-                    <form>
+                    </ul>-->
+                    <p>
+                        <div class="fb-comments" width="100%" data-href="http://developers.facebook.com/docs/plugins/comments/" data-numposts="3" data-colorscheme="light"></div>
+                    </p>
+                    <!--<form>
                         <div class="input-group">
                             <div class="input-group-btn">
                                 <button class="btn btn-default">+1</button><button class="btn btn-default"><i class="glyphicon glyphicon-share"></i></button>
                             </div>
                             <input type="text" class="form-control" placeholder="Add a comment..">
                         </div>
-                    </form>
+                    </form>-->
                     <hr />
                     <p><a href="#" class="btn btn-default">Email me when this is found in 50 feet of my area! &raquo;</a></p>
                     <!--<p><a href="#" class="btn btn-default">Place a bounty on this! &raquo;</a></p>-->
                     <hr />
                     <!--<p>
-                        WheresMyStuff.com scours the web looking for the items you want in your location! See the list of automatically curated items that may match this one.
-                    </p>-->
+                WheresMyStuff.com scours the web looking for the items you want in your location! See the list of automatically curated items that may match this one.
+            </p>-->
                     <p>
-                        <a href="#">Is this it? &raquo;</a>
-                    </p>
-                    <p>
-                        <img src="https://lh6.googleusercontent.com/-5cTTMHjjnzs/AAAAAAAAAAI/AAAAAAAAAFk/vgza68M4p2s/s28-c-k-no/photo.jpg" width="28px" height="28px">
-                        <img src="https://lh4.googleusercontent.com/-6aFMDiaLg5M/AAAAAAAAAAI/AAAAAAAABdM/XjnG8z60Ug0/s28-c-k-no/photo.jpg" width="28px" height="28px">
-                    </p>
-                </div>
-            </div>
-
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <!--<a href="#" class="pull-right">Bounty currently set at: $1,002.83</a>-->
-                    <h4>Wanted: Bob's Red Mill Brown Rice Flour</h4>
-                </div>
-                <div class="panel-thumbnail"><img src="/assets/example/bobs_red_mill_brown_rice_flour_072G.jpg" class="img-responsive"></div>
-                <div class="panel-body">
-                    <div class="clearfix"></div>
-                    <hr>
-                    <img src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s28" width="28px" height="28px"> TinaBaker writes: Running a bakery shop, or atleast trying to
-                    start one up.  We need this supplied to us.  If anyone knows of a shipper or someone that can get this to us on a regular basis we would really appreciate it. Thanks.
-                    <hr />
-                    <ul>
-                        <li>
-                            <img src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s28" width="28px" height="28px"> M1thhews123 writes: I dont run a bakery, but I need this to bake my wife's favorite bread on mornings.
-                            I would give anything to bake her this as a surprise.
-                        </li>
-                        <li>
-                            <img src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s28" width="28px" height="28px"> SocialAnaconda writes: My relatives here love this when I bring it to them from New York.  They could really
-                            use this!!
-                        </li>
-                        <li>
-                            <img src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s28" width="28px" height="28px"> gruGu writes: I dont mind paying $1 jto see this onstoreshelves..
-                        </li>
-                        <li>
-                            <img src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s28" width="28px" height="28px"> youTWooo writes: I second on that.
-                        </li>
-                        <br />
-                        <a href="#">See more comments...</a>
-                    </ul>
-                    <form>
-                        <div class="input-group">
-                            <div class="input-group-btn">
-                                <button class="btn btn-default">+1</button><button class="btn btn-default"><i class="glyphicon glyphicon-share"></i></button>
-                            </div>
-                            <input type="text" class="form-control" placeholder="Add a comment..">
-                        </div>
-                    </form>
-                    <hr />
-                    <p><a href="#" class="btn btn-default">Email me when this is found in 50 feet of my area! &raquo;</a></p>
-                    <p><a href="#" class="btn btn-default">Place a bounty on this! &raquo;</a></p>
-                    <hr />
-                    <p>
-                        WheresMyStuff.com scours the web looking for the items you want in your location! See the list of automatically curated items that may match this one.
-                    </p><p>
-                        <a href="#">Is this it? &raquo;</a>
-                    </p>
-                    <p>
-                        <img src="https://lh6.googleusercontent.com/-5cTTMHjjnzs/AAAAAAAAAAI/AAAAAAAAAFk/vgza68M4p2s/s28-c-k-no/photo.jpg" width="28px" height="28px">
-                        <img src="https://lh4.googleusercontent.com/-6aFMDiaLg5M/AAAAAAAAAAI/AAAAAAAABdM/XjnG8z60Ug0/s28-c-k-no/photo.jpg" width="28px" height="28px">
-                    </p>
-                </div>
-            </div>
-
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <!--<a href="#" class="pull-right">Bounty currently set at: $4</a>-->
-                    <h4>Wanted: New York Style Pizza</h4>
-                </div>
-                <div class="panel-thumbnail"><img src="/assets/example/ny03-pizza1.jpg" class="img-responsive"></div>
-                <div class="panel-body">
-                    <div class="clearfix"></div>
-                    <hr>
-                    <img src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s28" width="28px" height="28px"> DanTheMan writes: There's nothing like a new york slice. $2 to anyone who can find one inn a
-                    50 mile radius of Nijmegen.
-                    <hr />
-                    <ul>
-                        <li>
-                            <img src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s28" width="28px" height="28px"> Natalie234234 writes: Yes, this please!!! :)!
-                        </li>
-                    </ul>
-                    <form>
-                        <div class="input-group">
-                            <div class="input-group-btn">
-                                <button class="btn btn-default">+1</button><button class="btn btn-default"><i class="glyphicon glyphicon-share"></i></button>
-                            </div>
-                            <input type="text" class="form-control" placeholder="Add a comment..">
-                        </div>
-                    </form>
-                    <hr />
-                    <p><a href="#" class="btn btn-default">Email me when this is found in 50 feet of my area! &raquo;</a></p>
-                    <p><a href="#" class="btn btn-default">Place a bounty on this! &raquo;</a></p>
-                    <hr />
-                    <p>
-                        WheresMyStuff.com scours the web looking for the items you want in your location! See the list of automatically curated items that may match this one.
-                    </p><p>
-                        <a href="#">Is this it? &raquo;</a>
-                    </p>
-                    <p>
-                        <img src="https://lh6.googleusercontent.com/-5cTTMHjjnzs/AAAAAAAAAAI/AAAAAAAAAFk/vgza68M4p2s/s28-c-k-no/photo.jpg" width="28px" height="28px">
-                        <img src="https://lh4.googleusercontent.com/-6aFMDiaLg5M/AAAAAAAAAAI/AAAAAAAABdM/XjnG8z60Ug0/s28-c-k-no/photo.jpg" width="28px" height="28px">
-                    </p>
-                </div>
-            </div>
-
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <!--<a href="#" class="pull-right">Bounty currently set at: $89</a>--> 
-                    <h4>Wanted: Betty Crocker Chocolate Frosting</h4>
-                </div>
-                <div class="panel-thumbnail"><img src="/assets/example/betty-crocker chocolate frosting.jpg" class="img-responsive"></div>
-                <div class="panel-body">
-                    <div class="clearfix"></div>
-                    <hr>
-                    <img src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s28" width="28px" height="28px"> JennFire writes: This is the best chocolate bar none. $5 dollars to the
-                    nice person that can reunite this chocolate with me.
-                    <hr />
-                    <ul>
-                        <li>
-                            <img src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s28" width="28px" height="28px"> hoolahoop12 writes: This is great for cakes. $12!!
-                        </li>
-                        <li>
-                            <img src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s28" width="28px" height="28px"> TonyFRado writes: Baking a cake this month. Bounty!! $.58
-                        </li>
-                        <li>
-                            <img src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s28" width="28px" height="28px"> fredicat writes: MMMmmmm I would so love this. I have no money
-                            for bounty but would rjlly wanted this.
-                        </li>
-                    </ul>
-                    <form>
-                        <div class="input-group">
-                            <div class="input-group-btn">
-                                <button class="btn btn-default">+1</button><button class="btn btn-default"><i class="glyphicon glyphicon-share"></i></button>
-                            </div>
-                            <input type="text" class="form-control" placeholder="Add a comment..">
-                        </div>
-                    </form>
-                    <hr />
-                    <p><a href="#" class="btn btn-default">Email me when this is found in 50 feet of my area! &raquo;</a></p>
-                    <p><a href="#" class="btn btn-default">Place a bounty on this! &raquo;</a></p>
-                    <hr />
-                    <p>
-                        WheresMyStuff.com scours the web looking for the items you want in your location! See the list of automatically curated items that may match this one.
-                    </p><p>
                         <a href="#">Is this it? &raquo;</a>
                     </p>
                     <p>

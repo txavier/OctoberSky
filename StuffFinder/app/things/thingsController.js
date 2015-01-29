@@ -1,7 +1,10 @@
 ﻿'use strict';
 app.controller('thingsController', ['$scope', 'thingsService', function ($scope, thingsService) {
 
-    $scope.things = [];
+    $scope.mostMeTooed = thingsService.getMostMe2Things();
+
+    $scope.foundThings = thingsService.getFoundThings();
+
 
     //thingsService.getThings().then(function (results) {
 
