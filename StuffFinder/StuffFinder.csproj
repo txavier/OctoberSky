@@ -232,19 +232,25 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\admin\adminController.js" />
+    <Content Include="app\associate\associateController.js" />
     <Content Include="app\authInterceptor\authInterceptorService.js" />
     <Content Include="app\auth\authService.js" />
     <Content Include="app\found-it\foundItController.js" />
     <Content Include="app\home\homeController.js" />
     <Content Include="app\index\indexController.js" />
     <Content Include="app\login\loginController.js" />
+    <Content Include="app\refresh\refreshController.js" />
     <Content Include="app\services\dataService.js" />
+    <Content Include="app\services\tokensManagerService.js" />
     <Content Include="app\sidebar\sidebarController.js" />
     <Content Include="app\start\startController.js" />
     <Content Include="app\templates\admin.html" />
+    <Content Include="app\templates\associate.html" />
     <Content Include="app\templates\found-it.html" />
+    <Content Include="app\templates\refresh.html" />
     <Content Include="app\templates\start.html" />
     <Content Include="app\templates\things.html" />
+    <Content Include="app\templates\tokens.html" />
     <Content Include="app\things\thingsController.js" />
     <Content Include="app\things\thingsService.js" />
     <Content Include="app\signup\signupController.js" />
@@ -252,6 +258,7 @@
     <Content Include="app\templates\home.html" />
     <Content Include="app\templates\login.html" />
     <Content Include="app\templates\signup.html" />
+    <Content Include="app\tokensManager\tokensManagerController.js" />
     <Content Include="Areas\dashboard\bower_components\bootstrap-social\.gitignore" />
     <Content Include="Areas\dashboard\bower_components\bootstrap-social\bootstrap-social.css" />
     <Content Include="Areas\dashboard\bower_components\bootstrap\dist\css\bootstrap-theme.css" />
@@ -711,6 +718,7 @@
     <Content Include="assets\example\trader joes vanilla.jpg" />
     <Content Include="assets\example\Walls-Selection-Hersheys.jpg" />
     <Content Include="assets\example\wn-crunchy-amaretti-tradizionale.png" />
+    <Content Include="authComplete.html" />
     <Content Include="Content\animate.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -742,6 +750,7 @@
     <Content Include="Scripts\angular-route.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\authComplete.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -1093,6 +1102,8 @@
     <Content Include="Scripts\jquery-2.1.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.easing.min.js" />
+    <Content Include="Scripts\jquery.mb.YTPlayer.js" />
+    <Content Include="Scripts\jquery.mb.YTPlayer.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />

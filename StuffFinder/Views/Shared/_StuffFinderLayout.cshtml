@@ -21,6 +21,14 @@
 <body>
     <div id="fb-root"></div>
     <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: 'your-app-id',
+                xfbml: true,
+                version: 'v2.1'
+            });
+        };
+
 (function (d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
@@ -186,6 +194,7 @@
     <script src="app/authInterceptor/authInterceptorService.js"></script>
     <script src="app/auth/authService.js"></script>
     <script src="app/things/thingsService.js"></script>
+    <script src="app/services/tokensManagerService.js"></script>
     <!-- Load controllers -->
     <script src="app/index/indexController.js"></script>
     <script src="app/home/homeController.js"></script>
@@ -196,10 +205,14 @@
     <script src="app/found-it/foundItController.js"></script>
     <script src="app/admin/adminController.js"></script>
     <script src="app/sidebar/sidebarController.js"></script>
+    <script src="app/associate/associateController.js"></script>
+    <script src="app/refresh/refreshController.js"></script>
+    <script src="app/tokensManager/tokensManagerController.js"></script>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/scripts")
-    <script src="http://pupunzi.com/mb.components/mb.YTPlayer/demo/inc/jquery.mb.YTPlayer.js"></script>
+    @*<script src="http://pupunzi.com/mb.components/mb.YTPlayer/demo/inc/jquery.mb.YTPlayer.js"></script>*@
+    <script src="scripts/jquery.mb.YTPlayer.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

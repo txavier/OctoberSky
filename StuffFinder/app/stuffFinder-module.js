@@ -32,6 +32,21 @@ app.config(function ($routeProvider) {
         templateUrl: "/app/templates/found-it.html"
     });
 
+    $routeProvider.when("/refresh", {
+        controller: "refreshController",
+        templateUrl: "/app/views/refresh.html"
+    });
+
+    $routeProvider.when("/tokens", {
+        controller: "tokensManagerController",
+        templateUrl: "/app/views/tokens.html"
+    });
+
+    $routeProvider.when("/associate", {
+        controller: "associateController",
+        templateUrl: "/app/views/associate.html"
+    });
+
     $routeProvider.when("/index", {
         controller: 'indexController',
         templateUrl: '/index.html'
@@ -45,10 +60,23 @@ app.config(function ($routeProvider) {
     $routeProvider.otherwise({ redirectTo: "/index" });
 });
 
-app.run(['authService', function (authService) {
-    authService.fillAuthData();
-}]);
+var serviceBase = '';
+
+app.run(['dataService', function (dataService) {
+    dataService.getServerUrl().then(function (resource) {
+        serviceBase = resource.authenticationServerUrl;
+    });
+}])
+
+app.constant('ngAuthSettings', {
+    apiServiceBaseUri: serviceBase,
+    clientId: '915674078507-ersdkqkfl2nah49s5ier2drnlstajqov.apps.googleusercontent.com'
+});
 
 app.config(function ($httpProvider) {
     $httpProvider.interceptors.push('authInterceptorService');
 });
+
+app.run(['authService', function (authService) {
+    authService.fillAuthData();
+}]);

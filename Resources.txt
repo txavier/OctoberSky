@@ -47,3 +47,11 @@
  -- To deep watch a service variable the following implementation was used.
 
 	http://stackoverflow.com/questions/12576798/how-to-watch-service-variables
+
+ -- To get an angular service variable from another variable the following method was used.
+
+	var serviceBase = '';
+
+    dataService.getServerUrl().then(function (resource) {
+        serviceBase = resource.authenticationServerUrl;
+    });
