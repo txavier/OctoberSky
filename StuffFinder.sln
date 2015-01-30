@@ -35,6 +35,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StuffFinder.ResourceServer"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StuffFinder.Infrastructure", "StuffFinder.Infrastructure\StuffFinder.Infrastructure.csproj", "{BD976EB7-0435-4ED1-856D-37CC9010B8C4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Code First Initial Migration", "Code First Initial Migration", "{59E69696-7EA5-4A59-B04B-25A6AFF8715E}"
+	ProjectSection(SolutionItems) = preProject
+		StuffFinder.Data\Migrations\201501300800340_InitialMigration.cs = StuffFinder.Data\Migrations\201501300800340_InitialMigration.cs
+		StuffFinder.Data\Migrations\201501300800340_InitialMigration.Designer.cs = StuffFinder.Data\Migrations\201501300800340_InitialMigration.Designer.cs
+		StuffFinder.Data\Migrations\201501300800340_InitialMigration.resx = StuffFinder.Data\Migrations\201501300800340_InitialMigration.resx
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -84,5 +91,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{DF0249BA-9DE3-4B0A-AD04-88E170D0E7EF} = {BFAF4C8C-F351-40A2-9162-02470844AF89}
 		{DE1C4553-5FFF-4043-9D95-3B7F13F101F9} = {BFAF4C8C-F351-40A2-9162-02470844AF89}
+		{59E69696-7EA5-4A59-B04B-25A6AFF8715E} = {D23E285E-4EDD-499C-85DC-526F1E90F153}
 	EndGlobalSection
 EndGlobal

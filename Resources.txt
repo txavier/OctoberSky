@@ -55,3 +55,7 @@
     dataService.getServerUrl().then(function (resource) {
         serviceBase = resource.authenticationServerUrl;
     });
+
+ -- This website was used to transform json to .net classes
+
+	http://json2csharp.com/

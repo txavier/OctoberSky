@@ -23,7 +23,7 @@
                 <div class="panel-body">
                     <p class="lead">{{ thing.name }}</p>
                     <p>
-                        {{ thing.findings[0].comments[0].comment }}
+                        {{ thing.findings[0].comments[0].commentText }}
                     </p>
                     <ul>
                         <li>Location: {{ thing.findings[0].location }}</li>
@@ -192,10 +192,10 @@
                 <div class="panel-body">
                     <div class="clearfix"></div>
                     <hr>
-                    <img src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s28" width="28px" height="28px"> {{ thing.comments[0].name }} writes: {{ thing.comments[0].comment }}
+                    <img src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s28" width="28px" height="28px"> {{ thing.comments[0].name }} writes: {{ thing.comments[0].commentText }}
                     <!--<ul>
                         <li ng-repeat="comment in thing.comments | filter: { originalPoster: false }">
-                            <img src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s28" width="28px" height="28px"> {{ comment.name }} writes: {{ comment.comment }}
+                            <img src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s28" width="28px" height="28px"> {{ comment.name }} writes: {{ comment.commentText }}
                         </li>
                     </ul>-->
                     <p>
