@@ -1,6 +1,9 @@
 namespace StuffFinder.Data.Migrations
 {
+    using Newtonsoft.Json;
+    using StuffFinder.Core.Services;
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
@@ -26,6 +29,14 @@ namespace StuffFinder.Data.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
+            var thingService = new ThingService();
+            
+            var things = thingService.SeedThingsTable();
+
+            context.things.AddOrUpdate(p => p.name, things.ToArray());
         }
+
+
     }
 }
