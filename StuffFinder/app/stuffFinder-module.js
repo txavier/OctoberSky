@@ -57,6 +57,11 @@ app.config(function ($routeProvider) {
         templateUrl: '/app/templates/admin.html'
     });
 
+    $routeProvider.when('/where-is-it', {
+        controller: 'whereIsItController',
+        templateUrl: '/app/templates/where-is-it.html'
+    });
+
     $routeProvider.otherwise({ redirectTo: "/index" });
 });
 

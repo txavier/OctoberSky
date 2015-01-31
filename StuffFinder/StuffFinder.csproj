@@ -246,6 +246,7 @@
     <Content Include="app\start\startController.js" />
     <Content Include="app\templates\admin.html" />
     <Content Include="app\templates\associate.html" />
+    <Content Include="app\templates\where-is-it.html" />
     <Content Include="app\templates\found-it.html" />
     <Content Include="app\templates\refresh.html" />
     <Content Include="app\templates\start.html" />
@@ -259,6 +260,7 @@
     <Content Include="app\templates\login.html" />
     <Content Include="app\templates\signup.html" />
     <Content Include="app\tokensManager\tokensManagerController.js" />
+    <Content Include="app\whereIsIt\whereIsItController.js" />
     <Content Include="Areas\dashboard\bower_components\bootstrap-social\.gitignore" />
     <Content Include="Areas\dashboard\bower_components\bootstrap-social\bootstrap-social.css" />
     <Content Include="Areas\dashboard\bower_components\bootstrap\dist\css\bootstrap-theme.css" />
