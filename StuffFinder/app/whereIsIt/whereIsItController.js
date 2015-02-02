@@ -51,6 +51,7 @@
                     date: new Date(),
                     originalPoster: true,
                     name: authService.authentication.userName,
+                    commentText: ''
                 }],
             }
 
