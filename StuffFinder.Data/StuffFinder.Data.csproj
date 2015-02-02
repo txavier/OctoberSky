@@ -58,6 +58,18 @@
     <Compile Include="Migrations\201501300800340_InitialMigration.Designer.cs">
       <DependentUpon>201501300800340_InitialMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201502012159149_February1Change.cs" />
+    <Compile Include="Migrations\201502012159149_February1Change.Designer.cs">
+      <DependentUpon>201502012159149_February1Change.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201502012228352_FindingIsOptionalOnCommentTable.cs" />
+    <Compile Include="Migrations\201502012228352_FindingIsOptionalOnCommentTable.Designer.cs">
+      <DependentUpon>201502012228352_FindingIsOptionalOnCommentTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201502012242520_MakeDateStringsToDateTimes.cs" />
+    <Compile Include="Migrations\201502012242520_MakeDateStringsToDateTimes.Designer.cs">
+      <DependentUpon>201502012242520_MakeDateStringsToDateTimes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="stuffFinderDbContext.cs" />
@@ -75,6 +87,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201501300800340_InitialMigration.resx">
       <DependentUpon>201501300800340_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502012159149_February1Change.resx">
+      <DependentUpon>201502012159149_February1Change.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502012228352_FindingIsOptionalOnCommentTable.resx">
+      <DependentUpon>201502012228352_FindingIsOptionalOnCommentTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502012242520_MakeDateStringsToDateTimes.resx">
+      <DependentUpon>201502012242520_MakeDateStringsToDateTimes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

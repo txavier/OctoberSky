@@ -14,9 +14,13 @@
             authenticationServerUrl: ''
         };
 
-        return {
+        var service =  {
             getServerUrl: getServerUrl,
+            saveThing: saveThing,
+            getThings: getThings,
         };
+
+        return service;
 
         function getServerUrl() {
             $http.get('/api/bootstrapSettingsApi')
@@ -33,37 +37,46 @@
             return deferred.promise;
         }
 
-        //function fillBootstrapSettings() {
-        //    //return $resource('/api/bootstrapSettingsApi').get({})
-        //    //    .$promise
-        //    return $http.get('/api/bootstrapSettingsApi')
-        //        .then(fillBootstrapSettingsComplete)
-        //        .catch(fillBootstrapSettingsFailed);
+        function getThings() {
+            // If the resource server url is not known then
+            // call the getServerUrl method to get it.
+            // We need it to get the things from the database.
+            if (serverUrl.resourceServerUrl === '') {
+                getServerUrl();
+            }
 
-        //    function fillBootstrapSettingsComplete(response) {
-        //        serverUrl.resourceServerUrl = response.data.resourceServerUrl;
-        //        serverUrl.authenticationServerUrl = response.data.authenticationServerUrl;
+            return $http.get(serverUrl.resourceServerUrl + 'api/thingsApi')
+                .then(getThingsComplete)
+                .catch(getThingsFailed);
 
-        //        return serverUrl;
-        //    }
+            function getThingsComplete(response) {
+                return response.data.results;
+            }
 
-        //    function fillBootstrapSettingsFailed(error) {
-        //        return $log.error('XHR Failed for getBootstrapSettings.' + error.data);
-        //    }
-        //}
+            function getThingsFailed(error) {
+                $log.error('XHR Failed for getThings.' + error.data);
+            }
+        }
 
-        //function getAvengers() {
-        //    return $http.get('/api/maa')
-        //        .then(getAvengersComplete)
-        //        .catch(getAvengersFailed);
+        function saveThing(thing) {
+            // If the resource server url is not known then
+            // call the getServerUrl method to get it.
+            // We need it to get the things from the database.
+            if (serverUrl.resourceServerUrl === '') {
+                getServerUrl();
+            }
 
-        //    function getAvengersComplete(response) {
-        //        return response.data.results;
-        //    }
+            return $http.post(serverUrl.resourceServerUrl + 'api/thingsApi', thing)
+                .then(saveThingComplete)
+                .catch(saveThingFailed);
 
-        //    function getAvengersFailed(error) {
-        //        $log.error('XHR Failed for getAvengers.' + error.data);
-        //    }
-        //}
+            function saveThingComplete(response) {
+                return response.data.results;
+            }
+
+            function saveThingFailed(error) {
+                $log.error('XHR Failed for saveThing.' + error.data);
+            }
+        }
     }
 })();

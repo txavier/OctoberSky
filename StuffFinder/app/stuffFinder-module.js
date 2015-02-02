@@ -1,4 +1,4 @@
-﻿var app = angular.module('stuffFinderModule', ['ngRoute', 'LocalStorageModule', 'angular-loading-bar', 'ngResource']);
+﻿var app = angular.module('stuffFinderModule', ['ngRoute', 'LocalStorageModule', 'angular-loading-bar', 'ngResource', 'ui.bootstrap']);
 
 app.config(function ($routeProvider) {
 
@@ -59,6 +59,7 @@ app.config(function ($routeProvider) {
 
     $routeProvider.when('/where-is-it', {
         controller: 'whereIsItController',
+        controllerAs: 'vm',
         templateUrl: '/app/templates/where-is-it.html'
     });
 

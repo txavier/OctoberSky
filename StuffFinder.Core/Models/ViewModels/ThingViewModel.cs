@@ -1,22 +1,10 @@
 
+using System;
+using System.ComponentModel.DataAnnotations;
 namespace StuffFinder.Core.Models
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
-
-    [Table("thing")]
-    public partial class thing
+    public partial class ThingViewModel
     {
-        public thing()
-        {
-            comments = new HashSet<comment>();
-            findings = new HashSet<finding>();
-            images = new HashSet<image>();
-        }
-
         public int thingId { get; set; }
 
         public int? categoryId { get; set; }
@@ -41,7 +29,6 @@ namespace StuffFinder.Core.Models
 
         public double? longitude { get; set; }
 
-        [Column(TypeName = "datetime2")]
         public DateTime? dateSpotted { get; set; }
 
         [StringLength(50)]
@@ -66,22 +53,12 @@ namespace StuffFinder.Core.Models
 
         public string postedDate { get; set; }
 
-        [Column(TypeName = "datetime2")]
         public DateTime? createdDate { get; set; }
 
-        [Column(TypeName = "datetime2")]
         public DateTime? modifiedDate { get; set; }
 
         public bool? softDelete { get; set; }
 
         public Guid recordTrackerGuid { get; set; }
-
-        public virtual category category1 { get; set; }
-
-        public virtual ICollection<comment> comments { get; set; }
-
-        public virtual ICollection<finding> findings { get; set; }
-
-        public virtual ICollection<image> images { get; set; }
     }
 }

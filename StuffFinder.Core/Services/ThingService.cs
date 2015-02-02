@@ -39,10 +39,6 @@ namespace StuffFinder.Core.Services
                         }
                     ],
                     description: 'Best chocolate anywhere!',
-                    findings: [
-                        {
-                        }
-                    ],
                     imageUrl: '/assets/example/wn-crunchy-amaretti-tradizionale.png',
                     me2: '210',
                     name: 'Amaretti Tradizionale',
@@ -79,10 +75,6 @@ namespace StuffFinder.Core.Services
                         }
                     ],
                     description: 'Organic flour',
-                    findings: [
-                        {
-                        }
-                    ],
                     imageUrl: '/assets/example/bobs_red_mill_brown_rice_flour_072G.jpg',
                     location: 'address1',
                     me2: '12',
@@ -105,10 +97,6 @@ namespace StuffFinder.Core.Services
                         },
                     ],
                     description: 'Pizza',
-                    findings: [
-                        {
-                        }
-                    ],
                     imageUrl: '/assets/example/ny03-pizza1.jpg',
                     location: 'address1',
                     me2: '54',
@@ -141,10 +129,6 @@ namespace StuffFinder.Core.Services
                         },
                     ],
                     description: 'Pizza',
-                    findings: [
-                        {
-                        }
-                    ],
                     imageUrl: '/assets/example/betty-crocker chocolate frosting.jpg',
                     location: 'address1',
                     me2: '4',
@@ -187,7 +171,6 @@ namespace StuffFinder.Core.Services
                 },
                 {
                     category: 'Furniture',
-                    comments: [{}],
                     description: 'Leather couch',
                     findings: [
                         {
@@ -217,7 +200,6 @@ namespace StuffFinder.Core.Services
                 },
                 {
                     category: 'Hair Products',
-                    comments: [{}],
                     description: 'Oil made from coconut.',
                     findings: [
                         {

@@ -1,6 +1,7 @@
 namespace StuffFinder.Data.Migrations
 {
     using Newtonsoft.Json;
+    using StuffFinder.Core.Models;
     using StuffFinder.Core.Services;
     using System;
     using System.Collections.Generic;
@@ -35,6 +36,10 @@ namespace StuffFinder.Data.Migrations
             var things = thingService.SeedThingsTable();
 
             context.things.AddOrUpdate(p => p.name, things.ToArray());
+
+            context.categories.AddOrUpdate(p => p.name,
+                new category { name = "furniture" },
+                new category { name = "food" });
         }
 
 
