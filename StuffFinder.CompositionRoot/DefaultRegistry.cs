@@ -12,6 +12,7 @@ using AutoClutch.Auto.Service.Interfaces;
 using AutoClutch.Auto.Repo.Interfaces;
 using AutoClutch.Auto.Repo.Objects;
 using StuffFinder.Core.Services;
+using StuffFinder.Core.Interfaces;
 
 namespace StuffFinder.CompositionRoot
 {

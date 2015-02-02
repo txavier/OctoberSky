@@ -59,3 +59,7 @@
  -- This website was used to transform json to .net classes
 
 	http://json2csharp.com/
+
+ -- For image file upload with drag and drop interface in Angular the following library was used.
+
+	https://github.com/Wildhoney/ngDroplet

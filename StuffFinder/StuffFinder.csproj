@@ -1123,6 +1123,8 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\scripts.js" />
+    <Content Include="Scripts\vendor\ng-droplet\ng-droplet.js" />
+    <Content Include="Scripts\vendor\progressbar.js\dist\progressbar.js" />
     <Content Include="Splash\css\agency.css" />
     <Content Include="Splash\css\bootstrap.css" />
     <Content Include="Splash\css\bootstrap.min.css" />

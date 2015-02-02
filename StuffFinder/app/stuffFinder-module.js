@@ -1,4 +1,4 @@
-﻿var app = angular.module('stuffFinderModule', ['ngRoute', 'LocalStorageModule', 'angular-loading-bar', 'ngResource', 'ui.bootstrap']);
+﻿var app = angular.module('stuffFinderModule', ['ngRoute', 'LocalStorageModule', 'angular-loading-bar', 'ngResource', 'ui.bootstrap', 'ngDroplet']);
 
 app.config(function ($routeProvider) {
 

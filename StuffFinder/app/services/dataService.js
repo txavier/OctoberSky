@@ -18,6 +18,7 @@
             getServerUrl: getServerUrl,
             saveThing: saveThing,
             getThings: getThings,
+            getCategories: getCategories,
         };
 
         return service;
@@ -38,45 +39,57 @@
         }
 
         function getThings() {
-            // If the resource server url is not known then
-            // call the getServerUrl method to get it.
-            // We need it to get the things from the database.
-            if (serverUrl.resourceServerUrl === '') {
-                getServerUrl();
-            }
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
 
-            return $http.get(serverUrl.resourceServerUrl + 'api/thingsApi')
-                .then(getThingsComplete)
-                .catch(getThingsFailed);
+                return $http.get(serverUrl.resourceServerUrl + 'api/thingsApi')
+                            .then(getThingsComplete)
+                            .catch(getThingsFailed);
 
-            function getThingsComplete(response) {
-                return response.data.results;
-            }
+                function getThingsComplete(response) {
+                    return response.data.results;
+                }
 
-            function getThingsFailed(error) {
-                $log.error('XHR Failed for getThings.' + error.data);
-            }
+                function getThingsFailed(error) {
+                    $log.error('XHR Failed for getThings.' + error.data);
+                }
+            });
         }
 
         function saveThing(thing) {
-            // If the resource server url is not known then
-            // call the getServerUrl method to get it.
-            // We need it to get the things from the database.
-            if (serverUrl.resourceServerUrl === '') {
-                getServerUrl();
-            }
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
 
-            return $http.post(serverUrl.resourceServerUrl + 'api/thingsApi', thing)
-                .then(saveThingComplete)
-                .catch(saveThingFailed);
+                return $http.post(serverUrl.resourceServerUrl + 'api/thingsApi', thing)
+                    .then(saveThingComplete)
+                    .catch(saveThingFailed);
 
-            function saveThingComplete(response) {
-                return response.data.results;
-            }
+                function saveThingComplete(response) {
+                    return response.data.results;
+                }
 
-            function saveThingFailed(error) {
-                $log.error('XHR Failed for saveThing.' + error.data);
-            }
+                function saveThingFailed(error) {
+                    $log.error('XHR Failed for saveThing.' + error.data);
+                }
+            });
+        }
+
+        function getCategories() {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.get(serverUrl.resourceServerUrl + 'api/categoriesApi')
+                    .then(getCategoriesComplete)
+                    .catch(getCategoriesFailed);
+
+                function getCategoriesComplete(response) {
+                    return response.data;
+                }
+
+                function getCategoriesFailed(error) {
+                    $log.error('XHR Failed for getCategories.' + error.data);
+                }
+            });
         }
     }
 })();
