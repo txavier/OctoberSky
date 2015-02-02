@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace StuffFinder.Core.Services
 {
-    public class ThingService
+    public class ThingService : StuffFinder.Core.Services.IThingService
     {
         public IEnumerable<thing> SeedThingsTable()
         {

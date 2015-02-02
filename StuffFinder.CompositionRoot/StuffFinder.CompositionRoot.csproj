@@ -75,6 +75,20 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StuffFinder.Core\StuffFinder.Core.csproj">
+      <Project>{c3727208-c733-4180-917e-e4267f1de105}</Project>
+      <Name>StuffFinder.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StuffFinder.Data\StuffFinder.Data.csproj">
+      <Project>{f529f3ca-aed0-4072-b686-d916c82746fb}</Project>
+      <Name>StuffFinder.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StuffFinder.Infrastructure\StuffFinder.Infrastructure.csproj">
+      <Project>{bd976eb7-0435-4ed1-856d-37cc9010b8c4}</Project>
+      <Name>StuffFinder.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
