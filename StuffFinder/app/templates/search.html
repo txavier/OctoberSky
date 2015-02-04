@@ -1,0 +1,76 @@
+﻿<section class="content-section video-section">
+    <div class="jumbotron pattern-overlay">
+        <a id="bgndVideo" class="player" data-property="{videoURL:'https://www.youtube.com/watch?v=zGtz_GOA79w',containment:'.video-section', quality:'large', autoPlay:true, mute:true, opacity:1}">bg</a>
+        <div class="container">
+            <div class="page-header text-center">
+                <h1><i class="glyphicon glyphicon-heart-empty red"></i>WheresMyStuff.com</h1>
+            </div>
+            <p class="lead">
+                Living out-and-about it can be hard to find the stuff you love. Sometimes hunting down that last thing you need can be hard.
+                Let WheresMyStuff.com notify you when it finds the stuff you want.  Its easy, give it a try!
+            </p>
+            <p>Are you someone who could supply the most requested items to the UAE?  Contact us today.</p>
+        </div>
+    </div>
+</section>
+<p><a class="btn btn-info" href="#/things" role="button">Check the feed &raquo;</a></p>
+<h3>Top Ten Me2'd Items</h3>
+<ul class="thumbnail" style="list-style-type: none;">
+    <li ng-repeat="thing in mostMeTooed.things">
+        <div class="row session">
+            <div class="col-xs-18 col-md-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3><a href="#">{{ thing.name }}</a></h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <a class="btn btn-info btn-group" href="#/found-it" role="button">I want it &nbsp;</a>
+                        <a class="btn btn-info btn-group" href="#/found-it" role="button">I found it</a>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-xs-6 col-md-2">
+                        <div class="row">
+                            <img ng-src="{{ thing.imageUrl }}" height="114" />
+                        </div>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="row">
+                            <div class="col-md-1">
+                                <div class="row">Category:</div>
+                                <div class="row">Date:</div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="row">{{ thing.category }}</div>
+                                <div class="row">{{ thing.postedDate }}</div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="row">Me2's:</div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="row">{{ thing.me2 }}</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <hr />
+                            <div class="col-md-2">
+                                Description:
+                            </div>
+                            <div class="col-md-6">
+                                {{ thing.description }}
+                            </div>
+                            <div class="col-md-3">
+                                <img src="https://lh6.googleusercontent.com/-5cTTMHjjnzs/AAAAAAAAAAI/AAAAAAAAAFk/vgza68M4p2s/s28-c-k-no/photo.jpg" height="28px">
+                                <img src="https://lh4.googleusercontent.com/-6aFMDiaLg5M/AAAAAAAAAAI/AAAAAAAABdM/XjnG8z60Ug0/s28-c-k-no/photo.jpg" height="28px">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+    </li>
+</ul>

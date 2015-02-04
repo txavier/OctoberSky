@@ -6,13 +6,15 @@ namespace StuffFinder.Core.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("image")]
     public partial class ImageViewModel
     {
-        public int imageId { get; set; }
+        public string date { get; set; }
 
-        [Required]
-        public byte[] imageBinary { get; set; }
+        public string mimeType { get; set; }
+
+        public string extension { get; set; }
+
+        public object file { get; set; }
 
         public int? thingId { get; set; }
 

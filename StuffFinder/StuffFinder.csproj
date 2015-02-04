@@ -235,6 +235,7 @@
     <Content Include="app\associate\associateController.js" />
     <Content Include="app\authInterceptor\authInterceptorService.js" />
     <Content Include="app\auth\authService.js" />
+    <Content Include="app\dashboardEmailSettings\dashboardEmailSettingsController.js" />
     <Content Include="app\found-it\foundItController.js" />
     <Content Include="app\home\homeController.js" />
     <Content Include="app\index\indexController.js" />
@@ -246,6 +247,8 @@
     <Content Include="app\start\startController.js" />
     <Content Include="app\templates\admin.html" />
     <Content Include="app\templates\associate.html" />
+    <Content Include="app\templates\dashboard-email-settings.html" />
+    <Content Include="app\templates\search.html" />
     <Content Include="app\templates\where-is-it.html" />
     <Content Include="app\templates\found-it.html" />
     <Content Include="app\templates\refresh.html" />

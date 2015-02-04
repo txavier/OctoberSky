@@ -57,10 +57,21 @@ app.config(function ($routeProvider) {
         templateUrl: '/app/templates/admin.html'
     });
 
+    $routeProvider.when("/search", {
+        controller: 'searchController',
+        templateUrl: '/app/templates/search.html'
+    });
+
     $routeProvider.when('/where-is-it', {
         controller: 'whereIsItController',
         controllerAs: 'vm',
         templateUrl: '/app/templates/where-is-it.html'
+    });
+
+    $routeProvider.when('/dashboard-email-settings', {
+        controller: 'dashboardEmailSettingsController',
+        controllerAs: 'vm',
+        templateUrl: '/app/templates/dashboard-email-settings.html'
     });
 
     $routeProvider.otherwise({ redirectTo: "/index" });
