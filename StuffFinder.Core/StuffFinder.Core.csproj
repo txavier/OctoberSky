@@ -62,10 +62,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\ISystemSettingsGetter.cs" />
+    <Compile Include="Models\adminMember.cs" />
     <Compile Include="Models\category.cs" />
     <Compile Include="Models\comment.cs" />
     <Compile Include="Models\finding.cs" />
     <Compile Include="Models\image.cs" />
+    <Compile Include="Models\setting.cs" />
     <Compile Include="Models\thing.cs" />
     <Compile Include="Models\ViewModels\ImageViewModel.cs" />
     <Compile Include="Models\ViewModels\SettingsViewModel.cs" />
@@ -73,6 +75,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Interfaces\ISystemSettingsService.cs" />
     <Compile Include="Interfaces\IThingService.cs" />
+    <Compile Include="Interfaces\ISettingService.cs" />
+    <Compile Include="Services\SettingService.cs" />
     <Compile Include="Services\SystemSettingsService.cs" />
     <Compile Include="Services\ThingService.cs" />
   </ItemGroup>

@@ -140,6 +140,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\categoriesApiController.cs" />
     <Compile Include="Controllers\ProtectedController.cs" />
+    <Compile Include="Controllers\settingsApiController.cs" />
     <Compile Include="Controllers\thingsApiController.cs" />
     <Compile Include="DependencyResolution\IoC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

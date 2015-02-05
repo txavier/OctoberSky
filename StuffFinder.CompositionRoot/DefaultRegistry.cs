@@ -35,6 +35,8 @@ namespace StuffFinder.CompositionRoot
 
             For<IThingService>().Use<ThingService>();
 
+            For<ISettingService>().Use<SettingService>();
+
         }
     }
 }

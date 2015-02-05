@@ -19,6 +19,7 @@
             saveThing: saveThing,
             getThings: getThings,
             getCategories: getCategories,
+            getSetting: getSetting,
         };
 
         return service;
@@ -90,6 +91,42 @@
                     $log.error('XHR Failed for getCategories.' + error.data);
                 }
             });
+        }
+
+        function getSetting(settingKey) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.get(serverUrl.resourceServerUrl + 'api/settingsApi/', settingKey)
+                            .then(getSettingComplete)
+                            .catch(getSettingFailed);
+
+                function getSettingComplete(response) {
+                    return response.data;
+                }
+
+                function getSettingFailed(error) {
+                    $log.error('XHR Failed for getSetting.' + error.data);
+                }
+            });
+        }
+
+        function addOrUpdateSetting(setting) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.post(serverUrl.resourceServerUrl + 'api/settingsApi', setting)
+                            .then(addOrUpdateSettingComplete)
+                            .catch(addOrUpdateSettingFailed);
+
+                function addOrUpdateSettingComplete(response) {
+                    return response.data;
+                }
+
+                function addOrUpdateSettingFailed(error) {
+                    $log.error('XHR Failed for addOrUpdateSetting.' + error.data);
+                }
+            })
         }
     }
 })();

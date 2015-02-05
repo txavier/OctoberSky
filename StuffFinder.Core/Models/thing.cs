@@ -1,4 +1,3 @@
-
 namespace StuffFinder.Core.Models
 {
     using System;
