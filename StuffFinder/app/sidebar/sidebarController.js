@@ -14,6 +14,7 @@
         vm.authentication.sidebarAuthenticationLabel = '';
         vm.authentication.getSidebarAuthenticationLabel = getSidebarAuthenticationLabel;
         vm.authentication.loginlogout = loginlogout;
+        vm.query = '';
 
         // Scope references needed for deep watch on service variable.
         // http://stackoverflow.com/questions/12576798/how-to-watch-service-variables
@@ -64,5 +65,6 @@
 
             });
         }
+
     }
 })();

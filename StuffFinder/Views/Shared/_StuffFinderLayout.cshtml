@@ -17,6 +17,13 @@
     <link href="content/loading-bar.css" rel="stylesheet" />
     <link href="content/site.css" rel="stylesheet" />
     @*@Scripts.Render("~/bundles/modernizr")*@
+    <style type="text/css">
+        html, body, #map-canvas {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
 </head>
 <body>
     <div id="fb-root"></div>
@@ -72,10 +79,10 @@
                             </select>
                         </div>
                         <div class="form-group-sm input-group input-group-sm" style="max-width:360px;">
-                            <input type="text" class="form-control" placeholder="Search USA2UAE.WheresMyStuff.com" name="srch-term" id="srch-term">
+                            <input type="text" class="form-control" placeholder="Search WheresMyStuff.com" data-ng-model="vm.query" name="srch-term" id="srch-term">
                             <div class="input-group-btn">
                                 <button class="btn btn-default" type="submit" ng-hide="true"><i class="glyphicon glyphicon-search"></i></button>
-                                <a class="btn btn-default" href="#/search"><i class="glyphicon glyphicon-search"></i></a>
+                                <a class="btn btn-default" href="#/search/{{ vm.query }}"><i class="glyphicon glyphicon-search"></i></a>
                             </div>
                         </div>
                         <hr />
@@ -110,14 +117,15 @@
                     <!-- top nav -->
                     <div class="navbar navbar-blue navbar-static-top visible-xs">
                         <div class="form-group-sm input-group input-group-sm" style="max-width:360px;">
-                            <input type="text" class="form-control" placeholder="Search USA2UAE.WheresMyStuff.com" name="srch-term" id="srch-term">
+                            <input type="text" class="form-control" placeholder="Search WheresMyStuff.com" data-ng-model="vm.query" name="srch-term" id="srch-term">
                             <div class="input-group-btn">
                                 <button class="btn btn-default" type="submit" ng-hide="true"><i class="glyphicon glyphicon-search"></i></button>
-                                <a class="btn btn-default" href="#/search"><i class="glyphicon glyphicon-search"></i></a>
+                                <a class="btn btn-default" href="#/search/{{ vm.query }}"><i class="glyphicon glyphicon-search"></i></a>
                             </div>
                         </div>
                     </div>
-                    <div class="navbar navbar-blue navbar-static-top visible-xs" ng-hide="true">
+                    @*<div class="navbar navbar-blue navbar-static-top visible-xs" ng-hide="true">*@
+                    <div class="navbar navbar-blue navbar-static-top" ng-hide="true">
                         <div class="navbar-header">
                             <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
                                 <span class="sr-only">Toggle</span>
@@ -205,9 +213,11 @@
     <script src="scripts/angular-local-storage.min.js"></script>
     <script src="scripts/angular-ui/ui-bootstrap.js"></script>
     <script src="scripts/angular-ui/ui-bootstrap-tpls.js"></script>
+    <script src="scripts/angular-ui/angular-google-maps/angular-google-maps.min.js"></script>
     <script src="scripts/loading-bar.min.js"></script>
     <script type="text/javascript" src="scripts/vendor/ng-droplet/ng-droplet.js"></script>
     <script type="text/javascript" src="scripts/vendor/progressbar.js/dist/progressbar.js"></script>
+    <script src="scripts/vendor/lodash/lodash.min.js"></script>
     <!-- Load app main script -->
     <script src="app/stuffFinder-module.js"></script>
     <!-- Load services -->
@@ -230,6 +240,10 @@
     <script src="app/refresh/refreshController.js"></script>
     <script src="app/tokensManager/tokensManagerController.js"></script>
     <script src="app/whereIsIt/whereIsItController.js"></script>
+    <script src="app/things/thingController.js"></script>
+    <script src="app/admin/jumbotronYoutubeVideoSettingsController.js"></script>
+    <script src="app/admin/dashboardEmailSettingsController.js"></script>
+    <script src="app/search/searchController.js"></script>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/scripts")

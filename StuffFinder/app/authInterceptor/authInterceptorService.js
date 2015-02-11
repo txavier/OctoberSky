@@ -4,6 +4,11 @@ app.factory('authInterceptorService', ['$q', '$injector', '$location', 'localSto
     var authInterceptorServiceFactory = {};
 
     var _request = function (config) {
+        // Exception list.
+        if (config.url.indexOf("maps.googleapis.com") > 1)
+        {
+            return config;
+        }
 
         config.headers = config.headers || {};
 

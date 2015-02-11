@@ -83,6 +83,14 @@
     <Compile Include="Migrations\201502050649138_AddedSettingTable.Designer.cs">
       <DependentUpon>201502050649138_AddedSettingTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201502080238266_MakeMe2AnInt.cs" />
+    <Compile Include="Migrations\201502080238266_MakeMe2AnInt.Designer.cs">
+      <DependentUpon>201502080238266_MakeMe2AnInt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201502101536181_Update.cs" />
+    <Compile Include="Migrations\201502101536181_Update.Designer.cs">
+      <DependentUpon>201502101536181_Update.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="stuffFinderDbContext.cs" />
@@ -112,6 +120,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201502050649138_AddedSettingTable.resx">
       <DependentUpon>201502050649138_AddedSettingTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502080238266_MakeMe2AnInt.resx">
+      <DependentUpon>201502080238266_MakeMe2AnInt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502101536181_Update.resx">
+      <DependentUpon>201502101536181_Update.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

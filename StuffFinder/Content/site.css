@@ -498,3 +498,5 @@ section.file-container section.droplet input.droplet-multiple {
     color: white;
     margin-top: 5px;
 }
+
+.angular-google-map-container { height: 400px; }

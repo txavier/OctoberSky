@@ -20,11 +20,11 @@
         <!-- main col left -->
         <div class="col-sm-5">
 
-            <div ng-repeat="thing in foundThings.things" class="panel panel-default" id="animatePanel">
-                <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Found!</h4></div>
-                <div class="panel-thumbnail"><img src="{{ thing.imageUrl }}" class="img-responsive"></div>
+            <div ng-repeat="thing in foundThings" class="panel panel-default" id="animatePanel">
+                <div class="panel-heading"><a href="#/thing/{{ thing.thingId }}" class="pull-right">View all</a> <h4>Found!</h4></div>
+                <div class="panel-thumbnail"><a href="#/thing/{{ thing.thingId }}"><img src="{{ thing.imageUrl }}" class="img-responsive"></a></div>
                 <div class="panel-body">
-                    <p class="lead">{{ thing.name }}</p>
+                    <p class="lead"><a href="#/thing/{{ thing.thingId }}">{{ thing.name }}</a></p>
                     <p>
                         {{ thing.findings[0].comments[0].commentText }}
                     </p>
@@ -186,12 +186,12 @@
                 </form>
             </div>-->
 
-            <div ng-repeat="thing in mostMeTooed.things" class=" panel panel-default">
+            <div ng-repeat="thing in mostMeTooed" class=" panel panel-default">
                 <div class="panel-heading">
                     <!--<a href="#" class="pull-right">Bounty currently set at: $246</a>-->
-                    <h4>Wanted: {{ thing.name }}</h4>
-                </div>
-                <div class="panel-thumbnail"><img src="{{ thing.imageUrl }}" class="img-responsive"></div>
+                    <a href="#/thing/{{ thing.thingId }}"><h4>Wanted: {{ thing.name }}</h4></a>
+</div>
+                <div class="panel-thumbnail"><a href="#/thing/{{ thing.thingId }}"><img src="{{ thing.imageUrl }}" class="img-responsive"></a></div>
                 <div class="panel-body">
                     <div class="clearfix"></div>
                     <hr>

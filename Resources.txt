@@ -63,3 +63,34 @@
  -- For image file upload with drag and drop interface in Angular the following library was used.
 
 	https://github.com/Wildhoney/ngDroplet
+
+ -- To accept files as a post to a webapi the following information was used.
+
+	http://stackoverflow.com/questions/10320232/how-to-accept-a-file-post-asp-net-mvc-4-webapi
+
+ -- To retrieve jobject from a webapi call the following was used.
+
+	http://blog.travisgosselin.com/web-api-signatures-with-multiple-complex-parameters/
+
+	public IHttpActionResult Post(JObject jObject)
+        {
+            var thing = jObject["thing"].ToObject<thing>();
+
+            var userName = jObject["userName"].ToObject<string>();
+
+ -- To cascade on delete the following procedure was used. (As of the time of writing this still
+	did not work though).
+
+	http://stackoverflow.com/questions/17487577/entity-framework-ef-code-first-cascade-delete-for-one-to-zero-or-one-relations
+
+ -- To fix the self-referencing loop bug the following code was used.
+
+	http://stackoverflow.com/questions/17313632/self-referencing-loop-detected-getting-back-data-from-webapi-to-the-browser
+
+ -- Google API
+
+	https://code.google.com/apis/console/?noredirect&pli=1#project:915674078507:access
+
+ -- ngDroplet was used for the file control in angular.
+
+	https://github.com/Wildhoney/ngDroplet#image-previews

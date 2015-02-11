@@ -11,6 +11,7 @@ using System.Web.Http;
 
 namespace StuffFinder.ResourceServer.Controllers
 {
+    [RoutePrefix("api/settingsApi")]
     public class settingsApiController : ApiController
     {
         private readonly ISettingService _settingService;
@@ -32,6 +33,14 @@ namespace StuffFinder.ResourceServer.Controllers
         public IHttpActionResult Get(string settingKey)
         {
             var result = _settingService.GetSettingValueBySettingKey(settingKey);
+
+            return Ok(result);
+        }
+
+        [Route("getJumbotronVideoUrlSetting")]
+        public IHttpActionResult GetJumbotronVideoUrlSetting()
+        {
+            var result = _settingService.GetSettingBySettingKey("jumbotronVideoUrl");
 
             return Ok(result);
         }

@@ -1,6 +1,7 @@
 ﻿<section class="content-section video-section">
     <div class="jumbotron pattern-overlay">
-        <a id="bgndVideo" class="player" data-property="{videoURL:'https://www.youtube.com/watch?v=zGtz_GOA79w',containment:'.video-section', quality:'large', autoPlay:true, mute:true, opacity:1}">bg</a>
+        <!--<a id="bgndVideo" class="player" data-property="{videoURL:'https://www.youtube.com/watch?v=zGtz_GOA79w',containment:'.video-section', quality:'large', autoPlay:true, mute:true, opacity:1}">bg</a>-->
+        <a id="bgndVideo" class="player" data-property="{{vm.dataProperty}}">bg</a>
         <div class="container">
             <div class="page-header text-center hidden-xs">
                 <h1><i class="glyphicon glyphicon-heart-empty red"></i>WheresMyStuff.com</h1>
@@ -8,23 +9,16 @@
             <div class="page-header text-center visible-xs">
                 <h1><i class="glyphicon glyphicon-heart-empty red"></i>Where's My Stuff</h1>
             </div>
-            <p class="lead">
-                Living out-and-about it can be hard to find the stuff you love. Sometimes hunting down that last thing you need can be hard.
-                Let WheresMyStuff.com notify you when it finds the stuff you want.  Its easy, give it a try!
-            </p>
-            <p>Are you someone who could supply the most requested items to the UAE?  Contact us today.</p>
         </div>
     </div>
 </section>
-<p><a class="btn btn-info" href="#/things" role="button">Check the feed &raquo;</a></p>
-<h3>Top Ten Me2'd Items</h3>
 <ul class="thumbnail" style="list-style-type: none;">
-    <li ng-repeat="thing in mostMeTooed.things">
+    <li ng-repeat="thing in vm.things">
         <div class="row session">
             <div class="col-xs-18 col-md-12">
                 <div class="row">
                     <div class="col-md-6">
-                        <h3><a href="#">{{ thing.name }}</a></h3>
+                        <h3><a href="#/thing/{{ thing.thingId }}">{{ thing.name }}</a></h3>
                     </div>
                 </div>
                 <div class="row">
@@ -37,7 +31,7 @@
                 <div class="row">
                     <div class="col-xs-6 col-md-2">
                         <div class="row">
-                            <img ng-src="{{ thing.imageUrl }}" height="114" />
+                            <a href="#/thing/{{ thing.thingId }}"><img ng-src="{{ thing.imageUrl }}" height="114" /></a>
                         </div>
                     </div>
                     <div class="col-md-10">

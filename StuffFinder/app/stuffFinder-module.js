@@ -1,4 +1,4 @@
-﻿var app = angular.module('stuffFinderModule', ['ngRoute', 'LocalStorageModule', 'angular-loading-bar', 'ngResource', 'ui.bootstrap', 'ngDroplet']);
+﻿var app = angular.module('stuffFinderModule', ['ngRoute', 'LocalStorageModule', 'angular-loading-bar', 'ngResource', 'ui.bootstrap', 'ngDroplet', 'uiGmapgoogle-maps']);
 
 app.config(function ($routeProvider) {
 
@@ -20,6 +20,12 @@ app.config(function ($routeProvider) {
     $routeProvider.when("/things", {
         controller: "thingsController",
         templateUrl: "/app/templates/things.html"
+    });
+
+    $routeProvider.when("/thing/:thingId", {
+        controller: "thingController",
+        controllerAs: 'vm',
+        templateUrl: "/app/templates/thing.html"
     });
 
     $routeProvider.when("/start", {
@@ -59,6 +65,13 @@ app.config(function ($routeProvider) {
 
     $routeProvider.when("/search", {
         controller: 'searchController',
+        controllerAs: 'vm',
+        templateUrl: '/app/templates/search.html'
+    });
+
+    $routeProvider.when("/search/:query", {
+        controller: 'searchController',
+        controllerAs: 'vm',
         templateUrl: '/app/templates/search.html'
     });
 
@@ -74,7 +87,21 @@ app.config(function ($routeProvider) {
         templateUrl: '/app/templates/dashboard-email-settings.html'
     });
 
+    $routeProvider.when('/jumbotron-youtube-video-settings', {
+        controller: 'jumbotronYoutubeVideoSettingsController',
+        controllerAs: 'vm',
+        templateUrl: '/app/templates/jumbotron-youtube-video-settings.html'
+    });
+
     $routeProvider.otherwise({ redirectTo: "/index" });
+});
+
+app.config(function (uiGmapGoogleMapApiProvider) {
+    uiGmapGoogleMapApiProvider.configure({
+        key: 'AIzaSyBPUGy5syJHUaDeR_E_FTwgOO4Th8vm63Y',
+        v: '3.17',
+        libraries: 'weather,geometry,visualization'
+    });
 });
 
 var serviceBase = '';

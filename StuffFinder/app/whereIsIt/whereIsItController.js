@@ -123,7 +123,7 @@
         }
 
         function save() {
-            dataService.saveThing(vm.thing)
+            dataService.addOrUpdateThing(vm.thing)
                 .then(
                     $location.path('/start')
                 )

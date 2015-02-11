@@ -1,8 +1,10 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using StuffFinder.Core.Interfaces;
 using StuffFinder.Core.Models;
 using StuffFinder.ResourceServer.DependencyResolution;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -12,6 +14,7 @@ using System.Web.Http;
 namespace StuffFinder.ResourceServer.Controllers
 {
     //[Authorize]
+    [RoutePrefix("api/thingsApi")]
     public class thingsApiController : ApiController
     {
         private readonly IThingService _thingService;
@@ -26,7 +29,7 @@ namespace StuffFinder.ResourceServer.Controllers
         // GET: api/thingsApi
         public IHttpActionResult Get()
         {
-            var result = new string[] { "value1", "value2" };
+            var result = _thingService.Get();
 
             return Ok(result);
         }
@@ -34,8 +37,42 @@ namespace StuffFinder.ResourceServer.Controllers
         // GET: api/thingsApi/5
         public IHttpActionResult Get(int id)
         {
-            var result = "value";
+            var result = _thingService.Find(id);
             
+            return Ok(result);
+        }
+
+        [Route("GetMostMe2Things")]
+        public IHttpActionResult GetMostMe2Things()
+        {
+            var result = _thingService.GetMostMe2Things();
+
+            return Ok(result);
+        }
+
+        [Route("GetFoundThings")]
+        public IHttpActionResult GetFoundThings()
+        {
+            var result = _thingService.GetFoundThings();
+
+            return Ok(result);
+        }
+
+        [Route("SearchThings")]
+        [HttpGet]
+        public IHttpActionResult SearchThings()
+        {
+            var result = _thingService.SearchThings(null);
+
+            return Ok(result);
+        }
+
+        [Route("SearchThings/{query}")]
+        [HttpGet]
+        public IHttpActionResult SearchThings(string query)
+        {
+            var result = _thingService.SearchThings(query);
+
             return Ok(result);
         }
 
@@ -53,8 +90,11 @@ namespace StuffFinder.ResourceServer.Controllers
         }
 
         // DELETE: api/thingsApi/5
-        public void Delete(int id)
+        public IHttpActionResult Delete(int id)
         {
+            _thingService.Delete(id);
+
+            return Ok();
         }
     }
 }

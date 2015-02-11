@@ -1,18 +1,13 @@
 ﻿'use strict';
-app.controller('thingsController', ['$scope', 'thingsService', function ($scope, thingsService) {
+app.controller('thingsController', ['$scope', 'thingsService', 'dataService', function ($scope, thingsService, dataService) {
 
-    $scope.mostMeTooed = thingsService.getMostMe2Things();
-
-    $scope.foundThings = thingsService.getFoundThings();
-
-
-    //thingsService.getThings().then(function (results) {
-
-    //    $scope.things = results.data;
-
-    //}, function (error) {
-    //    //alert(error.data.message);
-    //});
+    $scope.mostMeTooed = dataService.getMostMe2Things().then(function (data) {
+        $scope.mostMeTooed = data;
+    });
+    
+    $scope.foundThings = dataService.getFoundThings().then(function (data) {
+        $scope.foundThings = data;
+    });
 
     $(document).ready(function () {
 

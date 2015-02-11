@@ -61,7 +61,7 @@ namespace StuffFinder.Core.Models
 
         public string imageUrl { get; set; }
 
-        public string me2 { get; set; }
+        public int me2 { get; set; }
 
         public string postedDate { get; set; }
 

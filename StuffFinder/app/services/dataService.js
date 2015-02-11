@@ -14,12 +14,20 @@
             authenticationServerUrl: ''
         };
 
-        var service =  {
+        var jumbotronVideoUrlSetting = {};
+
+        var service = {
             getServerUrl: getServerUrl,
-            saveThing: saveThing,
+            addOrUpdateThing: addOrUpdateThing,
             getThings: getThings,
+            getThing: getThing,
             getCategories: getCategories,
             getSetting: getSetting,
+            getMostMe2Things: getMostMe2Things,
+            getFoundThings: getFoundThings,
+            searchThings: searchThings,
+            deleteThing: deleteThing,
+            getJumbotronVideoUrlSetting: getJumbotronVideoUrlSetting,
         };
 
         return service;
@@ -39,6 +47,44 @@
             return deferred.promise;
         }
 
+        function getJumbotronVideoUrlSetting() {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+                return $http.get(serverUrl.resourceServerUrl + 'api/settingsApi' + '/getJumbotronVideoUrlSetting')
+                            .then(getJumbotronVideoUrlSettingComplete)
+                            .catch(getJumbotronVideoUrlSettingFailed);
+
+                function getJumbotronVideoUrlSettingComplete(response) {
+                    jumbotronVideoUrlSetting = response.data;
+
+                    return response.data;
+                }
+
+                function getJumbotronVideoUrlSettingFailed(error) {
+                    $log.error('XHR Failed for getJumbotronVideoUrlSetting.' + error.data);
+                }
+            });
+        }
+
+        function searchThings(query) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+                query = query || '';
+
+                return $http.get(serverUrl.resourceServerUrl + 'api/thingsApi' + '/searchThings/' + query)
+                            .then(searchThingsComplete)
+                            .catch(searchThingsFailed);
+
+                function searchThingsComplete(response) {
+                    return response.data;
+                }
+
+                function searchThingsFailed(error) {
+                    $log.error('XHR Failed for searchThings.' + error.data);
+                }
+            });
+        }
+
         function getThings() {
             return getServerUrl().then(function (resource) {
                 serverUrl = resource;
@@ -48,7 +94,7 @@
                             .catch(getThingsFailed);
 
                 function getThingsComplete(response) {
-                    return response.data.results;
+                    return response.data;
                 }
 
                 function getThingsFailed(error) {
@@ -57,7 +103,59 @@
             });
         }
 
-        function saveThing(thing) {
+        function getThing(thingId) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.get(serverUrl.resourceServerUrl + 'api/thingsApi' + '/' + thingId)
+                            .then(getThingComplete)
+                            .catch(getThingFailed);
+
+                function getThingComplete(response) {
+                    return response.data;
+                }
+
+                function getThingFailed(error) {
+                    $log.error('XHR Failed for getThing.' + error.data);
+                }
+            });
+        }
+
+        function getFoundThings() {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+                return $http.get(serverUrl.resourceServerUrl + 'api/thingsApi' + '/getFoundThings')
+                            .then(getFoundThingsComplete)
+                            .catch(getFoundThingsFailed);
+
+                function getFoundThingsComplete(response) {
+                    return response.data;
+                }
+
+                function getFoundThingsFailed(error) {
+                    $log.error('XHR Failed for getFoundThings.' + error.data);
+                }
+            });
+        }
+
+        function getMostMe2Things() {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+                return $http.get(serverUrl.resourceServerUrl + 'api/thingsApi' + '/getMostMe2Things')
+                            .then(getMostMe2ThingsComplete)
+                            .catch(getMostMe2ThingsFailed);
+
+                function getMostMe2ThingsComplete(response) {
+                    return response.data;
+                }
+
+                function getMostMe2ThingsFailed(error) {
+                    $log.error('XHR Failed for getMostMe2Things.' + error.data);
+                }
+            });
+        }
+
+        function addOrUpdateThing(thing) {
             return getServerUrl().then(function (resource) {
                 serverUrl = resource;
 
@@ -66,7 +164,7 @@
                     .catch(saveThingFailed);
 
                 function saveThingComplete(response) {
-                    return response.data.results;
+                    return response.data;
                 }
 
                 function saveThingFailed(error) {
@@ -75,10 +173,27 @@
             });
         }
 
-        function getCategories() {
+        function deleteThing(thingId) {
             return getServerUrl().then(function (resource) {
                 serverUrl = resource;
 
+                return $http.delete(serverUrl.resourceServerUrl + 'api/thingsApi' + '/' + thingId)
+                    .then(deleteThingComplete)
+                    .catch(deleteThingFailed);
+
+                function deleteThingComplete(response) {
+                    return response.data;
+                }
+
+                function deleteThingFailed(error) {
+                    $log.error('XHR Failed for deleteThing.' + error.data);
+                }
+            });
+        }
+
+        function getCategories() {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
                 return $http.get(serverUrl.resourceServerUrl + 'api/categoriesApi')
                     .then(getCategoriesComplete)
                     .catch(getCategoriesFailed);
@@ -96,7 +211,6 @@
         function getSetting(settingKey) {
             return getServerUrl().then(function (resource) {
                 serverUrl = resource;
-
                 return $http.get(serverUrl.resourceServerUrl + 'api/settingsApi/', settingKey)
                             .then(getSettingComplete)
                             .catch(getSettingFailed);
@@ -126,7 +240,7 @@
                 function addOrUpdateSettingFailed(error) {
                     $log.error('XHR Failed for addOrUpdateSetting.' + error.data);
                 }
-            })
+            });
         }
     }
 })();

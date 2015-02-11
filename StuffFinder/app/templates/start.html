@@ -19,12 +19,12 @@
 <p><a class="btn btn-info" href="#/things" role="button">Check the feed &raquo;</a></p>
 <h3>Top Ten Me2'd Items</h3>
 <ul class="thumbnail" style="list-style-type: none;">
-    <li ng-repeat="thing in mostMeTooed.things">
+    <li ng-repeat="thing in mostMeTooed">
         <div class="row session">
             <div class="col-xs-18 col-md-12">
                 <div class="row">
                     <div class="col-md-6">
-                        <h3><a href="#">{{ thing.name }}</a></h3>
+                        <h3><a href="#/thing/{{ thing.thingId }}">{{ thing.name }}</a></h3>
                     </div>
                 </div>
                 <div class="row">
@@ -37,7 +37,7 @@
                 <div class="row">
                     <div class="col-xs-6 col-md-2">
                         <div class="row">
-                            <img ng-src="{{ thing.imageUrl }}" height="114" />
+                            <a href="#/thing/{{ thing.thingId }}"><img ng-src="{{ thing.imageUrl }}" height="114" /></a>
                         </div>
                     </div>
                     <div class="col-md-10">
