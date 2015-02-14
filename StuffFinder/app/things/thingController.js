@@ -37,13 +37,13 @@
                 vm.thing = data;
 
                 return vm.thing;
-            })
+            });
         }
 
         function deleteThing() {
             dataService.deleteThing(vm.thing.thingId).then(function (data) {
                 $location.path('/start');
-            })
+            });
         }
 
     }

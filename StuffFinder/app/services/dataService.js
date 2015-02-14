@@ -14,6 +14,8 @@
             authenticationServerUrl: ''
         };
 
+        var votesApiUrl = 'api/votesApi';
+
         var jumbotronVideoUrlSetting = {};
 
         var service = {
@@ -28,9 +30,47 @@
             searchThings: searchThings,
             deleteThing: deleteThing,
             getJumbotronVideoUrlSetting: getJumbotronVideoUrlSetting,
+            upVote: upVote,
+            downVote: downVote,
         };
 
         return service;
+
+        function upVote(vote) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.post(serverUrl.resourceServerUrl + votesApiUrl + '/upVote', vote)
+                            .then(upVoteComplete)
+                            .catch(upvoteFailed);
+
+                function upVoteComplete(response) {
+                    return response.data;
+                }
+
+                function upvoteFailed(error) {
+                    $log.error('XHR Failed for upVote.' + error.data);
+                }
+            });
+        }
+
+        function downVote(vote) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.post(serverUrl.resourceServerUrl + votesApiUrl + '/downVote', vote)
+                            .then(downVoteComplete)
+                            .catch(downvoteFailed);
+
+                function downVoteComplete(response) {
+                    return response.data;
+                }
+
+                function downvoteFailed(error) {
+                    $log.error('XHR Failed for downVote.' + error.data);
+                }
+            });
+        }
 
         function getServerUrl() {
             $http.get('/api/bootstrapSettingsApi')

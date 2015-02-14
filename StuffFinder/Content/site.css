@@ -499,4 +499,76 @@ section.file-container section.droplet input.droplet-multiple {
     margin-top: 5px;
 }
 
+/*End File Droplet Section**/
+
+/*Google Maps**********/
 .angular-google-map-container { height: 400px; }
+
+/*Upvote-Downvote*/
+.envelope-on, .envelope-off, .vote-up-off, .vote-up-on, .vote-down-off, .vote-down-on, .star-on, .star-off, .comment-up-off, .comment-up-on, .comment-flag, .edited-yes, .feed-icon, .vote-accepted-off, .vote-accepted-on, .vote-accepted-bounty, .badge-earned-check, .delete-tag, .grippie, .expander-arrow-hide, .expander-arrow-show, .expander-arrow-small-hide, .expander-arrow-small-show, .anonymous-gravatar, .badge1, .badge2, .badge3, .gp-share, .fb-share, .twitter-share, #notify-container span.notify-close, .migrated.to, .migrated.from {
+background-image: url('../Images/sprites.png?v=145e63c0320f');
+}
+
+.votecell {
+vertical-align: top;
+width: 50px;
+padding: 2px 10px 0 0;
+}
+
+.vote {
+text-align: center;
+}
+
+.vote-up-off {
+background-position: 0 -170px;
+}
+
+.votecell .vote-count-post {
+color: #777;
+line-height: 1 !important;
+padding: 9px 0 12px 0;
+font-size: 20px;
+}
+.vote span {
+font-size: 22px;
+}
+.vote span {
+display: block;
+color: #777;
+}
+.vote-count-post {
+display: block;
+font-size: 24px;
+line-height: 13px;
+padding: 5px 0;
+font-weight: normal;
+}
+
+.vote-down-off {
+background-position: 0 -226px;
+background-position: 0 -220px;
+margin-bottom: 5px;
+}
+
+.vote-up-off, .vote-up-on, .vote-down-off, .vote-down-on, .star-on, .star-off, .comment-up-off, .comment-up-on, .comment-flag, .flag-off, .vote-accepted-off, .vote-accepted-on {
+text-indent: -9999em;
+font-size: 1px;
+}
+.vote-up-off, .vote-down-off, .vote-accepted-off, .star-off, .comment-up-off, .flag-off {
+cursor: pointer;
+}
+.vote-up-off, .vote-up-on, .vote-down-off, .vote-down-on, .star-on, .star-off {
+display: block;
+margin: 0 auto;
+text-indent: -999em;
+width: 33px;
+height: 33px;
+width: 35px !important;
+height: 35px !important;
+margin-bottom: 2px;
+}
+.envelope-on, .envelope-off, .vote-up-off, .vote-up-on, .vote-down-off, .vote-down-on, .star-on, .star-off, .comment-up-off, .comment-up-on, .comment-flag, .edited-yes, .feed-icon, .vote-accepted-off, .vote-accepted-on, .vote-accepted-bounty, .badge-earned-check, .delete-tag, .grippie, .expander-arrow-hide, .expander-arrow-show, .expander-arrow-small-hide, .expander-arrow-small-show, .anonymous-gravatar, .badge1, .badge2, .badge3 {
+background-image: 'img/sprites.png';
+background-repeat: no-repeat;
+overflow: hidden;
+}

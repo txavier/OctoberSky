@@ -1,7 +1,7 @@
 ﻿<section class="content-section video-section">
     <div class="jumbotron pattern-overlay">
         <!--<a id="bgndVideo" class="player" data-property="{videoURL:'https://www.youtube.com/watch?v=zGtz_GOA79w',containment:'.video-section', quality:'large', autoPlay:true, mute:true, opacity:1}">bg</a>-->
-        <a id="bgndVideo" class="player" data-property="{{vm.dataProperty}}">bg</a>
+        <!--<a id="bgndVideo" class="player" data-property="{{vm.dataProperty}}">bg</a>-->
         <div class="container">
             <div class="page-header text-center hidden-xs">
                 <h1><i class="glyphicon glyphicon-heart-empty red"></i>WheresMyStuff.com</h1>
@@ -23,20 +23,27 @@
                 </div>
                 <div class="row">
                     <div class="col-md-3">
-                        <a class="btn btn-info btn-group" href="#/found-it" role="button">I want it &nbsp;</a>
+                        <!--<a class="btn btn-info btn-group" href="#/found-it" role="button">I want it &nbsp;</a>-->
                         <a class="btn btn-info btn-group" href="#/found-it" role="button">I found it</a>
                     </div>
                 </div>
                 <br />
                 <div class="row">
+                    <div class="col-md-2 votecell">
+                        <div class="vote">
+                            <a class="vote-up-off" title="I want it too!" ng-click="vm.upVote(thing)">up vote</a>
+                            <span itemprop="upvoteCount" class="vote-count-post ">{{ thing.me2 }}</span>
+                            <a class="vote-down-off" title="This is not useful" ng-click="vm.downVote(thing)">down vote</a>
+                        </div>
+                    </div>
                     <div class="col-xs-6 col-md-2">
                         <div class="row">
                             <a href="#/thing/{{ thing.thingId }}"><img ng-src="{{ thing.imageUrl }}" height="114" /></a>
                         </div>
                     </div>
-                    <div class="col-md-10">
+                    <div class="col-md-8">
                         <div class="row">
-                            <div class="col-md-1">
+                            <div class="col-md-2">
                                 <div class="row">Category:</div>
                                 <div class="row">Date:</div>
                             </div>
@@ -47,7 +54,7 @@
                             <div class="col-md-1">
                                 <div class="row">Me2's:</div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-1">
                                 <div class="row">{{ thing.me2 }}</div>
                             </div>
                         </div>

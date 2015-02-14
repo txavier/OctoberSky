@@ -18,8 +18,10 @@ namespace StuffFinder.Data
         public virtual DbSet<comment> comments { get; set; }
         public virtual DbSet<finding> findings { get; set; }
         public virtual DbSet<image> images { get; set; }
+        public virtual DbSet<location> locations { get; set; }
         public virtual DbSet<setting> settings { get; set; }
         public virtual DbSet<thing> things { get; set; }
+        public virtual DbSet<vote> votes { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -14,9 +14,25 @@
 <div class="well">
     <form class="form-horizontal" role="form">
         <h4>Have you found something you believe others in you area may be looking for?</h4>
-        <pre>Drag picture here...</pre>
+        <br />
+        <section class="file-container">
+            <section class="droplet">
+                <droplet ng-model="vm.interface" class="droplet ng-pristine ng-untouched ng-valid ng-isolate-scope event-drop">
+                    <comment>Drag picture(s) here...</comment>
+                    <ul class="files">
+                        <li ng-repeat="model in vm.interface.getFiles(interface.FILE_TYPES.VALID)">
+                            <droplet-preview ng-model="model"></droplet-preview>
+                            <div class="delete" ng-click="model.deleteFile()">&times;</div>
+                            <div class="size">{{model.file.size / 1024 / 1024 | number: 1}}MB</div>
+                        </li>
+                    </ul>
+                </droplet>
+            </section>
+        </section>
         <div class="form-group" style="padding:14px;">
             <textarea class="form-control" placeholder="Location" data-ng-model="location"></textarea>
+            <textarea class="form-control" placeholder="Latitude" data-ng-model="latitude"></textarea>
+            <textarea class="form-control" placeholder="Longitude" data-ng-model="longitude"></textarea>
             <!--<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d232566.35013197022!2d54.5599079!3d24.3865481!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5e440f723ef2b9%3A0xc7cc2e9341971108!2sAbu+Dhabi+-+United+Arab+Emirates!5e0!3m2!1sen!2sus!4v1420960578083" width="100%" height="450" frameborder="0" style="border:0"></iframe>-->
             <!--<ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>-->
             <div id="map_canvas">
@@ -24,7 +40,7 @@
                     <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">
                     </ui-gmap-marker>
                 </ui-gmap-google-map>
-                <div ng-cloak>
+                <div ng-cloak ng-hide="true">
                     <ul>
                         <li>coords update ctr: {{coordsUpdates}}</li>
                         <li>dynamic move ctr: {{dynamicMoveCtr}}</li>
@@ -33,13 +49,13 @@
             </div>
         </div>
         <div class="form-group" style="padding:14px;">
-            <textarea class="form-control" placeholder="Date spotted"></textarea>
+            <textarea class="form-control" placeholder="Date spotted" data-ng-model="vm.thing.findings[0].date"></textarea>
         </div>
         <div class="form-group" style="padding:14px;">
-            <textarea class="form-control" placeholder="Price"></textarea>
+            <textarea class="form-control" placeholder="Price" data-ng-model="vm.thing.findings[0].price"></textarea>
         </div>
         <div class="form-group" style="padding:14px;">
-            <textarea class="form-control" placeholder="UPC code"></textarea>
+            <textarea class="form-control" placeholder="UPC code" data-ng-model="vm.thing.findings[0].upcCode"></textarea>
         </div>
         <button class="btn btn-primary pull-right" type="button">Post</button><ul class="list-inline"><li><a href=""><i class="glyphicon glyphicon-upload"></i></a></li><li><a href=""><i class="glyphicon glyphicon-camera"></i></a></li><li><a href=""><i class="glyphicon glyphicon-map-marker"></i></a></li></ul>
     </form>

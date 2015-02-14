@@ -94,3 +94,9 @@
  -- ngDroplet was used for the file control in angular.
 
 	https://github.com/Wildhoney/ngDroplet#image-previews
+
+ -- To implement upvote and downvote buttons the following resources were used.
+
+	http://meta.stackexchange.com/questions/57405/total-upvote-and-downvote-counts-are-incorrect
+
+	http://meta.stackexchange.com/content/stackexchangemeta/img/sprites.png?v=145e63c0320f

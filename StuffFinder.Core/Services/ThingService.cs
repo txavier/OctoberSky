@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Omu.ValueInjecter;
 
 namespace StuffFinder.Core.Services
 {
@@ -26,7 +27,7 @@ namespace StuffFinder.Core.Services
             // Get things that have not been found yet have the most me2's.
             var result = Get(
                 filter: i => !i.findings.Any(), 
-                orderBy: j => j.OrderByDescending(k => k.me2), 
+                orderBy: j => j.OrderByDescending(k => k.votes.Any() ? k.votes.Sum(m => m.value) : 0), 
                 take: 10);
 
             return result;
@@ -34,7 +35,7 @@ namespace StuffFinder.Core.Services
 
         public IEnumerable<thing> GetFoundThings()
         {
-            var result = Get(filter: i => i.found);
+            var result = Get(filter: i => i.findings.Any());
 
             return result;
         }
@@ -49,15 +50,15 @@ namespace StuffFinder.Core.Services
             var queryLowered = query.ToLower();
 
             var result = Get(filter: i =>
-                i.addressLine1.ToLower().Contains(queryLowered)
-                || i.addressLine2.ToLower().Contains(queryLowered)
-                || i.category.ToLower().Contains(queryLowered)
-                || i.city.ToLower().Contains(queryLowered)
+                i.location.addressLine1.ToLower().Contains(queryLowered)
+                || i.location.addressLine2.ToLower().Contains(queryLowered)
+                || i.category.name.ToLower().Contains(queryLowered)
+                || i.location.city.ToLower().Contains(queryLowered)
                 || i.comments.Any(j => j.commentText.ToLower().Contains(queryLowered))
-                || i.comments.Any(j => j.finding.location.ToLower().Contains(queryLowered))
+                || i.comments.Any(j => j.finding.location.addressLine1.ToLower().Contains(queryLowered))
                 || i.comments.Any(j => j.finding.userName.ToLower().Contains(queryLowered))
                 || i.comments.Any(j => j.name.ToLower().Contains(queryLowered))
-                || i.country.ToLower().Contains(queryLowered)
+                || i.location.country.ToLower().Contains(queryLowered)
                 || i.description.ToLower().Contains(queryLowered)
                 || i.findings.SelectMany(j => j.comments).Any(k => k.commentText.ToLower().Contains(queryLowered))
                 || i.name.ToLower().Contains(queryLowered)
@@ -68,6 +69,28 @@ namespace StuffFinder.Core.Services
                 || queryLowered.ToLower().Contains(i.userName));
 
             return result;
+        }
+
+        public IEnumerable<ThingViewModel> ToViewModels(IEnumerable<thing> things)
+        {
+            var result = things.Select(i => ToViewModel(i));
+
+            return result;
+        }
+
+        public ThingViewModel ToViewModel(thing thing)
+        {
+            var thingViewModel = new ThingViewModel();
+
+            // Copy over all of the properties from the entity to the view model.
+            thingViewModel.InjectFrom(thing);
+
+            // For additinal properties in the view model fill values.
+            thingViewModel.me2 = thing.votes.Any() ? thing.votes.Sum(m => m.value) : 0;
+
+            thingViewModel.found = thing.findings.Any();
+
+            return thingViewModel;
         }
     }
 }

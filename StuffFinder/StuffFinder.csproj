@@ -749,6 +749,7 @@
     <Content Include="Images\home.jpg" />
     <Content Include="Images\icon_volunteer.png" />
     <Content Include="Images\intro.png" />
+    <Content Include="Images\sprites.png" />
     <Content Include="Images\title.png" />
     <Content Include="index.html" />
     <Content Include="Scripts\angular-local-storage.js" />

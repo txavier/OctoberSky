@@ -4,3 +4,7 @@
         padding-bottom: 200px;
     }
 }
+
+.banner-searchBox input[type='text'] {
+    color: #333;
+}

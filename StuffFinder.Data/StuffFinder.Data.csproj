@@ -91,6 +91,14 @@
     <Compile Include="Migrations\201502101536181_Update.Designer.cs">
       <DependentUpon>201502101536181_Update.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201502141717257_DummyMigration.cs" />
+    <Compile Include="Migrations\201502141717257_DummyMigration.Designer.cs">
+      <DependentUpon>201502141717257_DummyMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201502141740168_RemoveMe2ColumnFromThingTable.cs" />
+    <Compile Include="Migrations\201502141740168_RemoveMe2ColumnFromThingTable.Designer.cs">
+      <DependentUpon>201502141740168_RemoveMe2ColumnFromThingTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="stuffFinderDbContext.cs" />
@@ -126,6 +134,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201502101536181_Update.resx">
       <DependentUpon>201502101536181_Update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502141717257_DummyMigration.resx">
+      <DependentUpon>201502141717257_DummyMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502141740168_RemoveMe2ColumnFromThingTable.resx">
+      <DependentUpon>201502141740168_RemoveMe2ColumnFromThingTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

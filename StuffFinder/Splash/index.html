@@ -34,6 +34,12 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <script type="text/javascript">
+    function SubmitFrm() {
+        var Searchtxt = document.getElementById("findService").value;
+        window.location = window.location.origin + "/#/search/" + encodeURIComponent(Searchtxt);
+    }
+    </script>
 </head>
 
 <body id="page-top" class="index">
@@ -93,8 +99,9 @@
                             <!--<a id="btnSearch" href="#" class="searchBtn btnGreenFlat"><i class="fs1" aria-hidden="true" data-icon=""></i></a>-->
                         </div>
                         <div class="clearfix">
-                            <a id="btnBannerPostJob" href="/post-job/" class="page-scroll btn btn-xl">I Want It</a>
-                            <a id="btnBannerPostJob" href="/post-job/" class="page-scroll btn btn-xl">I Found It</a>
+                            <a id="btnBannerPostJob" href="/post-job/" class="page-scroll btn btn-xl" onclick="SubmitFrm(); return false;">I Want It</a>
+                            <a id="btnBannerPostJob" href="/post-job/" class="page-scroll btn btn-xl" onclick="SubmitFrm(); return false;">I Found It</a>
+                            <!--<input type="submit" name="btnBannerPostJob" value="" id="btnBannerPostJob" class="page-scroll btn btn-x1" onclick="SubmitFrm(); return false;" />-->
                         </div>
                         <!--<div class="or"><div>OR</div></div>
                         <div class="post-box">

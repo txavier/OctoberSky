@@ -62,7 +62,7 @@ namespace StuffFinder.ResourceServer.Controllers
         [HttpGet]
         public IHttpActionResult SearchThings()
         {
-            var result = _thingService.SearchThings(null);
+            var result =  _thingService.ToViewModels(_thingService.SearchThings(null));
 
             return Ok(result);
         }
@@ -71,7 +71,7 @@ namespace StuffFinder.ResourceServer.Controllers
         [HttpGet]
         public IHttpActionResult SearchThings(string query)
         {
-            var result = _thingService.SearchThings(query);
+            var result = _thingService.ToViewModels(_thingService.SearchThings(query));
 
             return Ok(result);
         }
