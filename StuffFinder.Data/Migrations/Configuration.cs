@@ -31,9 +31,11 @@ namespace StuffFinder.Data.Migrations
             //    );
             //
 
-            var things = SeedThingsTable();
+            // Old seed method no longer applicable now with the 
+            // addition of the new location table.
+            //var things = SeedThingsTable();
 
-            context.things.AddOrUpdate(p => p.name, things.ToArray());
+            //context.things.AddOrUpdate(p => p.name, things.ToArray());
 
             context.categories.AddOrUpdate(p => p.name,
                 new category { name = "furniture" },

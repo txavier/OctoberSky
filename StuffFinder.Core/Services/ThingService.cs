@@ -50,15 +50,12 @@ namespace StuffFinder.Core.Services
             var queryLowered = query.ToLower();
 
             var result = Get(filter: i =>
-                i.location.addressLine1.ToLower().Contains(queryLowered)
-                || i.location.addressLine2.ToLower().Contains(queryLowered)
+                i.location.formattedAddress.ToLower().Contains(queryLowered)
                 || i.category.name.ToLower().Contains(queryLowered)
-                || i.location.city.ToLower().Contains(queryLowered)
                 || i.comments.Any(j => j.commentText.ToLower().Contains(queryLowered))
-                || i.comments.Any(j => j.finding.location.addressLine1.ToLower().Contains(queryLowered))
+                || i.comments.Any(j => j.finding.location.formattedAddress.ToLower().Contains(queryLowered))
                 || i.comments.Any(j => j.finding.userName.ToLower().Contains(queryLowered))
                 || i.comments.Any(j => j.name.ToLower().Contains(queryLowered))
-                || i.location.country.ToLower().Contains(queryLowered)
                 || i.description.ToLower().Contains(queryLowered)
                 || i.findings.SelectMany(j => j.comments).Any(k => k.commentText.ToLower().Contains(queryLowered))
                 || i.name.ToLower().Contains(queryLowered)

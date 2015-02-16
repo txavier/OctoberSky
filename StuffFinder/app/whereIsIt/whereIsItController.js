@@ -97,7 +97,6 @@
         }
 
         function getCategories() {
-            //var result = [{ id: 10, name: 'furniture' }, { id: 12, name: 'food' }];
             return dataService.getCategories().then(function(data) {
                 vm.categories = data;
                 return vm.categories;

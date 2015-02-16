@@ -21,19 +21,7 @@ namespace StuffFinder.Core.Models
         public string locationName { get; set; }
 
         [StringLength(256)]
-        public string addressLine1 { get; set; }
-
-        [StringLength(256)]
-        public string addressLine2 { get; set; }
-
-        [StringLength(256)]
-        public string city { get; set; }
-
-        [StringLength(256)]
-        public string stateProvince { get; set; }
-
-        [StringLength(256)]
-        public string country { get; set; }
+        public string formattedAddress { get; set; }
 
         public double latitude { get; set; }
 

@@ -572,3 +572,15 @@ background-image: 'img/sprites.png';
 background-repeat: no-repeat;
 overflow: hidden;
 }
+
+/*End upvote downvote section*/
+
+/*Begin calendar date picker section*/
+
+.dateTextInput {
+    height: 54px;
+}
+
+.dateCalendarButton {
+    height: 54px;
+}

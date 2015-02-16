@@ -35,6 +35,7 @@ app.config(function ($routeProvider) {
 
     $routeProvider.when("/found-it", {
         controller: "foundItController",
+        controllerAs: 'vm',
         templateUrl: "/app/templates/found-it.html"
     });
 
