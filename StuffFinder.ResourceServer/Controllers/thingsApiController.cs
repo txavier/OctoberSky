@@ -2,13 +2,16 @@
 using Newtonsoft.Json.Linq;
 using StuffFinder.Core.Interfaces;
 using StuffFinder.Core.Models;
+using StuffFinder.Core.Models.ViewModels;
 using StuffFinder.ResourceServer.DependencyResolution;
+using StuffFinder.ResourceServer.Filters;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace StuffFinder.ResourceServer.Controllers
@@ -82,6 +85,37 @@ namespace StuffFinder.ResourceServer.Controllers
             thing = _thingService.AddOrUpdate(thing);
 
             return Ok(thing);
+        }
+
+        //[Route("PostFiles/{jObject}")]
+        //[HttpPost]
+        //public IHttpActionResult PostFiles(JObject jObject)
+        //{
+        //    return Ok();
+        //}
+
+        //private static readonly string ServerUploadFolder = "C:\\Temp"; //Path.GetTempPath();
+
+        private static readonly string ServerUploadFolder = @"C:\Users\Theo\Pictures\Futon\temp";
+
+        [Route("files")]
+        [HttpPost]
+        [ValidateMimeMultipartContentFilter]
+        public async Task<FileResult> UploadSingleFile()
+        {
+            var streamProvider = new MultipartFormDataStreamProvider(ServerUploadFolder);
+            await Request.Content.ReadAsMultipartAsync(streamProvider);
+
+            return new FileResult
+            {
+                FileNames = streamProvider.FileData.Select(entry => entry.LocalFileName),
+                Names = streamProvider.FileData.Select(entry => entry.Headers.ContentDisposition.FileName),
+                ContentTypes = streamProvider.FileData.Select(entry => entry.Headers.ContentType.MediaType),
+                Description = streamProvider.FormData["description"],
+                CreatedTimestamp = DateTime.UtcNow,
+                UpdatedTimestamp = DateTime.UtcNow,
+                DownloadLink = "TODO, will implement when file is persisited"
+            };
         }
 
         // PUT: api/thingsApi/5

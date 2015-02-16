@@ -70,6 +70,7 @@
     <Compile Include="Models\location.cs" />
     <Compile Include="Models\setting.cs" />
     <Compile Include="Models\thing.cs" />
+    <Compile Include="Models\ViewModels\FileResult.cs" />
     <Compile Include="Models\ViewModels\ImageViewModel.cs" />
     <Compile Include="Models\ViewModels\SettingsViewModel.cs" />
     <Compile Include="Models\ViewModels\ThingViewModel.cs" />

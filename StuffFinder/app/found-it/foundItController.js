@@ -40,8 +40,25 @@
             getCategories();
             datepickerToggleMin();
             datepickerToggleMax();
+            initiateDroplet();
 
             return vm;
+        }
+
+        function initiateDroplet() {
+            $scope.$on('$dropletReady', function whenDropletReady() {
+                vm.interface.allowedExtensions(['png', 'jpg', 'bmp', 'gif']);
+
+                uploadFiles();
+            });
+        }
+
+        function uploadFiles() {
+            return dataService.getServerUrl().then(function (resource) {
+                var serverUrl = resource;
+                vm.interface.setRequestUrl(serverUrl.resourceServerUrl + 'api/thingsApi' + '/files');
+                vm.interface.setPostData({ id: 2 });
+            });
         }
 
         function playJumbotronVideo() {
@@ -69,6 +86,8 @@
         }
 
         function addOrUpdate() {
+            vm.interface.uploadFiles();
+
             vm.thing.userName = authService.authentication.userName;
 
             vm.thing.findings[0].userName = authService.authentication.userName;
