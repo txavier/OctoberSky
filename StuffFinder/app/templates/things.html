@@ -29,10 +29,10 @@
                         {{ thing.findings[0].comments[0].commentText }}
                     </p>
                     <ul>
-                        <li>Location: {{ thing.findings[0].location }}</li>
-                        <li>Last date spotted in the wild: {{ thing.findings[0].date }}</li>
+                        <li>Location: {{ thing.findings[0].location.formattedAddress }}</li>
+                        <li>Last date spotted in the wild: {{ thing.findings[0].date | date:'mediumDate' }}</li>
                         <li>Number of People that wanted this item: {{ thing.me2 }}</li>
-                        <li>Last price posted: {{ thing.findings[0].price }}</li>
+                        <li>Last price posted: {{ thing.findings[0].price | currency }}</li>
                         <li ng-if="thing.findings[0].upcCode">UPC code: {{ thing.findings[0].upcCode }}</li>
                     </ul>
                     <!--<p>

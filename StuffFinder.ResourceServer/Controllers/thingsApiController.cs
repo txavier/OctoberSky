@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using AutoClutch.Auto.Service.Interfaces;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using StuffFinder.Core.Interfaces;
 using StuffFinder.Core.Models;
@@ -23,11 +24,15 @@ namespace StuffFinder.ResourceServer.Controllers
     {
         private readonly IThingService _thingService;
 
+        private readonly IService<image> _imageService;
+
         public thingsApiController()
         {
             var container = IoC.Initialize();
 
             _thingService = container.GetInstance<IThingService>();
+
+            _imageService = container.GetInstance<IService<image>>();
         }
 
         // GET: api/thingsApi
@@ -42,14 +47,14 @@ namespace StuffFinder.ResourceServer.Controllers
         public IHttpActionResult Get(int id)
         {
             var result = _thingService.Find(id);
-            
+
             return Ok(result);
         }
 
         [Route("GetMostMe2Things")]
         public IHttpActionResult GetMostMe2Things()
         {
-            var result = _thingService.GetMostMe2Things();
+            var result = _thingService.ToViewModels(_thingService.GetMostMe2Things());
 
             return Ok(result);
         }
@@ -57,7 +62,7 @@ namespace StuffFinder.ResourceServer.Controllers
         [Route("GetFoundThings")]
         public IHttpActionResult GetFoundThings()
         {
-            var result = _thingService.GetFoundThings();
+            var result = _thingService.ToViewModels(_thingService.GetFoundThings());
 
             return Ok(result);
         }
@@ -66,7 +71,7 @@ namespace StuffFinder.ResourceServer.Controllers
         [HttpGet]
         public IHttpActionResult SearchThings()
         {
-            var result =  _thingService.ToViewModels(_thingService.SearchThings(null));
+            var result = _thingService.ToViewModels(_thingService.SearchThings(null));
 
             return Ok(result);
         }
@@ -97,29 +102,29 @@ namespace StuffFinder.ResourceServer.Controllers
 
         //private static readonly string ServerUploadFolder = "C:\\Temp"; //Path.GetTempPath();
 
-        private static readonly string ServerUploadFolder = @"C:\Users\Theo\Pictures\Futon\temp";
+        //private static readonly string ServerUploadFolder = @"C:\Users\Theo\Pictures\Futon\temp";
 
-        [Route("files1")]
-        [HttpPost]
-        [ValidateMimeMultipartContentFilter]
-        public async Task<FileResult> UploadSingleFile()
-        {
-            var streamProvider = new MultipartFormDataStreamProvider(ServerUploadFolder);
-            await Request.Content.ReadAsMultipartAsync(streamProvider);
-            
-            var result = new FileResult
-            {
-                FileNames = streamProvider.FileData.Select(entry => entry.LocalFileName),
-                Names = streamProvider.FileData.Select(entry => entry.Headers.ContentDisposition.FileName),
-                ContentTypes = streamProvider.FileData.Select(entry => entry.Headers.ContentType.MediaType),
-                Description = streamProvider.FormData["description"],
-                CreatedTimestamp = DateTime.UtcNow,
-                UpdatedTimestamp = DateTime.UtcNow,
-                DownloadLink = "TODO, will implement when file is persisited"
-            };
-            
-            return result;
-        }
+        //[Route("files1")]
+        //[HttpPost]
+        //[ValidateMimeMultipartContentFilter]
+        //public async Task<FileResult> UploadSingleFile()
+        //{
+        //    var streamProvider = new MultipartFormDataStreamProvider(ServerUploadFolder);
+        //    await Request.Content.ReadAsMultipartAsync(streamProvider);
+
+        //    var result = new FileResult
+        //    {
+        //        FileNames = streamProvider.FileData.Select(entry => entry.LocalFileName),
+        //        Names = streamProvider.FileData.Select(entry => entry.Headers.ContentDisposition.FileName),
+        //        ContentTypes = streamProvider.FileData.Select(entry => entry.Headers.ContentType.MediaType),
+        //        Description = streamProvider.FormData["description"],
+        //        CreatedTimestamp = DateTime.UtcNow,
+        //        UpdatedTimestamp = DateTime.UtcNow,
+        //        DownloadLink = "TODO, will implement when file is persisited"
+        //    };
+
+        //    return result;
+        //}
 
         [Route("files")]
         [HttpPost]
@@ -156,6 +161,15 @@ namespace StuffFinder.ResourceServer.Controllers
                 using (var binaryReader = new BinaryReader(file.Value))
                 {
                     fileData = binaryReader.ReadBytes((int)file.Value.Length);
+
+                    var image = new image()
+                    {
+                        thingId = thingId,
+                        imageBinary = fileData,
+                        fileName = fileName,
+                    };
+
+                    _imageService.AddOrUpdate(image);
                 }
 
                 // TODO Put file in the file service with the thingid that it relates to.

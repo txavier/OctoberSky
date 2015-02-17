@@ -21,5 +21,7 @@ namespace StuffFinder.Core.Models
         public virtual finding finding { get; set; }
 
         public virtual thing thing { get; set; }
+
+        public string fileName { get; set; }
     }
 }

@@ -106,3 +106,7 @@
 	https://damienbod.wordpress.com/2014/03/28/web-api-file-upload-single-or-multiple-files/
 	http://stackoverflow.com/questions/359894/how-to-create-byte-array-from-httppostedfile
 	http://stackoverflow.com/questions/19723064/webapi-formdata-upload-to-db-with-extra-parameters
+
+ -- The google maps implementation used could be found here.
+
+	http://angular-ui.github.io/angular-google-maps/#!/api
