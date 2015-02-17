@@ -56,8 +56,8 @@
         function uploadFiles() {
             return dataService.getServerUrl().then(function (resource) {
                 var serverUrl = resource;
+
                 vm.interface.setRequestUrl(serverUrl.resourceServerUrl + 'api/thingsApi' + '/files');
-                vm.interface.setPostData({ id: 2 });
             });
         }
 
@@ -86,14 +86,16 @@
         }
 
         function addOrUpdate() {
-            vm.interface.uploadFiles();
-
             vm.thing.userName = authService.authentication.userName;
 
             vm.thing.findings[0].userName = authService.authentication.userName;
 
             dataService.addOrUpdateThing(vm.thing)
-                .then(function () {
+                .then(function (data) {
+                    vm.interface.setPostData({ id: data.thingId });
+
+                    vm.interface.uploadFiles();
+
                     $location.path('/start');
                 })
         }

@@ -100,3 +100,9 @@
 	http://meta.stackexchange.com/questions/57405/total-upvote-and-downvote-counts-are-incorrect
 
 	http://meta.stackexchange.com/content/stackexchangemeta/img/sprites.png?v=145e63c0320f
+
+ -- In order to post files to web api the following resource was used.
+
+	https://damienbod.wordpress.com/2014/03/28/web-api-file-upload-single-or-multiple-files/
+	http://stackoverflow.com/questions/359894/how-to-create-byte-array-from-httppostedfile
+	http://stackoverflow.com/questions/19723064/webapi-formdata-upload-to-db-with-extra-parameters

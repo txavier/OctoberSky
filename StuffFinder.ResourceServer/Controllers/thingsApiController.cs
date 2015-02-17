@@ -8,6 +8,7 @@ using StuffFinder.ResourceServer.Filters;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -98,15 +99,15 @@ namespace StuffFinder.ResourceServer.Controllers
 
         private static readonly string ServerUploadFolder = @"C:\Users\Theo\Pictures\Futon\temp";
 
-        [Route("files")]
+        [Route("files1")]
         [HttpPost]
         [ValidateMimeMultipartContentFilter]
         public async Task<FileResult> UploadSingleFile()
         {
             var streamProvider = new MultipartFormDataStreamProvider(ServerUploadFolder);
             await Request.Content.ReadAsMultipartAsync(streamProvider);
-
-            return new FileResult
+            
+            var result = new FileResult
             {
                 FileNames = streamProvider.FileData.Select(entry => entry.LocalFileName),
                 Names = streamProvider.FileData.Select(entry => entry.Headers.ContentDisposition.FileName),
@@ -116,6 +117,54 @@ namespace StuffFinder.ResourceServer.Controllers
                 UpdatedTimestamp = DateTime.UtcNow,
                 DownloadLink = "TODO, will implement when file is persisited"
             };
+            
+            return result;
+        }
+
+        [Route("files")]
+        [HttpPost]
+        public async Task<HttpResponseMessage> Upload()
+        {
+            if (!Request.Content.IsMimeMultipartContent())
+            {
+                return Request.CreateResponse(HttpStatusCode.UnsupportedMediaType, "Unsupported media type.");
+            }
+
+            // Read the file and form data.
+            MultipartFormDataMemoryStreamProvider provider = new MultipartFormDataMemoryStreamProvider();
+            await Request.Content.ReadAsMultipartAsync(provider);
+
+            // Extract the fields from the form data.
+            int thingId = Int32.Parse(provider.FormData[0]);
+
+            // Check if files are on the request.
+            if (!provider.FileStreams.Any())
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, "No file uploaded.");
+            }
+
+            IList<string> uploadedFiles = new List<string>();
+            foreach (KeyValuePair<string, Stream> file in provider.FileStreams)
+            {
+                string fileName = file.Key;
+                Stream stream = file.Value;
+
+                // Do something with the uploaded file
+                //UploadManager.Upload(stream, fileName, uploadType, description);
+
+                byte[] fileData = null;
+                using (var binaryReader = new BinaryReader(file.Value))
+                {
+                    fileData = binaryReader.ReadBytes((int)file.Value.Length);
+                }
+
+                // TODO Put file in the file service with the thingid that it relates to.
+
+                // Keep track of the filename for the response
+                uploadedFiles.Add(fileName);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, "Successfully Uploaded: " + string.Join(", ", uploadedFiles));
         }
 
         // PUT: api/thingsApi/5
