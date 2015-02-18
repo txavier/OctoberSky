@@ -22,6 +22,7 @@
 
             <div ng-repeat="thing in foundThings" class="panel panel-default" id="animatePanel">
                 <div class="panel-heading"><a href="#/thing/{{ thing.thingId }}" class="pull-right">View all</a> <h4>Found!</h4></div>
+                <div class="fb-like" data-share="true" data-width="450" data-show-faces="true"></div>
                 <div class="panel-thumbnail"><a href="#/thing/{{ thing.thingId }}"><img src="{{ thing.imageUrl }}" class="img-responsive"></a></div>
                 <div class="panel-body">
                     <p class="lead"><a href="#/thing/{{ thing.thingId }}">{{ thing.name }}</a></p>
@@ -39,7 +40,9 @@
                         <img src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s28" width="28px" height="28px"> {{ thing.findings[0].comments[0].name }} found this!
                     </p>-->
                     <p>
-                        <div class="fb-comments" width="100%" data-href="http://developers.facebook.com/docs/plugins/comments/" data-numposts="4" data-colorscheme="light"></div>
+                        <!--<div class="fb-comments" width="100%" data-href="http://developers.facebook.com/docs/plugins/comments/" data-numposts="4" data-colorscheme="light"></div>-->
+                        <div class="fb-comments" width="100%" dyn-fb-comment-box page-href="#/thing/{{ thing.thingId }}" data-numposts="3" data-colorscheme="light"></div>
+
                     </p>
                     <p><a href="#" class="btn btn-default">Email me when this is in my area! &raquo;</a></p>
                     <p>
@@ -189,8 +192,9 @@
             <div ng-repeat="thing in mostMeTooed" class=" panel panel-default">
                 <div class="panel-heading">
                     <!--<a href="#" class="pull-right">Bounty currently set at: $246</a>-->
+                    <div class="fb-like" data-share="true" data-width="450" data-show-faces="true"></div>
                     <a href="#/thing/{{ thing.thingId }}"><h4>Wanted: {{ thing.name }}</h4></a>
-</div>
+                </div>
                 <div class="panel-thumbnail"><a href="#/thing/{{ thing.thingId }}"><img src="{{ thing.imageUrl }}" class="img-responsive"></a></div>
                 <div class="panel-body">
                     <div class="clearfix"></div>
@@ -202,7 +206,9 @@
                         </li>
                     </ul>-->
                     <p>
-                        <div class="fb-comments" width="100%" data-href="http://developers.facebook.com/docs/plugins/comments/" data-numposts="3" data-colorscheme="light"></div>
+                        <div class="fb-comments" width="100%" dyn-fb-comment-box page-href="#/thing/{{ thing.thingId }}/" data-numposts="3" data-colorscheme="light"></div>
+
+                        <!--<div class="fb-comments" width="100%" data-href="http://developers.facebook.com/docs/plugins/comments/" data-numposts="3" data-colorscheme="light"></div>-->
                     </p>
                     <!--<form>
                         <div class="input-group">
@@ -217,8 +223,8 @@
                     <!--<p><a href="#" class="btn btn-default">Place a bounty on this! &raquo;</a></p>-->
                     <hr />
                     <!--<p>
-                WheresMyStuff.com scours the web looking for the items you want in your location! See the list of automatically curated items that may match this one.
-            </p>-->
+                        WheresMyStuff.com scours the web looking for the items you want in your location! See the list of automatically curated items that may match this one.
+                    </p>-->
                     <p>
                         <a href="#">Is this it? &raquo;</a>
                     </p>

@@ -215,7 +215,7 @@ namespace StuffFinder.AuthenticationApi.Controllers
                 //You can get it from here: https://developers.facebook.com/tools/accesstoken/
                 //More about debug_tokn here: http://stackoverflow.com/questions/16641083/how-does-one-get-the-app-access-token-for-debug-token-inspection-on-facebook
 
-                var appToken = "xxxxx";
+                var appToken = "1540766432878939|Uph1ZIx0zSi8G4mXX4QA8SdIsRs";
                 verifyTokenEndPoint = string.Format("https://graph.facebook.com/debug_token?input_token={0}&access_token={1}", accessToken, appToken);
             }
             else if (provider == "Google")

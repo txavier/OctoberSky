@@ -64,8 +64,8 @@ namespace StuffFinder.AuthenticationApi
             //Configure Facebook External Login
             facebookAuthOptions = new FacebookAuthenticationOptions()
             {
-                AppId = "xxx",
-                AppSecret = "xxx",
+                AppId = "1540766432878939",
+                AppSecret = "1540766432878939|Uph1ZIx0zSi8G4mXX4QA8SdIsRs",
                 Provider = new FacebookAuthProvider()
             };
             app.UseFacebookAuthentication(facebookAuthOptions);

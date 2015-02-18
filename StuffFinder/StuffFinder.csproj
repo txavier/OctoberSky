@@ -237,6 +237,7 @@
     <Content Include="app\authInterceptor\authInterceptorService.js" />
     <Content Include="app\auth\authService.js" />
     <Content Include="app\admin\dashboardEmailSettingsController.js" />
+    <Content Include="app\dynFbCommentBox\dynFbCommentBox.js" />
     <Content Include="app\found-it\foundItController.js" />
     <Content Include="app\home\homeController.js" />
     <Content Include="app\index\indexController.js" />
