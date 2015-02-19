@@ -110,3 +110,7 @@
  -- The google maps implementation used could be found here.
 
 	http://angular-ui.github.io/angular-google-maps/#!/api
+
+ -- To include googles facebook comments in the page the following band aide was needed.
+
+	http://stackoverflow.com/questions/24086301/facebook-comments-plugin-not-displaying-in-angularjs

@@ -19,7 +19,9 @@
                 var colorscheme = attrs.colorscheme || 'light';
                 var width = attrs.width || '100%';
                 elem.html(createHTML(href, numposts, colorscheme, width));
-                FB.XFBML.parse(elem[0]);
+                // Commented the below line out because 'FB' doesnt exist.
+                // This line was probably meant for XFBML comment tag use.
+                //FB.XFBML.parse(elem[0]);
             });
         }
     };

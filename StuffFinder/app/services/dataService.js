@@ -73,7 +73,7 @@
         }
 
         function getServerUrl() {
-            $http.get('/api/bootstrapSettingsApi')
+            $http.get('/api/bootstrapSettingsApi', { cache: true })
                 .success(function (response) {
                     serverUrl.authenticationServerUrl = response.authenticationServerUrl;
                     serverUrl.resourceServerUrl = response.resourceServerUrl;

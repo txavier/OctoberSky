@@ -13,35 +13,120 @@
 </section>
 <div class="well">
     <form class="form-horizontal" role="form">
-        <h4>{{ vm.thing.name }}</h4>
+        <h3><b>{{ vm.thing.name }}</b></h3>
+        <div class="fb-like" data-share="true" data-width="450" data-show-faces="true"></div>
         <div class="form-group" style="padding:14px;">
-            <textarea class="form-control" placeholder="Location" data-ng-model="vm.thing.addressLine1"></textarea>
-            <!--<div id="map-canvas"></div>-->
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d232566.35013197022!2d54.5599079!3d24.3865481!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5e440f723ef2b9%3A0xc7cc2e9341971108!2sAbu+Dhabi+-+United+Arab+Emirates!5e0!3m2!1sen!2sus!4v1420960578083" width="100%" height="450" frameborder="0" style="border:0"></iframe>
+            <div style="height: 305px">
+                <carousel interval="vm.slideInterval">
+                    <slide ng-repeat="slide in vm.slides" active="slide.active">
+                        <img ng-src="{{slide.image}}" style="margin:auto; max-height: 300px;border-radius: 4px">
+                        <div class="carousel-caption">
+                            <!--<h4>Slide {{$index}}</h4>
+                            <p>{{slide.text}}</p>-->
+                        </div>
+                    </slide>
+                </carousel>
+            </div>
         </div>
         <div class="form-group" style="padding:14px;">
-            <textarea class="form-control" placeholder="Posted Date" data-ng-model="vm.thing.postedDate"></textarea>
+            <div class="row" ng-show="(vm.thing.userName)">
+                <hr />
+                <div class="col-lg-4">
+                    <b>Posted by</b>
+                </div>
+                <div class="col-lg-4">
+                    {{ vm.thing.userName }}
+                </div>
+            </div>
+            <div class="row" ng-show="(vm.thing.description)">
+                <hr />
+                <div class="col-lg-4">
+                    <b>Description</b>
+                </div>
+                <div class="col-lg-4">
+                    {{ vm.thing.description }}
+                </div>
+            </div>
+            <div class="row" ng-show="(vm.thing.category)">
+                <hr />
+                <div class="col-lg-4">
+                    <b>Category</b>
+                </div>
+                <div class="col-lg-4">
+                    {{ vm.thing.category }}
+                </div>
+            </div>
+            <div class="row" ng-show="(vm.thing.postedDate)">
+                <hr />
+                <div class="col-lg-4">
+                    <b>Posted on</b>
+                </div>
+                <div class="col-lg-4">
+                    {{ vm.thing.postedDate }}
+                </div>
+            </div>
         </div>
-        <div class="form-group" style="padding:14px;">
-            <textarea class="form-control" placeholder="Date spotted" data-ng-model="vm.thing.dateSpotted"></textarea>
-        </div>
-        <div class="form-group" style="padding:14px;">
-            <textarea class="form-control" placeholder="Price" data-ng-model="vm.thing.price"></textarea>
-        </div>
-        <div class="form-group" style="padding:14px;">
-            <textarea class="form-control" placeholder="UPC code" data-ng-model="vm.thing.upcCode"></textarea>
-        </div>
-        <div class="form-group" style="padding:14px;">
-            <textarea class="form-control" placeholder="Category" data-ng-model="vm.thing.category" typeahead="category.name as category.name for category in vm.categories | filter:$viewValue | limitTo:8"></textarea>
-        </div>
-        <div class="form-group" style="padding:14px;">
-            <textarea class="form-control" placeholder="Name" data-ng-model="vm.thing.name"></textarea>
-        </div>
-        <div class="form-group" style="padding:14px;">
-            <textarea class="form-control" placeholder="Description" data-ng-model="vm.thing.description"></textarea>
-        </div>
-        <div class="form-group" style="padding:14px;">
-            <textarea class="form-control" placeholder="Whats your story? Why do you want to find this?" data-ng-model="vm.thing.comments[0].commentText"></textarea>
+        <div class="form-group" style="padding:14px;" ng-repeat="finding in vm.thing.findings">
+            <h4><b>Found!</b></h4>
+            <div class="row" ng-show="(finding.location.formattedAddress)">
+                <hr />
+                <div class="col-lg-4">
+                    <b>Found at</b>
+                </div>
+                <div class="col-lg-4">
+                    {{ finding.location.locationName }} {{ finding.location.formattedAddress }} ({{ finding.location.longitude }}, {{ finding.location.latitude }})
+                </div>
+            </div>
+            <div class="row" style="padding:14px;">
+                <div id="map_canvas">
+                    <ui-gmap-google-map center="{ latitude: finding.location.latitude, longitude: finding.location.longitude }" zoom="vm.map.zoom" draggable="true" options="vm.options">
+                        <ui-gmap-marker coords="{ latitude: finding.location.latitude, longitude: finding.location.longitude }" options="marker.options" events="marker.events" idkey="marker.id">
+                        </ui-gmap-marker>
+                    </ui-gmap-google-map>
+                    <div ng-cloak ng-hide="true">
+                        <ul>
+                            <li>coords update ctr: {{coordsUpdates}}</li>
+                            <li>dynamic move ctr: {{dynamicMoveCtr}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row" ng-show="(finding.userName)">
+                <hr />
+                <div class="col-lg-4">
+                    <b>Found by</b>
+                </div>
+                <div class="col-lg-4">
+                    {{ finding.userName }}
+                </div>
+            </div>
+            <div class="row" ng-show="(finding.date)">
+                <hr />
+                <div class="col-lg-4">
+                    <b>Found on</b>
+                </div>
+                <div class="col-lg-4">
+                    {{ finding.date | date:'mediumDate'}}
+                </div>
+            </div>
+            <div class="row" ng-show="(finding.price)">
+                <hr />
+                <div class="col-lg-4">
+                    <b>Price</b>
+                </div>
+                <div class="col-lg-4">
+                    {{ finding.price | currency }}
+                </div>
+            </div>
+            <div class="row" ng-show="(finding.upcCode)">
+                <hr />
+                <div class="col-lg-4">
+                    <b>UPC Code</b>
+                </div>
+                <div class="col-lg-4">
+                    {{ finding.upcCode }}
+                </div>
+            </div>
         </div>
         <p>
             <!--<div class="fb-comments" width="100%" data-href="http://developers.facebook.com/docs/plugins/comments/" data-numposts="3" data-colorscheme="light"></div>-->

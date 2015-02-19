@@ -4,6 +4,10 @@
 body {
 }
 
+.page-header {
+    margin: 40px 0 50px;
+}
+
 #sidebar {
     padding: 0px;
     padding-top: 15px;
