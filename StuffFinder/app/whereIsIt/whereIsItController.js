@@ -9,90 +9,44 @@
 
         var vm = this;
 
-        /**
-         * @property interface
-         * @type {Object}
-         */
-        vm.interface = {};
-
-        /**
-         * @property uploadCount
-         * @type {Number}
-         */
-        vm.uploadCount = 0;
-
-        /**
-         * @property success
-         * @type {Boolean}
-         */
-        vm.success = false;
-
-        /**
-         * @property error
-         * @type {Boolean}
-         */
-        vm.error = false;
-
         vm.authentication = {};
         vm.authentication.userName = authService.authentication.userName;
         vm.thing = {};
         vm.thing.categoryId = null;
         vm.categories = [];
-        vm.save = save;
+        vm.addOrUpdate = addOrUpdate;
 
         activate();
 
         function activate() {
             playJumbotronVideo();
-
             getCategories();
-
             getNewThing();
+            initiateDroplet();
 
             return vm;
         }
 
-        // Listen for when the interface has been configured.
-        $scope.$on('$dropletReady', function whenDropletReady() {
+        function initiateDroplet() {
+            $scope.$on('$dropletReady', function whenDropletReady() {
+                vm.interface.allowedExtensions(['png', 'jpg', 'bmp', 'gif']);
 
-            vm.interface.allowedExtensions(['png', 'jpg', 'bmp', 'gif', 'svg', 'torrent']);
-            vm.interface.setRequestUrl('upload.html');
-            vm.interface.defineHTTPSuccess([/2.{2}/]);
-            vm.interface.useArray(false);
+                uploadFiles();
+            });
+        }
 
-        });
+        function uploadFiles() {
+            return dataService.getServerUrl().then(function (resource) {
+                var serverUrl = resource;
 
-        // Listen for when the files have been successfully uploaded.
-        $scope.$on('$dropletSuccess', function onDropletSuccess(event, response, files) {
-
-            vm.uploadCount = files.length;
-            vm.success = true;
-            console.log(response, files);
-
-            $timeout(function timeout() {
-                vm.success = false;
-            }, 5000);
-
-        });
-
-        // Listen for when the files have failed to upload.
-        $scope.$on('$dropletError', function onDropletError(event, response) {
-
-            vm.error = true;
-            console.log(response);
-
-            $timeout(function timeout() {
-                vm.error = false;
-            }, 5000);
-
-        });
+                vm.interface.setRequestUrl(serverUrl.resourceServerUrl + 'api/thingsApi' + '/files');
+            });
+        }
 
         // When the page is ready this plays the youtube video.
         function playJumbotronVideo() {
             $(document).ready(function () {
-
                 $(".player").mb_YTPlayer();
-
             });
         }
 
@@ -121,12 +75,24 @@
             return result;
         }
 
-        function save() {
+        function addOrUpdate() {
+            vm.thing.userName = authService.authentication.userName;
+
+            vm.thing.postedDate = new Date();
+
             dataService.addOrUpdateThing(vm.thing)
-                .then(
-                    $location.path('/start')
-                )
-                .catch();
+                .then(function (data) {
+                    vm.interface.setPostData({ id: data.thingId });
+
+                    vm.interface.uploadFiles();
+
+                    $location.path('/start');
+                })
+                .catch(handleFailure);
+        }
+
+        function handleFailure(error) {
+            $log.error('Failure notice.' + error.data);
         }
 
     }

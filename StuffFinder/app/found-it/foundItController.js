@@ -16,6 +16,7 @@
         vm.options = { scrollwheel: false };
         vm.addOrUpdate = addOrUpdate;
         vm.categories = {};
+        vm.thing.categoryId = null;
         vm.datepickerFormats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
         vm.datepickerFormat = vm.datepickerFormats[3];
         vm.datepickerOpen = datepickerOpen;
@@ -100,6 +101,11 @@
 
                     $location.path('/start');
                 })
+                .catch(handleFailure);
+        }
+
+        function handleFailure(error) {
+            $log.error('Failure notice.' + error.data);
         }
 
         // Begin region map.

@@ -114,3 +114,7 @@
  -- To include googles facebook comments in the page the following band aide was needed.
 
 	http://stackoverflow.com/questions/24086301/facebook-comments-plugin-not-displaying-in-angularjs
+
+ -- When resource server is not responding on the staging server backup the development database
+	and restore it on the staging server.  Most likely an error is being thrown by code-first
+	warning that the models and the database are not in sync.
