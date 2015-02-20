@@ -90,6 +90,8 @@
 
             vm.thing.findings[0].userName = authService.authentication.userName;
 
+            vm.thing.postedDate = new Date();
+
             dataService.addOrUpdateThing(vm.thing)
                 .then(function (data) {
                     vm.interface.setPostData({ id: data.thingId });

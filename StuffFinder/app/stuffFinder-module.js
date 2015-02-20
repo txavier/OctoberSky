@@ -30,6 +30,7 @@ app.config(function ($routeProvider) {
 
     $routeProvider.when("/start", {
         controller: "startController",
+        controllerAs: 'vm',
         templateUrl: "/app/templates/start.html"
     });
 

@@ -13,6 +13,13 @@
 </section>
 <div class="well">
     <form class="form-horizontal" role="form">
+        <div class="col-md-2 votecell">
+            <div class="vote">
+                <a class="vote-up-off" title="I want it too!" ng-click="vm.upVote(vm.thing)">up vote</a>
+                <span itemprop="upvoteCount" class="vote-count-post ">{{ vm.thing.me2 }}</span>
+                <a class="vote-down-off" title="This is not useful" ng-click="vm.downVote(vm.thing)">down vote</a>
+            </div>
+        </div>
         <h3><b>{{ vm.thing.name }}</b></h3>
         <div class="fb-like" data-share="true" data-width="450" data-show-faces="true"></div>
         <div class="form-group" style="padding:14px;">
@@ -62,7 +69,7 @@
                     <b>Posted on</b>
                 </div>
                 <div class="col-lg-4">
-                    {{ vm.thing.postedDate }}
+                    {{ vm.thing.postedDate | date:'mediumDate' }}
                 </div>
             </div>
         </div>

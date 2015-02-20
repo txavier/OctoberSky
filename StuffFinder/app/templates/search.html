@@ -48,8 +48,8 @@
                                 <div class="row">Date:</div>
                             </div>
                             <div class="col-md-3">
-                                <div class="row">{{ thing.category }}</div>
-                                <div class="row">{{ thing.postedDate }}</div>
+                                <div class="row">{{ thing.category.name }}</div>
+                                <div class="row">{{ thing.postedDate | date: shortDate }}</div>
                             </div>
                             <div class="col-md-1">
                                 <div class="row">Me2's:</div>

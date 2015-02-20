@@ -46,7 +46,7 @@ namespace StuffFinder.ResourceServer.Controllers
         // GET: api/thingsApi/5
         public IHttpActionResult Get(int id)
         {
-            var result = _thingService.Find(id);
+            var result = _thingService.ToViewModel(_thingService.Find(id));
 
             return Ok(result);
         }

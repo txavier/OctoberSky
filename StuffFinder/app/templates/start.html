@@ -19,7 +19,7 @@
 <p><a class="btn btn-info" href="#/things" role="button">Check the feed &raquo;</a></p>
 <h3>Top Ten Me2'd Items</h3>
 <ul class="thumbnail" style="list-style-type: none;">
-    <li ng-repeat="thing in mostMeTooed">
+    <li ng-repeat="thing in vm.mostMeTooed">
         <div class="row session">
             <div class="col-xs-18 col-md-12">
                 <div class="row">
@@ -29,31 +29,38 @@
                 </div>
                 <div class="row">
                     <div class="col-md-3">
-                        <a class="btn btn-info btn-group" href="#/found-it" role="button">I want it &nbsp;</a>
+                        <!--<a class="btn btn-info btn-group" href="#/found-it" role="button">I want it &nbsp;</a>-->
                         <a class="btn btn-info btn-group" href="#/found-it" role="button">I found it</a>
                     </div>
                 </div>
                 <br />
                 <div class="row">
+                    <div class="col-md-2 votecell">
+                        <div class="vote">
+                            <a class="vote-up-off" title="I want it too!" ng-click="vm.upVote(thing)">up vote</a>
+                            <span itemprop="upvoteCount" class="vote-count-post ">{{ thing.me2 }}</span>
+                            <a class="vote-down-off" title="This is not useful" ng-click="vm.downVote(thing)">down vote</a>
+                        </div>
+                    </div>
                     <div class="col-xs-6 col-md-2">
                         <div class="row">
                             <a href="#/thing/{{ thing.thingId }}"><img ng-src="{{ thing.imageUrl }}" height="114" /></a>
                         </div>
                     </div>
-                    <div class="col-md-10">
+                    <div class="col-md-8">
                         <div class="row">
-                            <div class="col-md-1">
+                            <div class="col-md-2">
                                 <div class="row">Category:</div>
                                 <div class="row">Date:</div>
                             </div>
                             <div class="col-md-3">
-                                <div class="row">{{ thing.category }}</div>
-                                <div class="row">{{ thing.postedDate }}</div>
+                                <div class="row">{{ thing.category.name }}</div>
+                                <div class="row">{{ thing.postedDate | date: shortDate }}</div>
                             </div>
                             <div class="col-md-1">
                                 <div class="row">Me2's:</div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-1">
                                 <div class="row">{{ thing.me2 }}</div>
                             </div>
                         </div>

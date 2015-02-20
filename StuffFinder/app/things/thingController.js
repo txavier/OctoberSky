@@ -19,6 +19,8 @@
         var slides = vm.slides = [];
         vm.map = { center: { latitude: 24.416563, longitude: 54.543546 }, zoom: 12 };
         vm.options = { scrollwheel: false };
+        vm.upVote = upVote;
+        vm.downVote = downVote;
 
         // Scope variables have to be accessible for the watch statements.
         $scope.coordsUpdates = 0;
@@ -142,6 +144,28 @@
                 $scope.dynamicMoveCtr++;
             }, 2000);
         }, 1000);
+
+        function upVote(thing) {
+            var vote = {};
+
+            vote.userName = authService.authentication.userName;
+            vote.thingId = thing.thingId;
+
+            return dataService.upVote(vote).then(function (data) {
+                searchThings();
+            });
+        }
+
+        function downVote(thing) {
+            var vote = {};
+
+            vote.userName = authService.authentication.userName;
+            vote.thingId = thing.thingId;
+
+            return dataService.downVote(vote).then(function (data) {
+                searchThings();
+            });
+        }
 
     }
 
