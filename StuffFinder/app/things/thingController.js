@@ -35,14 +35,27 @@
 
         function activate() {
             setView();
-            setMapMarker();
 
             return vm;
         }
 
+        //window.fbAsyncInit = function () {
+        //    FB.init({
+        //        appId: '1540766432878939',
+        //        xfbml: true,
+        //        version: 'v2.2'
+        //    });
+        //};
+
+        $scope.$watch('href', function () {
+                FB.XFBML.parse();
+        })
+
         function setView() {
             return getThing().then(function (data) {
                 vm.thing = data;
+
+                setMapMarker();
 
                 // Set the carousel.
                 addSlide(vm.thing.images);

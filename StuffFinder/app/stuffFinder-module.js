@@ -114,6 +114,25 @@ app.run(['dataService', function (dataService) {
     });
 }])
 
+app.run(['dataService', function activateFaceBook() {
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '1540766432878939',
+            xfbml: true,
+            version: 'v2.2'
+        });
+    };
+
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) { return; }
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+}])
+
+
 app.constant('ngAuthSettings', {
     apiServiceBaseUri: serviceBase,
     clientId: '915674078507-ersdkqkfl2nah49s5ier2drnlstajqov.apps.googleusercontent.com'

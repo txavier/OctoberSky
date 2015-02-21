@@ -118,3 +118,9 @@
  -- When resource server is not responding on the staging server backup the development database
 	and restore it on the staging server.  Most likely an error is being thrown by code-first
 	warning that the models and the database are not in sync.
+
+ -- In order to load facebook components on first page load as opposed to having to reload the page
+	to view the facebook components, the following information was used.
+
+	http://stackoverflow.com/questions/23211560/angulajs-facebook-sdk-works-only-when-refresh-the-page
+	https://developers.facebook.com/quickstarts/1540766432878939/?platform=web

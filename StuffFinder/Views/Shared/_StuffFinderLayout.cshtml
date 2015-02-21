@@ -237,14 +237,14 @@
     @*<script src="http://pupunzi.com/mb.components/mb.YTPlayer/demo/inc/jquery.mb.YTPlayer.js"></script>*@
     <script src="scripts/jquery.mb.YTPlayer.js"></script>
     <div id="fb-root"></div>
-    <script>
+    @*<script>
         (function (d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) return;
             js = d.createElement(s); js.id = id;
             js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1541990042756578&version=v2.0";
             fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script>
+        }(document, 'script', 'facebook-jssdk'));</script>*@
     @RenderSection("scripts", required: false)
 </body>
 </html>
