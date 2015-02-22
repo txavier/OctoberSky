@@ -23,7 +23,7 @@
         vm.datepickerOpened = false;
         vm.datepickerDateOptions = { formatYear: 'yy', startingDay: 1 };
         vm.clear = datepickerClear;
-        vm.marker = {};
+        //vm.marker = {};
 
         // Scope variables have to be accessible for the watch statements.
         $scope.coordsUpdates = 0;
@@ -132,7 +132,7 @@
         // Begin region map.
 
         function setMapMarker(latitude, longitude) {
-            vm.marker = {
+            $scope.marker = {
                 id: 0,
                 coords: {
                     latitude: latitude,
@@ -150,13 +150,13 @@
                         $http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + lon + '&sensor=false&key=AIzaSyBPUGy5syJHUaDeR_E_FTwgOO4Th8vm63Y')
                         .success(function (response) {
                             if (response.status === "ZERO_RESULTS") {
-                                vm.thing.findings[0].location.latitude = lat;
-                                vm.thing.findings[0].location.longitude = lon;
+                                vm.thing.finding.location.latitude = lat;
+                                vm.thing.finding.location.longitude = lon;
                             }
                             else {
-                                vm.thing.findings[0].location.formattedAddress = response.results[0].formatted_address;
-                                vm.thing.findings[0].location.latitude = lat;
-                                vm.thing.findings[0].location.longitude = lon;
+                                vm.thing.finding.location.formattedAddress = response.results[0].formatted_address;
+                                vm.thing.finding.location.latitude = lat;
+                                vm.thing.finding.location.longitude = lon;
                             }
                         });
 
