@@ -101,6 +101,12 @@ app.config(function ($routeProvider) {
         templateUrl: '/app/templates/edit-thing.html'
     });
 
+    $routeProvider.when('/finding/edit/:findingId', {
+        controller: 'editFindingController',
+        controllerAs: 'vm',
+        templateUrl: '/app/templates/edit-finding.html'
+    });
+
     $routeProvider.otherwise({ redirectTo: "/index" });
 });
 

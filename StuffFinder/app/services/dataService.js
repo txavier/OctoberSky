@@ -32,6 +32,7 @@
             getJumbotronVideoUrlSetting: getJumbotronVideoUrlSetting,
             upVote: upVote,
             downVote: downVote,
+            getFinding: getFinding
         };
 
         return service;
@@ -121,6 +122,24 @@
 
                 function searchThingsFailed(error) {
                     $log.error('XHR Failed for searchThings.' + error.data.message + ': ' + error.data.messageDetail);
+                }
+            });
+        }
+
+        function getFinding(findingId) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.get(serverUrl.resourceServerUrl + 'api/findingsApi' + '/' + findingId)
+                            .then(getFindingComplete)
+                            .catch(getFindingFailed);
+
+                function getFindingComplete(response) {
+                    return response.data;
+                }
+
+                function getFindingFailed(error) {
+                    $log.error('XHR failed for getFindings.' + error.data.message + ': ' + error.data.messageDetail);
                 }
             });
         }

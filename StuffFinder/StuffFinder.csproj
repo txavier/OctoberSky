@@ -238,8 +238,10 @@
     <Content Include="app\auth\authService.js" />
     <Content Include="app\admin\dashboardEmailSettingsController.js" />
     <Content Include="app\dynFbCommentBox\dynFbCommentBox.js" />
+    <Content Include="app\finding\editFindingController.js" />
+    <Content Include="app\templates\edit-finding.html" />
     <Content Include="app\things\editThingController.js" />
-    <Content Include="app\found-it\foundItController.js" />
+    <Content Include="app\finding\foundItController.js" />
     <Content Include="app\home\homeController.js" />
     <Content Include="app\index\indexController.js" />
     <Content Include="app\login\loginController.js" />

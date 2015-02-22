@@ -38,10 +38,10 @@
         <div class="form-group" style="padding:14px;">
             <div class="row" ng-show="(vm.thing.userName)">
                 <hr />
-                <div class="col-lg-4">
+                <div class="col-lg-2">
                     <b>Posted by</b>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-6">
                     {{ vm.thing.userName }}
                 </div>
                 <div>
@@ -50,28 +50,28 @@
             </div>
             <div class="row" ng-show="(vm.thing.description)">
                 <hr />
-                <div class="col-lg-4">
+                <div class="col-lg-2">
                     <b>Description</b>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-6">
                     {{ vm.thing.description }}
                 </div>
             </div>
             <div class="row" ng-show="(vm.thing.category)">
                 <hr />
-                <div class="col-lg-4">
+                <div class="col-lg-2">
                     <b>Category</b>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-6">
                     {{ vm.thing.category.name }}
                 </div>
             </div>
             <div class="row" ng-show="(vm.thing.postedDate)">
                 <hr />
-                <div class="col-lg-4">
+                <div class="col-lg-2">
                     <b>Posted on</b>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-6">
                     {{ vm.thing.postedDate | date:'mediumDate' }}
                 </div>
             </div>
@@ -80,11 +80,14 @@
             <h4><b>Found!</b></h4>
             <div class="row" ng-show="(finding.location.formattedAddress)">
                 <hr />
-                <div class="col-lg-4">
+                <div class="col-lg-2">
                     <b>Found at</b>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-6">
                     {{ finding.location.locationName }} {{ finding.location.formattedAddress }} ({{ finding.location.longitude }}, {{ finding.location.latitude }})
+                </div>
+                <div>
+                    <a class="btn btn-default" href="#/finding/edit/{{ finding.thingId }}">Edit this find</a>
                 </div>
             </div>
             <div class="row" style="padding:14px;">
@@ -103,37 +106,37 @@
             </div>
             <div class="row" ng-show="(finding.userName)">
                 <hr />
-                <div class="col-lg-4">
+                <div class="col-lg-2">
                     <b>Found by</b>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-6">
                     {{ finding.userName }}
                 </div>
             </div>
             <div class="row" ng-show="(finding.date)">
                 <hr />
-                <div class="col-lg-4">
+                <div class="col-lg-2">
                     <b>Found on</b>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-6">
                     {{ finding.date | date:'mediumDate'}}
                 </div>
             </div>
             <div class="row" ng-show="(finding.price)">
                 <hr />
-                <div class="col-lg-4">
+                <div class="col-lg-2">
                     <b>Price</b>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-6">
                     {{ finding.price | currency }}
                 </div>
             </div>
             <div class="row" ng-show="(finding.upcCode)">
                 <hr />
-                <div class="col-lg-4">
+                <div class="col-lg-2">
                     <b>UPC Code</b>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-6">
                     {{ finding.upcCode }}
                 </div>
             </div>

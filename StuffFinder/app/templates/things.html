@@ -21,8 +21,10 @@
         <div class="col-sm-5">
 
             <div ng-repeat="thing in foundThings" class="panel panel-default" id="animatePanel">
-                <div class="panel-heading"><a href="#/thing/{{ thing.thingId }}" class="pull-right">View all</a> <h4>Found!</h4></div>
-                <div class="fb-like" data-share="true" data-width="450" data-show-faces="true"></div>
+                <div class="panel-heading">
+                    <div class="fb-like" data-share="true" data-width="450" data-show-faces="true"></div>
+                    <a href="#/thing/{{ thing.thingId }}" class="pull-right">View all</a> <h4>Found!</h4>
+                </div>
                 <div class="panel-thumbnail"><a href="#/thing/{{ thing.thingId }}"><img src="{{ thing.imageUrl }}" class="img-responsive"></a></div>
                 <div class="panel-body">
                     <p class="lead"><a href="#/thing/{{ thing.thingId }}">{{ thing.name }}</a></p>
@@ -199,7 +201,7 @@
                 <div class="panel-body">
                     <div class="clearfix"></div>
                     <hr>
-                    <img src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s28" width="28px" height="28px"> {{ thing.comments[0].name }} writes: {{ thing.comments[0].commentText }}
+                    <!--<img src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s28" width="28px" height="28px">{{ thing.comments[0].name }} writes: {{ thing.comments[0].commentText }}--> 
                     <!--<ul>
                         <li ng-repeat="comment in thing.comments | filter: { originalPoster: false }">
                             <img src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s28" width="28px" height="28px"> {{ comment.name }} writes: {{ comment.commentText }}

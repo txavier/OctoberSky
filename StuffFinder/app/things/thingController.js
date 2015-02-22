@@ -40,9 +40,9 @@
         }
 
         // Set up facebook components.
-        $scope.$watch('href', function () {
-                FB.XFBML.parse();
-        })
+        //$scope.$watch('href', function () {
+        //        FB.XFBML.parse();
+        //})
 
         function setView() {
             return getThing().then(function (data) {
