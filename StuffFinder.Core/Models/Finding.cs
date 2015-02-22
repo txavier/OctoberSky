@@ -11,8 +11,6 @@ namespace StuffFinder.Core.Models
     {
         public finding()
         {
-            comments = new HashSet<comment>();
-            comments1 = new HashSet<comment>();
             images = new HashSet<image>();
             votes = new HashSet<vote>();
         }
@@ -24,17 +22,14 @@ namespace StuffFinder.Core.Models
         [Column(TypeName = "datetime2")]
         public DateTime? date { get; set; }
 
-        public int? locationId { get; set; }
+        public int locationId { get; set; }
 
         [StringLength(256)]
         public string price { get; set; }
 
+        [Required]
         [StringLength(256)]
         public string userName { get; set; }
-
-        public virtual ICollection<comment> comments { get; set; }
-
-        public virtual ICollection<comment> comments1 { get; set; }
 
         public virtual thing thing { get; set; }
 

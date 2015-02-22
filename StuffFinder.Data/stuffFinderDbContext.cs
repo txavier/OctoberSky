@@ -15,7 +15,6 @@ namespace StuffFinder.Data
 
         public virtual DbSet<adminMember> adminMembers { get; set; }
         public virtual DbSet<category> categories { get; set; }
-        public virtual DbSet<comment> comments { get; set; }
         public virtual DbSet<finding> findings { get; set; }
         public virtual DbSet<image> images { get; set; }
         public virtual DbSet<location> locations { get; set; }
@@ -25,16 +24,10 @@ namespace StuffFinder.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<finding>()
-                .HasMany(e => e.comments)
-                .WithOptional(e => e.finding)
-                .HasForeignKey(e => e.findingId);
-
-            modelBuilder.Entity<finding>()
-                .HasMany(e => e.comments1)
-                .WithOptional(e => e.finding1)
-                .HasForeignKey(e => e.findingId)
-                .WillCascadeOnDelete();
+            modelBuilder.Entity<location>()
+                .HasMany(e => e.findings)
+                .WithRequired(e => e.location)
+                .WillCascadeOnDelete(false);
         }
     }
 }

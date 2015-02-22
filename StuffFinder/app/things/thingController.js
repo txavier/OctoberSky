@@ -39,14 +39,7 @@
             return vm;
         }
 
-        //window.fbAsyncInit = function () {
-        //    FB.init({
-        //        appId: '1540766432878939',
-        //        xfbml: true,
-        //        version: 'v2.2'
-        //    });
-        //};
-
+        // Set up facebook components.
         $scope.$watch('href', function () {
                 FB.XFBML.parse();
         })

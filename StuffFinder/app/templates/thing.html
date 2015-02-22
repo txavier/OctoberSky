@@ -44,6 +44,9 @@
                 <div class="col-lg-4">
                     {{ vm.thing.userName }}
                 </div>
+                <div>
+                    <a class="btn btn-default" href="#/thing/edit/{{ vm.thing.thingId }}">Edit this posting</a>
+                </div>
             </div>
             <div class="row" ng-show="(vm.thing.description)">
                 <hr />
@@ -60,7 +63,7 @@
                     <b>Category</b>
                 </div>
                 <div class="col-lg-4">
-                    {{ vm.thing.category }}
+                    {{ vm.thing.category.name }}
                 </div>
             </div>
             <div class="row" ng-show="(vm.thing.postedDate)">

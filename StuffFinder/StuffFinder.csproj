@@ -238,6 +238,7 @@
     <Content Include="app\auth\authService.js" />
     <Content Include="app\admin\dashboardEmailSettingsController.js" />
     <Content Include="app\dynFbCommentBox\dynFbCommentBox.js" />
+    <Content Include="app\things\editThingController.js" />
     <Content Include="app\found-it\foundItController.js" />
     <Content Include="app\home\homeController.js" />
     <Content Include="app\index\indexController.js" />
@@ -251,6 +252,7 @@
     <Content Include="app\templates\admin.html" />
     <Content Include="app\templates\associate.html" />
     <Content Include="app\templates\dashboard-email-settings.html" />
+    <Content Include="app\templates\edit-thing.html" />
     <Content Include="app\templates\jumbotron-youtube-video-settings.html" />
     <Content Include="app\templates\thing.html" />
     <Content Include="app\templates\search.html" />

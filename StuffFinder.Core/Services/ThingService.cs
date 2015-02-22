@@ -50,14 +50,9 @@ namespace StuffFinder.Core.Services
             var queryLowered = query.ToLower();
 
             var result = Get(filter: i =>
-                i.location.formattedAddress.ToLower().Contains(queryLowered)
+                   i.findings.Any(j => j.location.formattedAddress.ToLower().Contains(queryLowered))
                 || i.category.name.ToLower().Contains(queryLowered)
-                || i.comments.Any(j => j.commentText.ToLower().Contains(queryLowered))
-                || i.comments.Any(j => j.finding.location.formattedAddress.ToLower().Contains(queryLowered))
-                || i.comments.Any(j => j.finding.userName.ToLower().Contains(queryLowered))
-                || i.comments.Any(j => j.name.ToLower().Contains(queryLowered))
                 || i.description.ToLower().Contains(queryLowered)
-                || i.findings.SelectMany(j => j.comments).Any(k => k.commentText.ToLower().Contains(queryLowered))
                 || i.name.ToLower().Contains(queryLowered)
                 || i.upcCode.ToLower().Contains(queryLowered)
                 || i.userName.ToLower().Contains(queryLowered)
@@ -66,6 +61,30 @@ namespace StuffFinder.Core.Services
                 || queryLowered.ToLower().Contains(i.userName));
 
             return result;
+        }
+
+        public thing AddOrUpdate(thing thing)
+        {
+            // If this is an update operation then remove child references.
+            // This is needed in order for entity framework to provide the 
+            // vanilla update to just this item without walking down the 
+            // entity tree.
+            if(thing.thingId != 0)
+            {
+                thing.categoryId = thing.category.categoryId;
+
+                thing.category = null;
+
+                thing.votes = null;
+
+                thing.findings = null;
+
+                thing.images = null;
+            }
+
+            thing = base.AddOrUpdate(thing);
+
+            return thing;
         }
 
         public IEnumerable<ThingViewModel> ToViewModels(IEnumerable<thing> things)

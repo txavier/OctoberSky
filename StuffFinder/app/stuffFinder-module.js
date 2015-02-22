@@ -95,6 +95,12 @@ app.config(function ($routeProvider) {
         templateUrl: '/app/templates/jumbotron-youtube-video-settings.html'
     });
 
+    $routeProvider.when('/thing/edit/:thingId', {
+        controller: 'editThingController',
+        controllerAs: 'vm',
+        templateUrl: '/app/templates/edit-thing.html'
+    });
+
     $routeProvider.otherwise({ redirectTo: "/index" });
 });
 

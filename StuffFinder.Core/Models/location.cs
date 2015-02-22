@@ -12,7 +12,6 @@ namespace StuffFinder.Core.Models
         public location()
         {
             findings = new HashSet<finding>();
-            things = new HashSet<thing>();
         }
 
         public int locationId { get; set; }
@@ -28,7 +27,5 @@ namespace StuffFinder.Core.Models
         public double longitude { get; set; }
 
         public virtual ICollection<finding> findings { get; set; }
-
-        public virtual ICollection<thing> things { get; set; }
     }
 }

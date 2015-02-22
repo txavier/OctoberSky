@@ -107,6 +107,14 @@
     <Compile Include="Migrations\201502170234222_AddFileNameToImageTable.Designer.cs">
       <DependentUpon>201502170234222_AddFileNameToImageTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201502220004387_RemoveThingLocationRelation.cs" />
+    <Compile Include="Migrations\201502220004387_RemoveThingLocationRelation.Designer.cs">
+      <DependentUpon>201502220004387_RemoveThingLocationRelation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201502220056332_RemoveCommentsTable.cs" />
+    <Compile Include="Migrations\201502220056332_RemoveCommentsTable.Designer.cs">
+      <DependentUpon>201502220056332_RemoveCommentsTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="stuffFinderDbContext.cs" />
@@ -154,6 +162,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201502170234222_AddFileNameToImageTable.resx">
       <DependentUpon>201502170234222_AddFileNameToImageTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502220004387_RemoveThingLocationRelation.resx">
+      <DependentUpon>201502220004387_RemoveThingLocationRelation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502220056332_RemoveCommentsTable.resx">
+      <DependentUpon>201502220056332_RemoveCommentsTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

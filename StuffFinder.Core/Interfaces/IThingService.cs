@@ -12,6 +12,8 @@ namespace StuffFinder.Core.Interfaces
 
         System.Collections.Generic.IEnumerable<StuffFinder.Core.Models.ThingViewModel> ToViewModels(System.Collections.Generic.IEnumerable<StuffFinder.Core.Models.thing> things);
 
+        StuffFinder.Core.Models.thing AddOrUpdate(StuffFinder.Core.Models.thing thing);
+
         StuffFinder.Core.Models.ThingViewModel ToViewModel(StuffFinder.Core.Models.thing thing);
     }
 }

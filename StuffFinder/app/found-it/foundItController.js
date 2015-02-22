@@ -105,7 +105,7 @@
         }
 
         function handleFailure(error) {
-            $log.error('Failure notice.' + error.data);
+            $log.error('Failure notice.' + error.data.message + ": " + error.data.messageDetail);
         }
 
         // Begin region map.

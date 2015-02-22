@@ -11,7 +11,6 @@ namespace StuffFinder.Core.Models
     {
         public thing()
         {
-            comments = new HashSet<comment>();
             findings = new HashSet<finding>();
             images = new HashSet<image>();
             votes = new HashSet<vote>();
@@ -25,11 +24,10 @@ namespace StuffFinder.Core.Models
         [StringLength(255)]
         public string name { get; set; }
 
-        public int? locationId { get; set; }
-
         [StringLength(50)]
         public string upcCode { get; set; }
 
+        [Required]
         public string userName { get; set; }
 
         public string description { get; set; }
@@ -54,13 +52,9 @@ namespace StuffFinder.Core.Models
 
         public virtual category category { get; set; }
 
-        public virtual ICollection<comment> comments { get; set; }
-
         public virtual ICollection<finding> findings { get; set; }
 
         public virtual ICollection<image> images { get; set; }
-
-        public virtual location location { get; set; }
 
         public virtual ICollection<vote> votes { get; set; }
     }

@@ -49,7 +49,7 @@
                 }
 
                 function upvoteFailed(error) {
-                    $log.error('XHR Failed for upVote.' + error.data);
+                    $log.error('XHR Failed for upVote.' + error.data.message + ': ' + error.data.messageDetail);
                 }
             });
         }
@@ -67,7 +67,7 @@
                 }
 
                 function downvoteFailed(error) {
-                    $log.error('XHR Failed for downVote.' + error.data);
+                    $log.error('XHR Failed for downVote.' + error.data.message + ': ' + error.data.messageDetail);
                 }
             });
         }
@@ -101,7 +101,7 @@
                 }
 
                 function getJumbotronVideoUrlSettingFailed(error) {
-                    $log.error('XHR Failed for getJumbotronVideoUrlSetting.' + error.data);
+                    $log.error('XHR Failed for getJumbotronVideoUrlSetting.' + error.data.message + ': ' + error.data.messageDetail);
                 }
             });
         }
@@ -120,7 +120,7 @@
                 }
 
                 function searchThingsFailed(error) {
-                    $log.error('XHR Failed for searchThings.' + error.data);
+                    $log.error('XHR Failed for searchThings.' + error.data.message + ': ' + error.data.messageDetail);
                 }
             });
         }
@@ -138,7 +138,7 @@
                 }
 
                 function getThingsFailed(error) {
-                    $log.error('XHR Failed for getThings.' + error.data);
+                    $log.error('XHR Failed for getThings.' + error.data.message + ': ' + error.data.messageDetail);
                 }
             });
         }
@@ -156,7 +156,7 @@
                 }
 
                 function getThingFailed(error) {
-                    $log.error('XHR Failed for getThing.' + error.data);
+                    $log.error('XHR Failed for getThing.' + error.data.message + ': ' + error.data.messageDetail);
                 }
             });
         }
@@ -173,7 +173,7 @@
                 }
 
                 function getFoundThingsFailed(error) {
-                    $log.error('XHR Failed for getFoundThings.' + error.data);
+                    $log.error('XHR Failed for getFoundThings.' + error.data.message + ': ' + error.data.messageDetail);
                 }
             });
         }
@@ -190,7 +190,7 @@
                 }
 
                 function getMostMe2ThingsFailed(error) {
-                    $log.error('XHR Failed for getMostMe2Things.' + error.data);
+                    $log.error('XHR Failed for getMostMe2Things.' + error.data.message + ': ' + error.data.messageDetail);
                 }
             });
         }
@@ -208,7 +208,7 @@
                 }
 
                 function saveThingFailed(error) {
-                    $log.error('XHR Failed for saveThing.' + error.data);
+                    $log.error('XHR Failed for saveThing.' + error.data.message + ': ' + error.data.messageDetail);
                 }
             });
         }
@@ -226,7 +226,7 @@
                 }
 
                 function deleteThingFailed(error) {
-                    $log.error('XHR Failed for deleteThing.' + error.data);
+                    $log.error('XHR Failed for deleteThing.' + error.data.message + ': ' + error.data.messageDetail);
                 }
             });
         }
@@ -243,7 +243,7 @@
                 }
 
                 function getCategoriesFailed(error) {
-                    $log.error('XHR Failed for getCategories.' + error.data);
+                    $log.error('XHR Failed for getCategories.' + error.data.message + ': ' + error.data.messageDetail);
                 }
             });
         }
@@ -260,7 +260,7 @@
                 }
 
                 function getSettingFailed(error) {
-                    $log.error('XHR Failed for getSetting.' + error.data);
+                    $log.error('XHR Failed for getSetting.' + error.data.message + ': ' + error.data.messageDetail);
                 }
             });
         }
@@ -278,7 +278,7 @@
                 }
 
                 function addOrUpdateSettingFailed(error) {
-                    $log.error('XHR Failed for addOrUpdateSetting.' + error.data);
+                    $log.error('XHR Failed for addOrUpdateSetting.' + error.data.message + ': ' + error.data.messageDetail);
                 }
             });
         }

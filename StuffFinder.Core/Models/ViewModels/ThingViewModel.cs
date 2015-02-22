@@ -44,8 +44,6 @@ namespace StuffFinder.Core.Models
 
         public virtual category category { get; set; }
 
-        public virtual ICollection<comment> comments { get; set; }
-
         public virtual ICollection<finding> findings { get; set; }
 
         public virtual ICollection<image> images { get; set; }

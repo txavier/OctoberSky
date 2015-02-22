@@ -18,10 +18,10 @@ namespace StuffFinder.Core.Models
 
         public int? findingId { get; set; }
 
+        public string fileName { get; set; }
+
         public virtual finding finding { get; set; }
 
         public virtual thing thing { get; set; }
-
-        public string fileName { get; set; }
     }
 }

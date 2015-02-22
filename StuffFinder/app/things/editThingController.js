@@ -1,11 +1,11 @@
 ﻿(function () {
     'use strict';
 
-    app.controller('whereIsItController', whereIsItController);
+    app.controller('editThingController', editThingController);
 
-    whereIsItController.$inject = ['$scope', '$location', '$log', '$timeout', 'authService', 'dataService'];
+    editThingController.$inject = ['$scope', '$location', '$log', '$timeout', '$routeParams', 'authService', 'dataService'];
 
-    function whereIsItController($scope, $location, $log, $timeout, authService, dataService) {
+    function editThingController($scope, $location, $log, $timeout, $routeParams, authService, dataService) {
 
         var vm = this;
 
@@ -21,7 +21,7 @@
         function activate() {
             playJumbotronVideo();
             getCategories();
-            getNewThing();
+            getThing();
             initiateDroplet();
 
             return vm;
@@ -51,42 +51,31 @@
         }
 
         function getCategories() {
-            return dataService.getCategories().then(function(data) {
+            return dataService.getCategories().then(function (data) {
                 vm.categories = data;
+
                 return vm.categories;
             });
         }
 
-        function getNewThing() {
-            var result = {
-                postedDate: new Date(),
-                comments: [
-                    {
-                    date: new Date(),
-                    originalPoster: true,
-                    name: authService.authentication.userName,
-                    commentText: ''
-                    }],
-                userName: authService.authentication.userName,
-            }
+        function getThing() {
+            return dataService.getThing($routeParams.thingId).then(function (data) {
+                vm.thing = data;
 
-            vm.thing = result;
-
-            return result;
+                return vm.thing;
+            });
         }
 
         function addOrUpdate() {
-            vm.thing.userName = authService.authentication.userName;
-
-            vm.thing.postedDate = new Date();
-
             dataService.addOrUpdateThing(vm.thing)
                 .then(function (data) {
                     vm.interface.setPostData({ id: data.thingId });
 
                     vm.interface.uploadFiles();
 
-                    $location.path('/start');
+                    history.back();
+
+                    scope.$apply();
                 })
                 .catch(handleFailure);
         }
