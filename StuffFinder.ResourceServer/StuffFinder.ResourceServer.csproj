@@ -142,6 +142,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\categoriesApiController.cs" />
     <Compile Include="Controllers\findingsApiController.cs" />
+    <Compile Include="Controllers\imagesApiController.cs" />
     <Compile Include="Providers\MultipartFormDataMemoryStreamProvider.cs" />
     <Compile Include="Controllers\ProtectedController.cs" />
     <Compile Include="Controllers\settingsApiController.cs" />

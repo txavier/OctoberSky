@@ -71,7 +71,7 @@ namespace StuffFinder.Core.Services
             // entity tree.
             if(thing.thingId != 0)
             {
-                thing.categoryId = thing.category.categoryId;
+                thing.categoryId = thing.category == null ? thing.categoryId : thing.category.categoryId;
 
                 thing.category = null;
 

@@ -16,7 +16,7 @@
         <h4>Have you found something you believe others in you area may be looking for?</h4>
         <div class="form-group" style="padding:14px;">
             Name
-            <textarea class="form-control" placeholder="The name of the item you found" data-ng-model="vm.thing.name" data-ng-disabled="vm.thing.thingId"></textarea>
+            <textarea class="form-control" placeholder="The name of the item you found" data-ng-model="vm.thing.name" disabled="disabled"></textarea>
         </div>
         <div class="form-group" style="padding:14px;">
 
@@ -66,15 +66,6 @@
                 </droplet>
             </section>
         </section>
-        <div class="form-group" style="padding:14px;" ng-show="!vm.thing.thingId">
-            Category
-            <textarea class="form-control" placeholder="The category or type of item" data-ng-model="vm.thing.category.name" typeahead="category.name as category.name for category in vm.categories | filter:$viewValue | limitTo:8"></textarea>
-        </div>
-        <div class="form-group" style="padding:14px;" ng-show="!vm.thing.thingId">
-            Description
-            <textarea class=" form-control" placeholder="The description or type of item" data-ng-model="vm.thing.description">
-            </textarea>
-        </div>
         <div class="form-group" style="padding:14px;">
             Date Spotted
             <p class="input-group">

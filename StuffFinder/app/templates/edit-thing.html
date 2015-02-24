@@ -18,6 +18,20 @@
             Name
             <textarea class="form-control" placeholder="The name of the item you found" data-ng-model="vm.thing.name"></textarea>
         </div>
+        <div class="form-group" style="padding:14px;" ng-show="(vm.thing.images)">
+            <div style="height: 305px">
+                <carousel interval="vm.slideInterval">
+                    <slide ng-repeat="slide in vm.slides" active="slide.active">
+                        <img ng-src="{{slide.image}}" style="margin:auto; max-height: 300px;border-radius: 4px">
+                        <div class="carousel-caption">
+                            <button class="btn btn-primary" data-ng-click="deleteImage(slide.imageId)">Delete</button>
+                            <!--<h4>Slide {{$index}}</h4>
+                        <p>{{slide.text}}</p>-->
+                        </div>
+                    </slide>
+                </carousel>
+            </div>
+        </div>
         <section class="file-container">
             <section class="droplet">
                 <droplet ng-model="vm.interface" class="droplet ng-pristine ng-untouched ng-valid ng-isolate-scope event-drop">

@@ -301,5 +301,23 @@
                 }
             });
         }
+
+        function deleteImage(imageId) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.delete(serverUrl.resourceServerUrl + 'api/imagesApi', imageId)
+                            .then(deleteImageComplete)
+                            .catch(deleteImageFailed);
+
+                function deleteImageComplete(response) {
+                    return response.data;
+                }
+
+                function deleteImageFailed(error) {
+                    $log.error('XHR failed for deleteImage.' + error.data.message + ': ' + error.data.messageDetail);
+                }
+            });
+        }
     }
 })();

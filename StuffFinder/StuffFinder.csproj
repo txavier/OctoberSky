@@ -238,7 +238,9 @@
     <Content Include="app\auth\authService.js" />
     <Content Include="app\admin\dashboardEmailSettingsController.js" />
     <Content Include="app\dynFbCommentBox\dynFbCommentBox.js" />
+    <Content Include="app\finding\addFindingController.js" />
     <Content Include="app\finding\editFindingController.js" />
+    <Content Include="app\templates\add-finding.html" />
     <Content Include="app\templates\edit-finding.html" />
     <Content Include="app\things\editThingController.js" />
     <Content Include="app\finding\foundItController.js" />

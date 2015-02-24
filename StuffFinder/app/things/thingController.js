@@ -15,8 +15,8 @@
         vm.addOrUpdateThing = addOrUpdateThing;
         vm.deleteThing = deleteThing;
         vm.slideInterval = 5000;
-        vm.thing.findings = [];
         var slides = vm.slides = [];
+        vm.thing.findings = [];
         vm.map = { center: { latitude: 24.416563, longitude: 54.543546 }, zoom: 12 };
         vm.options = { scrollwheel: false };
         vm.upVote = upVote;
@@ -56,8 +56,11 @@
         }
 
         function addSlide(image) {
-            if (vm.thing.images.length == 0) {
+            if (vm.thing.images.length == 0 && vm.thing.imageUrl) {
                 slides.push({ image: vm.thing.imageUrl });
+            }
+            else if (vm.thing.images.length == 0 && !vm.thing.imageUrl) {
+                return;
             }
             else {
                 angular.forEach(vm.thing.images, function (image, key) {

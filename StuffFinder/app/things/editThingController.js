@@ -15,6 +15,8 @@
         vm.thing.categoryId = null;
         vm.categories = [];
         vm.addOrUpdate = addOrUpdate;
+        vm.slideInterval = 5000;
+        var slides = vm.slides = [];
 
         activate();
 
@@ -26,6 +28,17 @@
 
             return vm;
         }
+
+        function addSlide(images) {
+            if (images.length == 0) {
+                return;
+            }
+            else {
+                angular.forEach(images, function (image, key) {
+                    this.push({ image: "data:image/jpeg;base64," + image.imageBinary, imageId: image.imageId });
+                }, slides);
+            }
+        };
 
         function initiateDroplet() {
             $scope.$on('$dropletReady', function whenDropletReady() {
@@ -62,7 +75,17 @@
             return dataService.getThing($routeParams.thingId).then(function (data) {
                 vm.thing = data;
 
+                addSlide(vm.thing.images);
+
                 return vm.thing;
+            });
+        }
+
+        function deleteImage(imageId) {
+            return dataService.deleteImage(imageId).then(function (data) {
+                $log.log("Image deletion successful");
+
+                getThing();
             });
         }
 

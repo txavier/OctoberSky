@@ -34,7 +34,13 @@ app.config(function ($routeProvider) {
         templateUrl: "/app/templates/start.html"
     });
 
-    $routeProvider.when("/found-it", {
+    $routeProvider.when("/found-it/", {
+        controller: "foundItController",
+        controllerAs: 'vm',
+        templateUrl: "/app/templates/found-it.html"
+    });
+
+    $routeProvider.when("/found-it/:thingId", {
         controller: "foundItController",
         controllerAs: 'vm',
         templateUrl: "/app/templates/found-it.html"
@@ -105,6 +111,12 @@ app.config(function ($routeProvider) {
         controller: 'editFindingController',
         controllerAs: 'vm',
         templateUrl: '/app/templates/edit-finding.html'
+    });
+
+    $routeProvider.when('/finding/add/:thingId', {
+        controller: 'addFindingController',
+        controllerAs: 'vm',
+        templateUrl: '/app/templates/add-finding.html'
     });
 
     $routeProvider.otherwise({ redirectTo: "/index" });

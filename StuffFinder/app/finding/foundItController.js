@@ -3,9 +3,9 @@
 
     app.controller('foundItController', foundItController);
 
-    foundItController.$inject = ['$scope', '$log', '$timeout', '$http', '$location', 'authService', 'dataService'];
+    foundItController.$inject = ['$scope', '$log', '$timeout', '$http', '$location', '$routeParams', 'authService', 'dataService'];
 
-    function foundItController($scope, $log, $timeout, $http, $location, authService, dataService) {
+    function foundItController($scope, $log, $timeout, $http, $location, $routeParams, authService, dataService) {
 
         var vm = this;
         
@@ -42,8 +42,17 @@
             datepickerToggleMin();
             datepickerToggleMax();
             initiateDroplet();
+            getThing();
 
             return vm;
+        }
+
+        function getThing() {
+            if ($routeParams.thingId) {
+                dataService.getThing($routeParams.thingId).then(function (data) {
+                    vm.thing = data;
+                });
+            }
         }
 
         function initiateDroplet() {
@@ -87,11 +96,12 @@
         }
 
         function addOrUpdate() {
-            vm.thing.userName = authService.authentication.userName;
+            // If this thing already has a username do not save over it.
+            vm.thing.userName = vm.thing.userName ? vm.thing.userName : authService.authentication.userName;
 
             vm.thing.findings[0].userName = authService.authentication.userName;
 
-            vm.thing.postedDate = new Date();
+            vm.thing.postedDate = vm.thing.postedDate ? vm.thing.postedDate : new Date();
 
             dataService.addOrUpdateThing(vm.thing)
                 .then(function (data) {
