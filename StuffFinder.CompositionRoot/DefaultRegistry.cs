@@ -13,6 +13,9 @@ using AutoClutch.Auto.Repo.Interfaces;
 using AutoClutch.Auto.Repo.Objects;
 using StuffFinder.Core.Services;
 using StuffFinder.Core.Interfaces;
+using XavierEnterpriseLibrary.Core.Interfaces;
+using XavierEnterpriseLibrary.Core.Services;
+using XavierEnterpriseLibrary.Infrastructure.Senders;
 
 namespace StuffFinder.CompositionRoot
 {
@@ -38,6 +41,10 @@ namespace StuffFinder.CompositionRoot
             For<ISettingService>().Use<SettingService>();
 
             For<IVoteService>().Use<VoteService>();
+
+            For<IEmailService>().Use<EmailService>();
+
+            For<IEmailSender>().Use<EmailSender>();
 
         }
     }

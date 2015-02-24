@@ -66,6 +66,20 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="XavierEnterpriseLibrary.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\XavierEnterpriseLibrary.1.0.1\lib\net45\XavierEnterpriseLibrary.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="XavierEnterpriseLibrary.Infrastructure">
+      <HintPath>..\packages\XavierEnterpriseLibrary.1.0.1\lib\net45\XavierEnterpriseLibrary.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing, Version=0.14.0.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ZXing.Net.0.14.0.1\lib\net40\zxing.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.presentation">
+      <HintPath>..\packages\ZXing.Net.0.14.0.1\lib\net40\zxing.presentation.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DefaultRegistry.cs" />
