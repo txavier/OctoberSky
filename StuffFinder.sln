@@ -43,6 +43,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Code First Initial Migratio
 		StuffFinder.Data\Migrations\201501300800340_InitialMigration.resx = StuffFinder.Data\Migrations\201501300800340_InitialMigration.resx
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StuffFinder.CoreTests", "StuffFinder.CoreTests\StuffFinder.CoreTests.csproj", "{5E57BC47-F4FD-4804-B167-D374908E0BF6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -85,6 +87,10 @@ Global
 		{BD976EB7-0435-4ED1-856D-37CC9010B8C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD976EB7-0435-4ED1-856D-37CC9010B8C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD976EB7-0435-4ED1-856D-37CC9010B8C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E57BC47-F4FD-4804-B167-D374908E0BF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E57BC47-F4FD-4804-B167-D374908E0BF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E57BC47-F4FD-4804-B167-D374908E0BF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E57BC47-F4FD-4804-B167-D374908E0BF6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

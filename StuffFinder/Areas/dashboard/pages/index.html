@@ -359,6 +359,9 @@
                                 <li>
                                     <a href="#/dashboard-email-settings">Emails</a>
                                 </li>
+                                <li>
+                                    <a href="#/dashboard-email-newsletters">Newsletter</a>
+                                </li>
                                 <li ng-hide="true">
                                     <a href="login.html">Login Page</a>
                                 </li>
@@ -963,9 +966,11 @@
     <script src="/scripts/angular-local-storage.min.js"></script>
     <script src="/scripts/angular-ui/ui-bootstrap.js"></script>
     <script src="/scripts/angular-ui/ui-bootstrap-tpls.js"></script>
+    <script src="/scripts/angular-ui/angular-google-maps/angular-google-maps.min.js"></script>
     <script src="/scripts/loading-bar.min.js"></script>
-    <script type="text/javascript" src="/scripts/vendor/progressbar.js/dist/progressbar.js"></script>
     <script type="text/javascript" src="/scripts/vendor/ng-droplet/ng-droplet.js"></script>
+    <script type="text/javascript" src="/scripts/vendor/progressbar.js/dist/progressbar.js"></script>
+    <script src="/scripts/vendor/lodash/lodash.min.js"></script>
     <!-- Load app main script -->
     <script src="/app/stuffFinder-module.js"></script>
     <!-- Load services -->
@@ -975,7 +980,25 @@
     <script src="/app/things/thingsService.js"></script>
     <script src="/app/services/tokensManagerService.js"></script>
     <!-- Load controllers -->
+    <script src="/app/index/indexController.js"></script>
+    <script src="/app/home/homeController.js"></script>
+    <script src="/app/login/loginController.js"></script>
+    <script src="/app/signup/signupController.js"></script>
+    <script src="/app/things/thingsController.js"></script>
+    <script src="/app/start/startController.js"></script>
+    <script src="/app/finding/foundItController.js"></script>
     <script src="/app/admin/adminController.js"></script>
-
+    <script src="/app/sidebar/sidebarController.js"></script>
+    <script src="/app/associate/associateController.js"></script>
+    <script src="/app/refresh/refreshController.js"></script>
+    <script src="/app/tokensManager/tokensManagerController.js"></script>
+    <script src="/app/whereIsIt/whereIsItController.js"></script>
+    <script src="/app/things/thingController.js"></script>
+    <script src="/app/admin/jumbotronYoutubeVideoSettingsController.js"></script>
+    <script src="/app/admin/dashboardEmailSettingsController.js"></script>
+    <script src="/app/search/searchController.js"></script>
+    <script src="/app/things/editThingController.js"></script>
+    <script src="/app/finding/editFindingController.js"></script>
+    <script src="/app/finding/addFindingController.js"></script>
 </body>
 </html>

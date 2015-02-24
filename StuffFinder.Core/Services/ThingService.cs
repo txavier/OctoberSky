@@ -9,17 +9,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Omu.ValueInjecter;
+using XavierEnterpriseLibrary.Core.Interfaces;
 
 namespace StuffFinder.Core.Services
 {
     public class ThingService : Service<thing>, IThingService
     {
         private readonly IRepository<thing> _thingRepository;
+        
+        private readonly IEmailService _emailService;
 
-        public ThingService(IRepository<thing> thingRepository)
+        public ThingService(IRepository<thing> thingRepository, IEmailService emailService)
             :base (thingRepository)
         {
             _thingRepository = thingRepository;
+
+            _emailService = emailService;
         }
 
         public IEnumerable<thing> GetMostMe2Things()
@@ -80,6 +85,12 @@ namespace StuffFinder.Core.Services
                 thing.findings = null;
 
                 thing.images = null;
+            }
+            else if(false)
+            {
+                // If this is an add operation send an email.
+                _emailService.SendEmail("theox", new List<string>() { "theox@gmail.com" }, null, "test", "test message",
+                    "http://deltanovember.xaviersoftware.com", "http://deltanovember.xaviersoftware.com/images/logo.png");
             }
 
             thing = base.AddOrUpdate(thing);
