@@ -22,6 +22,8 @@ namespace StuffFinder.Core.Models
         [StringLength(256)]
         public string formattedAddress { get; set; }
 
+        public string city { get; set; }
+
         public double latitude { get; set; }
 
         public double longitude { get; set; }

@@ -11,7 +11,7 @@
         
         vm.thing = {};
         vm.thing.description = null;
-        vm.thing.findings = [{ location: {}, date: null, price: null, upcCode: null }];
+        vm.thing.findings = [{ location: null, date: null, price: null, upcCode: null }];
         vm.map = { center: { latitude: 24.416563, longitude: 54.543546 }, zoom: 12 };
         vm.options = { scrollwheel: false };
         vm.addOrUpdate = addOrUpdate;
@@ -23,6 +23,7 @@
         vm.datepickerOpened = false;
         vm.datepickerDateOptions = { formatYear: 'yy', startingDay: 1 };
         vm.clear = datepickerClear;
+        vm.locations = [];
 
         // Scope variables have to be accessible for the watch statements.
         $scope.coordsUpdates = 0;
@@ -43,8 +44,15 @@
             datepickerToggleMax();
             initiateDroplet();
             getThing();
+            getLocations();
 
             return vm;
+        }
+
+        function getLocations() {
+            dataService.getLocations().then(function (data) {
+                vm.locations = data;
+            });
         }
 
         function getThing() {

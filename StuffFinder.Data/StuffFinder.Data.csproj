@@ -115,6 +115,10 @@
     <Compile Include="Migrations\201502220056332_RemoveCommentsTable.Designer.cs">
       <DependentUpon>201502220056332_RemoveCommentsTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201502270719192_AddCity.cs" />
+    <Compile Include="Migrations\201502270719192_AddCity.Designer.cs">
+      <DependentUpon>201502270719192_AddCity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="stuffFinderDbContext.cs" />
@@ -168,6 +172,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201502220056332_RemoveCommentsTable.resx">
       <DependentUpon>201502220056332_RemoveCommentsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502270719192_AddCity.resx">
+      <DependentUpon>201502270719192_AddCity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
