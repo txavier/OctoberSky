@@ -9,7 +9,7 @@
 
         var vm = this;
 
-        vm.mostMeTooed = [];
+        vm.things = [];
         vm.query = $routeParams.query;
         vm.jumbotronVideoUrlSetting = {};
         vm.dataProperty = '';
@@ -27,9 +27,9 @@
 
         function getMostMe2Things() {
             return dataService.getMostMe2Things().then(function (data) {
-                vm.mostMeTooed = data;
+                vm.things = data;
 
-                return vm.mostMeTooed;
+                return vm.things;
             });
         }
 

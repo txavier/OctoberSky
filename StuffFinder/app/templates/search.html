@@ -12,70 +12,46 @@
         </div>
     </div>
 </section>
-<ul class="thumbnail" style="list-style-type: none;">
-    <li ng-repeat="thing in vm.things">
-        <div class="row session">
-            <div class="col-xs-18 col-md-12">
+<p><a class="btn btn-info" href="#/where-is-it" role="button"><i class="glyphicon glyphicon-plus"></i> Looking For Something? Add it here! &raquo;</a></p>
+<div class="well well-sm">
+    <strong>Category Title</strong>
+    <div class="btn-group">
+        <a href="#" id="list" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-th-list">
+            </span>List
+        </a> <a href="#" id="grid" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-th"></span>Grid
+        </a>
+    </div>
+</div>
+<div class="row list-group">
+    <div class="item col-xs-4 col-lg-4" data-ng-repeat="thing in vm.things">
+        <div class="thumbnail" style="min-height:500px;max-height:500px;min-width:200px" data-ng-style="{ 'box-shadow': thing.findings.length == 0 ? vm.redBoxShadow : vm.greenBoxShadow }">
+            <a href="#/thing/{{ thing.thingId }}">
+                <img class="group list-group-image" src="{{ thing.imageUrl }}" alt="" style="height: 300px;" />
+            </a>
+            <div class="caption">
+                <a href="#/thing/{{ thing.thingId }}">
+                    <h4 class="group inner list-group-item-heading" style=""><b>{{ thing.findings.length == 0 ? ('Wanted: ' + thing.name) : (thing.name + ' has been found!') }}</b></h4>
+                </a>
+                <p class="group inner list-group-item-text">
+                    {{ thing.description }}
+                </p>
                 <div class="row">
-                    <div class="col-md-6">
-                        <div class="fb-like" data-share="true" data-width="450" data-show-faces="true"></div>
-                        <h3><a href="#/thing/{{ thing.thingId }}">{{ thing.name }}</a></h3>
+                    <div class="col-xs-12 col-md-6">
+                        <p class="lead">
+                            {{ thing.findings.length == 0 ? ('Wanted since ' + (thing.postedDate | date: shortDate)) : ('Found ' + (thing.findings[0].date  | date: shortDate)) }}.
+                            <!--Me2 {{ thing.me2 }}-->
+                        </p>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3">
-                        <!--<a class="btn btn-info btn-group" href="#/found-it" role="button">I want it &nbsp;</a>-->
+                    <div class="col-xs-12 col-md-6">
+                        <!--<a class="btn btn-success" href="http://www.jquery2dotnet.com">Add to cart</a>-->
                         <a class="btn btn-info btn-group" href="#/found-it/{{ thing.thingId }}" role="button">I found it</a>
                     </div>
                 </div>
-                <br />
-                <div class="row">
-                    <div class="col-md-2 votecell">
-                        <div class="vote">
-                            <a class="vote-up-off" title="I want it too!" ng-click="vm.upVote(thing)">up vote</a>
-                            <span itemprop="upvoteCount" class="vote-count-post ">{{ thing.me2 }}</span>
-                            <a class="vote-down-off" title="This is not useful" ng-click="vm.downVote(thing)">down vote</a>
-                        </div>
-                    </div>
-                    <div class="col-xs-6 col-md-2">
-                        <div class="row">
-                            <a href="#/thing/{{ thing.thingId }}"><img ng-src="{{ thing.imageUrl }}" height="114" /></a>
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="row">
-                            <div class="col-md-2">
-                                <div class="row">Category:</div>
-                                <div class="row">Date:</div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="row">{{ thing.category.name }}</div>
-                                <div class="row">{{ thing.postedDate | date: shortDate }}</div>
-                            </div>
-                            <div class="col-md-1">
-                                <div class="row">Me2's:</div>
-                            </div>
-                            <div class="col-md-1">
-                                <div class="row">{{ thing.me2 }}</div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <hr />
-                            <div class="col-md-2">
-                                Description:
-                            </div>
-                            <div class="col-md-6">
-                                {{ thing.description }}
-                            </div>
-                            <div class="col-md-3">
-                                <img src="https://lh6.googleusercontent.com/-5cTTMHjjnzs/AAAAAAAAAAI/AAAAAAAAAFk/vgza68M4p2s/s28-c-k-no/photo.jpg" height="28px">
-                                <img src="https://lh4.googleusercontent.com/-6aFMDiaLg5M/AAAAAAAAAAI/AAAAAAAABdM/XjnG8z60Ug0/s28-c-k-no/photo.jpg" height="28px">
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
+            <div class="fb-like" data-share="true" data-width="450" data-show-faces="true"></div>
         </div>
-        <hr />
-    </li>
-</ul>
+    </div>
+</div>
+

@@ -15,6 +15,8 @@
         vm.dataProperty = '';
         vm.upVote = upVote;
         vm.downVote = downVote;
+        vm.redBoxShadow = 'inset 0 0 1em rgb(180,167,23), 0 0 1em rgb(153,87,32)';
+        vm.greenBoxShadow = '0 0 1em rgb(92,135,45)';
 
         activate();
 
