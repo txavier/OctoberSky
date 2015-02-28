@@ -15,6 +15,7 @@ namespace StuffFinder.Data
 
         public virtual DbSet<adminMember> adminMembers { get; set; }
         public virtual DbSet<category> categories { get; set; }
+        public virtual DbSet<city> cities { get; set; }
         public virtual DbSet<finding> findings { get; set; }
         public virtual DbSet<image> images { get; set; }
         public virtual DbSet<location> locations { get; set; }

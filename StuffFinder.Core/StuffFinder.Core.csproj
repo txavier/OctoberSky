@@ -76,6 +76,7 @@
     <Compile Include="Interfaces\ISystemSettingsGetter.cs" />
     <Compile Include="Models\adminMember.cs" />
     <Compile Include="Models\category.cs" />
+    <Compile Include="Models\city.cs" />
     <Compile Include="Models\finding.cs" />
     <Compile Include="Models\image.cs" />
     <Compile Include="Models\location.cs" />

@@ -119,6 +119,10 @@
     <Compile Include="Migrations\201502270719192_AddCity.Designer.cs">
       <DependentUpon>201502270719192_AddCity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201502280809426_AddCityTable.cs" />
+    <Compile Include="Migrations\201502280809426_AddCityTable.Designer.cs">
+      <DependentUpon>201502280809426_AddCityTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="stuffFinderDbContext.cs" />
@@ -175,6 +179,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201502270719192_AddCity.resx">
       <DependentUpon>201502270719192_AddCity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502280809426_AddCityTable.resx">
+      <DependentUpon>201502280809426_AddCityTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

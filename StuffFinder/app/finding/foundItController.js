@@ -23,7 +23,7 @@
         vm.datepickerDateOptions = { formatYear: 'yy', startingDay: 1 };
         vm.clear = datepickerClear;
         vm.locations = [];
-        vm.finding = { location: null, date: null, price: null, upcCode: null };
+        vm.finding = { location: { locationName: '' }, date: null, price: null, upcCode: null };
 
         // Scope variables have to be accessible for the watch statements.
         $scope.coordsUpdates = 0;
@@ -175,12 +175,16 @@
         $scope.finding = vm.finding;
         $scope.finding.location.latitude = vm.finding.location.latitude;
 
-
         $scope.$watch('finding.location', function (current, original) {
-            if (_.isEqual(current, original)) return;
+            if (_.isEqual(current, original) || !current.latitude) return;
             $scope.marker.coords.latitude = current.latitude;
             $scope.marker.coords.longitude = current.longitude;
+
+            vm.map.center.latitude = current.latitude;
+            vm.map.center.longitude = current.longitude;
+            vm.map.zoom = 12;
         });
+
         $scope.$watchCollection("marker.coords", function (newVal, oldVal) {
             if (_.isEqual(newVal, oldVal))
                 return;

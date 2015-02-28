@@ -124,3 +124,19 @@
 
 	http://stackoverflow.com/questions/23211560/angulajs-facebook-sdk-works-only-when-refresh-the-page
 	https://developers.facebook.com/quickstarts/1540766432878939/?platform=web
+
+ -- In order to implement grid style layout the following example was used.
+
+	http://bootsnipp.com/snippets/featured/list-grid-view
+
+ -- To set the ngStyle the following resource was used.
+
+	http://stackoverflow.com/questions/20287241/how-to-set-div-width-using-ng-style
+
+ -- Earth tones used for border shadow of grid layout.
+
+	http://www.varian.net/dreamview/dreamcolor/earth.html
+
+ -- To get the latitudes and longitudes of cities the following code resource can be used
+	
+	http://jsfiddle.net/YphZw/
