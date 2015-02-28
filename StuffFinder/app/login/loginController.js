@@ -19,7 +19,7 @@ app.controller('loginController', ['$scope', '$location', 'authService', 'ngAuth
 
         authService.login($scope.loginData).then(function (response) {
 
-            $location.path('/things');
+            $location.path('/start');
 
         },
          function (err) {

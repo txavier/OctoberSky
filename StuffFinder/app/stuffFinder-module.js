@@ -34,10 +34,10 @@ app.config(function ($routeProvider) {
         templateUrl: "/app/templates/start.html"
     });
 
-    $routeProvider.when("/found-it/", {
-        controller: "foundItController",
+    $routeProvider.when("/found-thing-and-location", {
+        controller: "foundThingAndLocationController",
         controllerAs: 'vm',
-        templateUrl: "/app/templates/found-it.html"
+        templateUrl: "/app/templates/found-thing-and-location.html"
     });
 
     $routeProvider.when("/found-it/:thingId", {

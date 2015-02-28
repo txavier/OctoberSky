@@ -32,9 +32,7 @@ namespace StuffFinder.ResourceServer.Controllers
         {
             vote = _voteService.upVote(vote);
 
-            var thing = _thingService.ToViewModel(vote.thing);
-
-            return Ok(thing);
+            return Ok(vote);
         }
 
         [Route("downVote")]
@@ -43,9 +41,7 @@ namespace StuffFinder.ResourceServer.Controllers
         {
             vote = _voteService.downVote(vote);
 
-            var thing = _thingService.ToViewModel(vote.thing);
-
-            return Ok(thing);
+            return Ok(vote);
         }
     }
 }

@@ -33,6 +33,8 @@
             upVote: upVote,
             downVote: downVote,
             getFinding: getFinding,
+            addOrUpdateFinding: addOrUpdateFinding,
+            deleteFinding: deleteFinding,
             getLocations: getLocations
         };
 
@@ -51,7 +53,7 @@
                 }
 
                 function upvoteFailed(error) {
-                    $log.error('XHR Failed for upVote.' + error.data.message + ': ' + error.data.messageDetail);
+                    $log.error('XHR Failed for upVote.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
                 }
             });
         }
@@ -69,7 +71,7 @@
                 }
 
                 function downvoteFailed(error) {
-                    $log.error('XHR Failed for downVote.' + error.data.message + ': ' + error.data.messageDetail);
+                    $log.error('XHR Failed for downVote.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
                 }
             });
         }
@@ -103,7 +105,7 @@
                 }
 
                 function getJumbotronVideoUrlSettingFailed(error) {
-                    $log.error('XHR Failed for getJumbotronVideoUrlSetting.' + error.data.message + ': ' + error.data.messageDetail);
+                    $log.error('XHR Failed for getJumbotronVideoUrlSetting.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
                 }
             });
         }
@@ -122,7 +124,7 @@
                 }
 
                 function searchThingsFailed(error) {
-                    $log.error('XHR Failed for searchThings.' + error.data.message + ': ' + error.data.messageDetail);
+                    $log.error('XHR Failed for searchThings.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
                 }
             });
         }
@@ -140,7 +142,7 @@
                 }
 
                 function getLocationsFailed(error) {
-                    $log.error('XHR failed for getLocations.' + error.data.message + ': ' + error.data.messageDetail);
+                    $log.error('XHR failed for getLocations.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
                 }
             })
         }
@@ -158,7 +160,43 @@
                 }
 
                 function getFindingFailed(error) {
-                    $log.error('XHR failed for getFindings.' + error.data.message + ': ' + error.data.messageDetail);
+                    $log.error('XHR failed for getFindings.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function addOrUpdateFinding(finding) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.post(serverUrl.resourceServerUrl + 'api/findingsApi', finding)
+                    .then(saveFindingComplete)
+                    .catch(saveFindingFailed);
+
+                function saveFindingComplete(response) {
+                    return response.data;
+                }
+
+                function saveFindingFailed(error) {
+                    $log.error('XHR Failed for saveFinding.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function deleteFinding(findingId) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.delete(serverUrl.resourceServerUrl + 'api/findingsApi' + '/' + findingId)
+                            .then(deleteFindingComplete)
+                            .catch(deleteFindingFailed);
+
+                function deleteFindingComplete(response) {
+                    return response.data;
+                }
+
+                function deleteFindingFailed(error) {
+                    $log.error('XHR failed for deleteFinding.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
                 }
             });
         }
@@ -176,7 +214,7 @@
                 }
 
                 function getThingsFailed(error) {
-                    $log.error('XHR Failed for getThings.' + error.data.message + ': ' + error.data.messageDetail);
+                    $log.error('XHR Failed for getThings.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
                 }
             });
         }
@@ -194,7 +232,7 @@
                 }
 
                 function getThingFailed(error) {
-                    $log.error('XHR Failed for getThing.' + error.data.message + ': ' + error.data.messageDetail);
+                    $log.error('XHR Failed for getThing.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
                 }
             });
         }
@@ -211,7 +249,7 @@
                 }
 
                 function getFoundThingsFailed(error) {
-                    $log.error('XHR Failed for getFoundThings.' + error.data.message + ': ' + error.data.messageDetail);
+                    $log.error('XHR Failed for getFoundThings.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
                 }
             });
         }
@@ -228,7 +266,7 @@
                 }
 
                 function getMostMe2ThingsFailed(error) {
-                    $log.error('XHR Failed for getMostMe2Things.' + error.data.message + ': ' + error.data.messageDetail);
+                    $log.error('XHR Failed for getMostMe2Things.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
                 }
             });
         }
@@ -246,7 +284,7 @@
                 }
 
                 function saveThingFailed(error) {
-                    $log.error('XHR Failed for saveThing.' + error.data.message + ': ' + error.data.messageDetail);
+                    $log.error('XHR Failed for saveThing.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
                 }
             });
         }
@@ -264,7 +302,7 @@
                 }
 
                 function deleteThingFailed(error) {
-                    $log.error('XHR Failed for deleteThing.' + error.data.message + ': ' + error.data.messageDetail);
+                    $log.error('XHR Failed for deleteThing.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
                 }
             });
         }
@@ -281,7 +319,7 @@
                 }
 
                 function getCategoriesFailed(error) {
-                    $log.error('XHR Failed for getCategories.' + error.data.message + ': ' + error.data.messageDetail);
+                    $log.error('XHR Failed for getCategories.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
                 }
             });
         }
@@ -298,7 +336,7 @@
                 }
 
                 function getSettingFailed(error) {
-                    $log.error('XHR Failed for getSetting.' + error.data.message + ': ' + error.data.messageDetail);
+                    $log.error('XHR Failed for getSetting.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
                 }
             });
         }
@@ -316,7 +354,7 @@
                 }
 
                 function addOrUpdateSettingFailed(error) {
-                    $log.error('XHR Failed for addOrUpdateSetting.' + error.data.message + ': ' + error.data.messageDetail);
+                    $log.error('XHR Failed for addOrUpdateSetting.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
                 }
             });
         }
@@ -334,7 +372,7 @@
                 }
 
                 function deleteImageFailed(error) {
-                    $log.error('XHR failed for deleteImage.' + error.data.message + ': ' + error.data.messageDetail);
+                    $log.error('XHR failed for deleteImage.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
                 }
             });
         }

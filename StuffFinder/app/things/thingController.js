@@ -3,9 +3,9 @@
 
     app.controller('thingController', thingController);
 
-    thingController.$inject = ['$scope', '$location', '$log', '$timeout', '$routeParams', 'authService', 'dataService'];
+    thingController.$inject = ['$scope', '$location', '$log', '$timeout', '$routeParams', 'authService', 'dataService', 'votesService'];
 
-    function thingController($scope, $location, $log, $timeout, $routeParams, authService, dataService) {
+    function thingController($scope, $location, $log, $timeout, $routeParams, authService, dataService, votesService) {
 
         var vm = this;
 
@@ -21,6 +21,7 @@
         vm.options = { scrollwheel: false };
         vm.upVote = upVote;
         vm.downVote = downVote;
+        vm.sumVotes = sumVotes;
 
         // Scope variables have to be accessible for the watch statements.
         $scope.coordsUpdates = 0;
@@ -154,25 +155,31 @@
             }, 2000);
         }, 1000);
 
-        function upVote(thing) {
+        function sumVotes(votes) {
+            var result = votesService.sumVotes(votes);
+
+            return result;
+        }
+
+        function upVote(finding) {
             var vote = {};
 
             vote.userName = authService.authentication.userName;
-            vote.thingId = thing.thingId;
+            vote.findingId = finding.findingId;
 
             return dataService.upVote(vote).then(function (data) {
-                searchThings();
+                getThing();
             });
         }
 
-        function downVote(thing) {
+        function downVote(finding) {
             var vote = {};
 
             vote.userName = authService.authentication.userName;
-            vote.thingId = thing.thingId;
+            vote.findingId = finding.findingId;
 
             return dataService.downVote(vote).then(function (data) {
-                searchThings();
+                getThing();
             });
         }
 

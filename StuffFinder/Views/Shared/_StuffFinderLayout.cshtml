@@ -30,7 +30,6 @@
         <div class="box">
             <div class="row row-offcanvas row-offcanvas-left">
 
-
                 <!-- sidebar -->
                 <div class="column col-sm-2 col-xs-1 sidebar-offcanvas" id="sidebar" data-ng-controller="sidebarController as vm">
 
@@ -42,7 +41,7 @@
                         <li><a href="/areas/dashboard/pages/#/admin"><i class="glyphicon glyphicon-wrench"></i> Admin Dashboard</a></li>
                         <li><a href="#/home" data-ng-click="vm.authentication.loginlogout()"><i class="glyphicon glyphicon-user"></i> {{ vm.authentication.sidebarAuthenticationLabel }} </a></li>
                         <li class="active"><a href="#/start"><i class="glyphicon glyphicon-list-alt"></i> Featured</a></li>
-                        <li><a href="#/found-it"><i class="glyphicon glyphicon-bookmark"></i> Share Something You Found</a></li>
+                        <li><a href="#/found-thing-and-location"><i class="glyphicon glyphicon-bookmark"></i> Share Something You Found</a></li>
                         <li><a href="http://wheresmystuffxaviersoftware.tumblr.com/"><i class="glyphicon glyphicon-book"></i> Blog</a></li>
                     </ul>
                     <div class="form-group-sm search-box-sidebar">
@@ -78,20 +77,19 @@
 
                     <!-- tiny only nav-->
                     @*<ul class="nav visible-xs" id="xs-menu">
-                        <li><a href="#featured" class="text-center"><i class="glyphicon glyphicon-list-alt"></i></a></li>
-                        <li><a href="#stories" class="text-center"><i class="glyphicon glyphicon-list"></i></a></li>
-                        <li><a href="#" class="text-center"><i class="glyphicon glyphicon-paperclip"></i></a></li>
-                        <li><a href="#" class="text-center"><i class="glyphicon glyphicon-refresh"></i></a></li>
-                    </ul>*@
+                            <li><a href="#featured" class="text-center"><i class="glyphicon glyphicon-list-alt"></i></a></li>
+                            <li><a href="#stories" class="text-center"><i class="glyphicon glyphicon-list"></i></a></li>
+                            <li><a href="#" class="text-center"><i class="glyphicon glyphicon-paperclip"></i></a></li>
+                            <li><a href="#" class="text-center"><i class="glyphicon glyphicon-refresh"></i></a></li>
+                        </ul>*@
 
                     <ul class="nav visible-xs" id="xs-menu">
                         <li><a href="/areas/dashboard/pages/#/admin"><i class="glyphicon glyphicon-wrench"></i></a></li>
                         <li><a href="#/home" data-ng-click="vm.authentication.loginlogout()"><i class="glyphicon glyphicon-user"></i></a></li>
                         <li><a href="#/start"><i class="glyphicon glyphicon-list-alt"></i></a></li>
-                        <li><a href="#/found-it"><i class="glyphicon glyphicon-bookmark"></i></a></li>
+                        <li><a href="#/found-thing-and-location"><i class="glyphicon glyphicon-bookmark"></i></a></li>
                         <li><a href="http://wheresmystuffxaviersoftware.tumblr.com/"><i class="glyphicon glyphicon-book"></i> </a></li>
                     </ul>
-
                 </div>
                 <!-- /sidebar -->
                 <!-- main right col -->
@@ -159,11 +157,9 @@
                     </div><!-- /padding -->
                 </div>
                 <!-- /main -->
-
             </div>
         </div>
     </div>
-
 
     <!--post modal-->
     <div id="postModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
@@ -210,6 +206,7 @@
     <script src="app/auth/authService.js"></script>
     <script src="app/things/thingsService.js"></script>
     <script src="app/services/tokensManagerService.js"></script>
+    <script src="app/services/votesService.js"></script>
     <!-- Load controllers -->
     <script src="app/index/indexController.js"></script>
     <script src="app/home/homeController.js"></script>
@@ -231,7 +228,10 @@
     <script src="app/things/editThingController.js"></script>
     <script src="app/finding/editFindingController.js"></script>
     <script src="app/finding/addFindingController.js"></script>
+    <script src="app/finding/foundThingAndLocationController.js"></script>
+    <!-- Load directives -->
     <script src="app/dynFbCommentBox/dynFbCommentBox.js"></script>
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/scripts")

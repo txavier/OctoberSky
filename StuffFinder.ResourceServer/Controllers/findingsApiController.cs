@@ -36,18 +36,19 @@ namespace StuffFinder.ResourceServer.Controllers
         }
 
         // POST: api/findingsApi
-        public void Post([FromBody]string value)
+        public IHttpActionResult Post(finding finding)
         {
-        }
+            finding = _findingService.AddOrUpdate(finding);
 
-        // PUT: api/findingsApi/5
-        public void Put(int id, [FromBody]string value)
-        {
+            return Ok(finding);
         }
 
         // DELETE: api/findingsApi/5
-        public void Delete(int id)
+        public IHttpActionResult Delete(int id)
         {
+            _findingService.Delete(id);
+
+            return Ok();
         }
     }
 }

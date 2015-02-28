@@ -240,8 +240,11 @@
     <Content Include="app\dynFbCommentBox\dynFbCommentBox.js" />
     <Content Include="app\finding\addFindingController.js" />
     <Content Include="app\finding\editFindingController.js" />
+    <Content Include="app\finding\foundThingAndLocationController.js" />
+    <Content Include="app\services\votesService.js" />
     <Content Include="app\templates\add-finding.html" />
     <Content Include="app\templates\edit-finding.html" />
+    <Content Include="app\templates\found-thing-and-location.html" />
     <Content Include="app\things\editThingController.js" />
     <Content Include="app\finding\foundItController.js" />
     <Content Include="app\home\homeController.js" />
