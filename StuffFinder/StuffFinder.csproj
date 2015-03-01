@@ -237,6 +237,8 @@
     <Content Include="app\authInterceptor\authInterceptorService.js" />
     <Content Include="app\auth\authService.js" />
     <Content Include="app\admin\dashboardEmailSettingsController.js" />
+    <Content Include="app\cities\addOrUpdateCityController.js" />
+    <Content Include="app\cities\citiesController.js" />
     <Content Include="app\categories\addOrUpdateCategoryController.js" />
     <Content Include="app\categories\categoriesController.js" />
     <Content Include="app\dynFbCommentBox\dynFbCommentBox.js" />
@@ -245,7 +247,9 @@
     <Content Include="app\finding\foundThingAndLocationController.js" />
     <Content Include="app\services\votesService.js" />
     <Content Include="app\templates\add-finding.html" />
+    <Content Include="app\templates\add-or-update-city.html" />
     <Content Include="app\templates\add-or-update-category.html" />
+    <Content Include="app\templates\cities.html" />
     <Content Include="app\templates\categories.html" />
     <Content Include="app\templates\edit-finding.html" />
     <Content Include="app\templates\found-thing-and-location.html" />

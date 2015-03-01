@@ -15,6 +15,7 @@
 
         var votesApiUrl = 'api/votesApi';
         var categoriesApiUrl = 'api/categoriesApi';
+        var citiesApiUrl = 'api/citiesApi';
 
         var jumbotronVideoUrlSetting = {};
 
@@ -40,7 +41,13 @@
             searchCategories: searchCategories,
             searchCategoriesCount: searchCategoriesCount,
             addOrUpdateCategory: addOrUpdateCategory,
-            deleteCategory: deleteCategory
+            deleteCategory: deleteCategory,
+            getCity: getCity,
+            getCities: getCities,
+            searchCities: searchCities,
+            searchCitiesCount: searchCitiesCount,
+            addOrUpdateCity: addOrUpdateCity,
+            deleteCity: deleteCity
         };
 
         return service;
@@ -149,6 +156,114 @@
 
                 function deleteCategoryFailed(error) {
                     $log.error('XHR failed for deleteCategory.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function getCity(cityId) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.get(serverUrl.resourceServerUrl + citiesApiUrl + '/' + cityId)
+                            .then(getCityComplete)
+                            .catch(getCityFailed);
+
+                function getCityComplete(response) {
+                    return response.data;
+                }
+
+                function getCityFailed(error) {
+                    $log.error('XHR failed for getCity.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function getCities() {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.get(serverUrl.resourceServerUrl + citiesApiUrl)
+                            .then(getCitiesComplete)
+                            .catch(getCitiesFailed);
+
+                function getCitiesComplete(response) {
+                    return response.data;
+                }
+
+                function getCitiesFailed(error) {
+                    $log.error('XHR failed for getCities.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function searchCities(searchCriteria) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.post(serverUrl.resourceServerUrl + citiesApiUrl + '/search', searchCriteria)
+                            .then(searchCitiesComplete)
+                            .catch(searchCitiesFailed);
+
+                function searchCitiesComplete(response) {
+                    return response.data;
+                }
+
+                function searchCitiesFailed(error) {
+                    $log.error('XHR failed for searchCities.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function searchCitiesCount(searchCriteria) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.post(serverUrl.resourceServerUrl + citiesApiUrl + '/search/count', searchCriteria)
+                            .then(searchCitiesCountComplete)
+                            .catch(searchCitiesCountFailed);
+
+                function searchCitiesCountComplete(response) {
+                    return response.data;
+                }
+
+                function searchCitiesCountFailed(error) {
+                    $log.error('XHR failed for searchCities.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function addOrUpdateCity(city) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.post(serverUrl.resourceServerUrl + citiesApiUrl, city)
+                            .then(addOrUpdateCityComplete)
+                            .catch(addOrUpdateCityFailed);
+
+                function addOrUpdateCityComplete(response) {
+                    return response.data;
+                }
+
+                function addOrUpdateCityFailed(error) {
+                    $log.error('XHR failed for saveCity.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function deleteCity(cityId) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.delete(serverUrl.resourceServerUrl + citiesApiUrl + '/' + cityId)
+                            .then(deleteCityComplete)
+                            .catch(deleteCityFailed);
+
+                function deleteCityComplete(response) {
+                    return response.data;
+                }
+
+                function deleteCityFailed(error) {
+                    $log.error('XHR failed for deleteCity.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
                 }
             });
         }

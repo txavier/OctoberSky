@@ -1,16 +1,15 @@
 ﻿<div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Categories</h1>
+        <h1 class="page-header">Cities</h1>
     </div>
     <!-- /.col-lg-12 -->
 </div>
+<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
 <div class="row col-lg-12">
-    <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
-</div><div class="row col-lg-12">
-    <a href="#/category/add">Add category</a>
+    <a href="#/city/add">Add city</a>
 </div>
 <div class="row col-lg-12">
-    <label class="control-label">{{ vm.totalItems }} total categories</label>
+    <label class="control-label">{{ vm.totalItems }} total cities</label>
 </div>
 <div class="row col-lg-12">
     <table class="table table-striped">
@@ -18,20 +17,32 @@
             <th>
                 <a ng-click="vm.setSortOrder('name')">Name</a>
             </th>
+            <th>
+                <a ng-click="vm.setSortOrder('latitude')">Latitude</a>
+            </th>
+            <th>
+                <a ng-click="vm.setSortOrder('longitude')">Longitude</a>
+            </th>
             <th>Edit</th>
             <th>Delete</th>
         </tr>
-        <tr ng-repeat="category in vm.categories">
+        <tr ng-repeat="city in vm.cities">
             <td>
-                {{ category.name }}
+                {{ city.name }}
             </td>
             <td>
-                <a class="btn btn-default" href="#/category/update/{{ category.categoryId }}">
+                {{ city.latitude }}
+            </td>
+            <td>
+                {{ city.longitude }}
+            </td>
+            <td>
+                <a class="btn btn-default" href="#/city/update/{{ city.cityId }}">
                     Edit
                 </a>
             </td>
             <td>
-                <a class="btn btn-default" data-ng-click="vm.deleteCategory(category.categoryId)">
+                <a class="btn btn-default" data-ng-click="vm.deleteCity(city.cityId)">
                     Delete
                 </a>
             </td>

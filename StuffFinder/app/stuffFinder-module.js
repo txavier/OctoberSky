@@ -137,6 +137,24 @@ app.config(function ($routeProvider) {
         templateUrl: '/app/templates/add-or-update-category.html'
     });
 
+    $routeProvider.when('/cities', {
+        controller: 'citiesController',
+        controllerAs: 'vm',
+        templateUrl: '/app/templates/cities.html'
+    });
+
+    $routeProvider.when('/city/add', {
+        controller: 'addOrUpdateCityController',
+        controllerAs: 'vm',
+        templateUrl: '/app/templates/add-or-update-city.html'
+    });
+
+    $routeProvider.when('/city/update/:cityId', {
+        controller: 'addOrUpdateCityController',
+        controllerAs: 'vm',
+        templateUrl: '/app/templates/add-or-update-city.html'
+    });
+
     $routeProvider.otherwise({ redirectTo: "/index" });
 });
 

@@ -95,8 +95,10 @@
     <Compile Include="Interfaces\IThingService.cs" />
     <Compile Include="Interfaces\ISettingService.cs" />
     <Compile Include="Interfaces\IVoteService.cs" />
+    <Compile Include="Services\CityService.cs" />
     <Compile Include="Services\CategoryService.cs" />
     <Compile Include="Interfaces\ICategoryService.cs" />
+    <Compile Include="Interfaces\ICityService.cs" />
     <Compile Include="Services\SettingService.cs" />
     <Compile Include="Services\SystemSettingsService.cs" />
     <Compile Include="Services\ThingService.cs" />

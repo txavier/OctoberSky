@@ -140,6 +140,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\citiesApiController.cs" />
     <Compile Include="Controllers\categoriesApiController.cs" />
     <Compile Include="Controllers\findingsApiController.cs" />
     <Compile Include="Controllers\imagesApiController.cs" />

@@ -1,0 +1,41 @@
+﻿<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">City</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<div class="form-group">
+    <div class="form-horizontal">
+        <form name="form1" role="form">
+            <div>
+                <input type="hidden" name="id" ng-value="vm.city.cityId" />
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="{{ vm.city.name }}">City Name</label>
+                <div class="col-md-10">
+                    <input class="text-box single-line" data-val="true" data-ng-model="vm.city.name" type="text" value="" autofocus />
+                    <span class="field-validation-valid" data-valmsg-for="vm.city.name" data-valmsg-replace="true"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="{{ vm.city.latitude }}">Latitude</label>
+                <div class="col-md-10">
+                    <input class="text-box single-line" data-val="true" data-ng-model="vm.city.latitude" type="text" value="" autofocus />
+                    <span class="field-validation-valid" data-valmsg-for="vm.city.latitude" data-valmsg-replace="true"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="{{ vm.city.longitude }}">Longitude</label>
+                <div class="col-md-10">
+                    <input class="text-box single-line" data-val="true" data-ng-model="vm.city.longitude" type="text" value="" autofocus />
+                    <span class="field-validation-valid" data-valmsg-for="vm.city.longitude" data-valmsg-replace="true"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" ng-click="vm.addOrUpdateCity(vm.city)" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
