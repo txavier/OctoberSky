@@ -16,6 +16,7 @@ using StuffFinder.Core.Interfaces;
 using XavierEnterpriseLibrary.Core.Interfaces;
 using XavierEnterpriseLibrary.Core.Services;
 using XavierEnterpriseLibrary.Infrastructure.Senders;
+using StuffFinder.Core.Models;
 
 namespace StuffFinder.CompositionRoot
 {
@@ -31,11 +32,17 @@ namespace StuffFinder.CompositionRoot
                     scan.WithDefaultConventions();
                 });
 
+            For<DbContext>().HybridHttpOrThreadLocalScoped().Use<StuffFinder.Data.stuffFinderAuthDbContext>().Named("stuffFinderAuth");
+
             For<DbContext>().HybridHttpOrThreadLocalScoped().Use<StuffFinder.Data.stuffFinderDbContext>();
 
             For(typeof(IService<>)).Use(typeof(Service<>));
 
             For(typeof(IRepository<>)).Use(typeof(Repository<>));
+
+            For(typeof(IRepository<StuffFinder.Core.Models.AspNetUser>)).Use(typeof(Repository<AspNetUser>)).Ctor<DbContext>("context").IsNamedInstance("stuffFinderAuth");
+
+            For<IEmailSender>().Use<EmailSender>();
         }
     }
 }

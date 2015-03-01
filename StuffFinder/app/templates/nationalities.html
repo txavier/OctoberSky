@@ -1,0 +1,43 @@
+﻿<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Nationalities</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+<div class="row col-lg-12">
+    <a href="#/nationality/add">Add nationality</a>
+</div>
+<div class="row col-lg-12">
+    <label class="control-label">{{ vm.totalItems }} total nationalities</label>
+</div>
+<div class="row col-lg-12">
+    <table class="table table-striped">
+        <tr>
+            <th>
+                <a ng-click="vm.setSortOrder('name')">Name</a>
+            </th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        <tr ng-repeat="nationality in vm.nationalities">
+            <td>
+                {{ nationality.name }}
+            </td>
+            <td>
+                <a class="btn btn-default" href="#/nationality/update/{{ nationality.nationalityId }}">
+                    Edit
+                </a>
+            </td>
+            <td>
+                <a class="btn btn-default" data-ng-click="vm.deleteNationality(nationality.nationalityId)">
+                    Delete
+                </a>
+            </td>
+        </tr>
+    </table>
+    <div class="form-group">
+        <pagination total-items="vm.totalItems" items-per-page="vm.itemsPerPage" ng-model="vm.currentPage" ng-change="vm.pageChanged()" max-size="7" boundary-links="true"
+                    rotate="false"></pagination>
+    </div>
+</div>

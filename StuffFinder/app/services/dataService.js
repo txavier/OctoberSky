@@ -16,6 +16,8 @@
         var votesApiUrl = 'api/votesApi';
         var categoriesApiUrl = 'api/categoriesApi';
         var citiesApiUrl = 'api/citiesApi';
+        var nationalitiesApiUrl = 'api/nationalitiesApi';
+        var usersApiUrl = 'api/usersApi';
 
         var jumbotronVideoUrlSetting = {};
 
@@ -47,7 +49,20 @@
             searchCities: searchCities,
             searchCitiesCount: searchCitiesCount,
             addOrUpdateCity: addOrUpdateCity,
-            deleteCity: deleteCity
+            deleteCity: deleteCity,
+            getUser: getUser,
+            getUsers: getUsers,
+            searchUsers: searchUsers,
+            searchUsersCount: searchUsersCount,
+            addOrUpdateUser: addOrUpdateUser,
+            deleteUser: deleteUser,
+            getNationality: getNationality,
+            getNationalities: getNationalities,
+            searchNationalities: searchNationalities,
+            searchNationalitiesCount: searchNationalitiesCount,
+            addOrUpdateNationality: addOrUpdateNationality,
+            deleteNationality: deleteNationality,
+            syncUsers: syncUsers
         };
 
         return service;
@@ -264,6 +279,240 @@
 
                 function deleteCityFailed(error) {
                     $log.error('XHR failed for deleteCity.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function getUser(userId) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.get(serverUrl.resourceServerUrl + usersApiUrl + '/' + userId)
+                            .then(getUserComplete)
+                            .catch(getUserFailed);
+
+                function getUserComplete(response) {
+                    return response.data;
+                }
+
+                function getUserFailed(error) {
+                    $log.error('XHR failed for getUser.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function getUsers() {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.get(serverUrl.resourceServerUrl + usersApiUrl)
+                            .then(getUsersComplete)
+                            .catch(getUsersFailed);
+
+                function getUsersComplete(response) {
+                    return response.data;
+                }
+
+                function getUsersFailed(error) {
+                    $log.error('XHR failed for getUsers.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function searchUsers(searchCriteria) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.post(serverUrl.resourceServerUrl + usersApiUrl + '/search', searchCriteria)
+                            .then(searchUsersComplete)
+                            .catch(searchUsersFailed);
+
+                function searchUsersComplete(response) {
+                    return response.data;
+                }
+
+                function searchUsersFailed(error) {
+                    $log.error('XHR failed for searchUsers.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function searchUsersCount(searchCriteria) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.post(serverUrl.resourceServerUrl + usersApiUrl + '/search/count', searchCriteria)
+                            .then(searchUsersCountComplete)
+                            .catch(searchUsersCountFailed);
+
+                function searchUsersCountComplete(response) {
+                    return response.data;
+                }
+
+                function searchUsersCountFailed(error) {
+                    $log.error('XHR failed for searchUsers.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function addOrUpdateUser(user) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.post(serverUrl.resourceServerUrl + usersApiUrl, user)
+                            .then(addOrUpdateUserComplete)
+                            .catch(addOrUpdateUserFailed);
+
+                function addOrUpdateUserComplete(response) {
+                    return response.data;
+                }
+
+                function addOrUpdateUserFailed(error) {
+                    $log.error('XHR failed for saveUser.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function deleteUser(userId) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.delete(serverUrl.resourceServerUrl + usersApiUrl + '/' + userId)
+                            .then(deleteUserComplete)
+                            .catch(deleteUserFailed);
+
+                function deleteUserComplete(response) {
+                    return response.data;
+                }
+
+                function deleteUserFailed(error) {
+                    $log.error('XHR failed for deleteUser.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function syncUsers() {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.post(serverUrl.resourceServerUrl + usersApiUrl + '/syncUsers')
+                            .then(syncUsersComplete)
+                            .catch(syncUsersFailed);
+
+                function syncUsersComplete(response) {
+                    return response.data;
+                }
+
+                function syncUsersFailed(error) {
+                    $log.error('XHR failed for deleteUser.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function getNationality(nationalityId) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.get(serverUrl.resourceServerUrl + nationalitiesApiUrl + '/' + nationalityId)
+                            .then(getNationalityComplete)
+                            .catch(getNationalityFailed);
+
+                function getNationalityComplete(response) {
+                    return response.data;
+                }
+
+                function getNationalityFailed(error) {
+                    $log.error('XHR failed for getNationality.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function getNationalities() {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.get(serverUrl.resourceServerUrl + nationalitiesApiUrl)
+                            .then(getNationalitiesComplete)
+                            .catch(getNationalitiesFailed);
+
+                function getNationalitiesComplete(response) {
+                    return response.data;
+                }
+
+                function getNationalitiesFailed(error) {
+                    $log.error('XHR failed for getNationalities.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function searchNationalities(searchCriteria) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.post(serverUrl.resourceServerUrl + nationalitiesApiUrl + '/search', searchCriteria)
+                            .then(searchNationalitiesComplete)
+                            .catch(searchNationalitiesFailed);
+
+                function searchNationalitiesComplete(response) {
+                    return response.data;
+                }
+
+                function searchNationalitiesFailed(error) {
+                    $log.error('XHR failed for searchNationalities.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function searchNationalitiesCount(searchCriteria) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.post(serverUrl.resourceServerUrl + nationalitiesApiUrl + '/search/count', searchCriteria)
+                            .then(searchNationalitiesCountComplete)
+                            .catch(searchNationalitiesCountFailed);
+
+                function searchNationalitiesCountComplete(response) {
+                    return response.data;
+                }
+
+                function searchNationalitiesCountFailed(error) {
+                    $log.error('XHR failed for searchNationalities.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function addOrUpdateNationality(nationality) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.post(serverUrl.resourceServerUrl + nationalitiesApiUrl, nationality)
+                            .then(addOrUpdateNationalityComplete)
+                            .catch(addOrUpdateNationalityFailed);
+
+                function addOrUpdateNationalityComplete(response) {
+                    return response.data;
+                }
+
+                function addOrUpdateNationalityFailed(error) {
+                    $log.error('XHR failed for saveNationality.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function deleteNationality(nationalityId) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.delete(serverUrl.resourceServerUrl + nationalitiesApiUrl + '/' + nationalityId)
+                            .then(deleteNationalityComplete)
+                            .catch(deleteNationalityFailed);
+
+                function deleteNationalityComplete(response) {
+                    return response.data;
+                }
+
+                function deleteNationalityFailed(error) {
+                    $log.error('XHR failed for deleteNationality.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
                 }
             });
         }

@@ -1,0 +1,62 @@
+﻿<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">User</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<div class="form-group">
+    <div class="form-horizontal">
+        <form name="form1" role="form">
+            <div>
+                <input type="hidden" name="id" ng-value="vm.user.userId" />
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="{{ vm.user.userName }}">User Name</label>
+                <div class="col-md-10">
+                    <input class="text-box single-line" data-val="true" data-ng-model="vm.user.userName " type="text" value="" autofocus />
+                    <span class="field-validation-valid" data-valmsg-for="vm.user.userName " data-valmsg-replace="true"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="{{ vm.user.email }}">Email</label>
+                <div class="col-md-10">
+                    <input class="text-box single-line" data-val="true" data-ng-model="vm.user.email" type="text" value="" autofocus />
+                    <span class="field-validation-valid" data-valmsg-for="vm.user.email" data-valmsg-replace="true"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="{{ vm.user.isStore }}">Store</label>
+                <div class="col-md-10">
+                    <input class="text-box single-line" data-val="true" data-ng-model="vm.user.isStore" type="text" value="" autofocus />
+                    <span class="field-validation-valid" data-valmsg-for="vm.user.isStore" data-valmsg-replace="true"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="{{ vm.user.isAdmin }}">Administrator</label>
+                <div class="col-md-10">
+                    <input class="text-box single-line" data-val="true" data-ng-model="vm.user.isAdmin" type="text" value="" autofocus />
+                    <span class="field-validation-valid" data-valmsg-for="vm.user.isAdmin" data-valmsg-replace="true"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="{{ vm.user.nationalityName }}">Nationality</label>
+                <div class="col-md-10">
+                    <input class="text-box single-line" data-val="true" data-ng-model="vm.user.isAdmin" type="text" value="" autofocus />
+                    <span class="field-validation-valid" data-valmsg-for="vm.user.isAdmin" data-valmsg-replace="true"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="{{ vm.user.locationDisplayLabel }}">Location</label>
+                <div class="col-md-10">
+                    <input class="text-box single-line" data-val="true" data-ng-model="vm.user.isAdmin" type="text" value="" autofocus />
+                    <span class="field-validation-valid" data-valmsg-for="vm.user.isAdmin" data-valmsg-replace="true"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" ng-click="vm.addOrUpdateUser(vm.user)" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

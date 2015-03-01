@@ -1,0 +1,73 @@
+﻿<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Users</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+<div class="row col-lg-12">
+    <button class="btn" data-ng-click="vm.syncUsers()">Sync users</a>
+</div>
+<div class="row col-lg-12">
+    <label class="control-label">{{ vm.totalItems }} total users</label>
+</div>
+<div class="row col-lg-12">
+    <table class="table table-striped">
+        <tr>
+            <th>
+                <a ng-click="vm.setSortOrder('name')">Name</a>
+            </th>
+            <th>
+                <a ng-click="vm.setSortOrder('email')">Email</a>
+            </th>
+            <th>
+                <a ng-click="vm.setSortOrder('isStore')">Store</a>
+            </th>
+            <th>
+                <a ng-click="vm.setSortOrder('isAdmin')">Admin</a>
+            </th>
+            <th>
+                <a ng-click="vm.setSortOrder('nationality')">Nationality</a>
+            </th>
+            <th>
+                <a ng-click="vm.setSortOrder('locationDisplayLabel')">Location</a>
+            </th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        <tr ng-repeat="user in vm.users">
+            <td>
+                {{ user.userName }}
+            </td>
+            <td>
+                {{ user.email }}
+            </td>
+            <td>
+                {{ user.isStore }}
+            </td>
+            <td>
+                {{ user.isAdmin }}
+            </td>
+            <td>
+                {{ user.nationalityName }}
+            </td>
+            <td>
+                {{ user.locationDisplayLabel }}
+            </td>
+            <td>
+                <a class="btn btn-default" href="#/user/update/{{ user.userId }}">
+                    Edit
+                </a>
+            </td>
+            <td>
+                <a class="btn btn-default" data-ng-click="vm.deleteUser(user.userId)">
+                    Delete
+                </a>
+            </td>
+        </tr>
+    </table>
+    <div class="form-group">
+        <pagination total-items="vm.totalItems" items-per-page="vm.itemsPerPage" ng-model="vm.currentPage" ng-change="vm.pageChanged()" max-size="7" boundary-links="true"
+                    rotate="false"></pagination>
+    </div>
+</div>

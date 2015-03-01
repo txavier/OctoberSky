@@ -155,6 +155,42 @@ app.config(function ($routeProvider) {
         templateUrl: '/app/templates/add-or-update-city.html'
     });
 
+    $routeProvider.when('/nationalities', {
+        controller: 'nationalitiesController',
+        controllerAs: 'vm',
+        templateUrl: '/app/templates/nationalities.html'
+    });
+
+    $routeProvider.when('/nationality/add', {
+        controller: 'addOrUpdateNationalityController',
+        controllerAs: 'vm',
+        templateUrl: '/app/templates/add-or-update-nationality.html'
+    });
+
+    $routeProvider.when('/nationality/update/:nationalityId', {
+        controller: 'addOrUpdateNationalityController',
+        controllerAs: 'vm',
+        templateUrl: '/app/templates/add-or-update-nationality.html'
+    });
+
+    $routeProvider.when('/users', {
+        controller: 'usersController',
+        controllerAs: 'vm',
+        templateUrl: '/app/templates/users.html'
+    });
+
+    $routeProvider.when('/user/add', {
+        controller: 'addOrUpdateUserController',
+        controllerAs: 'vm',
+        templateUrl: '/app/templates/add-or-update-user.html'
+    });
+
+    $routeProvider.when('/user/update/:userId', {
+        controller: 'addOrUpdateUserController',
+        controllerAs: 'vm',
+        templateUrl: '/app/templates/add-or-update-user.html'
+    });
+
     $routeProvider.otherwise({ redirectTo: "/index" });
 });
 

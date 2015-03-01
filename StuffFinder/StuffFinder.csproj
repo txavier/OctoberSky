@@ -245,10 +245,16 @@
     <Content Include="app\finding\addFindingController.js" />
     <Content Include="app\finding\editFindingController.js" />
     <Content Include="app\finding\foundThingAndLocationController.js" />
+    <Content Include="app\nationalities\addOrUpdateNationalityController.js" />
+    <Content Include="app\nationalities\nationalitiesController.js" />
     <Content Include="app\services\votesService.js" />
     <Content Include="app\templates\add-finding.html" />
+    <Content Include="app\templates\add-or-update-user.html" />
+    <Content Include="app\templates\add-or-update-nationality.html" />
     <Content Include="app\templates\add-or-update-city.html" />
     <Content Include="app\templates\add-or-update-category.html" />
+    <Content Include="app\templates\users.html" />
+    <Content Include="app\templates\nationalities.html" />
     <Content Include="app\templates\cities.html" />
     <Content Include="app\templates\categories.html" />
     <Content Include="app\templates\edit-finding.html" />
@@ -286,6 +292,8 @@
     <Content Include="app\templates\login.html" />
     <Content Include="app\templates\signup.html" />
     <Content Include="app\tokensManager\tokensManagerController.js" />
+    <Content Include="app\users\addOrUpdateUserController.js" />
+    <Content Include="app\users\usersController.js" />
     <Content Include="app\whereIsIt\whereIsItController.js" />
     <Content Include="Areas\dashboard\bower_components\bootstrap-social\.gitignore" />
     <Content Include="Areas\dashboard\bower_components\bootstrap-social\bootstrap-social.css" />

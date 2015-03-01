@@ -76,21 +76,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\ISystemSettingsGetter.cs" />
-    <Compile Include="Models\adminMember.cs" />
-    <Compile Include="Models\category.cs" />
-    <Compile Include="Models\city.cs" />
-    <Compile Include="Models\finding.cs" />
-    <Compile Include="Models\image.cs" />
-    <Compile Include="Models\location.cs" />
-    <Compile Include="Models\nationality.cs" />
-    <Compile Include="Models\setting.cs" />
-    <Compile Include="Models\thing.cs" />
-    <Compile Include="Models\user.cs" />
+    <Compile Include="Models\StuffFinderAuth\AspNetUser.cs" />
+    <Compile Include="Models\StuffFinder\category.cs" />
+    <Compile Include="Models\StuffFinder\city.cs" />
+    <Compile Include="Models\StuffFinder\finding.cs" />
+    <Compile Include="Models\StuffFinder\image.cs" />
+    <Compile Include="Models\StuffFinder\location.cs" />
+    <Compile Include="Models\StuffFinder\nationality.cs" />
+    <Compile Include="Models\StuffFinder\setting.cs" />
+    <Compile Include="Models\StuffFinder\thing.cs" />
+    <Compile Include="Models\StuffFinder\user.cs" />
     <Compile Include="Models\ViewModels\FileResult.cs" />
     <Compile Include="Models\ViewModels\ImageViewModel.cs" />
     <Compile Include="Models\ViewModels\SettingsViewModel.cs" />
     <Compile Include="Models\ViewModels\ThingViewModel.cs" />
-    <Compile Include="Models\vote.cs" />
+    <Compile Include="Models\ViewModels\UserViewModel.cs" />
+    <Compile Include="Models\StuffFinder\vote.cs" />
     <Compile Include="Objects\SearchCriteria.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Interfaces\ISystemSettingsService.cs" />

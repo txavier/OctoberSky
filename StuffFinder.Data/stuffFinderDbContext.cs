@@ -13,7 +13,6 @@ namespace StuffFinder.Data
         {
         }
 
-        public virtual DbSet<adminMember> adminMembers { get; set; }
         public virtual DbSet<category> categories { get; set; }
         public virtual DbSet<city> cities { get; set; }
         public virtual DbSet<finding> findings { get; set; }
@@ -30,11 +29,6 @@ namespace StuffFinder.Data
             modelBuilder.Entity<location>()
                 .HasMany(e => e.findings)
                 .WithRequired(e => e.location)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<user>()
-                .HasMany(e => e.adminMembers)
-                .WithRequired(e => e.user)
                 .WillCascadeOnDelete(false);
         }
     }

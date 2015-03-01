@@ -1,0 +1,27 @@
+﻿<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Nationality</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<div class="form-group">
+    <div class="form-horizontal">
+        <form name="form1" role="form">
+            <div>
+                <input type="hidden" name="id" ng-value="vm.nationality.nationalityId" />
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="{{ vm.nationality.name }}">Nationality Name</label>
+                <div class="col-md-10">
+                    <input class="text-box single-line" data-val="true" data-ng-model="vm.nationality.name" type="text" value="" autofocus />
+                    <span class="field-validation-valid" data-valmsg-for="vm.nationality.name" data-valmsg-replace="true"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" ng-click="vm.addOrUpdateNationality(vm.nationality)" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

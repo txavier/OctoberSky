@@ -22,14 +22,14 @@ namespace StuffFinder.ResourceServer.Controllers
         // GET: api/userApi
         public IHttpActionResult Get()
         {
-            var result = _userService.Get();
+            var result = _userService.ToUserViewModels(_userService.Get());
 
             return Ok(result);
         }
 
         public IHttpActionResult Get(int id)
         {
-            var result = _userService.Find(id);
+            var result = _userService.ToUserViewModel(_userService.Find(id));
 
             return Ok(result);
         }
@@ -39,7 +39,7 @@ namespace StuffFinder.ResourceServer.Controllers
         // GET: api/userApi/5
         public IHttpActionResult Search(SearchCriteria searchCriteria)
         {
-            var result = _userService.Search(searchCriteria);
+            var result = _userService.ToUserViewModels(_userService.Search(searchCriteria));
 
             return Ok(result);
         }
@@ -50,6 +50,15 @@ namespace StuffFinder.ResourceServer.Controllers
         public IHttpActionResult SearchCount(SearchCriteria searchCriteria)
         {
             var result = _userService.SearchCount(searchCriteria);
+
+            return Ok(result);
+        }
+
+        [Route("syncUsers")]
+        [HttpPost]
+        public IHttpActionResult SyncUsers()
+        {
+            var result = _userService.SyncUserTable();
 
             return Ok(result);
         }

@@ -121,8 +121,17 @@
     <Compile Include="Migrations\201503010650437_AddUserAndNationalityTable.Designer.cs">
       <DependentUpon>201503010650437_AddUserAndNationalityTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201503012138276_TrackAdminInUserTable.cs" />
+    <Compile Include="Migrations\201503012138276_TrackAdminInUserTable.Designer.cs">
+      <DependentUpon>201503012138276_TrackAdminInUserTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503012303362_MakeEmailAddressNullable.cs" />
+    <Compile Include="Migrations\201503012303362_MakeEmailAddressNullable.Designer.cs">
+      <DependentUpon>201503012303362_MakeEmailAddressNullable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="stuffFinderAuthDbContext.cs" />
     <Compile Include="stuffFinderDbContext.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -183,6 +192,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201503010650437_AddUserAndNationalityTable.resx">
       <DependentUpon>201503010650437_AddUserAndNationalityTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503012138276_TrackAdminInUserTable.resx">
+      <DependentUpon>201503012138276_TrackAdminInUserTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503012303362_MakeEmailAddressNullable.resx">
+      <DependentUpon>201503012303362_MakeEmailAddressNullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
