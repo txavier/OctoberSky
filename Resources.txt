@@ -140,3 +140,7 @@
  -- To get the latitudes and longitudes of cities the following code resource can be used
 	
 	http://jsfiddle.net/YphZw/
+
+ -- Resource on account management with web api 2.2
+
+	http://bitoftech.net/2015/01/21/asp-net-identity-2-with-asp-net-web-api-2-accounts-management/

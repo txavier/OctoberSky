@@ -119,6 +119,24 @@ app.config(function ($routeProvider) {
         templateUrl: '/app/templates/add-finding.html'
     });
 
+    $routeProvider.when('/categories', {
+        controller: 'categoriesController',
+        controllerAs: 'vm',
+        templateUrl: '/app/templates/categories.html'
+    });
+
+    $routeProvider.when('/category/add', {
+        controller: 'addOrUpdateCategoryController',
+        controllerAs: 'vm',
+        templateUrl: '/app/templates/add-or-update-category.html'
+    });
+
+    $routeProvider.when('/category/update/:categoryId', {
+        controller: 'addOrUpdateCategoryController',
+        controllerAs: 'vm',
+        templateUrl: '/app/templates/add-or-update-category.html'
+    });
+
     $routeProvider.otherwise({ redirectTo: "/index" });
 });
 

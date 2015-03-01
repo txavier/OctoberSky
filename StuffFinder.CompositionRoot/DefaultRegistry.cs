@@ -27,6 +27,7 @@ namespace StuffFinder.CompositionRoot
                 scan =>
                 {
                     scan.TheCallingAssembly();
+                    scan.AssembliesFromApplicationBaseDirectory();
                     scan.WithDefaultConventions();
                 });
 
@@ -35,17 +36,6 @@ namespace StuffFinder.CompositionRoot
             For(typeof(IService<>)).Use(typeof(Service<>));
 
             For(typeof(IRepository<>)).Use(typeof(Repository<>));
-
-            For<IThingService>().Use<ThingService>();
-
-            For<ISettingService>().Use<SettingService>();
-
-            For<IVoteService>().Use<VoteService>();
-
-            For<IEmailService>().Use<EmailService>();
-
-            For<IEmailSender>().Use<EmailSender>();
-
         }
     }
 }

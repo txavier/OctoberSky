@@ -6,7 +6,6 @@
     dataService.$inject = ['$http', '$log', '$resource', '$q'];
 
     function dataService($http, $log, $resource, $q) {
-
         var deferred = $q.defer();
 
         var serverUrl = {
@@ -15,6 +14,7 @@
         };
 
         var votesApiUrl = 'api/votesApi';
+        var categoriesApiUrl = 'api/categoriesApi';
 
         var jumbotronVideoUrlSetting = {};
 
@@ -23,7 +23,6 @@
             addOrUpdateThing: addOrUpdateThing,
             getThings: getThings,
             getThing: getThing,
-            getCategories: getCategories,
             getSetting: getSetting,
             getMostMe2Things: getMostMe2Things,
             getFoundThings: getFoundThings,
@@ -35,10 +34,124 @@
             getFinding: getFinding,
             addOrUpdateFinding: addOrUpdateFinding,
             deleteFinding: deleteFinding,
-            getLocations: getLocations
+            getLocations: getLocations,
+            getCategory: getCategory,
+            getCategories: getCategories,
+            searchCategories: searchCategories,
+            searchCategoriesCount: searchCategoriesCount,
+            addOrUpdateCategory: addOrUpdateCategory,
+            deleteCategory: deleteCategory
         };
 
         return service;
+
+        function getCategory(categoryId) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.get(serverUrl.resourceServerUrl + categoriesApiUrl + '/' + categoryId)
+                            .then(getCategoryComplete)
+                            .catch(getCategoryFailed);
+
+                function getCategoryComplete(response) {
+                    return response.data;
+                }
+
+                function getCategoryFailed(error) {
+                    $log.error('XHR failed for getCategory.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function getCategories() {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.get(serverUrl.resourceServerUrl + categoriesApiUrl)
+                            .then(getCategoriesComplete)
+                            .catch(getCategoriesFailed);
+
+                function getCategoriesComplete(response) {
+                    return response.data;
+                }
+
+                function getCategoriesFailed(error) {
+                    $log.error('XHR failed for getCategories.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function searchCategories(searchCriteria) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.post(serverUrl.resourceServerUrl + categoriesApiUrl + '/search', searchCriteria)
+                            .then(searchCategoriesComplete)
+                            .catch(searchCategoriesFailed);
+
+                function searchCategoriesComplete(response) {
+                    return response.data;
+                }
+
+                function searchCategoriesFailed(error) {
+                    $log.error('XHR failed for searchCategories.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function searchCategoriesCount(searchCriteria) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.post(serverUrl.resourceServerUrl + categoriesApiUrl + '/search/count', searchCriteria)
+                            .then(searchCategoriesCountComplete)
+                            .catch(searchCategoriesCountFailed);
+
+                function searchCategoriesCountComplete(response) {
+                    return response.data;
+                }
+
+                function searchCategoriesCountFailed(error) {
+                    $log.error('XHR failed for searchCategories.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function addOrUpdateCategory(category) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.post(serverUrl.resourceServerUrl + categoriesApiUrl, category)
+                            .then(addOrUpdateCategoryComplete)
+                            .catch(addOrUpdateCategoryFailed);
+
+                function addOrUpdateCategoryComplete(response) {
+                    return response.data;
+                }
+
+                function addOrUpdateCategoryFailed(error) {
+                    $log.error('XHR failed for saveCategory.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function deleteCategory(categoryId) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.delete(serverUrl.resourceServerUrl + categoriesApiUrl + '/' + categoryId)
+                            .then(deleteCategoryComplete)
+                            .catch(deleteCategoryFailed);
+
+                function deleteCategoryComplete(response) {
+                    return response.data;
+                }
+
+                function deleteCategoryFailed(error) {
+                    $log.error('XHR failed for deleteCategory.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
 
         function upVote(vote) {
             return getServerUrl().then(function (resource) {
@@ -144,7 +257,7 @@
                 function getLocationsFailed(error) {
                     $log.error('XHR failed for getLocations.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
                 }
-            })
+            });
         }
 
         function getFinding(findingId) {
@@ -303,23 +416,6 @@
 
                 function deleteThingFailed(error) {
                     $log.error('XHR Failed for deleteThing.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
-                }
-            });
-        }
-
-        function getCategories() {
-            return getServerUrl().then(function (resource) {
-                serverUrl = resource;
-                return $http.get(serverUrl.resourceServerUrl + 'api/categoriesApi')
-                    .then(getCategoriesComplete)
-                    .catch(getCategoriesFailed);
-
-                function getCategoriesComplete(response) {
-                    return response.data;
-                }
-
-                function getCategoriesFailed(error) {
-                    $log.error('XHR Failed for getCategories.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
                 }
             });
         }
