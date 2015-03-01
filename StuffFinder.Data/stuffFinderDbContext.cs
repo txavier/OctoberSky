@@ -19,8 +19,10 @@ namespace StuffFinder.Data
         public virtual DbSet<finding> findings { get; set; }
         public virtual DbSet<image> images { get; set; }
         public virtual DbSet<location> locations { get; set; }
+        public virtual DbSet<nationality> nationalities { get; set; }
         public virtual DbSet<setting> settings { get; set; }
         public virtual DbSet<thing> things { get; set; }
+        public virtual DbSet<user> users { get; set; }
         public virtual DbSet<vote> votes { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -28,6 +30,11 @@ namespace StuffFinder.Data
             modelBuilder.Entity<location>()
                 .HasMany(e => e.findings)
                 .WithRequired(e => e.location)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<user>()
+                .HasMany(e => e.adminMembers)
+                .WithRequired(e => e.user)
                 .WillCascadeOnDelete(false);
         }
     }

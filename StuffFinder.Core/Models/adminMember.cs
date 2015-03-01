@@ -11,8 +11,8 @@ namespace StuffFinder.Core.Models
     {
         public int adminMemberId { get; set; }
 
-        [Required]
-        [StringLength(256)]
-        public string userName { get; set; }
+        public int userId { get; set; }
+
+        public virtual user user { get; set; }
     }
 }

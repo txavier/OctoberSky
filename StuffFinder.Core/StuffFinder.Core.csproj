@@ -38,7 +38,7 @@
     </Reference>
     <Reference Include="Auto.Service, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\AutoClutch.AutoService.1.0.2\lib\net45\Auto.Service.dll</HintPath>
+      <HintPath>..\packages\AutoClutch.AutoService.1.0.3\lib\net45\Auto.Service.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
@@ -82,8 +82,10 @@
     <Compile Include="Models\finding.cs" />
     <Compile Include="Models\image.cs" />
     <Compile Include="Models\location.cs" />
+    <Compile Include="Models\nationality.cs" />
     <Compile Include="Models\setting.cs" />
     <Compile Include="Models\thing.cs" />
+    <Compile Include="Models\user.cs" />
     <Compile Include="Models\ViewModels\FileResult.cs" />
     <Compile Include="Models\ViewModels\ImageViewModel.cs" />
     <Compile Include="Models\ViewModels\SettingsViewModel.cs" />
@@ -95,6 +97,10 @@
     <Compile Include="Interfaces\IThingService.cs" />
     <Compile Include="Interfaces\ISettingService.cs" />
     <Compile Include="Interfaces\IVoteService.cs" />
+    <Compile Include="Interfaces\INationalityService.cs" />
+    <Compile Include="Interfaces\IUserService.cs" />
+    <Compile Include="Services\NationalityService.cs" />
+    <Compile Include="Services\UserService.cs" />
     <Compile Include="Services\CityService.cs" />
     <Compile Include="Services\CategoryService.cs" />
     <Compile Include="Interfaces\ICategoryService.cs" />
