@@ -12,7 +12,6 @@ namespace StuffFinder.Core.Models
         public location()
         {
             findings = new HashSet<finding>();
-            users = new HashSet<user>();
         }
 
         public int locationId { get; set; }
@@ -32,7 +31,5 @@ namespace StuffFinder.Core.Models
         public virtual city city { get; set; }
 
         public virtual ICollection<finding> findings { get; set; }
-
-        public virtual ICollection<user> users { get; set; }
     }
 }

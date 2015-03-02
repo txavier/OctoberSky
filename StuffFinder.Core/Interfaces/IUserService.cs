@@ -8,10 +8,6 @@
 
         int SearchCount(StuffFinder.Core.Objects.SearchCriteria searchCriteria);
 
-        System.Collections.Generic.IEnumerable<StuffFinder.Core.Models.ViewModels.UserViewModel> ToUserViewModels(System.Collections.Generic.IEnumerable<StuffFinder.Core.Models.user> users);
-
-        StuffFinder.Core.Models.ViewModels.UserViewModel ToUserViewModel(StuffFinder.Core.Models.user user);
-
         System.Collections.Generic.IEnumerable<StuffFinder.Core.Models.user> SyncUserTable();
     }
 }

@@ -22,14 +22,14 @@ namespace StuffFinder.ResourceServer.Controllers
         // GET: api/userApi
         public IHttpActionResult Get()
         {
-            var result = _userService.ToUserViewModels(_userService.Get());
+            var result = _userService.Get();
 
             return Ok(result);
         }
 
         public IHttpActionResult Get(int id)
         {
-            var result = _userService.ToUserViewModel(_userService.Find(id));
+            var result = _userService.Find(id);
 
             return Ok(result);
         }
@@ -39,7 +39,7 @@ namespace StuffFinder.ResourceServer.Controllers
         // GET: api/userApi/5
         public IHttpActionResult Search(SearchCriteria searchCriteria)
         {
-            var result = _userService.ToUserViewModels(_userService.Search(searchCriteria));
+            var result = _userService.Search(searchCriteria);
 
             return Ok(result);
         }

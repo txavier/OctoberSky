@@ -27,29 +27,31 @@
             <div class="form-group">
                 <label class="control-label col-md-2" for="{{ vm.user.isStore }}">Store</label>
                 <div class="col-md-10">
-                    <input class="text-box single-line" data-val="true" data-ng-model="vm.user.isStore" type="text" value="" autofocus />
+                    <input class="text-box single-line" data-val="true" data-ng-model="vm.user.isStore" type="checkbox" value="" autofocus />
                     <span class="field-validation-valid" data-valmsg-for="vm.user.isStore" data-valmsg-replace="true"></span>
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-md-2" for="{{ vm.user.isAdmin }}">Administrator</label>
                 <div class="col-md-10">
-                    <input class="text-box single-line" data-val="true" data-ng-model="vm.user.isAdmin" type="text" value="" autofocus />
+                    <input class="text-box single-line" data-val="true" data-ng-model="vm.user.isAdmin" type="checkbox" value="" autofocus />
                     <span class="field-validation-valid" data-valmsg-for="vm.user.isAdmin" data-valmsg-replace="true"></span>
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-md-2" for="{{ vm.user.nationalityName }}">Nationality</label>
+                <label class="control-label col-md-2" for="{{ vm.user.nationality.name }}">Nationality</label>
                 <div class="col-md-10">
-                    <input class="text-box single-line" data-val="true" data-ng-model="vm.user.isAdmin" type="text" value="" autofocus />
-                    <span class="field-validation-valid" data-valmsg-for="vm.user.isAdmin" data-valmsg-replace="true"></span>
+                    <input class="text-box single-line" data-val="true" data-ng-model="vm.user.nationality" type="text" value=""
+                           typeahead="nationality as nationality.name for nationality in vm.nationalities | filter:$viewValue | limitTo:8"/>
+                    <span class="field-validation-valid" data-valmsg-for="vm.user.nationality.name" data-valmsg-replace="true"></span>
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-md-2" for="{{ vm.user.locationDisplayLabel }}">Location</label>
+                <label class="control-label col-md-2" for="{{ vm.user.city.name }}">City</label>
                 <div class="col-md-10">
-                    <input class="text-box single-line" data-val="true" data-ng-model="vm.user.isAdmin" type="text" value="" autofocus />
-                    <span class="field-validation-valid" data-valmsg-for="vm.user.isAdmin" data-valmsg-replace="true"></span>
+                    <input class="text-box single-line" data-val="true" data-ng-model="vm.user.city" type="text" value=""
+                           typeahead="city as city.name for city in vm.cities | filter:$viewValue | limitTo:8" />
+                    <span class="field-validation-valid" data-valmsg-for="vm.user.city.name" data-valmsg-replace="true"></span>
                 </div>
             </div>
             <div class="form-group">

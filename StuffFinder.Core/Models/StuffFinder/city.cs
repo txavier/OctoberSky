@@ -12,6 +12,7 @@ namespace StuffFinder.Core.Models
         public city()
         {
             locations = new HashSet<location>();
+            users = new HashSet<user>();
         }
 
         public int cityId { get; set; }
@@ -25,5 +26,7 @@ namespace StuffFinder.Core.Models
         public double longitude { get; set; }
 
         public virtual ICollection<location> locations { get; set; }
+
+        public virtual ICollection<user> users { get; set; }
     }
 }

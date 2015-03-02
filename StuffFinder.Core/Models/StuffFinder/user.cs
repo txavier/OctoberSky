@@ -9,10 +9,6 @@ namespace StuffFinder.Core.Models
     [Table("user")]
     public partial class user
     {
-        public user()
-        {
-        }
-
         public int userId { get; set; }
 
         [Required]
@@ -24,13 +20,13 @@ namespace StuffFinder.Core.Models
 
         public bool? isStore { get; set; }
 
-        public bool? isAdmin { get; set; }
-
         public int? nationalityId { get; set; }
 
-        public int? locationId { get; set; }
+        public int? cityId { get; set; }
 
-        public virtual location location { get; set; }
+        public bool? isAdmin { get; set; }
+
+        public virtual city city { get; set; }
 
         public virtual nationality nationality { get; set; }
     }

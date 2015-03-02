@@ -7,6 +7,7 @@ using StuffFinder.Core.Models.ViewModels;
 using StuffFinder.Core.Objects;
 using System.Collections.Generic;
 using System.Linq;
+using Omu.ValueInjecter;
 
 namespace StuffFinder.Core.Services
 {
@@ -59,7 +60,7 @@ namespace StuffFinder.Core.Services
             // too.
             if (user.userId != 0)
             {
-                user.location = null;
+                user.city = null;
                 user.nationality = null;
             }
 
@@ -86,29 +87,29 @@ namespace StuffFinder.Core.Services
             return usersToAdd;
         }
 
-        public IEnumerable<UserViewModel> ToUserViewModels(IEnumerable<user> users)
-        {
-            var result = users.Select(i => ToUserViewModel(i));
+        //public IEnumerable<UserViewModel> ToUserViewModels(IEnumerable<user> users)
+        //{
+        //    var result = users.Select(i => ToUserViewModel(i));
 
-            return result;
-        }
+        //    return result;
+        //}
 
-        public UserViewModel ToUserViewModel(user user)
-        {
-            var result = new UserViewModel()
-            {
-                userId = user.userId,
-                email = user.email,
-                isAdmin = user.isAdmin,
-                isStore = user.isStore,
-                locationDisplayLabel = user.location != null ? user.location.locationName + ", " + user.location.formattedAddress : null,
-                locationId = user.locationId,
-                nationalityId = user.nationalityId,
-                nationalityName = user.nationality != null ? user.nationality.name : null,
-                userName = user.userName
-            };
+        //public UserViewModel ToUserViewModel(user user)
+        //{
+        //    var result = (new UserViewModel()
+        //    {
+        //        //userId = user.userId,
+        //        //email = user.email,
+        //        //isAdmin = user.isAdmin,
+        //        //isStore = user.isStore,
+        //        //locationDisplayLabel = user.location != null ? user.location.locationName + ", " + user.location.formattedAddress : null,
+        //        //locationId = user.locationId,
+        //        //nationalityId = user.nationalityId,
+        //        //nationalityName = user.nationality != null ? user.nationality.name : null,
+        //        //userName = user.userName,
+        //    }).InjectFrom(user);
 
-            return result;
-        }
+        //    return result;
+        //}
     }
 }

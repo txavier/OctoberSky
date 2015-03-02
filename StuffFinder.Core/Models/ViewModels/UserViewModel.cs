@@ -25,5 +25,6 @@ namespace StuffFinder.Core.Models.ViewModels
         public int? locationId { get; set; }
 
         public string locationDisplayLabel { get; set; }
+
     }
 }
