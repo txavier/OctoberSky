@@ -11,7 +11,7 @@
         
         vm.thing = {};
         vm.thing.description = null;
-        vm.defaultCoordinates = { latitude: 24.416563, longitude: 54.543546 };
+        vm.defaultCoordinates = { latitude: 24.45875166303192, longitude: 54.36872893652344 };
         vm.map = { center: vm.defaultCoordinates, zoom: 12 };
         vm.options = { scrollwheel: false };
         vm.addOrUpdate = addOrUpdate;
@@ -204,6 +204,10 @@
 
             vm.map.center.latitude = current.split(',')[0];
             vm.map.center.longitude = current.split(',')[1];
+
+            vm.thing.finding.location.latitude = current.split(',')[0];
+            vm.thing.finding.location.longitude = current.split(',')[1];
+
             vm.map.zoom = 12;
         });
 
