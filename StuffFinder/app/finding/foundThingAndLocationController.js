@@ -11,7 +11,7 @@
         
         vm.thing = {};
         vm.thing.description = null;
-        vm.thing.findings = [{ location: null, date: null, price: null, upcCode: null }];
+        //vm.thing.findings = [{ location: {}, date: null, price: null, upcCode: null }];
         vm.map = { center: { latitude: 24.416563, longitude: 54.543546 }, zoom: 12 };
         vm.options = { scrollwheel: false };
         vm.addOrUpdate = addOrUpdate;
@@ -24,6 +24,7 @@
         vm.datepickerDateOptions = { formatYear: 'yy', startingDay: 1 };
         vm.clear = datepickerClear;
         vm.locations = [];
+        vm.thing.finding = { location: { locationName: '' }, date: null, price: null, upcCode: null };
 
         // Scope variables have to be accessible for the watch statements.
         $scope.coordsUpdates = 0;
@@ -107,7 +108,7 @@
             // If this thing already has a username do not save over it.
             vm.thing.userName = vm.thing.userName ? vm.thing.userName : authService.authentication.userName;
 
-            vm.thing.findings[0].userName = authService.authentication.userName;
+            vm.thing.finding.userName = authService.authentication.userName;
 
             vm.thing.postedDate = vm.thing.postedDate ? vm.thing.postedDate : new Date();
 
@@ -132,8 +133,8 @@
             $scope.marker = {
                 id: 0,
                 coords: {
-                    latitude: 24.416563,
-                    longitude: 54.543546
+                    latitude: vm.thing.finding.location.latitude ? vm.thing.finding.location.latitude : 24.416563,
+                    longitude: vm.thing.finding.location.latitude ? vm.thing.finding.location.longitude : 54.543546
                 },
                 options: { draggable: true },
                 events: {
@@ -147,13 +148,13 @@
                         $http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + lon + '&sensor=false&key=AIzaSyBPUGy5syJHUaDeR_E_FTwgOO4Th8vm63Y')
                         .success(function (response) {
                             if (response.status === "ZERO_RESULTS") {
-                                vm.thing.findings[0].location.latitude = lat;
-                                vm.thing.findings[0].location.longitude = lon;
+                                vm.thing.finding.location.latitude = lat;
+                                vm.thing.finding.location.longitude = lon;
                             }
                             else {
-                                vm.thing.findings[0].location.formattedAddress = response.results[0].formatted_address;
-                                vm.thing.findings[0].location.latitude = lat;
-                                vm.thing.findings[0].location.longitude = lon;
+                                vm.thing.finding.location.formattedAddress = response.results[0].formatted_address;
+                                vm.thing.finding.location.latitude = lat;
+                                vm.thing.finding.location.longitude = lon;
                             }
                         });
 
@@ -167,6 +168,23 @@
                 }
             };
         }
+
+        // Watch for the finding.location variable being changed. When it does
+        // change the map center longitude and latitude.  Also change the marker.
+        // We would like the center and marker to be together on the screen.
+        $scope.thing = vm.thing;
+        $scope.thing.finding = vm.thing.finding;
+        $scope.thing.finding.location.latitude = vm.thing.finding.location.latitude;
+
+        $scope.$watch('thing.finding.location', function (current, original) {
+            if (_.isEqual(current, original) || !current.latitude) return;
+            $scope.marker.coords.latitude = current.latitude;
+            $scope.marker.coords.longitude = current.longitude;
+
+            vm.map.center.latitude = current.latitude;
+            vm.map.center.longitude = current.longitude;
+            vm.map.zoom = 12;
+        });
 
         $scope.$watchCollection("marker.coords", function (newVal, oldVal) {
             if (_.isEqual(newVal, oldVal))
@@ -194,7 +212,7 @@
         // Begin region datepicker.
         
         function datepickerClear () {
-            vm.thing.findings[0].date = null;
+            vm.thing.finding.date = null;
         };
 
         function datepickerToggleMin() {
