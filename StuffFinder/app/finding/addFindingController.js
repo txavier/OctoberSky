@@ -23,7 +23,7 @@
         vm.datepickerOpened = false;
         vm.datepickerDateOptions = { formatYear: 'yy', startingDay: 1 };
         vm.clear = datepickerClear;
-        //vm.marker = {};
+        vm.cities = [];
 
         // Scope variables have to be accessible for the watch statements.
         $scope.coordsUpdates = 0;
@@ -43,8 +43,17 @@
             datepickerToggleMin();
             datepickerToggleMax();
             initiateDroplet();
+            getCities();
 
             return vm;
+        }
+
+        function getCities() {
+            dataService.getCities().then(function (data) {
+                vm.cities = data;
+
+                return vm.cities;
+            });
         }
 
         function setView() {

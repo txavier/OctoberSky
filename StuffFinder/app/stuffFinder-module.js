@@ -155,6 +155,24 @@ app.config(function ($routeProvider) {
         templateUrl: '/app/templates/add-or-update-city.html'
     });
 
+    $routeProvider.when('/locations', {
+        controller: 'locationsController',
+        controllerAs: 'vm',
+        templateUrl: '/app/templates/locations.html'
+    });
+
+    $routeProvider.when('/location/add', {
+        controller: 'addOrUpdateLocationController',
+        controllerAs: 'vm',
+        templateUrl: '/app/templates/add-or-update-location.html'
+    });
+
+    $routeProvider.when('/location/update/:locationId', {
+        controller: 'addOrUpdateLocationController',
+        controllerAs: 'vm',
+        templateUrl: '/app/templates/add-or-update-location.html'
+    });
+
     $routeProvider.when('/nationalities', {
         controller: 'nationalitiesController',
         controllerAs: 'vm',

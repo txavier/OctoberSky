@@ -25,6 +25,7 @@
         vm.clear = datepickerClear;
         vm.locations = [];
         vm.finding = { location: { locationName: '' }, date: null, price: null, upcCode: null };
+        vm.cities = [];
 
         // Scope variables have to be accessible for the watch statements.
         $scope.coordsUpdates = 0;
@@ -46,8 +47,17 @@
             initiateDroplet();
             getThing();
             getLocations();
+            getCities();
 
             return vm;
+        }
+
+        function getCities() {
+            dataService.getCities().then(function (data) {
+                vm.cities = data;
+
+                return vm.cities;
+            });
         }
 
         function getLocations() {
@@ -127,17 +137,11 @@
         // Begin region map.
 
         function setMapMarker() {
-            if (!vm.finding.location) {
-                vm.finding.location = {};
-                vm.finding.location.latitude = vm.defaultCoordinates.latitude;
-                vm.finding.location.longitude = vm.defaultCoordinates.longitude;
-            }
-
             $scope.marker = {
                 id: 0,
                 coords: {
-                    latitude: vm.finding.location.latitude,
-                    longitude: vm.finding.location.longitude
+                    latitude: vm.finding.location.latitude ? vm.finding.location.latitude : vm.defaultCoordinates.latitude,
+                    longitude: vm.finding.location.latitude ? vm.finding.location.longitude : vm.defaultCoordinates.longitude
                 },
                 options: { draggable: true },
                 events: {
@@ -190,6 +194,22 @@
             if (_.isEqual(newVal, oldVal))
                 return;
             $scope.coordsUpdates++;
+        });
+
+        $scope.finding.location.city = vm.finding.location.city;
+
+        $scope.$watch('finding.location.city', function (current, original) {
+            if (_.isEqual(current, original) || !current) return;
+            $scope.marker.coords.latitude = current.latitude;
+            $scope.marker.coords.longitude = current.longitude;
+
+            vm.map.center.latitude = current.latitude;
+            vm.map.center.longitude = current.longitude;
+
+            vm.finding.location.latitude = current.latitude;
+            vm.finding.location.longitude = current.longitude;
+
+            vm.map.zoom = 12;
         });
 
         $timeout(function () {

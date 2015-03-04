@@ -25,6 +25,7 @@
         vm.slideInterval = 5000;
         var slides = vm.slides = [];
         vm.locations = [];
+        vm.cities = [];
 
         // Scope variables have to be accessible for the watch statements.
         $scope.coordsUpdates = 0;
@@ -45,8 +46,17 @@
             datepickerToggleMax();
             initiateDroplet();
             getLocations();
+            getCities();
 
             return vm;
+        }
+
+        function getCities() {
+            return dataService.getCities().then(function (data) {
+                vm.cities = data;
+
+                return vm.cities;
+            });
         }
 
         function getLocations() {

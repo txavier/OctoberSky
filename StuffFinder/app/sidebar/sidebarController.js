@@ -3,9 +3,9 @@
 
     app.controller('sidebarController', sidebarController);
 
-    sidebarController.$inject = ['$scope', '$location', '$log', 'authService'];
+    sidebarController.$inject = ['$scope', '$location', '$log', 'authService', 'dataService'];
 
-    function sidebarController($scope, $location, $log, authService) {
+    function sidebarController($scope, $location, $log, authService, dataService) {
 
         var vm = this;
 
@@ -15,6 +15,7 @@
         vm.authentication.getSidebarAuthenticationLabel = getSidebarAuthenticationLabel;
         vm.authentication.loginlogout = loginlogout;
         vm.query = '';
+        vm.cities = [];
 
         // Scope references needed for deep watch on service variable.
         // http://stackoverflow.com/questions/12576798/how-to-watch-service-variables
@@ -27,6 +28,7 @@
         function activate() {
             playJumbotronVideo();
             getSidebarAuthenticationLabel();
+            getCities();
         }
 
         $scope.$watch('authService.authentication.userName', function (current, original) {
@@ -36,6 +38,14 @@
             vm.authentication.userName = current;
             getSidebarAuthenticationLabel();
         });
+
+        function getCities() {
+            dataService.getCities().then(function (data) {
+                vm.cities = data;
+
+                return vm.cities;
+            });
+        }
 
         function getSidebarAuthenticationLabel() {
             vm.authentication.sidebarAuthenticationLabel = vm.authentication.userName ? vm.authentication.userName + ' ' + 'Sign Out' : 'Sign In';

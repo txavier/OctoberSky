@@ -1,0 +1,41 @@
+﻿<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Location</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<div class="form-group">
+    <div class="form-horizontal">
+        <form name="form1" role="form">
+            <div>
+                <input type="hidden" name="id" ng-value="vm.location.locationId" />
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="{{ vm.location.name }}">Location Name</label>
+                <div class="col-md-10">
+                    <input class="text-box single-line" data-val="true" data-ng-model="vm.location.name" type="text" value="" autofocus />
+                    <span class="field-validation-valid" data-valmsg-for="vm.location.name" data-valmsg-replace="true"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="{{ vm.location.latitude }}">Latitude</label>
+                <div class="col-md-10">
+                    <input class="text-box single-line" data-val="true" data-ng-model="vm.location.latitude" type="text" value="" autofocus />
+                    <span class="field-validation-valid" data-valmsg-for="vm.location.latitude" data-valmsg-replace="true"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="{{ vm.location.longitude }}">Longitude</label>
+                <div class="col-md-10">
+                    <input class="text-box single-line" data-val="true" data-ng-model="vm.location.longitude" type="text" value="" autofocus />
+                    <span class="field-validation-valid" data-valmsg-for="vm.location.longitude" data-valmsg-replace="true"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" ng-click="vm.addOrUpdateLocation(vm.location)" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

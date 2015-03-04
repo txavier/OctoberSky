@@ -1,0 +1,55 @@
+﻿<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Locations</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+<div class="row col-lg-12">
+    <a href="#/location/add">Add location</a>
+</div>
+<div class="row col-lg-12">
+    <label class="control-label">{{ vm.totalItems }} total locations</label>
+</div>
+<div class="row col-lg-12">
+    <table class="table table-striped">
+        <tr>
+            <th>
+                <a ng-click="vm.setSortOrder('locationName')">Name</a>
+            </th>
+            <th>
+                <a ng-click="vm.setSortOrder('latitude')">Latitude</a>
+            </th>
+            <th>
+                <a ng-click="vm.setSortOrder('longitude')">Longitude</a>
+            </th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        <tr ng-repeat="location in vm.locations">
+            <td>
+                {{ location.locationName }}
+            </td>
+            <td>
+                {{ location.latitude }}
+            </td>
+            <td>
+                {{ location.longitude }}
+            </td>
+            <td>
+                <a class="btn btn-default" href="#/location/update/{{ location.locationId }}">
+                    Edit
+                </a>
+            </td>
+            <td>
+                <a class="btn btn-default" data-ng-click="vm.deleteLocation(location.locationId)">
+                    Delete
+                </a>
+            </td>
+        </tr>
+    </table>
+    <div class="form-group">
+        <pagination total-items="vm.totalItems" items-per-page="vm.itemsPerPage" ng-model="vm.currentPage" ng-change="vm.pageChanged()" max-size="7" boundary-links="true"
+                    rotate="false"></pagination>
+    </div>
+</div>

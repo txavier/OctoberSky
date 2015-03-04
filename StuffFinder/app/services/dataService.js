@@ -18,6 +18,7 @@
         var citiesApiUrl = 'api/citiesApi';
         var nationalitiesApiUrl = 'api/nationalitiesApi';
         var usersApiUrl = 'api/usersApi';
+        var locationsApiUrl = 'api/locationsApi';
 
         var jumbotronVideoUrlSetting = {};
 
@@ -38,6 +39,11 @@
             addOrUpdateFinding: addOrUpdateFinding,
             deleteFinding: deleteFinding,
             getLocations: getLocations,
+            getLocation: getLocation,
+            searchLocations: searchLocations,
+            searchLocationsCount: searchLocationsCount,
+            addOrUpdateLocation: addOrUpdateLocation,
+            deleteLocation: deleteLocation,
             getCategory: getCategory,
             getCategories: getCategories,
             searchCategories: searchCategories,
@@ -620,6 +626,96 @@
 
                 function getLocationsFailed(error) {
                     $log.error('XHR failed for getLocations.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function getLocation(locationId) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.get(serverUrl.resourceServerUrl + locationsApiUrl + '/' + locationId)
+                            .then(getLocationComplete)
+                            .catch(getLocationFailed);
+
+                function getLocationComplete(response) {
+                    return response.data;
+                }
+
+                function getLocationFailed(error) {
+                    $log.error('XHR failed for getLocation.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function searchLocations(searchCriteria) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.post(serverUrl.resourceServerUrl + locationsApiUrl + '/search', searchCriteria)
+                            .then(searchLocationsComplete)
+                            .catch(searchLocationsFailed);
+
+                function searchLocationsComplete(response) {
+                    return response.data;
+                }
+
+                function searchLocationsFailed(error) {
+                    $log.error('XHR failed for searchLocations.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function searchLocationsCount(searchCriteria) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.post(serverUrl.resourceServerUrl + locationsApiUrl + '/search/count', searchCriteria)
+                            .then(searchLocationsCountComplete)
+                            .catch(searchLocationsCountFailed);
+
+                function searchLocationsCountComplete(response) {
+                    return response.data;
+                }
+
+                function searchLocationsCountFailed(error) {
+                    $log.error('XHR failed for searchLocations.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function addOrUpdateLocation(location) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.post(serverUrl.resourceServerUrl + locationsApiUrl, location)
+                            .then(addOrUpdateLocationComplete)
+                            .catch(addOrUpdateLocationFailed);
+
+                function addOrUpdateLocationComplete(response) {
+                    return response.data;
+                }
+
+                function addOrUpdateLocationFailed(error) {
+                    $log.error('XHR failed for saveLocation.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function deleteLocation(locationId) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.delete(serverUrl.resourceServerUrl + locationsApiUrl + '/' + locationId)
+                            .then(deleteLocationComplete)
+                            .catch(deleteLocationFailed);
+
+                function deleteLocationComplete(response) {
+                    return response.data;
+                }
+
+                function deleteLocationFailed(error) {
+                    $log.error('XHR failed for deleteLocation.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
                 }
             });
         }

@@ -26,8 +26,8 @@
         </div>
         <div class="form-group" style="padding:14px;">
             Location City
-            <select class="form-control" data-ng-model="vm.thing.finding.location.city">
-                <option value="{{ city.latitude + ',' + city.longitude }}" ng-repeat="city in vm.cities">{{ city.name }}</option>
+            <select class="form-control" data-ng-model="vm.thing.finding.location.city" 
+                    data-ng-options="city as city.name for city in vm.cities">
             </select>
         </div>
         <div class="form-group" style="padding:14px;">

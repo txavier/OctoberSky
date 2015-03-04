@@ -199,14 +199,14 @@
 
         $scope.$watch('thing.finding.location.city', function (current, original) {
             if (_.isEqual(current, original) || !current) return;
-            $scope.marker.coords.latitude = current.split(',')[0];
-            $scope.marker.coords.longitude = current.split(',')[1];
+            $scope.marker.coords.latitude = current.latitude;
+            $scope.marker.coords.longitude = current.longitude;
 
-            vm.map.center.latitude = current.split(',')[0];
-            vm.map.center.longitude = current.split(',')[1];
+            vm.map.center.latitude = current.latitude;
+            vm.map.center.longitude = current.longitude;
 
-            vm.thing.finding.location.latitude = current.split(',')[0];
-            vm.thing.finding.location.longitude = current.split(',')[1];
+            vm.thing.finding.location.latitude = current.latitude;
+            vm.thing.finding.location.longitude = current.longitude;
 
             vm.map.zoom = 12;
         });

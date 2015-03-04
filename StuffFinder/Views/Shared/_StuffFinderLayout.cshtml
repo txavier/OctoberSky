@@ -48,17 +48,19 @@
                         <hr />
                         <h4>Search</h4>
                         <div class="form-group form-group-sm">
-                            <select class="form-control">
-                                <option value="--">All Cities</option>
-                                <option value="3">Abu Dhabi</option>
-                                <option value="14">Ajman</option>
-                                <option value="39">Al Ain</option>
-                                <option value="2">Dubai</option>
-                                <option value="13">Fujairah</option>
-                                <option value="11">Ras al Khaimah</option>
-                                <option value="12">Sharjah</option>
-                                <option value="15">Umm al Quwain</option>
-                            </select>
+                            @*<select class="form-control">
+                                    <option value="--">All Cities</option>
+                                    <option value="3">Abu Dhabi</option>
+                                    <option value="14">Ajman</option>
+                                    <option value="39">Al Ain</option>
+                                    <option value="2">Dubai</option>
+                                    <option value="13">Fujairah</option>
+                                    <option value="11">Ras al Khaimah</option>
+                                    <option value="12">Sharjah</option>
+                                    <option value="15">Umm al Quwain</option>
+                                </select>*@
+                            <select class="form-control" data-ng-model="vm.thing.finding.location.city"
+                                    data-ng-options="city as city.name for city in vm.cities"></select>
                         </div>
                         <div class="form-group-sm input-group input-group-sm" style="max-width:360px;">
                             <input type="text" class="form-control" placeholder="Search WheresMyStuff.com" data-ng-model="vm.query" name="srch-term" id="srch-term">
