@@ -17,11 +17,13 @@
         vm.slideInterval = 5000;
         var slides = vm.slides = [];
         vm.thing.findings = [];
-        vm.map = { center: { latitude: 24.416563, longitude: 54.543546 }, zoom: 12 };
+        vm.defaultCoordinates = { latitude: 24.416563, longitude: 54.543546 };
+        vm.map = { center: vm.defaultCoordinates, zoom: 12 };
         vm.options = { scrollwheel: false };
         vm.upVote = upVote;
         vm.downVote = downVote;
         vm.sumVotes = sumVotes;
+
 
         // Scope variables have to be accessible for the watch statements.
         $scope.coordsUpdates = 0;
@@ -39,11 +41,6 @@
 
             return vm;
         }
-
-        // Set up facebook components.
-        //$scope.$watch('href', function () {
-        //        FB.XFBML.parse();
-        //})
 
         function setView() {
             return getThing().then(function (data) {
@@ -98,10 +95,10 @@
             $scope.marker = {
                 id: 0,
                 coords: {
-                    latitude: 24.416563,
-                    longitude: 54.543546
+                    latitude: vm.defaultCoordinates.latitude,
+                    longitude: vm.defaultCoordinates.longitude
                 },
-                options: { draggable: true },
+                options: { draggable: false },
                 events: {
                     dragend: function (marker, eventName, args) {
                         $log.log('marker dragend');

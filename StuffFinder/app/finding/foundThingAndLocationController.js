@@ -11,8 +11,8 @@
         
         vm.thing = {};
         vm.thing.description = null;
-        //vm.thing.findings = [{ location: {}, date: null, price: null, upcCode: null }];
-        vm.map = { center: { latitude: 24.416563, longitude: 54.543546 }, zoom: 12 };
+        vm.defaultCoordinates = { latitude: 24.416563, longitude: 54.543546 };
+        vm.map = { center: vm.defaultCoordinates, zoom: 12 };
         vm.options = { scrollwheel: false };
         vm.addOrUpdate = addOrUpdate;
         vm.categories = {};
@@ -127,14 +127,13 @@
             $log.error('Failure notice.' + error.data.message + ": " + error.data.messageDetail);
         }
 
-        // Begin region map.
-
+        // Set the marker on the map to the default location.
         function setMapMarker() {
             $scope.marker = {
                 id: 0,
                 coords: {
-                    latitude: vm.thing.finding.location.latitude ? vm.thing.finding.location.latitude : 24.416563,
-                    longitude: vm.thing.finding.location.latitude ? vm.thing.finding.location.longitude : 54.543546
+                    latitude: vm.thing.finding.location.latitude ? vm.thing.finding.location.latitude : vm.defaultCoordinates.latitude,
+                    longitude: vm.thing.finding.location.latitude ? vm.thing.finding.location.longitude : vm.defaultCoordinates.longitude
                 },
                 options: { draggable: true },
                 events: {

@@ -11,7 +11,8 @@
         
         vm.thing = {};
         vm.thing.description = null;
-        vm.map = { center: { latitude: 24.416563, longitude: 54.543546 }, zoom: 12 };
+        vm.defaultCoordinates = { latitude: 24.416563, longitude: 54.543546 };
+        vm.map = { center: vm.defaultCoordinates, zoom: 12 };
         vm.options = { scrollwheel: false };
         vm.addOrUpdate = addOrUpdate;
         vm.categories = {};
@@ -128,8 +129,8 @@
         function setMapMarker() {
             if (!vm.finding.location) {
                 vm.finding.location = {};
-                vm.finding.location.latitude = 24.416563;
-                vm.finding.location.longitude = 54.543546;
+                vm.finding.location.latitude = vm.defaultCoordinates.latitude;
+                vm.finding.location.longitude = vm.defaultCoordinates.longitude;
             }
 
             $scope.marker = {
