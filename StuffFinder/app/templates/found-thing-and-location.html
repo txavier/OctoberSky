@@ -27,15 +27,7 @@
         <div class="form-group" style="padding:14px;">
             Location City
             <select class="form-control" data-ng-model="vm.thing.finding.location.city">
-                <option value="--">All Cities</option>
-                <option value="3">Abu Dhabi</option>
-                <option value="14">Ajman</option>
-                <option value="39">Al Ain</option>
-                <option value="2">Dubai</option>
-                <option value="13">Fujairah</option>
-                <option value="11">Ras al Khaimah</option>
-                <option value="12">Sharjah</option>
-                <option value="15">Umm al Quwain</option>
+                <option value="{{ city.latitude + ',' + city.longitude }}" ng-repeat="city in vm.cities">{{ city.name }}</option>
             </select>
         </div>
         <div class="form-group" style="padding:14px;">

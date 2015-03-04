@@ -24,7 +24,8 @@
         vm.datepickerDateOptions = { formatYear: 'yy', startingDay: 1 };
         vm.clear = datepickerClear;
         vm.locations = [];
-        vm.thing.finding = { location: { locationName: '' }, date: null, price: null, upcCode: null };
+        vm.thing.finding = { location: { locationName: '', city: { cityId: null } }, date: null, price: null, upcCode: null };
+        vm.cities = [];
 
         // Scope variables have to be accessible for the watch statements.
         $scope.coordsUpdates = 0;
@@ -46,8 +47,17 @@
             initiateDroplet();
             getThing();
             getLocations();
+            getCities();
 
             return vm;
+        }
+
+        function getCities() {
+            dataService.getCities().then(function (data) {
+                vm.cities = data;
+
+                return vm.cities;
+            });
         }
 
         function getLocations() {
@@ -182,6 +192,18 @@
 
             vm.map.center.latitude = current.latitude;
             vm.map.center.longitude = current.longitude;
+            vm.map.zoom = 12;
+        });
+
+        $scope.thing.finding.location.city = vm.thing.finding.location.city;
+
+        $scope.$watch('thing.finding.location.city', function (current, original) {
+            if (_.isEqual(current, original) || !current) return;
+            $scope.marker.coords.latitude = current.split(',')[0];
+            $scope.marker.coords.longitude = current.split(',')[1];
+
+            vm.map.center.latitude = current.split(',')[0];
+            vm.map.center.longitude = current.split(',')[1];
             vm.map.zoom = 12;
         });
 

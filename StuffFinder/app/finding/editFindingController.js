@@ -9,14 +9,12 @@
 
         var vm = this;
 
+        vm.finding = {};
         vm.thing = {};
-        vm.thing.description = null;
-        vm.thing.findings = [{ location: {}, date: null, price: null, upcCode: null }];
-        vm.map = { center: { latitude: 24.416563, longitude: 54.543546 }, zoom: 12 };
+        //vm.map = { center: { latitude: 24.416563, longitude: 54.543546 }, zoom: 12 };
         vm.options = { scrollwheel: false };
         vm.addOrUpdate = addOrUpdate;
         vm.categories = {};
-        vm.thing.categoryId = null;
         vm.datepickerFormats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
         vm.datepickerFormat = vm.datepickerFormats[3];
         vm.datepickerOpen = datepickerOpen;
@@ -26,6 +24,7 @@
         //vm.marker = {};
         vm.slideInterval = 5000;
         var slides = vm.slides = [];
+        vm.locations = [];
 
         // Scope variables have to be accessible for the watch statements.
         $scope.coordsUpdates = 0;
@@ -39,34 +38,42 @@
         activate();
 
         function activate() {
-            setView();
+            getFinding($routeParams.findingId);
             getJumbotronVideoUrlSetting();
             getCategories();
             datepickerToggleMin();
             datepickerToggleMax();
             initiateDroplet();
+            getLocations();
 
             return vm;
         }
 
-        function setView() {
-            dataService.getFinding($routeParams.findingId).then(function (data) {
-                vm.thing.finding = data;
+        function getLocations() {
+            return dataService.getLocations().then(function (data) {
+                vm.locations = data;
 
-                setMapMarker(vm.thing.finding.location.latitude, vm.thing.finding.location.longitude);
+                return vm.locations;
+            });
+        }
 
-                vm.map = { center: { latitude: vm.thing.finding.location.latitude, longitude: vm.thing.finding.location.longitude }, zoom: 12 };
+        function getFinding(findingId) {
+            dataService.getFinding(findingId).then(function (data) {
+                vm.finding = data;
 
-                addSlide(vm.thing.finding.images);
+                vm.map = { center: { latitude: vm.finding.location.latitude, longitude: vm.finding.location.longitude }, zoom: 12 };
 
-                dataService.getThing(vm.thing.finding.thingId).then(function (dataThing) {
-                    vm.thing = dataThing;
+                setMapMarker(vm.finding.location.latitude, vm.finding.location.longitude);
 
-                    vm.finding = data;
+                addSlide(vm.finding.images);
 
-                    return vm.thing;
-                });
+                getThing(vm.finding.thingId);
+            });
+        }
 
+        function getThing(thingId) {
+            dataService.getThing(thingId).then(function (data) {
+                vm.thing = data;
             });
         }
 
@@ -130,19 +137,17 @@
         }
 
         function addOrUpdate() {
-            vm.thing.userName = authService.authentication.userName;
+            vm.finding.userName = authService.authentication.userName;
 
-            vm.thing.findings[0].userName = authService.authentication.userName;
+            vm.finding.date = new Date();
 
-            vm.thing.postedDate = new Date();
-
-            dataService.addOrUpdateThing(vm.thing)
+            dataService.addOrUpdateFinding(vm.finding)
                 .then(function (data) {
-                    vm.interface.setPostData({ id: data.thingId });
+                    vm.interface.setPostData({ id: data.findingId });
 
                     vm.interface.uploadFiles();
 
-                    $location.path('/start');
+                    history.back();
                 })
                 .catch(handleFailure);
         }
@@ -172,13 +177,13 @@
                         $http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + lon + '&sensor=false&key=AIzaSyBPUGy5syJHUaDeR_E_FTwgOO4Th8vm63Y')
                         .success(function (response) {
                             if (response.status === "ZERO_RESULTS") {
-                                vm.thing.finding.location.latitude = lat;
-                                vm.thing.finding.location.longitude = lon;
+                                vm.finding.location.latitude = lat;
+                                vm.finding.location.longitude = lon;
                             }
                             else {
-                                vm.thing.finding.location.formattedAddress = response.results[0].formatted_address;
-                                vm.thing.finding.location.latitude = lat;
-                                vm.thing.finding.location.longitude = lon;
+                                vm.finding.location.formattedAddress = response.results[0].formatted_address;
+                                vm.finding.location.latitude = lat;
+                                vm.finding.location.longitude = lon;
                             }
                         });
 
@@ -192,6 +197,19 @@
                 }
             };
         }
+
+        $scope.finding = vm.finding;
+        $scope.finding.location.latitude = vm.finding.location.latitude;
+
+        $scope.$watch('finding.location', function (current, original) {
+            if (_.isEqual(current, original) || !current.latitude) return;
+            $scope.marker.coords.latitude = current.latitude;
+            $scope.marker.coords.longitude = current.longitude;
+
+            vm.map.center.latitude = current.latitude;
+            vm.map.center.longitude = current.longitude;
+            vm.map.zoom = 12;
+        });
 
         $scope.$watchCollection("marker.coords", function (newVal, oldVal) {
             if (_.isEqual(newVal, oldVal))
