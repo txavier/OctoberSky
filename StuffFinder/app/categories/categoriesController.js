@@ -1,4 +1,6 @@
 ﻿(function () {
+    'use strict';
+
     app.controller('categoriesController', categoriesController);
 
     categoriesController.$inject = ['$scope', '$log', 'dataService'];
@@ -24,7 +26,7 @@
         function activate() {
             setSearchCriteria(vm.currentPage, vm.itemsPerPage, vm.orderBy, vm.searchText);
             searchCategories(vm.searchCriteria);
-            searchCategoriesCount();
+            searchCategoriesCount(vm.searchCriteria);
 
             return vm;
         }
@@ -43,8 +45,6 @@
 
                 return vm.categories;
             });
-
-            searchCategoriesCount(searchCriteria);
         }
 
         function setSearchCriteria(currentPage, itemsPerPage, orderBy, searchText) {

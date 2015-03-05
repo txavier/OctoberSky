@@ -3,15 +3,15 @@
 
     app.controller('searchController', searchController);
 
-    searchController.$inject = ['$scope', '$location', '$log', '$timeout', '$routeParams', 'authService', 'dataService', 'searchService'];
+    searchController.$inject = ['$scope', '$location', '$log', '$timeout', '$routeParams', 'authService', 'dataService'];
 
-    function searchController($scope, $location, $log, $timeout, $routeParams, authService, dataService, searchService) {
+    function searchController($scope, $location, $log, $timeout, $routeParams, authService, dataService) {
 
         var vm = this;
         
         vm.things = [];
         vm.query = $routeParams.query;
-        vm.searchCityId = searchService.getSearchCityId();
+        vm.cityName = $routeParams.cityName;
         vm.jumbotronVideoUrlSetting = {};
         vm.dataProperty = '';
         vm.upVote = upVote;
@@ -19,7 +19,7 @@
         vm.redBoxShadow = 'inset 0 0 1em rgb(180,167,23), 0 0 1em rgb(153,87,32)';
         vm.greenBoxShadow = '0 0 1em rgb(92,135,45)';
         vm.totalItems = 0;
-        vm.itemsPerPage = 10;
+        vm.itemsPerPage = 100;
         vm.currentPage = 1;
         vm.pageChanged = pageChanged;
         vm.setSortOrder = setSortOrder;
@@ -31,22 +31,20 @@
         activate();
 
         function activate() {
-            setSearchCriteria(vm.currentPage, vm.itemsPerPage, vm.orderBy, vm.query, vm.searchCityId);
+            setSearchCriteria(vm.currentPage, vm.itemsPerPage, vm.orderBy, vm.query, vm.cityName);
             searchThings(vm.searchCriteria);
-            searchThingsCount();
+            searchThingsCount(vm.searchCriteria);
             getJumbotronVideoUrlSetting();
 
             return vm;
         }
 
         function searchThings(searchCriteria) {
-            return dataService.searchThings(searchCriteria).then(function (data) {
+            dataService.searchThings(searchCriteria).then(function (data) {
                 vm.things = data;
 
                 return vm.things;
             });
-
-            searchThingsCount(searchCriteria);
         }
 
         function searchThingsCount(searchCriteria) {
@@ -57,13 +55,13 @@
             });
         }
 
-        function setSearchCriteria(currentPage, itemsPerPage, orderBy, searchText, searchCityId) {
+        function setSearchCriteria(currentPage, itemsPerPage, orderBy, searchText, cityName) {
             vm.searchCriteria = {
                 currentPage: currentPage,
                 itemsPerPage: itemsPerPage,
                 orderBy: orderBy,
                 searchText: searchText,
-                searchCity: searchCityId
+                cityName: cityName
             }
 
             return vm.searchCriteria;
@@ -86,6 +84,20 @@
 
                 return vm.jumbotronVideoUrlSetting;
             });
+        }
+
+        function pageChanged() {
+            setSearchCriteria(vm.currentPage, vm.itemsPerPage, vm.orderBy, vm.searchText, vm.cityName);
+
+            searchCities(vm.searchCriteria);
+        }
+
+        function setSortOrder(orderBy) {
+            vm.orderBy = orderBy;
+
+            setSearchCriteria(vm.currentPage, vm.itemsPerPage, vm.orderBy, vm.searchText);
+
+            searchCities(vm.searchCriteria);
         }
 
         function upVote(thing) {

@@ -1,4 +1,6 @@
 ﻿(function () {
+    'use strict';
+
     app.controller('locationsController', locationsController);
 
     locationsController.$inject = ['$scope', '$log', 'dataService'];
@@ -24,7 +26,7 @@
         function activate() {
             setSearchCriteria(vm.currentPage, vm.itemsPerPage, vm.orderBy, vm.searchText);
             searchLocations(vm.searchCriteria);
-            searchLocationsCount();
+            searchLocationsCount(vm.searchCriteria);
 
             return vm;
         }
@@ -35,6 +37,33 @@
             setSearchCriteria(vm.currentPage, vm.itemsPerPage, vm.orderBy, vm.searchText);
 
             searchLocations(vm.searchCriteria);
+        }
+
+        function searchLocations(searchCriteria) {
+            return dataService.searchLocations(searchCriteria).then(function (data) {
+                vm.locations = data;
+
+                return vm.locations;
+            });
+        }
+
+        function searchLocationsCount(searchCriteria) {
+            return dataService.searchLocationsCount(searchCriteria).then(function (data) {
+                vm.totalItems = data || 0;
+
+                return vm.totalItems;
+            });
+        }
+
+        function setSearchCriteria(currentPage, itemsPerPage, orderBy, searchText) {
+            vm.searchCriteria = {
+                currentPage: currentPage,
+                itemsPerPage: itemsPerPage,
+                orderBy: orderBy,
+                searchText: searchText
+            }
+
+            return vm.searchCriteria;
         }
 
         function deleteLocation(locationId) {

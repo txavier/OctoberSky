@@ -1,4 +1,6 @@
 ﻿(function () {
+    'use strict';
+
     app.controller('nationalitiesController', nationalitiesController);
 
     nationalitiesController.$inject = ['$scope', '$log', 'dataService'];
@@ -24,7 +26,7 @@
         function activate() {
             setSearchCriteria(vm.currentPage, vm.itemsPerPage, vm.orderBy, vm.searchText);
             searchNationalities(vm.searchCriteria);
-            searchNationalitiesCount();
+            searchNationalitiesCount(vm.searchCriteria);
 
             return vm;
         }
@@ -43,8 +45,6 @@
 
                 return vm.nationalities;
             });
-
-            searchNationalitiesCount(searchCriteria);
         }
 
         function setSearchCriteria(currentPage, itemsPerPage, orderBy, searchText) {

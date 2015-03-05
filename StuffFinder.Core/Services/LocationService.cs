@@ -60,6 +60,7 @@ namespace StuffFinder.Core.Services
             // too.
             if (location.locationId != 0)
             {
+                location.cityId = location.city == null ? (int?)null : location.city.cityId;
                 location.city = null;
                 location.findings = null;
             }

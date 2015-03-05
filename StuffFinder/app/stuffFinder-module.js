@@ -77,7 +77,19 @@ app.config(function ($routeProvider) {
         templateUrl: '/app/templates/search.html'
     });
 
-    $routeProvider.when("/search/:query", {
+    $routeProvider.when("/search/all/:query", {
+        controller: 'searchController',
+        controllerAs: 'vm',
+        templateUrl: '/app/templates/search.html'
+    });
+
+    $routeProvider.when("/search/:cityName", {
+        controller: 'searchController',
+        controllerAs: 'vm',
+        templateUrl: '/app/templates/search.html'
+    });
+
+    $routeProvider.when("/search/:cityName/:query", {
         controller: 'searchController',
         controllerAs: 'vm',
         templateUrl: '/app/templates/search.html'
@@ -259,3 +271,7 @@ app.config(function ($httpProvider) {
 app.run(['authService', function (authService) {
     authService.fillAuthData();
 }]);
+
+app.filter('escape', function () {
+    return window.encodeURIComponent;
+});

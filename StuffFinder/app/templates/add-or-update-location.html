@@ -13,7 +13,7 @@
             <div class="form-group">
                 <label class="control-label col-md-2" for="{{ vm.location.name }}">Location Name</label>
                 <div class="col-md-10">
-                    <input class="text-box single-line" data-val="true" data-ng-model="vm.location.name" type="text" value="" autofocus />
+                    <input class="text-box single-line" data-val="true" data-ng-model="vm.location.locationName" type="text" value="" autofocus />
                     <span class="field-validation-valid" data-valmsg-for="vm.location.name" data-valmsg-replace="true"></span>
                 </div>
             </div>
@@ -29,6 +29,21 @@
                 <div class="col-md-10">
                     <input class="text-box single-line" data-val="true" data-ng-model="vm.location.longitude" type="text" value="" autofocus />
                     <span class="field-validation-valid" data-valmsg-for="vm.location.longitude" data-valmsg-replace="true"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="{{ vm.location.city }}">City</label>
+                <div class="col-md-10">
+                    <input class="text-box single-line" data-val="true" data-ng-model="vm.location.city" type="text" value=""
+                           typeahead="city as city.name for city in vm.cities  | filter:{name:$viewValue}" autofocus />
+                    <span class="field-validation-valid" data-valmsg-for="vm.location.city" data-valmsg-replace="true"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="{{ vm.location.formattedAddress }}">Address</label>
+                <div class="col-md-10">
+                    <input class="text-box single-line text" data-val="true" data-ng-model="vm.location.formattedAddress" type="text" value="" style="width: 500px" autofocus />
+                    <span class="field-validation-valid" data-valmsg-for="vm.location.formattedAddress" data-valmsg-replace="true"></span>
                 </div>
             </div>
             <div class="form-group">

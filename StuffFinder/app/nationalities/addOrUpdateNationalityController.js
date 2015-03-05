@@ -1,4 +1,6 @@
 ﻿(function () {
+    'use strict';
+
     app.controller('addOrUpdateNationalityController', addOrUpdateNationalityController);
 
     addOrUpdateNationalityController.$inject = ['$scope', '$log', '$routeParams', '$location', 'dataService'];

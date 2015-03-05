@@ -1,4 +1,6 @@
 ﻿(function () {
+    'use strict';
+
     app.controller('citiesController', citiesController);
 
     citiesController.$inject = ['$scope', '$log', 'dataService'];
@@ -24,7 +26,7 @@
         function activate() {
             setSearchCriteria(vm.currentPage, vm.itemsPerPage, vm.orderBy, vm.searchText);
             searchCities(vm.searchCriteria);
-            searchCitiesCount();
+            searchCitiesCount(vm.searchCriteria);
 
             return vm;
         }
@@ -43,8 +45,14 @@
 
                 return vm.cities;
             });
+        }
 
-            searchCitiesCount(searchCriteria);
+        function searchCitiesCount(searchCriteria) {
+            return dataService.searchCitiesCount(searchCriteria).then(function (data) {
+                vm.totalItems = data || 0;
+
+                return vm.totalItems;
+            });
         }
 
         function setSearchCriteria(currentPage, itemsPerPage, orderBy, searchText) {
@@ -63,14 +71,6 @@
                 .then(function (data) {
                     getCities();
                 });
-        }
-
-        function searchCitiesCount(searchCriteria) {
-            return dataService.searchCitiesCount(searchCriteria).then(function (data) {
-                vm.totalItems = data || 0;
-
-                return vm.totalItems;
-            });
         }
 
         function pageChanged() {

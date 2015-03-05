@@ -1,4 +1,6 @@
 ﻿(function () {
+    'use strict';
+
     app.controller('addOrUpdateCategoryController', addOrUpdateCategoryController);
 
     addOrUpdateCategoryController.$inject = ['$scope', '$log', '$routeParams', '$location', 'dataService'];

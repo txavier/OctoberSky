@@ -65,8 +65,8 @@
                         <div class="form-group-sm input-group input-group-sm" style="max-width:360px;">
                             <input type="text" class="form-control" placeholder="Search WheresMyStuff.com" data-ng-model="vm.query" name="srch-term" id="srch-term">
                             <div class="input-group-btn">
-                                <button class="btn btn-default" type="submit" ng-hide="true"><i class="glyphicon glyphicon-search"></i></button>
-                                <a class="btn btn-default" href="#/search/{{ vm.query }}"><i class="glyphicon glyphicon-search"></i></a>
+                                @*<button class="btn btn-default" type="submit" ng-hide="true"><i class="glyphicon glyphicon-search"></i></button>*@
+                                <a class="btn btn-default" href="#/search/{{ vm.searchCity.name || 'all' | escape }}/{{ vm.query || '' | escape }}"><i class="glyphicon glyphicon-search"></i></a>
                             </div>
                         </div>
                         <hr />

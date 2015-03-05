@@ -1,4 +1,6 @@
 ﻿(function () {
+    'use strict';
+
     app.controller('addOrUpdateCityController', addOrUpdateCityController);
 
     addOrUpdateCityController.$inject = ['$scope', '$log', '$routeParams', '$location', 'dataService'];

@@ -18,10 +18,16 @@
                 <a ng-click="vm.setSortOrder('locationName')">Name</a>
             </th>
             <th>
+                <a ng-click="vm.setSortOrder('formattedAddress')">Address</a>
+            </th>
+            <th>
                 <a ng-click="vm.setSortOrder('latitude')">Latitude</a>
             </th>
             <th>
                 <a ng-click="vm.setSortOrder('longitude')">Longitude</a>
+            </th>
+            <th>
+                <a ng-click="vm.setSortOrder('city.name')">City</a>
             </th>
             <th>Edit</th>
             <th>Delete</th>
@@ -31,10 +37,16 @@
                 {{ location.locationName }}
             </td>
             <td>
+                {{ location.formattedAddress }}
+            </td>
+            <td>
                 {{ location.latitude }}
             </td>
             <td>
                 {{ location.longitude }}
+            </td>
+            <td>
+                {{ location.city.name }}
             </td>
             <td>
                 <a class="btn btn-default" href="#/location/update/{{ location.locationId }}">

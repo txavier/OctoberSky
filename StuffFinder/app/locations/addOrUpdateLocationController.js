@@ -1,4 +1,6 @@
 ﻿(function () {
+    'use strict';
+
     app.controller('addOrUpdateLocationController', addOrUpdateLocationController);
 
     addOrUpdateLocationController.$inject = ['$scope', '$log', '$routeParams', '$location', 'dataService'];
@@ -9,13 +11,23 @@
         vm.locations = [];
         vm.location = {};
         vm.addOrUpdateLocation = addOrUpdateLocation;
+        vm.cities = [];
 
         activate();
 
         function activate() {
             getLocation($routeParams.locationId);
+            getCities();
 
             return vm;
+        }
+
+        function getCities() {
+            dataService.getCities().then(function (data) {
+                vm.cities = data;
+
+                return vm.cities;
+            });
         }
 
         function getLocation(locationId) {

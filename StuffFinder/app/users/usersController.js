@@ -1,4 +1,6 @@
 ﻿(function () {
+    'use strict';
+
     app.controller('usersController', usersController);
 
     usersController.$inject = ['$scope', '$log', 'dataService'];
@@ -25,7 +27,7 @@
         function activate() {
             setSearchCriteria(vm.currentPage, vm.itemsPerPage, vm.orderBy, vm.searchText);
             searchUsers(vm.searchCriteria);
-            searchUsersCount();
+            searchUsersCount(vm.searchCriteria);
 
             return vm;
         }
@@ -50,8 +52,6 @@
 
                 return vm.users;
             });
-
-            searchUsersCount(searchCriteria);
         }
 
         function setSearchCriteria(currentPage, itemsPerPage, orderBy, searchText) {

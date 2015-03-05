@@ -249,7 +249,6 @@
     <Content Include="app\finding\foundThingAndLocationController.js" />
     <Content Include="app\nationalities\addOrUpdateNationalityController.js" />
     <Content Include="app\nationalities\nationalitiesController.js" />
-    <Content Include="app\services\searchService.js" />
     <Content Include="app\services\votesService.js" />
     <Content Include="app\templates\add-finding.html" />
     <Content Include="app\templates\add-or-update-location.html" />

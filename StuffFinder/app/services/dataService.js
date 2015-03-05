@@ -19,6 +19,7 @@
         var nationalitiesApiUrl = 'api/nationalitiesApi';
         var usersApiUrl = 'api/usersApi';
         var locationsApiUrl = 'api/locationsApi';
+        var thingsApiUrl = 'api/thingsApi';
 
         var jumbotronVideoUrlSetting = {};
 
@@ -630,25 +631,6 @@
             });
         }
 
-        //function searchThings(query) {
-        //    return getServerUrl().then(function (resource) {
-        //        serverUrl = resource;
-        //        query = query || '';
-
-        //        return $http.get(serverUrl.resourceServerUrl + 'api/thingsApi' + '/searchThings/' + query)
-        //                    .then(searchThingsComplete)
-        //                    .catch(searchThingsFailed);
-
-        //        function searchThingsComplete(response) {
-        //            return response.data;
-        //        }
-
-        //        function searchThingsFailed(error) {
-        //            $log.error('XHR Failed for searchThings.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
-        //        }
-        //    });
-        //}
-
         function getLocations() {
             return getServerUrl().then(function (resource) {
                 serverUrl = resource;
@@ -815,7 +797,7 @@
             return getServerUrl().then(function (resource) {
                 serverUrl = resource;
 
-                return $http.get(serverUrl.resourceServerUrl + 'api/thingsApi')
+                return $http.get(serverUrl.resourceServerUrl + thingsApiUrl)
                             .then(getThingsComplete)
                             .catch(getThingsFailed);
 
@@ -833,7 +815,7 @@
             return getServerUrl().then(function (resource) {
                 serverUrl = resource;
 
-                return $http.get(serverUrl.resourceServerUrl + 'api/thingsApi' + '/' + thingId)
+                return $http.get(serverUrl.resourceServerUrl + thingsApiUrl + '/' + thingId)
                             .then(getThingComplete)
                             .catch(getThingFailed);
 
@@ -850,7 +832,7 @@
         function getFoundThings() {
             return getServerUrl().then(function (resource) {
                 serverUrl = resource;
-                return $http.get(serverUrl.resourceServerUrl + 'api/thingsApi' + '/getFoundThings')
+                return $http.get(serverUrl.resourceServerUrl + thingsApiUrl + '/getFoundThings')
                             .then(getFoundThingsComplete)
                             .catch(getFoundThingsFailed);
 
@@ -867,7 +849,7 @@
         function getMostMe2Things() {
             return getServerUrl().then(function (resource) {
                 serverUrl = resource;
-                return $http.get(serverUrl.resourceServerUrl + 'api/thingsApi' + '/getMostMe2Things')
+                return $http.get(serverUrl.resourceServerUrl + thingsApiUrl + '/getMostMe2Things')
                             .then(getMostMe2ThingsComplete)
                             .catch(getMostMe2ThingsFailed);
 
@@ -885,7 +867,7 @@
             return getServerUrl().then(function (resource) {
                 serverUrl = resource;
 
-                return $http.post(serverUrl.resourceServerUrl + 'api/thingsApi', thing)
+                return $http.post(serverUrl.resourceServerUrl + thingsApiUrl, thing)
                     .then(saveThingComplete)
                     .catch(saveThingFailed);
 
@@ -903,7 +885,7 @@
             return getServerUrl().then(function (resource) {
                 serverUrl = resource;
 
-                return $http.delete(serverUrl.resourceServerUrl + 'api/thingsApi' + '/' + thingId)
+                return $http.delete(serverUrl.resourceServerUrl + thingsApiUrl + '/' + thingId)
                     .then(deleteThingComplete)
                     .catch(deleteThingFailed);
 

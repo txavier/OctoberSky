@@ -3,9 +3,9 @@
 
     app.controller('sidebarController', sidebarController);
 
-    sidebarController.$inject = ['$scope', '$location', '$log', 'authService', 'dataService', 'searchService'];
+    sidebarController.$inject = ['$scope', '$location', '$log', 'authService', 'dataService'];
 
-    function sidebarController($scope, $location, $log, authService, dataService, searchService) {
+    function sidebarController($scope, $location, $log, authService, dataService) {
         var vm = this;
 
         vm.authentication = {};
@@ -32,12 +32,6 @@
             getSidebarAuthenticationLabel();
             getCities();
         }
-
-        $scope.$watch('searchCity', function (current, original) {
-            if (current == original) return;
-
-            searchService.setSearchCityId(current.cityId);
-        });
 
         $scope.$watch('authService.authentication.userName', function (current, original) {
             $log.info('authService.authentication.userName was %s', original);

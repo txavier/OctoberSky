@@ -1,4 +1,6 @@
 ﻿(function () {
+    'use strict';
+
     app.controller('addOrUpdateUserController', addOrUpdateUserController);
 
     addOrUpdateUserController.$inject = ['$scope', '$log', '$routeParams', '$location', 'dataService'];
