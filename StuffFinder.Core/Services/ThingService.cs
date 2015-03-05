@@ -137,7 +137,7 @@ namespace StuffFinder.Core.Services
 
                 thing.images = null;
             }
-            else if (false)
+            else
             {
                 // If this is an add operation send an email.
                 _emailService.SendEmail("theox", new List<string>() { "theox@gmail.com" }, null, "test", "test message",
