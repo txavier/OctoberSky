@@ -59,7 +59,7 @@
             vote.thingId = thing.thingId;
 
             return dataService.upVote(vote).then(function (data) {
-                searchThings();
+                getMostMe2Things();
             });
         }
 
@@ -70,7 +70,7 @@
             vote.thingId = thing.thingId;
 
             return dataService.downVote(vote).then(function (data) {
-                searchThings();
+                getMostMe2Things();
             });
         }
     }

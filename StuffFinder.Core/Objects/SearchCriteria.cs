@@ -15,5 +15,7 @@ namespace StuffFinder.Core.Objects
         public string searchText { get; set; }
 
         public string orderBy { get; set; }
+
+        public int searchCityId { get; set; }
     }
 }

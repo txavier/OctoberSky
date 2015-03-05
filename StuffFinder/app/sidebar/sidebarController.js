@@ -3,10 +3,9 @@
 
     app.controller('sidebarController', sidebarController);
 
-    sidebarController.$inject = ['$scope', '$location', '$log', 'authService', 'dataService'];
+    sidebarController.$inject = ['$scope', '$location', '$log', 'authService', 'dataService', 'searchService'];
 
-    function sidebarController($scope, $location, $log, authService, dataService) {
-
+    function sidebarController($scope, $location, $log, authService, dataService, searchService) {
         var vm = this;
 
         vm.authentication = {};
@@ -16,12 +15,15 @@
         vm.authentication.loginlogout = loginlogout;
         vm.query = '';
         vm.cities = [];
+        vm.searchCity = null;
 
         // Scope references needed for deep watch on service variable.
         // http://stackoverflow.com/questions/12576798/how-to-watch-service-variables
         $scope.authService = authService;
         $scope.authService.authentication = authService.authentication;
         $scope.authService.authentication.userName = authService.authentication.userName;
+
+        $scope.searchCity = vm.searchCity;
 
         activate();
 
@@ -30,6 +32,12 @@
             getSidebarAuthenticationLabel();
             getCities();
         }
+
+        $scope.$watch('searchCity', function (current, original) {
+            if (current == original) return;
+
+            searchService.setSearchCityId(current.cityId);
+        });
 
         $scope.$watch('authService.authentication.userName', function (current, original) {
             $log.info('authService.authentication.userName was %s', original);
@@ -57,7 +65,6 @@
         // If the person is logged out then this method will take them to
         // the log in page.
         function loginlogout() {
-
             // If the is auth is false then we want to login now.
             if (authService.authentication.isAuth) {
                 authService.logOut();
@@ -70,11 +77,8 @@
         // When the page is ready this plays the youtube video.
         function playJumbotronVideo() {
             $(document).ready(function () {
-
                 $(".player").mb_YTPlayer();
-
             });
         }
-
     }
 })();

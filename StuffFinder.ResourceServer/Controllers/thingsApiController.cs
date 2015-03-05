@@ -4,6 +4,7 @@ using Newtonsoft.Json.Linq;
 using StuffFinder.Core.Interfaces;
 using StuffFinder.Core.Models;
 using StuffFinder.Core.Models.ViewModels;
+using StuffFinder.Core.Objects;
 using StuffFinder.ResourceServer.DependencyResolution;
 using StuffFinder.ResourceServer.Filters;
 using System;
@@ -67,20 +68,40 @@ namespace StuffFinder.ResourceServer.Controllers
             return Ok(result);
         }
 
-        [Route("SearchThings")]
-        [HttpGet]
-        public IHttpActionResult SearchThings()
+        //[Route("SearchThings")]
+        //[HttpGet]
+        //public IHttpActionResult SearchThings()
+        //{
+        //    var result = _thingService.ToViewModels(_thingService.SearchThings(null));
+
+        //    return Ok(result);
+        //}
+
+        //[Route("SearchThings/{query}")]
+        //[HttpGet]
+        //public IHttpActionResult SearchThings(string query)
+        //{
+        //    var result = _thingService.ToViewModels(_thingService.SearchThings(query));
+
+        //    return Ok(result);
+        //}
+
+        [Route("search")]
+        [HttpPost]
+        // GET: api/locationApi/5
+        public IHttpActionResult Search(SearchCriteria searchCriteria)
         {
-            var result = _thingService.ToViewModels(_thingService.SearchThings(null));
+            var result = _thingService.ToViewModels(_thingService.Search(searchCriteria));
 
             return Ok(result);
         }
 
-        [Route("SearchThings/{query}")]
-        [HttpGet]
-        public IHttpActionResult SearchThings(string query)
+        [Route("search/count")]
+        [HttpPost]
+        // GET: api/locationApi/5
+        public IHttpActionResult SearchCount(SearchCriteria searchCriteria)
         {
-            var result = _thingService.ToViewModels(_thingService.SearchThings(query));
+            var result = _thingService.SearchCount(searchCriteria);
 
             return Ok(result);
         }

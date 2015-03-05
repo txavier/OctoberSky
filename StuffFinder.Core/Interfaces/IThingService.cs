@@ -8,12 +8,14 @@ namespace StuffFinder.Core.Interfaces
 
         System.Collections.Generic.IEnumerable<StuffFinder.Core.Models.thing> GetFoundThings();
 
-        System.Collections.Generic.IEnumerable<StuffFinder.Core.Models.thing> SearchThings(string query);
-
         System.Collections.Generic.IEnumerable<StuffFinder.Core.Models.ThingViewModel> ToViewModels(System.Collections.Generic.IEnumerable<StuffFinder.Core.Models.thing> things);
 
         StuffFinder.Core.Models.thing AddOrUpdate(StuffFinder.Core.Models.thing thing);
 
         StuffFinder.Core.Models.ThingViewModel ToViewModel(StuffFinder.Core.Models.thing thing);
+
+        System.Collections.Generic.IEnumerable<Models.thing> Search(Objects.SearchCriteria searchCriteria);
+
+        int SearchCount(Objects.SearchCriteria searchCriteria);
     }
 }

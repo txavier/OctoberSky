@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Omu.ValueInjecter;
 using XavierEnterpriseLibrary.Core.Interfaces;
+using StuffFinder.Core.Objects;
 
 namespace StuffFinder.Core.Services
 {
@@ -41,6 +42,54 @@ namespace StuffFinder.Core.Services
         public IEnumerable<thing> GetFoundThings()
         {
             var result = Get(filter: i => i.findings.Any());
+
+            return result;
+        }
+
+        public IEnumerable<thing> Search(SearchCriteria searchCriteria)
+        {
+            var queryLowered = string.IsNullOrEmpty(searchCriteria.searchText) ? null : searchCriteria.searchText.ToLower();
+
+            var result = queryLowered == null ?
+               Get()
+               : Get(
+               filter: i => queryLowered == null ? true
+                   : i.findings.Any(j => j.location.formattedAddress.ToLower().Contains(queryLowered))
+                || i.category.name.ToLower().Contains(queryLowered)
+                || i.description.ToLower().Contains(queryLowered)
+                || i.name.ToLower().Contains(queryLowered)
+                || i.upcCode.ToLower().Contains(queryLowered)
+                || i.userName.ToLower().Contains(queryLowered)
+                || queryLowered.ToLower().Contains(i.name)
+                || queryLowered.ToLower().Contains(i.upcCode)
+                || queryLowered.ToLower().Contains(i.userName),
+               orderBy: j =>
+                   (searchCriteria.orderBy == "locationName" ? j.OrderBy(k => k.name)
+                   : (searchCriteria.orderBy == "city.name" ? j.OrderBy(k => k.category)
+                   : j.OrderBy(k => k.name))),
+               skip: ((searchCriteria.currentPage - 1) ?? 1) * (searchCriteria.itemsPerPage ?? int.MaxValue),
+               take: (searchCriteria.itemsPerPage ?? int.MaxValue));
+
+            return result;
+        }
+
+        public int SearchCount(SearchCriteria searchCriteria)
+        {
+            var queryLowered = string.IsNullOrEmpty(searchCriteria.searchText) ? null : searchCriteria.searchText.ToLower();
+
+            var result = searchCriteria == null ?
+                GetCount()
+                : GetCount(
+                i => queryLowered == null ? true
+                   : i.findings.Any(j => j.location.formattedAddress.ToLower().Contains(queryLowered))
+                || i.category.name.ToLower().Contains(queryLowered)
+                || i.description.ToLower().Contains(queryLowered)
+                || i.name.ToLower().Contains(queryLowered)
+                || i.upcCode.ToLower().Contains(queryLowered)
+                || i.userName.ToLower().Contains(queryLowered)
+                || queryLowered.ToLower().Contains(i.name)
+                || queryLowered.ToLower().Contains(i.upcCode)
+                || queryLowered.ToLower().Contains(i.userName));
 
             return result;
         }

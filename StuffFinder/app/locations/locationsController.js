@@ -37,40 +37,11 @@
             searchLocations(vm.searchCriteria);
         }
 
-        function searchLocations(searchCriteria) {
-            return dataService.searchLocations(searchCriteria).then(function (data) {
-                vm.locations = data;
-
-                return vm.locations;
-            });
-
-            searchLocationsCount(searchCriteria);
-        }
-
-        function setSearchCriteria(currentPage, itemsPerPage, orderBy, searchText) {
-            vm.searchCriteria = {
-                currentPage: currentPage,
-                itemsPerPage: itemsPerPage,
-                orderBy: orderBy,
-                searchText: searchText
-            }
-
-            return vm.searchCriteria;
-        }
-
         function deleteLocation(locationId) {
             return dataService.deleteOrganization(organizationId)
                 .then(function (data) {
                     getLocations();
                 });
-        }
-
-        function searchLocationsCount(searchCriteria) {
-            return dataService.searchLocationsCount(searchCriteria).then(function (data) {
-                vm.totalItems = data || 0;
-
-                return vm.totalItems;
-            });
         }
 
         function pageChanged() {

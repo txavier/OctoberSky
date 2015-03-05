@@ -31,6 +31,7 @@
             getMostMe2Things: getMostMe2Things,
             getFoundThings: getFoundThings,
             searchThings: searchThings,
+            searchThingsCount: searchThingsCount,
             deleteThing: deleteThing,
             getJumbotronVideoUrlSetting: getJumbotronVideoUrlSetting,
             upVote: upVote,
@@ -593,12 +594,11 @@
             });
         }
 
-        function searchThings(query) {
+        function searchThings(searchCriteria) {
             return getServerUrl().then(function (resource) {
                 serverUrl = resource;
-                query = query || '';
 
-                return $http.get(serverUrl.resourceServerUrl + 'api/thingsApi' + '/searchThings/' + query)
+                return $http.post(serverUrl.resourceServerUrl + thingsApiUrl + '/search', searchCriteria)
                             .then(searchThingsComplete)
                             .catch(searchThingsFailed);
 
@@ -607,10 +607,47 @@
                 }
 
                 function searchThingsFailed(error) {
-                    $log.error('XHR Failed for searchThings.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                    $log.error('XHR failed for searchThings.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
                 }
             });
         }
+
+        function searchThingsCount(searchCriteria) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.post(serverUrl.resourceServerUrl + thingsApiUrl + '/search/count', searchCriteria)
+                            .then(searchThingsCountComplete)
+                            .catch(searchThingsCountFailed);
+
+                function searchThingsCountComplete(response) {
+                    return response.data;
+                }
+
+                function searchThingsCountFailed(error) {
+                    $log.error('XHR failed for searchThings.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        //function searchThings(query) {
+        //    return getServerUrl().then(function (resource) {
+        //        serverUrl = resource;
+        //        query = query || '';
+
+        //        return $http.get(serverUrl.resourceServerUrl + 'api/thingsApi' + '/searchThings/' + query)
+        //                    .then(searchThingsComplete)
+        //                    .catch(searchThingsFailed);
+
+        //        function searchThingsComplete(response) {
+        //            return response.data;
+        //        }
+
+        //        function searchThingsFailed(error) {
+        //            $log.error('XHR Failed for searchThings.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+        //        }
+        //    });
+        //}
 
         function getLocations() {
             return getServerUrl().then(function (resource) {
