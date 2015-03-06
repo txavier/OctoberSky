@@ -17,5 +17,9 @@ namespace StuffFinder.Core.Interfaces
         System.Collections.Generic.IEnumerable<Models.thing> Search(Objects.SearchCriteria searchCriteria);
 
         int SearchCount(Objects.SearchCriteria searchCriteria);
+
+        string CreateNewThingEmailMessage(StuffFinder.Core.Models.thing thing);
+
+        void SendNewItemEmailNotification(StuffFinder.Core.Models.thing thing);
     }
 }

@@ -87,29 +87,13 @@ namespace StuffFinder.Core.Services
             return usersToAdd;
         }
 
-        //public IEnumerable<UserViewModel> ToUserViewModels(IEnumerable<user> users)
-        //{
-        //    var result = users.Select(i => ToUserViewModel(i));
+        public List<string> GetAdminGroupEmailList()
+        {
+            var result = Get(filter: i => i.isAdmin ?? false)
+                .Where(i => !string.IsNullOrEmpty(i.email))
+                .Select(i => i.email).ToList();
 
-        //    return result;
-        //}
-
-        //public UserViewModel ToUserViewModel(user user)
-        //{
-        //    var result = (new UserViewModel()
-        //    {
-        //        //userId = user.userId,
-        //        //email = user.email,
-        //        //isAdmin = user.isAdmin,
-        //        //isStore = user.isStore,
-        //        //locationDisplayLabel = user.location != null ? user.location.locationName + ", " + user.location.formattedAddress : null,
-        //        //locationId = user.locationId,
-        //        //nationalityId = user.nationalityId,
-        //        //nationalityName = user.nationality != null ? user.nationality.name : null,
-        //        //userName = user.userName,
-        //    }).InjectFrom(user);
-
-        //    return result;
-        //}
+            return result;
+        }
     }
 }

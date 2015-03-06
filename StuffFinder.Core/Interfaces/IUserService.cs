@@ -9,5 +9,7 @@
         int SearchCount(StuffFinder.Core.Objects.SearchCriteria searchCriteria);
 
         System.Collections.Generic.IEnumerable<StuffFinder.Core.Models.user> SyncUserTable();
+
+        System.Collections.Generic.List<string> GetAdminGroupEmailList();
     }
 }

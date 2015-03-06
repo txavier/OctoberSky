@@ -7,6 +7,7 @@ using StuffFinder.Core.Objects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using XavierEnterpriseLibrary.Core.Interfaces;
 
 namespace StuffFinder.Core.Services
@@ -15,14 +16,20 @@ namespace StuffFinder.Core.Services
     {
         private readonly IRepository<thing> _thingRepository;
 
-        private readonly IEmailService _emailService;
+        private readonly IUserService _userService;
+        
+        private readonly IStuffFinderEmailService _stuffFinderEmailService;
+        
 
-        public ThingService(IRepository<thing> thingRepository, IEmailService emailService)
+        public ThingService(IRepository<thing> thingRepository, IUserService userService, 
+            IStuffFinderEmailService stuffFinderEmailService)
             : base(thingRepository)
         {
             _thingRepository = thingRepository;
 
-            _emailService = emailService;
+            _userService = userService;
+
+            _stuffFinderEmailService = stuffFinderEmailService;
         }
 
         public IEnumerable<thing> GetMostMe2Things()
@@ -52,7 +59,7 @@ namespace StuffFinder.Core.Services
             var result = Get(
                filter: i =>
                    // Must have this...
-                   (cityNameLowered == null ? true : (i.findings.Any(j => j.location.city.name.ToLower() == cityNameLowered) || !i.findings.Any())) &&
+                   (cityNameLowered == null || cityNameLowered == "all" ? true : (i.findings.Any(j => j.location.city.name.ToLower() == cityNameLowered) || !i.findings.Any())) &&
                    // Have any of these...
                    (queryLowered == null ? true : i.findings.Any(j => j.location.formattedAddress.ToLower().Contains(queryLowered))
                     || i.category.name.ToLower().Contains(queryLowered)
@@ -81,7 +88,7 @@ namespace StuffFinder.Core.Services
 
             var result = GetCount(
                 i => // Must have this...
-                   (cityNameLowered == null ? true : (i.findings.Any(j => j.location.city.name.ToLower() == cityNameLowered) || !i.findings.Any())) &&
+                   (cityNameLowered == null || cityNameLowered == "all" ? true : (i.findings.Any(j => j.location.city.name.ToLower() == cityNameLowered) || !i.findings.Any())) &&
                    // Have any of these...
                    (queryLowered == null ? true : i.findings.Any(j => j.location.formattedAddress.ToLower().Contains(queryLowered))
                     || i.category.name.ToLower().Contains(queryLowered)
@@ -121,6 +128,8 @@ namespace StuffFinder.Core.Services
 
         public thing AddOrUpdate(thing thing)
         {
+            bool newThing = false;
+
             // If this is an update operation then remove child references.
             // This is needed in order for entity framework to provide the
             // vanilla update to just this item without walking down the
@@ -139,14 +148,43 @@ namespace StuffFinder.Core.Services
             }
             else
             {
-                // If this is an add operation send an email.
-                _emailService.SendEmail("theox", new List<string>() { "theox@gmail.com" }, null, "test", "test message",
-                    "http://deltanovember.xaviersoftware.com", "http://deltanovember.xaviersoftware.com/images/logo.png");
+                newThing = true;
             }
 
             thing = base.AddOrUpdate(thing);
 
+            if(newThing)
+            {
+                SendNewItemEmailNotification(thing);
+            }
+
             return thing;
+        }
+
+        public void SendNewItemEmailNotification(thing thing)
+        {
+            var emailMessage = CreateNewThingEmailMessage(thing);
+
+            var adminGroupEmailList = _userService.GetAdminGroupEmailList();
+
+            var subject = "New Item Added To WheresMyStuff.com!";
+
+            _stuffFinderEmailService.SendEmail(emailMessage, adminGroupEmailList, subject);
+        }
+
+        public string CreateNewThingEmailMessage(thing thing)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine("User Name: " + thing.userName);
+
+            sb.AppendLine("Created Item: " +  thing.name);
+
+            sb.AppendLine("Item Category: " + thing.category.name);
+
+            sb.AppendLine("Item Description: " + thing.description);
+
+            return sb.ToString();
         }
 
         public IEnumerable<ThingViewModel> ToViewModels(IEnumerable<thing> things)
