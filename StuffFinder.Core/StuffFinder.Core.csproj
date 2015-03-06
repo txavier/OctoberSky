@@ -84,7 +84,9 @@
     <Compile Include="Models\StuffFinder\finding.cs" />
     <Compile Include="Models\StuffFinder\image.cs" />
     <Compile Include="Models\StuffFinder\location.cs" />
+    <Compile Include="Models\StuffFinder\me2.cs" />
     <Compile Include="Models\StuffFinder\nationality.cs" />
+    <Compile Include="Models\StuffFinder\newsletter.cs" />
     <Compile Include="Models\StuffFinder\setting.cs" />
     <Compile Include="Models\StuffFinder\thing.cs" />
     <Compile Include="Models\StuffFinder\user.cs" />

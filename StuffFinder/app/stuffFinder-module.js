@@ -1,4 +1,5 @@
-﻿var app = angular.module('stuffFinderModule', ['ngRoute', 'LocalStorageModule', 'angular-loading-bar', 'ngResource', 'ui.bootstrap', 'ngDroplet', 'uiGmapgoogle-maps']);
+﻿var app = angular.module('stuffFinderModule', ['ngRoute', 'LocalStorageModule', 'angular-loading-bar',
+    'ngResource', 'ui.bootstrap', 'ngDroplet', 'uiGmapgoogle-maps', 'textAngular']);
 
 app.config(function ($routeProvider) {
 
@@ -219,6 +220,24 @@ app.config(function ($routeProvider) {
         controller: 'addOrUpdateUserController',
         controllerAs: 'vm',
         templateUrl: '/app/templates/add-or-update-user.html'
+    });
+
+    $routeProvider.when('/newsletters', {
+        controller: 'newslettersController',
+        controllerAs: 'vm',
+        templateUrl: '/app/templates/newsletters.html'
+    });
+
+    $routeProvider.when('/newsletter/add', {
+        controller: 'addOrUpdateNewsletterController',
+        controllerAs: 'vm',
+        templateUrl: '/app/templates/add-or-update-newsletter.html'
+    });
+
+    $routeProvider.when('/newsletter/update/:newsletterId', {
+        controller: 'addOrUpdateNewsletterController',
+        controllerAs: 'vm',
+        templateUrl: '/app/templates/add-or-update-newsletter.html'
     });
 
     $routeProvider.otherwise({ redirectTo: "/index" });

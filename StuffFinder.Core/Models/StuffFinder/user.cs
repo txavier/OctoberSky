@@ -26,6 +26,8 @@ namespace StuffFinder.Core.Models
 
         public bool? isAdmin { get; set; }
 
+        public bool? isNewsletterSubscriber { get; set; }
+
         public virtual city city { get; set; }
 
         public virtual nationality nationality { get; set; }

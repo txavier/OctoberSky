@@ -133,6 +133,10 @@
     <Compile Include="Migrations\201503020738180_ChangeLocationToCityInUserTable.Designer.cs">
       <DependentUpon>201503020738180_ChangeLocationToCityInUserTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201503060746004_IsNewsLetterSubscriber.cs" />
+    <Compile Include="Migrations\201503060746004_IsNewsLetterSubscriber.Designer.cs">
+      <DependentUpon>201503060746004_IsNewsLetterSubscriber.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="stuffFinderAuthDbContext.cs" />
@@ -205,6 +209,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201503020738180_ChangeLocationToCityInUserTable.resx">
       <DependentUpon>201503020738180_ChangeLocationToCityInUserTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503060746004_IsNewsLetterSubscriber.resx">
+      <DependentUpon>201503060746004_IsNewsLetterSubscriber.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

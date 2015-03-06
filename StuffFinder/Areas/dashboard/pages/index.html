@@ -25,6 +25,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <link href="../../../Content/textAngular.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <div id="wrapper">
@@ -397,6 +398,18 @@
                                 </li>
                                 <li>
                                     <a href="#/nationality/add">Add Nationality</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-files-o fa-fw"></i> Newsletters<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="#/newsletters">Newsletters</a>
+                                </li>
+                                <li>
+                                    <a href="#/newsletter/add">Add Newsletter</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -1028,6 +1041,10 @@
     <script type="text/javascript" src="/scripts/vendor/ng-droplet/ng-droplet.js"></script>
     <script type="text/javascript" src="/scripts/vendor/progressbar.js/dist/progressbar.js"></script>
     <script src="/scripts/vendor/lodash/lodash.min.js"></script>
+    <!-- Text Angular -->
+    <script src="../../../Scripts/vendor/textAngular/textAngular-rangy.min.js"></script>
+    <script src="../../../Scripts/vendor/textAngular/textAngular-sanitize.min.js"></script>
+    <script src="../../../Scripts/vendor/textAngular/textAngular.min.js"></script>
     <!-- Load app main script -->
     <script src="/app/stuffFinder-module.js"></script>
     <!-- Load services -->
@@ -1067,5 +1084,7 @@
     <script src="/app/nationalities/nationalitiesController.js"></script>
     <script src="/app/locations/locationsController.js"></script>
     <script src="/app/locations/addOrUpdateLocationController.js"></script>
+    <script src="/app/newsletter/addOrUpdateNewsletterController.js"></script>
+    <script src="/app/newsletter/newslettersController.js"></script>
 </body>
 </html>
