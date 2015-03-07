@@ -9,9 +9,9 @@
         var vm = this;
 
         vm.newsletters = [];
-        vm.newsletter = {};
+        vm.newsletter = { newsletterId: 0, messageBody: '' };
         vm.addOrUpdateNewsletter = addOrUpdateNewsletter;
-        vm.htmlVariable = htmlVariable;
+        vm.send = send;
 
         activate();
 
@@ -33,7 +33,6 @@
         }
 
         function addOrUpdateNewsletter(newsletter) {
-            newsletter.messageBody = vm.htmlVariable;
             newsletter.userName = authService.authentication.userName;
             newsletter.dateCreated = new Date();
 
@@ -47,6 +46,11 @@
             if (newsletter.newsletterId == 0) {
                 addOrUpdateNewsletter(newsletter).then(sendNewsletter);
             }
+            else
+            {
+                sendNewsletter();
+            }
+
 
             function sendNewsletter() {
                 return dataService.sendNewsletter(newsletter).then(function () {

@@ -54,17 +54,19 @@ namespace StuffFinder.ResourceServer.Controllers
             return Ok(result);
         }
 
-        // POST: api/newsletterApi
-        public IHttpActionResult Post(newsletter newsletter)
+        [Route("send")]
+        [HttpPost]
+        public IHttpActionResult Send(newsletter newsletter)
         {
-            _newsletterService.AddOrUpdate(newsletter);
+            _newsletterService.Send(newsletter);
 
             return Ok(newsletter);
         }
 
-        public IHttpActionResult Send(newsletter newsletter)
+        // POST: api/newsletterApi
+        public IHttpActionResult Post(newsletter newsletter)
         {
-            _newsletterService.Send(newsletter);
+            _newsletterService.AddOrUpdate(newsletter);
 
             return Ok(newsletter);
         }

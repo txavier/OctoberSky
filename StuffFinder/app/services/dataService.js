@@ -17,6 +17,7 @@
         var categoriesApiUrl = 'api/categoriesApi';
         var citiesApiUrl = 'api/citiesApi';
         var nationalitiesApiUrl = 'api/nationalitiesApi';
+        var newslettersApiUrl = 'api/newslettersApi';
         var usersApiUrl = 'api/usersApi';
         var locationsApiUrl = 'api/locationsApi';
         var thingsApiUrl = 'api/thingsApi';
@@ -73,6 +74,13 @@
             deleteNationality: deleteNationality,
             syncUsers: syncUsers,
             addOrUpdateMe2: addOrUpdateMe2,
+            getNewsletter: getNewsletter,
+            getNewsletters: getNewsletters,
+            searchNewsletters: searchNewsletters,
+            searchNewslettersCount: searchNewslettersCount,
+            addOrUpdateNewsletter: addOrUpdateNewsletter,
+            deleteNewsletter: deleteNewsletter,
+            sendNewsletter: sendNewsletter,
         };
 
         return service;
@@ -541,6 +549,132 @@
 
                 function deleteNationalityFailed(error) {
                     $log.error('XHR failed for deleteNationality.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function getNewsletter(newsletterId) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.get(serverUrl.resourceServerUrl + newslettersApiUrl + '/' + newsletterId)
+                            .then(getNewsletterComplete)
+                            .catch(getNewsletterFailed);
+
+                function getNewsletterComplete(response) {
+                    return response.data;
+                }
+
+                function getNewsletterFailed(error) {
+                    $log.error('XHR failed for getNewsletter.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function sendNewsletter(newsletter) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.post(serverUrl.resourceServerUrl + newslettersApiUrl + '/send', newsletter)
+                            .then(sendNewslettersComplete)
+                            .catch(sendNewslettersFailed);
+
+                function sendNewslettersComplete(response) {
+                    return response.data;
+                }
+
+                function sendNewslettersFailed(error) {
+                    $log.error('XHR failed for getNewsletters.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function getNewsletters() {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.get(serverUrl.resourceServerUrl + newslettersApiUrl)
+                            .then(getNewslettersComplete)
+                            .catch(getNewslettersFailed);
+
+                function getNewslettersComplete(response) {
+                    return response.data;
+                }
+
+                function getNewslettersFailed(error) {
+                    $log.error('XHR failed for getNewsletters.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function searchNewsletters(searchCriteria) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.post(serverUrl.resourceServerUrl + newslettersApiUrl + '/search', searchCriteria)
+                            .then(searchNewslettersComplete)
+                            .catch(searchNewslettersFailed);
+
+                function searchNewslettersComplete(response) {
+                    return response.data;
+                }
+
+                function searchNewslettersFailed(error) {
+                    $log.error('XHR failed for searchNewsletters.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function searchNewslettersCount(searchCriteria) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.post(serverUrl.resourceServerUrl + newslettersApiUrl + '/search/count', searchCriteria)
+                            .then(searchNewslettersCountComplete)
+                            .catch(searchNewslettersCountFailed);
+
+                function searchNewslettersCountComplete(response) {
+                    return response.data;
+                }
+
+                function searchNewslettersCountFailed(error) {
+                    $log.error('XHR failed for searchNewsletters.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function addOrUpdateNewsletter(newsletter) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.post(serverUrl.resourceServerUrl + newslettersApiUrl, newsletter)
+                            .then(addOrUpdateNewsletterComplete)
+                            .catch(addOrUpdateNewsletterFailed);
+
+                function addOrUpdateNewsletterComplete(response) {
+                    return response.data;
+                }
+
+                function addOrUpdateNewsletterFailed(error) {
+                    $log.error('XHR failed for saveNewsletter.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function deleteNewsletter(newsletterId) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.delete(serverUrl.resourceServerUrl + newslettersApiUrl + '/' + newsletterId)
+                            .then(deleteNewsletterComplete)
+                            .catch(deleteNewsletterFailed);
+
+                function deleteNewsletterComplete(response) {
+                    return response.data;
+                }
+
+                function deleteNewsletterFailed(error) {
+                    $log.error('XHR failed for deleteNewsletter.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
                 }
             });
         }

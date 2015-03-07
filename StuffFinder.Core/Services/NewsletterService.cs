@@ -31,12 +31,25 @@ namespace StuffFinder.Core.Services
 
         public IEnumerable<newsletter> Search(Objects.SearchCriteria searchCriteria)
         {
-            throw new NotImplementedException();
+            var result = searchCriteria == null ?
+               Get()
+               : Get(
+               filter: i => searchCriteria.searchText == null ? true : i.messageBody.Contains(searchCriteria.searchText) || searchCriteria.searchText.Contains(i.messageBody),
+               orderBy: j => searchCriteria.orderBy == "dateCreated" ? j.OrderBy(k => k.dateCreated) : j.OrderBy(k => k.dateCreated),
+               skip: ((searchCriteria.currentPage - 1) ?? 1) * (searchCriteria.itemsPerPage ?? int.MaxValue),
+               take: (searchCriteria.itemsPerPage ?? int.MaxValue));
+
+            return result;
         }
 
         public int SearchCount(Objects.SearchCriteria searchCriteria)
         {
-            throw new NotImplementedException();
+            var result = searchCriteria == null ?
+               GetCount()
+               : GetCount(
+               filter: i => searchCriteria.searchText == null ? true : i.messageBody.Contains(searchCriteria.searchText) || searchCriteria.searchText.Contains(i.messageBody));
+
+            return result;
         }
 
         public void Send(newsletter newsletter)
