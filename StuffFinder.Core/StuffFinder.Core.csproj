@@ -106,7 +106,9 @@
     <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Interfaces\ILocationService.cs" />
     <Compile Include="Interfaces\IStuffFinderEmailService.cs" />
+    <Compile Include="Interfaces\IMe2Service.cs" />
     <Compile Include="Services\LocationService.cs" />
+    <Compile Include="Services\Me2Service.cs" />
     <Compile Include="Services\NationalityService.cs" />
     <Compile Include="Services\StuffFinderEmailService.cs" />
     <Compile Include="Services\UserService.cs" />

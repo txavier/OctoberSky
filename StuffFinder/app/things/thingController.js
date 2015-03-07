@@ -3,9 +3,10 @@
 
     app.controller('thingController', thingController);
 
-    thingController.$inject = ['$scope', '$location', '$log', '$timeout', '$routeParams', 'authService', 'dataService', 'votesService'];
+    thingController.$inject = ['$scope', '$location', '$log', '$timeout', '$routeParams', 'authService', 'dataService', 'votesService',
+    'me2Service'];
 
-    function thingController($scope, $location, $log, $timeout, $routeParams, authService, dataService, votesService) {
+    function thingController($scope, $location, $log, $timeout, $routeParams, authService, dataService, votesService, me2Service) {
 
         var vm = this;
 
@@ -23,6 +24,7 @@
         vm.upVote = upVote;
         vm.downVote = downVote;
         vm.sumVotes = sumVotes;
+        vm.me2 = me2;
 
 
         // Scope variables have to be accessible for the watch statements.
@@ -40,6 +42,12 @@
             setView();
 
             return vm;
+        }
+
+        function me2(thingId) {
+            return me2Service.me2(thingId).then(function (data) {
+                vm.thing.me2 = data;
+            });
         }
 
         function setView() {

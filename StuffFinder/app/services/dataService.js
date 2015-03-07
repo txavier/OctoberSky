@@ -20,6 +20,7 @@
         var usersApiUrl = 'api/usersApi';
         var locationsApiUrl = 'api/locationsApi';
         var thingsApiUrl = 'api/thingsApi';
+        var me2ApiUrl = 'api/me2Api';
 
         var jumbotronVideoUrlSetting = {};
 
@@ -70,10 +71,29 @@
             searchNationalitiesCount: searchNationalitiesCount,
             addOrUpdateNationality: addOrUpdateNationality,
             deleteNationality: deleteNationality,
-            syncUsers: syncUsers
+            syncUsers: syncUsers,
+            addOrUpdateMe2: addOrUpdateMe2,
         };
 
         return service;
+
+        function addOrUpdateMe2(me2) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.post(serverUrl.resourceServerUrl + me2ApiUrl, me2)
+                            .then(addOrUpdateMe2Complete)
+                            .catch(addOrUpdateMe2Failed);
+
+                function addOrUpdateMe2Complete(response) {
+                    return response.data;
+                }
+
+                function addOrUpdateMe2Failed(error) {
+                    $log.error('XHR failed for addOrUpdateMe2.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
 
         function getCategory(categoryId) {
             return getServerUrl().then(function (resource) {

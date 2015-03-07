@@ -3,9 +3,9 @@
 
     app.controller('searchController', searchController);
 
-    searchController.$inject = ['$scope', '$location', '$log', '$timeout', '$routeParams', 'authService', 'dataService'];
+    searchController.$inject = ['$scope', '$location', '$log', '$timeout', '$routeParams', 'authService', 'dataService', 'me2Service'];
 
-    function searchController($scope, $location, $log, $timeout, $routeParams, authService, dataService) {
+    function searchController($scope, $location, $log, $timeout, $routeParams, authService, dataService, me2Service) {
 
         var vm = this;
         
@@ -27,6 +27,7 @@
         vm.searchText = null;
         vm.searchCriteria = {};
         vm.searchCriteria.searchText = null;
+        vm.me2 = me2;
 
         activate();
 
@@ -37,6 +38,12 @@
             getJumbotronVideoUrlSetting();
 
             return vm;
+        }
+
+        function me2(thingId) {
+            return me2Service.me2(thingId).then(function (data) {
+                searchThings(vm.searchCriteria);
+            });
         }
 
         function searchThings(searchCriteria) {

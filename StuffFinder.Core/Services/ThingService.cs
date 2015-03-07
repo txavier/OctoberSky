@@ -202,7 +202,7 @@ namespace StuffFinder.Core.Services
             thingViewModel.InjectFrom(thing);
 
             // For additinal properties in the view model fill values.
-            thingViewModel.me2 = thing.votes.Any() ? thing.votes.Sum(m => m.value) : 0;
+            thingViewModel.me2 = thing.me2.Count;
 
             thingViewModel.found = thing.findings.Any();
 

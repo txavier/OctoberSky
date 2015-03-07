@@ -137,6 +137,10 @@
     <Compile Include="Migrations\201503060746004_IsNewsLetterSubscriber.Designer.cs">
       <DependentUpon>201503060746004_IsNewsLetterSubscriber.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201503060830435_AddedNewsletterTableAndMe2Table.cs" />
+    <Compile Include="Migrations\201503060830435_AddedNewsletterTableAndMe2Table.Designer.cs">
+      <DependentUpon>201503060830435_AddedNewsletterTableAndMe2Table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="stuffFinderAuthDbContext.cs" />
@@ -212,6 +216,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201503060746004_IsNewsLetterSubscriber.resx">
       <DependentUpon>201503060746004_IsNewsLetterSubscriber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503060830435_AddedNewsletterTableAndMe2Table.resx">
+      <DependentUpon>201503060830435_AddedNewsletterTableAndMe2Table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

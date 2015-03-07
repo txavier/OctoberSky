@@ -31,22 +31,27 @@
                 <img class="group list-group-image" src="{{ thing.imageUrl }}" alt="" style="height: 300px;" />
             </a>
             <div class="caption">
-                <a href="#/thing/{{ thing.thingId }}">
-                    <h4 class="group inner list-group-item-heading" style=""><b>{{ thing.findings.length == 0 ? ('Wanted: ' + thing.name) : (thing.name + ' has been found!') }}</b></h4>
-                </a>
-                <p class="group inner list-group-item-text">
-                    {{ thing.description }}
-                </p>
                 <div class="row">
-                    <div class="col-xs-12 col-md-6">
+                    <a href="#/thing/{{ thing.thingId }}">
+                        <h4 class="group inner list-group-item-heading" style=""><b>{{ thing.findings.length == 0 ? ('Wanted: ' + thing.name) : (thing.name + ' has been found!') }}</b></h4>
+                    </a>
+                    <p class="group inner list-group-item-text">
+                        {{ thing.description }}
+                    </p>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-12">
                         <p class="lead">
                             {{ thing.findings.length == 0 ? ('Wanted since ' + (thing.postedDate | date: shortDate)) : ('Found ' + (thing.findings[0].date  | date: shortDate)) }}.
                             <!--Me2 {{ thing.me2 }}-->
                         </p>
                     </div>
-                    <div class="col-xs-12 col-md-6">
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-12">
                         <!--<a class="btn btn-success" href="http://www.jquery2dotnet.com">Add to cart</a>-->
                         <a class="btn btn-info btn-group" href="#/found-it/{{ thing.thingId }}" role="button">I found it</a>
+                        <a class="btn btn-info btn-group" data-ng-click="vm.me2(thing.thingId)" role="button">Me 2! {{ thing.me2 > 0 ? '| ' + thing.me2 : '' }}</a>
                     </div>
                 </div>
             </div>
