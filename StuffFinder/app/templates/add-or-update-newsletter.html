@@ -4,4 +4,10 @@
     </div>
     <!-- /.col-lg-12 -->
 </div>
-<text-angular ng-model="htmlVariable"></text-angular>
+<div class="row">
+    <text-angular ng-model="vm.htmlVariable"></text-angular>
+</div>
+<div class="row">
+    <a class="btn" data-ng-click="vm.addOrUpdateNewsLetter(vm.newsletter)">Save</a>
+    <a class="btn" data-ng-click="vm.send(vm.htmlVariable)">Send</a>
+</div>
