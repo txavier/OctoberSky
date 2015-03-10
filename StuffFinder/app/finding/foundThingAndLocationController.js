@@ -187,6 +187,11 @@
 
         $scope.$watch('thing.finding.location', function (current, original) {
             if (_.isEqual(current, original) || !current.latitude) return;
+
+            // Set the drop down to the city of the location from the selected
+            // city from the typeahead textarea.
+            vm.thing.finding.location.city = vm.cities[vm.cities.getIndexBy("name", current.city.name)];
+
             $scope.marker.coords.latitude = current.latitude;
             $scope.marker.coords.longitude = current.longitude;
 
@@ -194,6 +199,14 @@
             vm.map.center.longitude = current.longitude;
             vm.map.zoom = 12;
         });
+
+        Array.prototype.getIndexBy = function (name, value) {
+            for (var i = 0; i < this.length; i++) {
+                if (this[i][name] == value) {
+                    return i;
+                }
+            }
+        }
 
         $scope.thing.finding.location.city = vm.thing.finding.location.city;
 

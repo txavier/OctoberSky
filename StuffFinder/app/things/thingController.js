@@ -95,7 +95,7 @@
 
         function deleteThing() {
             dataService.deleteThing(vm.thing.thingId).then(function (data) {
-                $location.path('/start');
+                history.back();
             });
         }
 

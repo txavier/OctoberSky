@@ -12,7 +12,6 @@
         </div>
     </div>
 </section>
-<p><a class="btn btn-info" href="#/where-is-it" role="button"><i class="glyphicon glyphicon-plus"></i> Looking For Something? Add it here! &raquo;</a></p>
 <div class="well well-sm">
     <strong>{{ vm.totalItems }} Found</strong>
     <div class="btn-group">
@@ -24,6 +23,7 @@
         </a>
     </div>
 </div>
+<p><a class="btn btn-info" href="#/where-is-it" role="button"><i class="glyphicon glyphicon-plus"></i> Looking For Something? Add it here! &raquo;</a></p>
 <div class="row list-group">
     <div class="item col-xs-4 col-lg-4" data-ng-repeat="thing in vm.things">
         <div class="thumbnail" style="min-height:500px;max-height:500px;min-width:200px" data-ng-style="{ 'box-shadow': thing.findings.length == 0 ? vm.redBoxShadow : vm.greenBoxShadow }">
@@ -33,7 +33,7 @@
             <div class="caption">
                 <div class="row">
                     <a href="#/thing/{{ thing.thingId }}">
-                        <h4 class="group inner list-group-item-heading" style=""><b>{{ thing.findings.length == 0 ? ('Wanted: ' + thing.name) : (thing.name + ' has been found!') }}</b></h4>
+                        <h4 class="group inner list-group-item-heading" style=""><b>{{ thing.findings.length == 0 ? ('Wanted: ' + thing.name) : ('Found: ' + thing.name) }}</b></h4>
                     </a>
                     <p class="group inner list-group-item-text">
                         {{ thing.description }}
@@ -51,7 +51,7 @@
                     <div class="col-xs-12 col-md-12">
                         <!--<a class="btn btn-success" href="http://www.jquery2dotnet.com">Add to cart</a>-->
                         <a class="btn btn-info btn-group" href="#/found-it/{{ thing.thingId }}" role="button">I found it</a>
-                        <a class="btn btn-info btn-group" data-ng-click="vm.me2(thing.thingId)" role="button">Me 2! {{ thing.me2 > 0 ? '| ' + thing.me2 : '' }}</a>
+                        <a class="btn btn-info btn-group" data-ng-click="vm.me2(thing.thingId)" role="button">I want it  <i class="glyphicon glyphicon-plus"></i>{{ thing.me2 > 0 ? thing.me2 : '' }}</a>
                     </div>
                 </div>
             </div>

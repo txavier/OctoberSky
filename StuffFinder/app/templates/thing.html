@@ -17,7 +17,7 @@
             <div class="fb-like" data-share="true" data-width="450" data-show-faces="true"></div>
             <h3><b>{{ vm.thing.name }}</b></h3>
             <a class="btn btn-info btn-group" href="#/found-it/{{ vm.thing.thingId }}" role="button">I found it</a>
-            <a class="btn btn-info btn-group" data-ng-click="vm.me2(vm.thing.thingId)" role="button">Me 2! {{ vm.thing.me2 > 0 ? '| ' + vm.thing.me2 : '' }}</a>
+            <a class="btn btn-info btn-group" data-ng-click="vm.me2(vm.thing.thingId)" role="button">I want it {{ vm.thing.me2 > 0 ? '| ' + vm.thing.me2 : '' }}</a>
         </div>
         <div class="form-group" style="padding:14px;">
             <div class="carouselView" style="height: 305px">

@@ -26,8 +26,7 @@
         </div>
         <div class="form-group" style="padding:14px;">
             Location City
-            <select class="form-control" data-ng-model="vm.finding.location.city" 
-                    data-ng-options="city as city.name for city in vm.cities" ng-init="city.name = vm.cities[0].name"></select>
+            <select class="form-control" data-ng-model="vm.finding.location.city" data-ng-options="city as city.name for city in vm.cities"></select>
         </div>
         <div class="form-group" style="padding:14px;">
             Click and drag the red marker to the location of the store
