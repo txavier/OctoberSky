@@ -41,10 +41,10 @@
                     Edit
                 </a>
             </td>
-            <td>
-                <a class="btn btn-default" data-ng-click="vm.deleteCity(city.cityId)">
+            <td title="{{ city.locations.length > 0 ? 'Currently being used by location ' + city.locations[0].locationName : 'Delete' }}">
+                <button class="btn btn-default" data-ng-click="vm.deleteCity(city.cityId)" data-ng-disabled="city.locations.length > 0">
                     Delete
-                </a>
+                </button>
             </td>
         </tr>
     </table>

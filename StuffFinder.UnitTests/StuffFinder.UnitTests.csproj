@@ -100,7 +100,6 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Services\ThingService_AddOrUpdate_Should.cs" />
-    <Compile Include="Services\ThingService_SeedThingsTable_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

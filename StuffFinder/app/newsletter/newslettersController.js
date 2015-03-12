@@ -61,7 +61,7 @@
         }
 
         function deleteNewsletter(newsletterId) {
-            return dataService.deleteOrganization(organizationId)
+            return dataService.deleteNewsletter(newsletterId)
                 .then(function (data) {
                     searchNewsletters(vm.searchCriteria);
                 });

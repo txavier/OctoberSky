@@ -67,9 +67,9 @@
         }
 
         function deleteLocation(locationId) {
-            return dataService.deleteOrganization(organizationId)
+            return dataService.deleteLocation(locationId)
                 .then(function (data) {
-                    getLocations();
+                    searchLocations(vm.searchCriteria);
                 });
         }
 

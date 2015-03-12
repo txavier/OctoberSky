@@ -59,9 +59,9 @@
         }
 
         function deleteNationality(nationalityId) {
-            return dataService.deleteOrganization(organizationId)
+            return dataService.deleteNationality(nationalityId)
                 .then(function (data) {
-                    getNationalities();
+                    searchNationalities(vm.searchCriteria);
                 });
         }
 

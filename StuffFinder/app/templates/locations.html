@@ -53,10 +53,11 @@
                     Edit
                 </a>
             </td>
-            <td>
-                <a class="btn btn-default" data-ng-click="vm.deleteLocation(location.locationId)">
+            <td title="{{ location.findings.length > 0 ? 'Currently being used by a finding on ' + location.findings[0].thing.name : 'Delete' }}">
+                <button class="btn btn-default" data-ng-click="vm.deleteLocation(location.locationId)"
+                        data-ng-disabled="location.findings.length > 0">
                     Delete
-                </a>
+                </button>
             </td>
         </tr>
     </table>

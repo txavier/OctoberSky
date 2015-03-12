@@ -59,9 +59,9 @@
         }
 
         function deleteCategory(categoryId) {
-            return dataService.deleteOrganization(organizationId)
+            return dataService.deleteCategory(categoryId)
                 .then(function (data) {
-                    getCategories();
+                    searchCategories(vm.searchCriteria);
                 });
         }
 

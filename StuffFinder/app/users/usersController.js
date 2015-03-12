@@ -66,9 +66,9 @@
         }
 
         function deleteUser(userId) {
-            return dataService.deleteOrganization(organizationId)
+            return dataService.deleteUser(userId)
                 .then(function (data) {
-                    getUsers();
+                    searchUsers(vm.searchCriteria);
                 });
         }
 
