@@ -125,7 +125,7 @@
 
                     vm.interface.uploadFiles();
 
-                    $location.path('/start');
+                    history.back();
                 })
                 .catch(handleFailure);
         }

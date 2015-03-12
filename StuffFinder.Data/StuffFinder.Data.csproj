@@ -141,6 +141,18 @@
     <Compile Include="Migrations\201503060830435_AddedNewsletterTableAndMe2Table.Designer.cs">
       <DependentUpon>201503060830435_AddedNewsletterTableAndMe2Table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201503112113305_ThingCascadeDeleteImages2.cs" />
+    <Compile Include="Migrations\201503112113305_ThingCascadeDeleteImages2.Designer.cs">
+      <DependentUpon>201503112113305_ThingCascadeDeleteImages2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503112138257_ImageRestoreRelationships.cs" />
+    <Compile Include="Migrations\201503112138257_ImageRestoreRelationships.Designer.cs">
+      <DependentUpon>201503112138257_ImageRestoreRelationships.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503120139287_DummyUpdate.cs" />
+    <Compile Include="Migrations\201503120139287_DummyUpdate.Designer.cs">
+      <DependentUpon>201503120139287_DummyUpdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="stuffFinderAuthDbContext.cs" />
@@ -219,6 +231,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201503060830435_AddedNewsletterTableAndMe2Table.resx">
       <DependentUpon>201503060830435_AddedNewsletterTableAndMe2Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503112113305_ThingCascadeDeleteImages2.resx">
+      <DependentUpon>201503112113305_ThingCascadeDeleteImages2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503112138257_ImageRestoreRelationships.resx">
+      <DependentUpon>201503112138257_ImageRestoreRelationships.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503120139287_DummyUpdate.resx">
+      <DependentUpon>201503120139287_DummyUpdate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

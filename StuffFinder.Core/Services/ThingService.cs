@@ -1,4 +1,5 @@
 ﻿using AutoClutch.Auto.Repo.Interfaces;
+using AutoClutch.Auto.Service.Interfaces;
 using AutoClutch.Auto.Service.Services;
 using Omu.ValueInjecter;
 using StuffFinder.Core.Interfaces;
@@ -20,9 +21,17 @@ namespace StuffFinder.Core.Services
         
         private readonly IStuffFinderEmailService _stuffFinderEmailService;
         
+        private readonly IService<image> _imageService;
+        
+        private readonly IFindingService _findingService;
+        
+        private readonly IVoteService _voteService;
+        
+        private readonly IMe2Service _me2Service;        
 
         public ThingService(IRepository<thing> thingRepository, IUserService userService, 
-            IStuffFinderEmailService stuffFinderEmailService)
+            IStuffFinderEmailService stuffFinderEmailService, IService<image> imageService,
+            IFindingService findingService, IVoteService voteService, IMe2Service me2Service)
             : base(thingRepository)
         {
             _thingRepository = thingRepository;
@@ -30,6 +39,14 @@ namespace StuffFinder.Core.Services
             _userService = userService;
 
             _stuffFinderEmailService = stuffFinderEmailService;
+
+            _imageService = imageService;
+
+            _findingService = findingService;
+
+            _voteService = voteService;
+
+            _me2Service = me2Service;
         }
 
         public IEnumerable<thing> GetMostMe2Things()
@@ -210,6 +227,88 @@ namespace StuffFinder.Core.Services
                 "data:image/jpeg;base64," + Convert.ToBase64String(thingViewModel.images.OrderBy(i => i.imageId).First().imageBinary) : thingViewModel.imageUrl;
 
             return thingViewModel;
+        }
+
+        public thing Delete(int thingId)
+        {
+            var thing = Find(thingId);
+
+            SafeDeleteImagesByThing(thing);
+
+            SafeDeleteFindingsByThing(thing);
+
+            SafeDeleteVotesByThing(thing);
+
+            SafeDeleteMe2sByThing(thing);
+
+            thing = base.Delete(thingId);
+
+            return thing;
+        }
+
+        private void SafeDeleteImagesByThing(Models.thing thing)
+        {
+            if (thing.images.Any())
+            {
+                foreach (var imageId in thing.images.Select(i => i.imageId).ToList())
+                {
+                    // Only delete if this object is not being used by any other object.
+                    if (!Get(filter: i => i.images.Where(j => j.imageId == imageId).Count() > 1).Any())
+                    {
+                        _imageService.Delete(imageId);
+                    }
+                }
+            }
+        }
+
+        private void SafeDeleteMe2sByThing(Models.thing thing)
+        {
+            if (thing.me2.Any())
+            {
+                foreach (var me2Id in thing.me2.Select(i => i.me2Id).ToList())
+                {
+                    _me2Service.Delete(me2Id);
+                }
+            }
+        }
+
+        private void SafeDeleteVotesByThing(Models.thing thing)
+        {
+            if (thing.votes.Any())
+            {
+                foreach (var voteId in thing.votes.Select(i => i.voteId).ToList())
+                {
+                    _voteService.Delete(voteId);
+                }
+            }
+        }
+
+        private void SafeDeleteVotesByFinding(finding finding)
+        {
+            if (finding.votes.Any())
+            {
+                foreach (var voteId in finding.votes.Select(i => i.voteId).ToList())
+                {
+                    _voteService.Delete(voteId);
+                }
+            }
+        }
+
+        private void SafeDeleteFindingsByThing(Models.thing thing)
+        {
+            if (thing.findings.Any())
+            {
+                foreach (var findingId in thing.findings.Select(i => i.findingId).ToList())
+                {
+                    SafeDeleteVotesByFinding(_findingService.Find(findingId));
+
+                    // Only delete if this object is not being used by any other object.
+                    if (!Get(filter: i => i.findings.Where(j => j.findingId == findingId).Count() > 1).Any())
+                    {
+                        _findingService.Delete(findingId);
+                    }
+                }
+            }
         }
     }
 }

@@ -14,14 +14,10 @@ namespace StuffFinder.Core.Services
     {
         private readonly IRepository<vote> _voteRepository;
         
-        private readonly IThingService _thingService;
-
-        public VoteService(IRepository<vote> voteRepository, IThingService thingService)
+        public VoteService(IRepository<vote> voteRepository)
             :base (voteRepository)
         {
             _voteRepository = voteRepository;
-
-            _thingService = thingService;
         }
 
         public vote upVote(vote vote)
@@ -59,8 +55,6 @@ namespace StuffFinder.Core.Services
             {
                 vote = Add(vote);
             }
-
-            vote.thing = vote.thing == null ? _thingService.Get(filter: i => i.thingId == vote.thingId).SingleOrDefault() : vote.thing;
 
             return vote;
         }

@@ -21,5 +21,8 @@ namespace StuffFinder.Core.Interfaces
         string CreateNewThingEmailMessage(StuffFinder.Core.Models.thing thing);
 
         void SendNewItemEmailNotification(StuffFinder.Core.Models.thing thing);
+
+        StuffFinder.Core.Models.thing Delete(int thingId);
+
     }
 }

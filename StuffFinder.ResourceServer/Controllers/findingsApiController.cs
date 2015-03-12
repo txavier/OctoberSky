@@ -1,4 +1,5 @@
 ﻿using AutoClutch.Auto.Service.Interfaces;
+using StuffFinder.Core.Interfaces;
 using StuffFinder.Core.Models;
 using StuffFinder.ResourceServer.DependencyResolution;
 using System;
@@ -12,13 +13,13 @@ namespace StuffFinder.ResourceServer.Controllers
 {
     public class findingsApiController : ApiController
     {
-        private readonly IService<finding> _findingService;
+        private readonly IFindingService _findingService;
 
         public findingsApiController()
         {
             var container = IoC.Initialize();
 
-            _findingService = container.GetInstance<IService<finding>>();
+            _findingService = container.GetInstance<IFindingService>();
         }
 
         // GET: api/findingsApi
