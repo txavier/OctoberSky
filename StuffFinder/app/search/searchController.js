@@ -16,8 +16,10 @@
         vm.dataProperty = '';
         vm.upVote = upVote;
         vm.downVote = downVote;
-        vm.redBoxShadow = 'inset 0 0 1em rgb(180,167,23), 0 0 1em rgb(153,87,32)';
-        vm.greenBoxShadow = '0 0 1em rgb(92,135,45)';
+        vm.redBoxShadow = '0 0 1em rgb(148,62,15)';
+        vm.redFont = 'rgb(148,62,15)';
+        vm.greenBoxShadow = '0 0 1em rgb(57,118,40)';
+        vm.greenFont = 'rgb(57,118,40)';
         vm.totalItems = 0;
         vm.itemsPerPage = 100;
         vm.currentPage = 1;

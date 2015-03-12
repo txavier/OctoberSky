@@ -27,11 +27,14 @@ namespace StuffFinder.Core.Services
         
         private readonly IVoteService _voteService;
         
-        private readonly IMe2Service _me2Service;        
+        private readonly IMe2Service _me2Service;
+        
+        private readonly ISettingService _settingService;        
 
         public ThingService(IRepository<thing> thingRepository, IUserService userService, 
             IStuffFinderEmailService stuffFinderEmailService, IService<image> imageService,
-            IFindingService findingService, IVoteService voteService, IMe2Service me2Service)
+            IFindingService findingService, IVoteService voteService, IMe2Service me2Service,
+            ISettingService settingService)
             : base(thingRepository)
         {
             _thingRepository = thingRepository;
@@ -47,6 +50,8 @@ namespace StuffFinder.Core.Services
             _voteService = voteService;
 
             _me2Service = me2Service;
+
+            _settingService = settingService;
         }
 
         public IEnumerable<thing> GetMostMe2Things()
@@ -191,11 +196,13 @@ namespace StuffFinder.Core.Services
 
         public string CreateNewThingEmailMessage(thing thing)
         {
+            var emailLandingPageUrl = _settingService.GetSettingValueBySettingKey("emailLandingPageUrl");
+
             StringBuilder sb = new StringBuilder();
 
             sb.AppendLine("User Name: " + thing.userName);
 
-            sb.AppendLine("Created Item: " +  thing.name);
+            sb.AppendLine("Created Item: <a href='" + emailLandingPageUrl + "/#/thing/" + thing.thingId + "'>" +  thing.name + "</a>");
 
             sb.AppendLine("Item Category: " + thing.category.name);
 

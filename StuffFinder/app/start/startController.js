@@ -15,6 +15,10 @@
         vm.dataProperty = '';
         vm.upVote = upVote;
         vm.downVote = downVote;
+        vm.redBoxShadow = '0 0 1em rgb(148,62,15)';
+        vm.redFont = 'rgb(148,62,15)';
+        vm.greenBoxShadow = '0 0 1em rgb(57,118,40)';
+        vm.greenFont = 'rgb(57,118,40)';
 
         activate();
 

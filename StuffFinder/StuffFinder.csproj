@@ -244,7 +244,6 @@
     <Content Include="app\categories\addOrUpdateCategoryController.js" />
     <Content Include="app\categories\categoriesController.js" />
     <Content Include="app\dynFbCommentBox\dynFbCommentBox.js" />
-    <Content Include="app\finding\addFindingController.js" />
     <Content Include="app\finding\editFindingController.js" />
     <Content Include="app\finding\foundThingAndLocationController.js" />
     <Content Include="app\nationalities\addOrUpdateNationalityController.js" />
@@ -253,7 +252,6 @@
     <Content Include="app\newsletter\newslettersController.js" />
     <Content Include="app\services\me2Service.js" />
     <Content Include="app\services\votesService.js" />
-    <Content Include="app\templates\add-finding.html" />
     <Content Include="app\templates\add-or-update-location.html" />
     <Content Include="app\templates\add-or-update-newsletter.html" />
     <Content Include="app\templates\add-or-update-user.html" />

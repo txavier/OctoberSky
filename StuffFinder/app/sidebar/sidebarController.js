@@ -23,14 +23,14 @@
         $scope.authService.authentication = authService.authentication;
         $scope.authService.authentication.userName = authService.authentication.userName;
 
-        $scope.searchCity = vm.searchCity;
+        //$scope.searchCity = vm.searchCity;
 
         activate();
 
         function activate() {
             playJumbotronVideo();
             getSidebarAuthenticationLabel();
-            getCities();
+            setView();
         }
 
         $scope.$watch('authService.authentication.userName', function (current, original) {
@@ -42,10 +42,22 @@
         });
 
         function getCities() {
-            dataService.getCities().then(function (data) {
+            return dataService.getCities().then(function (data) {
                 vm.cities = data;
 
-                return vm.cities;
+                //return vm.cities;
+            });
+        }
+
+        function setDropDown() {
+            vm.cities.splice(0, 0, { name: "All" });
+
+            vm.searchCity = vm.cities[0];
+        }
+
+        function setView() {
+            getCities().then(function (data) {
+                setDropDown();
             });
         }
 

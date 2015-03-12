@@ -87,9 +87,8 @@
             vm.thing.userName = authService.authentication.userName;
 
             return dataService.addOrUpdateThing(vm.thing).then(function (data) {
-                vm.thing = data;
-
-                return vm.thing;
+                $scope.$apply();
+                history.back();
             });
         }
 

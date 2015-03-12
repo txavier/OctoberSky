@@ -50,22 +50,11 @@
                         <hr />
                         <h4>Search</h4>
                         <div class="form-group form-group-sm">
-                            @*<select class="form-control">
-                                    <option value="--">All Cities</option>
-                                    <option value="3">Abu Dhabi</option>
-                                    <option value="14">Ajman</option>
-                                    <option value="39">Al Ain</option>
-                                    <option value="2">Dubai</option>
-                                    <option value="13">Fujairah</option>
-                                    <option value="11">Ras al Khaimah</option>
-                                    <option value="12">Sharjah</option>
-                                    <option value="15">Umm al Quwain</option>
-                                </select>*@
                             <select class="form-control" data-ng-model="vm.searchCity"
                                     data-ng-options="city as city.name for city in vm.cities"></select>
                         </div>
                         <div class="form-group-sm input-group input-group-sm" style="max-width:360px;">
-                            <input type="text" class="form-control" placeholder="Search WheresMyStuff.com" data-ng-model="vm.query" name="srch-term" id="srch-term">
+                            <input type="text" class="form-control" placeholder="Search WheresMyStuff.com" data-ng-model="vm.query" name="srch-term" id="srch-term" >
                             <div class="input-group-btn">
                                 @*<button class="btn btn-default" type="submit" ng-hide="true"><i class="glyphicon glyphicon-search"></i></button>*@
                                 <a class="btn btn-default" href="#/search/{{ vm.searchCity.name || 'all' | escape }}/{{ vm.query || '' | escape }}"><i class="glyphicon glyphicon-search"></i></a>
@@ -78,14 +67,6 @@
                             <a href="#"><h3><i class="glyphicon glyphicon-heart-empty red"></i></h3></a>
                         </li>
                     </ul>
-
-                    <!-- tiny only nav-->
-                    @*<ul class="nav visible-xs" id="xs-menu">
-                            <li><a href="#featured" class="text-center"><i class="glyphicon glyphicon-list-alt"></i></a></li>
-                            <li><a href="#stories" class="text-center"><i class="glyphicon glyphicon-list"></i></a></li>
-                            <li><a href="#" class="text-center"><i class="glyphicon glyphicon-paperclip"></i></a></li>
-                            <li><a href="#" class="text-center"><i class="glyphicon glyphicon-refresh"></i></a></li>
-                        </ul>*@
 
                     <ul class="nav visible-xs" id="xs-menu">
                         <li><a href="/areas/dashboard/pages/#/admin"><i class="glyphicon glyphicon-wrench"></i></a></li>
@@ -100,8 +81,8 @@
                 <div class="column col-sm-10 col-xs-11" id="main">
 
                     <!-- top nav -->
-                    <div class="navbar navbar-blue navbar-static-top visible-xs">
-                        <div class="form-group-sm input-group input-group-sm" style="max-width:360px;">
+                    <div class="navbar navbar-blue navbar-static-top visible-xs" style="max-height:50px;">
+                        <div class="form-group-sm input-group input-group-sm">
                             <input type="text" class="form-control" placeholder="Search WheresMyStuff.com" data-ng-model="vm.query" name="srch-term" id="srch-term">
                             <div class="input-group-btn">
                                 <button class="btn btn-default" type="submit" ng-hide="true"><i class="glyphicon glyphicon-search"></i></button>
@@ -234,7 +215,6 @@
     <script src="app/search/searchController.js"></script>
     <script src="app/things/editThingController.js"></script>
     <script src="app/finding/editFindingController.js"></script>
-    <script src="app/finding/addFindingController.js"></script>
     <script src="app/finding/foundThingAndLocationController.js"></script>
     <script src="app/categories/addOrUpdateCategoryController.js"></script>
     <script src="app/categories/categoriesController.js"></script>

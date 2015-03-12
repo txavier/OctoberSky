@@ -19,16 +19,15 @@
             <textarea class="form-control" placeholder="The name of the item you found" data-ng-model="vm.thing.name" data-ng-disabled="vm.thing.thingId"></textarea>
         </div>
         <div class="form-group" style="padding:14px;">
-
-            Location Name
-            <textarea class="form-control" placeholder="The name of the place you found this item... if this place has a name" data-ng-model="vm.thing.finding.location"
-                      typeahead="location as location.locationName for location in vm.locations | filter:{locationName:$viewValue} | limitTo:8"></textarea>
+            Location City
+            <select class="form-control" data-ng-model="vm.thing.finding.location.city"
+                    data-ng-options="city as city.name for city in vm.cities"></select>
         </div>
         <div class="form-group" style="padding:14px;">
-            Location City
-            <select class="form-control" data-ng-model="vm.thing.finding.location.city" 
-                    data-ng-options="city as city.name for city in vm.cities">
-            </select>
+
+            Location Name
+            <textarea class="form-control" placeholder="The name of the place you found this item... if this place has a name" data-ng-model="vm.thing.finding.location.locationName"
+                      typeahead="location as location.locationName for location in vm.locations | filter:{locationName:$viewValue} | limitTo:8"></textarea>
         </div>
         <div class="form-group" style="padding:14px;">
             Click and drag the red marker to the location of the store

@@ -10,6 +10,8 @@
         var vm = this;
 
         vm.finding = {};
+        vm.finding.location = {};
+        vm.finding.location.city = {};
         vm.thing = {};
         //vm.map = { center: { latitude: 24.416563, longitude: 54.543546 }, zoom: 12 };
         vm.options = { scrollwheel: false };
@@ -39,16 +41,23 @@
         activate();
 
         function activate() {
-            getFinding($routeParams.findingId);
+            setView($routeParams.findingId);
             getJumbotronVideoUrlSetting();
             getCategories();
             datepickerToggleMin();
             datepickerToggleMax();
             initiateDroplet();
             getLocations();
-            getCities();
 
             return vm;
+        }
+
+        function setView(findingId) {
+            return getFinding(findingId).then(function () {
+                getCities().then(function () {
+                    vm.finding.location.city = vm.cities[vm.cities.getIndexBy("name", vm.finding.location.city.name)];
+                });
+            });
         }
 
         function getCities() {
@@ -68,7 +77,7 @@
         }
 
         function getFinding(findingId) {
-            dataService.getFinding(findingId).then(function (data) {
+            return dataService.getFinding(findingId).then(function (data) {
                 vm.finding = data;
 
                 vm.map = { center: { latitude: vm.finding.location.latitude, longitude: vm.finding.location.longitude }, zoom: 12 };
@@ -78,6 +87,8 @@
                 addSlide(vm.finding.images);
 
                 getThing(vm.finding.thingId);
+
+                return vm.finding;
             });
         }
 
@@ -209,20 +220,55 @@
         }
 
         $scope.finding = vm.finding;
+        $scope.finding.location = vm.finding.location;
+        $scope.finding.location.city = vm.finding.location.city;
+        $scope.finding.location.city.latitude = vm.finding.location.city.latitude;
         $scope.finding.location.latitude = vm.finding.location.latitude;
 
-        $scope.$watch('finding.location', function (current, original) {
-            if (_.isEqual(current, original) || !current.latitude) return;
+        $scope.$watch('finding.location.city', function (current, original) {
+            if (_.isEqual(current, original) || !current) {
+                vm.finding.location = {};
+                vm.finding.location.locationName = vm.finding.location.locationName || '';
+                vm.finding.location.city = original;
+                return;
+            }
 
             // Set the drop down to the city of the location from the selected
             // city from the typeahead textarea.
-            vm.finding.location.city = vm.cities[vm.cities.getIndexBy("name", current.city.name)];
+            //vm.finding.location.city = vm.cities[vm.cities.getIndexBy("name", current.city.name)];
 
             $scope.marker.coords.latitude = current.latitude;
             $scope.marker.coords.longitude = current.longitude;
 
             vm.map.center.latitude = current.latitude;
             vm.map.center.longitude = current.longitude;
+
+            vm.finding.location.latitude = current.latitude;
+            vm.finding.location.longitude = current.longitude;
+
+            vm.map.zoom = 12;
+        });
+
+        $scope.$watch('finding.location.locationName', function (current, original) {
+            if (_.isEqual(current, original) || !current.latitude) {
+                return;
+            }
+
+            if (!vm.locations.getIndexBy("locationName", current.locationName)) {
+                return;
+            }
+
+            vm.finding.location = vm.locations[vm.locations.getIndexBy("locationName", current.locationName)];
+
+            // Set the drop down to the city of the location from the selected
+            // city from the typeahead textarea.
+            vm.finding.location.city = vm.cities[vm.cities.getIndexBy("name", vm.finding.location.city.name)];
+
+            $scope.marker.coords.latitude = vm.finding.location.latitude;
+            $scope.marker.coords.longitude = vm.finding.location.longitude;
+
+            vm.map.center.latitude = vm.finding.location.latitude;
+            vm.map.center.longitude = vm.finding.location.longitude;
             vm.map.zoom = 12;
         });
 

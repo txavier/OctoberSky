@@ -180,18 +180,26 @@
         $scope.finding = vm.finding;
         $scope.finding.location.latitude = vm.finding.location.latitude;
 
-        $scope.$watch('finding.location', function (current, original) {
-            if (_.isEqual(current, original) || !current.latitude) return;
+        $scope.$watch('finding.location.locationName', function (current, original) {
+            if (_.isEqual(current, original) || !current.latitude) {
+                return;
+            }
+
+            if (!vm.locations.getIndexBy("locationName", current.locationName)) {
+                return;
+            }
+
+            vm.thing.finding.location = vm.locations[vm.locations.getIndexBy("locationName", current.locationName)];
 
             // Set the drop down to the city of the location from the selected
             // city from the typeahead textarea.
-            vm.finding.location.city = vm.cities[vm.cities.getIndexBy("name", current.city.name)];
+            vm.finding.location.city = vm.cities[vm.cities.getIndexBy("name", vm.thing.finding.location.city.name)];
 
-            $scope.marker.coords.latitude = current.latitude;
-            $scope.marker.coords.longitude = current.longitude;
+            $scope.marker.coords.latitude = vm.thing.finding.location.latitude;
+            $scope.marker.coords.longitude = vm.thing.finding.location.longitude;
 
-            vm.map.center.latitude = current.latitude;
-            vm.map.center.longitude = current.longitude;
+            vm.map.center.latitude = vm.thing.finding.location.latitude;
+            vm.map.center.longitude = vm.thing.finding.location.longitude;
             vm.map.zoom = 12;
         });
 
@@ -212,7 +220,13 @@
         $scope.finding.location.city = vm.finding.location.city;
 
         $scope.$watch('finding.location.city', function (current, original) {
-            if (_.isEqual(current, original) || !current) return;
+            if (_.isEqual(current, original) || !current) {
+                vm.finding.location = {};
+                vm.finding.location.locationName = vm.finding.location.locationName || '';
+                vm.finding.location.city = original;
+                return;
+            }
+
             $scope.marker.coords.latitude = current.latitude;
             $scope.marker.coords.longitude = current.longitude;
 

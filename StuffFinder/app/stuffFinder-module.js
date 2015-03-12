@@ -126,12 +126,6 @@ app.config(function ($routeProvider) {
         templateUrl: '/app/templates/edit-finding.html'
     });
 
-    $routeProvider.when('/finding/add/:thingId', {
-        controller: 'addFindingController',
-        controllerAs: 'vm',
-        templateUrl: '/app/templates/add-finding.html'
-    });
-
     $routeProvider.when('/categories', {
         controller: 'categoriesController',
         controllerAs: 'vm',

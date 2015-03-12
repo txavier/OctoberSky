@@ -128,7 +128,9 @@
 
                     vm.interface.uploadFiles();
 
-                    $location.path('/start');
+                    history.back();
+
+                    scope.$apply();
                 })
                 .catch(handleFailure);
         }
@@ -185,18 +187,26 @@
         $scope.thing.finding = vm.thing.finding;
         $scope.thing.finding.location.latitude = vm.thing.finding.location.latitude;
 
-        $scope.$watch('thing.finding.location', function (current, original) {
-            if (_.isEqual(current, original) || !current.latitude) return;
+        $scope.$watch('thing.finding.location.locationName', function (current, original) {
+            if (_.isEqual(current, original) || !current.latitude) {
+                return;
+            }
+
+            if (!vm.locations.getIndexBy("locationName", current.locationName)) {
+                return;
+            }
+
+            vm.thing.finding.location = vm.locations[vm.locations.getIndexBy("locationName", current.locationName)];
 
             // Set the drop down to the city of the location from the selected
             // city from the typeahead textarea.
-            vm.thing.finding.location.city = vm.cities[vm.cities.getIndexBy("name", current.city.name)];
+            vm.thing.finding.location.city = vm.cities[vm.cities.getIndexBy("name", vm.thing.finding.location.city.name)];
 
-            $scope.marker.coords.latitude = current.latitude;
-            $scope.marker.coords.longitude = current.longitude;
+            $scope.marker.coords.latitude = vm.thing.finding.location.latitude;
+            $scope.marker.coords.longitude = vm.thing.finding.location.longitude;
 
-            vm.map.center.latitude = current.latitude;
-            vm.map.center.longitude = current.longitude;
+            vm.map.center.latitude = vm.thing.finding.location.latitude;
+            vm.map.center.longitude = vm.thing.finding.location.longitude;
             vm.map.zoom = 12;
         });
 
@@ -211,7 +221,13 @@
         $scope.thing.finding.location.city = vm.thing.finding.location.city;
 
         $scope.$watch('thing.finding.location.city', function (current, original) {
-            if (_.isEqual(current, original) || !current) return;
+            if (_.isEqual(current, original) || !current) {
+                vm.thing.finding.location = {};
+                vm.thing.finding.location.locationName = vm.thing.finding.location.locationName || '';
+                vm.thing.finding.location.city = original;
+                return;
+            }
+
             $scope.marker.coords.latitude = current.latitude;
             $scope.marker.coords.longitude = current.longitude;
 
