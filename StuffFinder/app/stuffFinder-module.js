@@ -234,6 +234,10 @@ app.config(function ($routeProvider) {
         templateUrl: '/app/templates/add-or-update-newsletter.html'
     });
 
+    $routeProvider.when('/how-it-works', {
+        templateUrl: '/app/templates/how-it-works.html'
+    });
+
     $routeProvider.otherwise({ redirectTo: "/index" });
 });
 

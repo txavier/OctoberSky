@@ -12,18 +12,17 @@
     </div>
 </section>
 <div class="well well-sm">
-    <strong>{{ vm.totalItems }} Found</strong>
     <div class="btn-group">
-        <a href="#" id="list" class="btn btn-default btn-sm">
+        <button id="list" class="btn btn-default btn-sm" ng-disabled="true">
             <span class="glyphicon glyphicon-th-list">
-            </span>List
-        </a> <a href="#" id="grid" class="btn btn-default btn-sm">
-            <span class="glyphicon glyphicon-th"></span>Grid
-        </a>
+            </span>{{ vm.totalItems }} Wanted and Found
+        </button> <button id="grid" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-th"></span>[Total Found Items] Found
+        </button>
     </div>
 </div>
 <p><a class="btn btn-info" href="#/where-is-it" role="button"><i class="glyphicon glyphicon-plus"></i> Looking For Something? Add it here! &raquo;</a></p>
-<div class="row" style="min-height: 377px">
+<div class="row" style="min-height: 277px">
     <div class="col-sm-6 col-md-3" data-ng-repeat="thing in vm.things">
         <div class="thumbnail" data-ng-style="{ 'box-shadow': thing.findings.length == 0 ? vm.redBoxShadow : vm.greenBoxShadow }">
             <a href="#/thing/{{ thing.thingId }}">
@@ -32,8 +31,8 @@
             <div class="caption">
                 <a href="#/thing/{{ thing.thingId }}">
                     <p>
-                        <h3 data-ng-style="{ 'color': thing.findings.length == 0 ? vm.redFont : vm.greenFont }"><b>{{ thing.findings.length == 0 ? ('Wanted') : ('Found') }}</b></h3>
-                        <h3 style="min-height:80px">{{ thing.name | limitTo:50 }}</h3>
+                        <h5 data-ng-style="{ 'color': thing.findings.length == 0 ? vm.redFont : vm.greenFont }"><b>{{ thing.findings.length == 0 ? ('Wanted') : ('Found') }}</b></h5>
+                        <h5 style="min-height:20px">{{ thing.name | limitTo:50 }}</h5>
                     </p>
                 </a>
                 <p>
