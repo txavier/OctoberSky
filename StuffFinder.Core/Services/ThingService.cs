@@ -85,12 +85,18 @@ namespace StuffFinder.Core.Services
         {
             var queryLowered = string.IsNullOrEmpty(searchCriteria.searchText) ? null : searchCriteria.searchText.ToLower();
 
-            var cityNameLowered = string.IsNullOrEmpty(searchCriteria.cityName) ? null : searchCriteria.cityName.ToLower();
+            //var cityNameLowered = string.IsNullOrEmpty(searchCriteria.cityName) ? null : searchCriteria.cityName.ToLower();
+
+            var cityNamesLowered = searchCriteria.searchParams
+                .Where(i => i.key == "cityName" && i.value != null)
+                .Select(i => i.value.ToLower());
 
             var result = Get(
                filter: i =>
                    // Must have this...
-                   (cityNameLowered == null || cityNameLowered == "all" ? true : (i.findings.Any(j => j.location.city.name.ToLower() == cityNameLowered) || !i.findings.Any())) &&
+                   (!cityNamesLowered.Any() || cityNamesLowered.Contains("all") ? 
+                    true : (i.findings.Any(j => cityNamesLowered.Contains(j.location.city.name.ToLower())) 
+                    || i.thingCities.Select(k => k.city.name).Any(l => cityNamesLowered.Contains(l.ToLower())))) &&
                        // Have any of these...
                    (queryLowered == null ? true : i.findings.Any(j => j.location.formattedAddress.ToLower().Contains(queryLowered))
                     || i.category.name.ToLower().Contains(queryLowered)

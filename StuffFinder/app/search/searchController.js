@@ -65,12 +65,19 @@
         }
 
         function setSearchCriteria(currentPage, itemsPerPage, orderBy, searchText, cityName) {
+            var searchParams = [
+                {
+                    key: "cityName",
+                    value: cityName
+                }
+            ];
+
             vm.searchCriteria = {
                 currentPage: currentPage,
                 itemsPerPage: itemsPerPage,
                 orderBy: orderBy,
                 searchText: searchText,
-                cityName: cityName
+                searchParams: searchParams
             }
 
             return vm.searchCriteria;

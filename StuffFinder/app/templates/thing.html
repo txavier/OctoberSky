@@ -63,6 +63,15 @@
                     {{ vm.thing.category.name }}
                 </div>
             </div>
+            <div class="row" ng-show="(vm.thing.thingCities.length > 0)" data-ng-repeat="thingCity in vm.thing.thingCities">
+                <hr />
+                <div class="col-lg-2">
+                    <b>City this item is wanted</b>
+                </div>
+                <div class="col-lg-6">
+                    {{ thingCity.city.name }}
+                </div>
+            </div>
             <div class="row" ng-show="(vm.thing.postedDate)">
                 <hr />
                 <div class="col-lg-2">

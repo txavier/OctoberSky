@@ -52,6 +52,8 @@ namespace StuffFinder.Core.Models
 
         public virtual ICollection<vote> votes { get; set; }
 
+        public virtual ICollection<thingCity> thingCities { get; set; }
+
         public int me2 { get; set; }
 
         public bool found { get; set; }
