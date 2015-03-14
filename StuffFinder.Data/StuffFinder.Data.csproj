@@ -153,6 +153,10 @@
     <Compile Include="Migrations\201503120139287_DummyUpdate.Designer.cs">
       <DependentUpon>201503120139287_DummyUpdate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201503122148564_AddCityThingTable.cs" />
+    <Compile Include="Migrations\201503122148564_AddCityThingTable.Designer.cs">
+      <DependentUpon>201503122148564_AddCityThingTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="stuffFinderAuthDbContext.cs" />
@@ -240,6 +244,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201503120139287_DummyUpdate.resx">
       <DependentUpon>201503120139287_DummyUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503122148564_AddCityThingTable.resx">
+      <DependentUpon>201503122148564_AddCityThingTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

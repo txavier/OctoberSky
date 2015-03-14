@@ -128,9 +128,9 @@
 
                     vm.interface.uploadFiles();
 
-                    history.back();
+                    $scope.$apply();
 
-                    scope.$apply();
+                    history.back();
                 })
                 .catch(handleFailure);
         }

@@ -23,11 +23,17 @@ namespace StuffFinder.Data
         public virtual DbSet<newsletter> newsletters { get; set; }
         public virtual DbSet<setting> settings { get; set; }
         public virtual DbSet<thing> things { get; set; }
+        public virtual DbSet<thingCity> thingCities { get; set; }
         public virtual DbSet<user> users { get; set; }
         public virtual DbSet<vote> votes { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<city>()
+                .HasMany(e => e.thingCities)
+                .WithRequired(e => e.city)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<location>()
                 .HasMany(e => e.findings)
                 .WithRequired(e => e.location)
@@ -35,6 +41,11 @@ namespace StuffFinder.Data
 
             modelBuilder.Entity<thing>()
                 .HasMany(e => e.me2)
+                .WithRequired(e => e.thing)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<thing>()
+                .HasMany(e => e.thingCities)
                 .WithRequired(e => e.thing)
                 .WillCascadeOnDelete(false);
         }

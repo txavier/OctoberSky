@@ -12,9 +12,16 @@
         vm.authentication = {};
         vm.authentication.userName = authService.authentication.userName;
         vm.thing = {};
+        vm.thing.thingCity = {};
+        vm.thing.thingCity.thingCityId = 0;
+        vm.thing.thingCity.city = {};
+        vm.thing.thingCity.cityId = 0;
+        vm.thing.thingCity.thingId = 0;
+        vm.thing.thingCities = [];
         vm.thing.categoryId = null;
         vm.categories = [];
         vm.addOrUpdate = addOrUpdate;
+        vm.cities = [];
 
         activate();
 
@@ -23,8 +30,17 @@
             getCategories();
             getNewThing();
             initiateDroplet();
+            getCities();
 
             return vm;
+        }
+
+        function getCities() {
+            return dataService.getCities().then(function (data) {
+                vm.cities = data;
+
+                return vm.cities;
+            });
         }
 
         function initiateDroplet() {
@@ -58,37 +74,31 @@
         }
 
         function getNewThing() {
-            var result = {
-                postedDate: new Date(),
-                comments: [
-                    {
-                    date: new Date(),
-                    originalPoster: true,
-                    name: authService.authentication.userName,
-                    commentText: ''
-                    }],
-                userName: authService.authentication.userName,
-            }
+            vm.thing.postedDate = new Date();
 
-            vm.thing = result;
+            vm.thing.userName = authService.authentication.userName;
 
-            return result;
+            return vm.thing;
         }
 
         function addOrUpdate() {
             vm.thing.userName = authService.authentication.userName;
 
+            vm.thing.thingCities.push(vm.thing.thingCity);
+
             vm.thing.postedDate = new Date();
 
             dataService.addOrUpdateThing(vm.thing)
                 .then(function (data) {
-                    vm.interface.setPostData({ id: data.thingId });
+                    vm.thing = data;
+
+                    vm.interface.setPostData({ id: vm.thing.thingId });
 
                     vm.interface.uploadFiles();
 
-                    history.back();
+                    $scope.$apply();
 
-                    scope.$apply();
+                    history.back();
                 })
                 .catch(handleFailure);
         }

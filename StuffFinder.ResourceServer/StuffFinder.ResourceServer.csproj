@@ -42,11 +42,11 @@
   <ItemGroup>
     <Reference Include="Auto.Repo, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\AutoClutch.AutoRepo.1.0.1\lib\net45\Auto.Repo.dll</HintPath>
+      <HintPath>..\packages\AutoClutch.AutoRepo.1.0.4\lib\net45\Auto.Repo.dll</HintPath>
     </Reference>
     <Reference Include="Auto.Service, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\AutoClutch.AutoService.1.0.3\lib\net45\Auto.Service.dll</HintPath>
+      <HintPath>..\packages\AutoClutch.AutoService.1.0.4\lib\net45\Auto.Service.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
@@ -142,6 +142,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\me2ApiController.cs" />
     <Compile Include="Controllers\newslettersApiController.cs" />
+    <Compile Include="Controllers\thingCitiesApiController.cs" />
     <Compile Include="Controllers\usersApiController.cs" />
     <Compile Include="Controllers\nationalityApiController.cs" />
     <Compile Include="Controllers\citiesApiController.cs" />

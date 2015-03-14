@@ -233,7 +233,7 @@
             return getServerUrl().then(function (resource) {
                 serverUrl = resource;
 
-                return $http.get(serverUrl.resourceServerUrl + citiesApiUrl)
+                return $http.get(serverUrl.resourceServerUrl + citiesApiUrl, { cache: true })
                             .then(getCitiesComplete)
                             .catch(getCitiesFailed);
 

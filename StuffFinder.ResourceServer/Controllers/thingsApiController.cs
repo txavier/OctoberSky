@@ -1,12 +1,8 @@
 ﻿using AutoClutch.Auto.Service.Interfaces;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using StuffFinder.Core.Interfaces;
 using StuffFinder.Core.Models;
-using StuffFinder.Core.Models.ViewModels;
 using StuffFinder.Core.Objects;
 using StuffFinder.ResourceServer.DependencyResolution;
-using StuffFinder.ResourceServer.Filters;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -68,24 +64,6 @@ namespace StuffFinder.ResourceServer.Controllers
             return Ok(result);
         }
 
-        //[Route("SearchThings")]
-        //[HttpGet]
-        //public IHttpActionResult SearchThings()
-        //{
-        //    var result = _thingService.ToViewModels(_thingService.SearchThings(null));
-
-        //    return Ok(result);
-        //}
-
-        //[Route("SearchThings/{query}")]
-        //[HttpGet]
-        //public IHttpActionResult SearchThings(string query)
-        //{
-        //    var result = _thingService.ToViewModels(_thingService.SearchThings(query));
-
-        //    return Ok(result);
-        //}
-
         [Route("search")]
         [HttpPost]
         // GET: api/locationApi/5
@@ -113,39 +91,6 @@ namespace StuffFinder.ResourceServer.Controllers
 
             return Ok(thing);
         }
-
-        //[Route("PostFiles/{jObject}")]
-        //[HttpPost]
-        //public IHttpActionResult PostFiles(JObject jObject)
-        //{
-        //    return Ok();
-        //}
-
-        //private static readonly string ServerUploadFolder = "C:\\Temp"; //Path.GetTempPath();
-
-        //private static readonly string ServerUploadFolder = @"C:\Users\Theo\Pictures\Futon\temp";
-
-        //[Route("files1")]
-        //[HttpPost]
-        //[ValidateMimeMultipartContentFilter]
-        //public async Task<FileResult> UploadSingleFile()
-        //{
-        //    var streamProvider = new MultipartFormDataStreamProvider(ServerUploadFolder);
-        //    await Request.Content.ReadAsMultipartAsync(streamProvider);
-
-        //    var result = new FileResult
-        //    {
-        //        FileNames = streamProvider.FileData.Select(entry => entry.LocalFileName),
-        //        Names = streamProvider.FileData.Select(entry => entry.Headers.ContentDisposition.FileName),
-        //        ContentTypes = streamProvider.FileData.Select(entry => entry.Headers.ContentType.MediaType),
-        //        Description = streamProvider.FormData["description"],
-        //        CreatedTimestamp = DateTime.UtcNow,
-        //        UpdatedTimestamp = DateTime.UtcNow,
-        //        DownloadLink = "TODO, will implement when file is persisited"
-        //    };
-
-        //    return result;
-        //}
 
         [Route("files")]
         [HttpPost]

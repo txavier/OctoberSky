@@ -14,6 +14,7 @@ namespace StuffFinder.Core.Models
             findings = new HashSet<finding>();
             images = new HashSet<image>();
             me2 = new HashSet<me2>();
+            thingCities = new HashSet<thingCity>();
             votes = new HashSet<vote>();
         }
 
@@ -51,6 +52,8 @@ namespace StuffFinder.Core.Models
 
         public Guid recordTrackerGuid { get; set; }
 
+        public int? images_imageId { get; set; }
+
         public virtual category category { get; set; }
 
         public virtual ICollection<finding> findings { get; set; }
@@ -58,6 +61,8 @@ namespace StuffFinder.Core.Models
         public virtual ICollection<image> images { get; set; }
 
         public virtual ICollection<me2> me2 { get; set; }
+
+        public virtual ICollection<thingCity> thingCities { get; set; }
 
         public virtual ICollection<vote> votes { get; set; }
     }

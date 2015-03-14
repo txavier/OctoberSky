@@ -18,23 +18,30 @@ namespace StuffFinder.Core.Services
         private readonly IRepository<thing> _thingRepository;
 
         private readonly IUserService _userService;
-        
-        private readonly IStuffFinderEmailService _stuffFinderEmailService;
-        
-        private readonly IService<image> _imageService;
-        
-        private readonly IFindingService _findingService;
-        
-        private readonly IVoteService _voteService;
-        
-        private readonly IMe2Service _me2Service;
-        
-        private readonly ISettingService _settingService;        
 
-        public ThingService(IRepository<thing> thingRepository, IUserService userService, 
-            IStuffFinderEmailService stuffFinderEmailService, IService<image> imageService,
-            IFindingService findingService, IVoteService voteService, IMe2Service me2Service,
-            ISettingService settingService)
+        private readonly IStuffFinderEmailService _stuffFinderEmailService;
+
+        private readonly IService<image> _imageService;
+
+        private readonly IFindingService _findingService;
+
+        private readonly IVoteService _voteService;
+
+        private readonly IMe2Service _me2Service;
+
+        private readonly ISettingService _settingService;
+        
+        private readonly IService<thingCity> _thingCityService;
+
+        public ThingService(IRepository<thing> thingRepository
+            ,IUserService userService
+            ,IStuffFinderEmailService stuffFinderEmailService
+            ,IService<image> imageService
+            ,IFindingService findingService
+            ,IVoteService voteService
+            ,IMe2Service me2Service
+            ,ISettingService settingService
+            ,IService<thingCity> thingCityService)
             : base(thingRepository)
         {
             _thingRepository = thingRepository;
@@ -52,6 +59,8 @@ namespace StuffFinder.Core.Services
             _me2Service = me2Service;
 
             _settingService = settingService;
+
+            _thingCityService = thingCityService;
         }
 
         public IEnumerable<thing> GetMostMe2Things()
@@ -82,7 +91,7 @@ namespace StuffFinder.Core.Services
                filter: i =>
                    // Must have this...
                    (cityNameLowered == null || cityNameLowered == "all" ? true : (i.findings.Any(j => j.location.city.name.ToLower() == cityNameLowered) || !i.findings.Any())) &&
-                   // Have any of these...
+                       // Have any of these...
                    (queryLowered == null ? true : i.findings.Any(j => j.location.formattedAddress.ToLower().Contains(queryLowered))
                     || i.category.name.ToLower().Contains(queryLowered)
                     || i.description.ToLower().Contains(queryLowered)
@@ -111,7 +120,7 @@ namespace StuffFinder.Core.Services
             var result = GetCount(
                 i => // Must have this...
                    (cityNameLowered == null || cityNameLowered == "all" ? true : (i.findings.Any(j => j.location.city.name.ToLower() == cityNameLowered) || !i.findings.Any())) &&
-                   // Have any of these...
+                    // Have any of these...
                    (queryLowered == null ? true : i.findings.Any(j => j.location.formattedAddress.ToLower().Contains(queryLowered))
                     || i.category.name.ToLower().Contains(queryLowered)
                     || i.description.ToLower().Contains(queryLowered)
@@ -150,32 +159,31 @@ namespace StuffFinder.Core.Services
 
         public thing AddOrUpdate(thing thing)
         {
-            bool newThing = false;
+            // Remove child references. This is needed in order for entity 
+            // framework to provide the vanilla update to just this item 
+            // without walking down the entity tree.
+            thing.categoryId = thing.category == null ? thing.categoryId : thing.category.categoryId;
 
-            // If this is an update operation then remove child references.
-            // This is needed in order for entity framework to provide the
-            // vanilla update to just this item without walking down the
-            // entity tree.
-            if (thing.thingId != 0)
+            thing.category = null;
+
+            thing.votes = null;
+
+            thing.findings = null;
+
+            thing.images = null;
+
+            foreach(var thingCity in thing.thingCities)
             {
-                thing.categoryId = thing.category == null ? thing.categoryId : thing.category.categoryId;
+                thingCity.cityId = thingCity.city == null ? thingCity.cityId : thingCity.city.cityId;
 
-                thing.category = null;
-
-                thing.votes = null;
-
-                thing.findings = null;
-
-                thing.images = null;
+                thingCity.city = null;
             }
-            else
-            {
-                newThing = true;
-            }
+
+            bool newThing = thing.thingId == 0;
 
             thing = base.AddOrUpdate(thing);
 
-            if(newThing)
+            if (newThing)
             {
                 SendNewItemEmailNotification(thing);
             }
@@ -196,13 +204,16 @@ namespace StuffFinder.Core.Services
 
         public string CreateNewThingEmailMessage(thing thing)
         {
+            // Get all the properties for thing, especially the category property.
+            thing = Find(thing.thingId);
+
             var emailLandingPageUrl = _settingService.GetSettingValueBySettingKey("emailLandingPageUrl");
 
             StringBuilder sb = new StringBuilder();
 
             sb.AppendLine("User Name: " + thing.userName);
 
-            sb.AppendLine("Created Item: <a href='" + emailLandingPageUrl + "/#/thing/" + thing.thingId + "'>" +  thing.name + "</a>");
+            sb.AppendLine("Created Item: <a href='" + emailLandingPageUrl + "/#/thing/" + thing.thingId + "'>" + thing.name + "</a>");
 
             sb.AppendLine("Item Category: " + thing.category.name);
 
@@ -248,9 +259,19 @@ namespace StuffFinder.Core.Services
 
             SafeDeleteMe2sByThing(thing);
 
+            SafeDeleteThingCityByThing(thing);
+
             thing = base.Delete(thingId);
 
             return thing;
+        }
+
+        private void SafeDeleteThingCityByThing(thing thing)
+        {
+            foreach(var thingCityId in thing.thingCities.Select(i => i.thingCityId).ToList())
+            {
+                _thingCityService.Delete(thingCityId);
+            }
         }
 
         private void SafeDeleteImagesByThing(Models.thing thing)

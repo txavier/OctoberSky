@@ -94,6 +94,8 @@
 
         function deleteThing() {
             dataService.deleteThing(vm.thing.thingId).then(function (data) {
+                $scope.$apply();
+
                 history.back();
             });
         }

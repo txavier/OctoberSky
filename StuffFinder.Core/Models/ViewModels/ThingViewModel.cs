@@ -42,7 +42,7 @@ namespace StuffFinder.Core.Models
 
         public Guid recordTrackerGuid { get; set; }
 
-        public virtual category category { get; set; }
+        public category category { get; set; }
 
         public virtual ICollection<finding> findings { get; set; }
 
