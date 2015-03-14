@@ -141,6 +141,8 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\me2ApiController.cs" />
+    <Compile Include="Controllers\nationalityNotificationApiController.cs" />
+    <Compile Include="Controllers\cityNotificationApiController.cs" />
     <Compile Include="Controllers\newslettersApiController.cs" />
     <Compile Include="Controllers\thingCitiesApiController.cs" />
     <Compile Include="Controllers\usersApiController.cs" />

@@ -1,0 +1,43 @@
+﻿<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">NationalityNotifications</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+<div class="row col-lg-12">
+    <a href="#/nationalityNotification/add">Add nationalityNotification</a>
+</div>
+<div class="row col-lg-12">
+    <label class="control-label">{{ vm.totalItems }} total nationalityNotifications</label>
+</div>
+<div class="row col-lg-12">
+    <table class="table table-striped">
+        <tr>
+            <th>
+                <a ng-click="vm.setSortOrder('name')">Name</a>
+            </th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        <tr ng-repeat="nationalityNotification in vm.nationalityNotifications">
+            <td>
+                {{ nationalityNotification.messageBody }}
+            </td>
+            <td>
+                <a class="btn btn-default" href="#/nationalityNotification/update/{{ nationalityNotification.nationalityNotificationId }}">
+                    Edit
+                </a>
+            </td>
+            <td>
+                <a class="btn btn-default" data-ng-click="vm.deleteNationalityNotification(nationalityNotification.nationalityNotificationId)">
+                    Delete
+                </a>
+            </td>
+        </tr>
+    </table>
+    <div class="form-group">
+        <pagination total-items="vm.totalItems" items-per-page="vm.itemsPerPage" ng-model="vm.currentPage" ng-change="vm.pageChanged()" max-size="7" boundary-links="true"
+                    rotate="false"></pagination>
+    </div>
+</div>

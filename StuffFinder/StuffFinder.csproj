@@ -237,6 +237,8 @@
     <Content Include="app\authInterceptor\authInterceptorService.js" />
     <Content Include="app\auth\authService.js" />
     <Content Include="app\admin\dashboardEmailSettingsController.js" />
+    <Content Include="app\cityNotification\addOrUpdateCityNotificationController.js" />
+    <Content Include="app\cityNotification\cityNotificationsController.js" />
     <Content Include="app\locations\addOrUpdateLocationController.js" />
     <Content Include="app\locations\locationsController.js" />
     <Content Include="app\cities\addOrUpdateCityController.js" />
@@ -248,11 +250,15 @@
     <Content Include="app\finding\foundThingAndLocationController.js" />
     <Content Include="app\nationalities\addOrUpdateNationalityController.js" />
     <Content Include="app\nationalities\nationalitiesController.js" />
+    <Content Include="app\nationalityNotification\addOrUpdateNationalityNotificationController.js" />
+    <Content Include="app\nationalityNotification\nationalityNotificationsController.js" />
     <Content Include="app\newsletter\addOrUpdateNewsletterController.js" />
     <Content Include="app\newsletter\newslettersController.js" />
     <Content Include="app\services\me2Service.js" />
     <Content Include="app\services\votesService.js" />
     <Content Include="app\templates\add-or-update-location.html" />
+    <Content Include="app\templates\add-or-update-city-notification.html" />
+    <Content Include="app\templates\add-or-update-nationality-notification.html" />
     <Content Include="app\templates\add-or-update-newsletter.html" />
     <Content Include="app\templates\add-or-update-user.html" />
     <Content Include="app\templates\add-or-update-nationality.html" />
@@ -260,6 +266,8 @@
     <Content Include="app\templates\add-or-update-category.html" />
     <Content Include="app\templates\how-it-works.html" />
     <Content Include="app\templates\locations.html" />
+    <Content Include="app\templates\city-notifications.html" />
+    <Content Include="app\templates\nationality-notifications.html" />
     <Content Include="app\templates\newsletters.html" />
     <Content Include="app\templates\users.html" />
     <Content Include="app\templates\nationalities.html" />
@@ -775,7 +783,6 @@
     <Content Include="Content\site.css" />
     <Content Include="Content\styles.css" />
     <Content Include="Content\textAngular.css" />
-    <Content Include="Content\vendor\codrops\component.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -1170,7 +1177,6 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\scripts.js" />
-    <Content Include="Scripts\vendor\codrops\sidebarEffects.js" />
     <Content Include="Scripts\vendor\lodash\lodash.min.js" />
     <Content Include="Scripts\vendor\ng-droplet\ng-droplet.js" />
     <Content Include="Scripts\vendor\progressbar.js\dist\progressbar.js" />

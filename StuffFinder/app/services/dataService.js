@@ -81,9 +81,275 @@
             addOrUpdateNewsletter: addOrUpdateNewsletter,
             deleteNewsletter: deleteNewsletter,
             sendNewsletter: sendNewsletter,
+            getNationalityNotification: getNationalityNotification,
+            getNationalityNotifications: getNationalityNotifications,
+            searchNationalityNotifications: searchNationalityNotifications,
+            searchNationalityNotificationsCount: searchNationalityNotificationsCount,
+            addOrUpdateNationalityNotification: addOrUpdateNationalityNotification,
+            deleteNationalityNotification: deleteNationalityNotification,
+            sendNationalityNotification: sendNationalityNotification,
+            getCityNotification: getCityNotification,
+            getCityNotifications: getCityNotifications,
+            searchCityNotifications: searchCityNotifications,
+            searchCityNotificationsCount: searchCityNotificationsCount,
+            addOrUpdateCityNotification: addOrUpdateCityNotification,
+            deleteCityNotification: deleteCityNotification,
+            sendCityNotification: sendCityNotification,
         };
 
         return service;
+
+        function getCityNotification(cityNotificationId) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.get(serverUrl.resourceServerUrl + cityNotificationsApiUrl + '/' + cityNotificationId)
+                            .then(getCityNotificationComplete)
+                            .catch(getCityNotificationFailed);
+
+                function getCityNotificationComplete(response) {
+                    return response.data;
+                }
+
+                function getCityNotificationFailed(error) {
+                    $log.error('XHR failed for getCityNotification.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function sendCityNotification(cityNotification) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.post(serverUrl.resourceServerUrl + cityNotificationsApiUrl + '/send', cityNotification)
+                            .then(sendCityNotificationsComplete)
+                            .catch(sendCityNotificationsFailed);
+
+                function sendCityNotificationsComplete(response) {
+                    return response.data;
+                }
+
+                function sendCityNotificationsFailed(error) {
+                    $log.error('XHR failed for getCityNotifications.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function getCityNotifications() {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.get(serverUrl.resourceServerUrl + cityNotificationsApiUrl)
+                            .then(getCityNotificationsComplete)
+                            .catch(getCityNotificationsFailed);
+
+                function getCityNotificationsComplete(response) {
+                    return response.data;
+                }
+
+                function getCityNotificationsFailed(error) {
+                    $log.error('XHR failed for getCityNotifications.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function searchCityNotifications(searchCriteria) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.post(serverUrl.resourceServerUrl + cityNotificationsApiUrl + '/search', searchCriteria)
+                            .then(searchCityNotificationsComplete)
+                            .catch(searchCityNotificationsFailed);
+
+                function searchCityNotificationsComplete(response) {
+                    return response.data;
+                }
+
+                function searchCityNotificationsFailed(error) {
+                    $log.error('XHR failed for searchCityNotifications.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function searchCityNotificationsCount(searchCriteria) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.post(serverUrl.resourceServerUrl + cityNotificationsApiUrl + '/search/count', searchCriteria)
+                            .then(searchCityNotificationsCountComplete)
+                            .catch(searchCityNotificationsCountFailed);
+
+                function searchCityNotificationsCountComplete(response) {
+                    return response.data;
+                }
+
+                function searchCityNotificationsCountFailed(error) {
+                    $log.error('XHR failed for searchCityNotifications.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function addOrUpdateCityNotification(cityNotification) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.post(serverUrl.resourceServerUrl + cityNotificationsApiUrl, cityNotification)
+                            .then(addOrUpdateCityNotificationComplete)
+                            .catch(addOrUpdateCityNotificationFailed);
+
+                function addOrUpdateCityNotificationComplete(response) {
+                    return response.data;
+                }
+
+                function addOrUpdateCityNotificationFailed(error) {
+                    $log.error('XHR failed for saveCityNotification.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function deleteCityNotification(cityNotificationId) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.delete(serverUrl.resourceServerUrl + cityNotificationsApiUrl + '/' + cityNotificationId)
+                            .then(deleteCityNotificationComplete)
+                            .catch(deleteCityNotificationFailed);
+
+                function deleteCityNotificationComplete(response) {
+                    return response.data;
+                }
+
+                function deleteCityNotificationFailed(error) {
+                    $log.error('XHR failed for deleteCityNotification.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function getNationalityNotification(nationalityNotificationId) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.get(serverUrl.resourceServerUrl + nationalityNotificationsApiUrl + '/' + nationalityNotificationId)
+                            .then(getNationalityNotificationComplete)
+                            .catch(getNationalityNotificationFailed);
+
+                function getNationalityNotificationComplete(response) {
+                    return response.data;
+                }
+
+                function getNationalityNotificationFailed(error) {
+                    $log.error('XHR failed for getNationalityNotification.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function sendNationalityNotification(nationalityNotification) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.post(serverUrl.resourceServerUrl + nationalityNotificationsApiUrl + '/send', nationalityNotification)
+                            .then(sendNationalityNotificationsComplete)
+                            .catch(sendNationalityNotificationsFailed);
+
+                function sendNationalityNotificationsComplete(response) {
+                    return response.data;
+                }
+
+                function sendNationalityNotificationsFailed(error) {
+                    $log.error('XHR failed for getNationalityNotifications.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function getNationalityNotifications() {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.get(serverUrl.resourceServerUrl + nationalityNotificationsApiUrl)
+                            .then(getNationalityNotificationsComplete)
+                            .catch(getNationalityNotificationsFailed);
+
+                function getNationalityNotificationsComplete(response) {
+                    return response.data;
+                }
+
+                function getNationalityNotificationsFailed(error) {
+                    $log.error('XHR failed for getNationalityNotifications.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function searchNationalityNotifications(searchCriteria) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.post(serverUrl.resourceServerUrl + nationalityNotificationsApiUrl + '/search', searchCriteria)
+                            .then(searchNationalityNotificationsComplete)
+                            .catch(searchNationalityNotificationsFailed);
+
+                function searchNationalityNotificationsComplete(response) {
+                    return response.data;
+                }
+
+                function searchNationalityNotificationsFailed(error) {
+                    $log.error('XHR failed for searchNationalityNotifications.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function searchNationalityNotificationsCount(searchCriteria) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.post(serverUrl.resourceServerUrl + nationalityNotificationsApiUrl + '/search/count', searchCriteria)
+                            .then(searchNationalityNotificationsCountComplete)
+                            .catch(searchNationalityNotificationsCountFailed);
+
+                function searchNationalityNotificationsCountComplete(response) {
+                    return response.data;
+                }
+
+                function searchNationalityNotificationsCountFailed(error) {
+                    $log.error('XHR failed for searchNationalityNotifications.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function addOrUpdateNationalityNotification(nationalityNotification) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.post(serverUrl.resourceServerUrl + nationalityNotificationsApiUrl, nationalityNotification)
+                            .then(addOrUpdateNationalityNotificationComplete)
+                            .catch(addOrUpdateNationalityNotificationFailed);
+
+                function addOrUpdateNationalityNotificationComplete(response) {
+                    return response.data;
+                }
+
+                function addOrUpdateNationalityNotificationFailed(error) {
+                    $log.error('XHR failed for saveNationalityNotification.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function deleteNationalityNotification(nationalityNotificationId) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.delete(serverUrl.resourceServerUrl + nationalityNotificationsApiUrl + '/' + nationalityNotificationId)
+                            .then(deleteNationalityNotificationComplete)
+                            .catch(deleteNationalityNotificationFailed);
+
+                function deleteNationalityNotificationComplete(response) {
+                    return response.data;
+                }
+
+                function deleteNationalityNotificationFailed(error) {
+                    $log.error('XHR failed for deleteNationalityNotification.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
 
         function addOrUpdateMe2(me2) {
             return getServerUrl().then(function (resource) {

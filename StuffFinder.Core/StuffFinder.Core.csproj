@@ -111,11 +111,17 @@
     <Compile Include="Interfaces\ILocationService.cs" />
     <Compile Include="Interfaces\IStuffFinderEmailService.cs" />
     <Compile Include="Interfaces\IMe2Service.cs" />
+    <Compile Include="Models\StuffFinder\cityNotification.cs" />
     <Compile Include="Services\FindingService.cs" />
     <Compile Include="Interfaces\IFindingService.cs" />
+    <Compile Include="Interfaces\ICityNotificationService.cs" />
+    <Compile Include="Interfaces\INationalityNotificationService.cs" />
     <Compile Include="Services\LocationService.cs" />
     <Compile Include="Services\Me2Service.cs" />
+    <Compile Include="Models\StuffFinder\nationalityNotification.cs" />
     <Compile Include="Services\NationalityService.cs" />
+    <Compile Include="Services\NationalityNotificationService.cs" />
+    <Compile Include="Services\CityNotificationService.cs" />
     <Compile Include="Services\NewsletterService.cs" />
     <Compile Include="Services\StuffFinderEmailService.cs" />
     <Compile Include="Services\UserService.cs" />
