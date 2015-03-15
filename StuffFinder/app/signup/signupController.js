@@ -33,7 +33,7 @@ app.controller('signupController', ['$scope', '$location', '$timeout', 'authServ
     var startTimer = function () {
         var timer = $timeout(function () {
             $timeout.cancel(timer);
-            $location.path('/login');
+            $location.path('/user-profile');
         }, 2000);
     }
 

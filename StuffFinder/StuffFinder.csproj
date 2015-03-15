@@ -265,6 +265,7 @@
     <Content Include="app\templates\add-or-update-nationality.html" />
     <Content Include="app\templates\add-or-update-city.html" />
     <Content Include="app\templates\add-or-update-category.html" />
+    <Content Include="app\templates\user-profile.html" />
     <Content Include="app\templates\feedback.html" />
     <Content Include="app\templates\how-it-works.html" />
     <Content Include="app\templates\locations.html" />
@@ -311,6 +312,7 @@
     <Content Include="app\templates\signup.html" />
     <Content Include="app\tokensManager\tokensManagerController.js" />
     <Content Include="app\users\addOrUpdateUserController.js" />
+    <Content Include="app\users\userProfileController.js" />
     <Content Include="app\users\usersController.js" />
     <Content Include="app\whereIsIt\whereIsItController.js" />
     <Content Include="Areas\dashboard\bower_components\bootstrap-social\.gitignore" />

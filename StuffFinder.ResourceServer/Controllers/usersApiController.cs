@@ -4,6 +4,7 @@ using StuffFinder.Core.Models;
 using StuffFinder.Core.Objects;
 using StuffFinder.ResourceServer.DependencyResolution;
 using System.Web.Http;
+using System.Linq;
 
 namespace StuffFinder.ResourceServer.Controllers
 {
@@ -30,6 +31,15 @@ namespace StuffFinder.ResourceServer.Controllers
         public IHttpActionResult Get(int id)
         {
             var result = _userService.Find(id);
+
+            return Ok(result);
+        }
+
+        [Route("getLoggedInUser")]
+        [HttpGet]
+        public IHttpActionResult GetLoggedInUser()
+        {
+            var result = _userService.Get(filter: i => i.userName == User.Identity.Name).SingleOrDefault();
 
             return Ok(result);
         }

@@ -98,10 +98,29 @@
             addOrUpdateCityNotification: addOrUpdateCityNotification,
             deleteCityNotification: deleteCityNotification,
             sendCityNotification: sendCityNotification,
-            sendFeedback: sendFeedback
+            sendFeedback: sendFeedback,
+            getLoggedInUser: getLoggedInUser
         };
 
         return service;
+
+        function getLoggedInUser() {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.get(serverUrl.resourceServerUrl + usersApiUrl + '/getloggedinuser')
+                            .then(getLoggedInUserComplete)
+                            .catch(getLoggedInUserFailed);
+
+                function getLoggedInUserComplete(response) {
+                    return response.data;
+                }
+
+                function getLoggedInUserFailed(error) {
+                    $log.error('XHR failed for getLoggedInUserFailed.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
 
         function sendFeedback(feedback) {
             return getServerUrl().then(function (resource) {

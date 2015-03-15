@@ -280,6 +280,12 @@ app.config(function ($routeProvider) {
         templateUrl: '/app/templates/feedback.html'
     });
 
+    $routeProvider.when('/user-profile', {
+        controller: 'userProfileController',
+        controllerAs: 'vm',
+        templateUrl: '/app/templates/user-profile.html'
+    });
+
     $routeProvider.otherwise({ redirectTo: "/index" });
 });
 

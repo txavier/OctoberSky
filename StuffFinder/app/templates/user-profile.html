@@ -1,0 +1,53 @@
+﻿<section class="content-section video-section">
+    <div class="jumbotron pattern-overlay">
+        <a id="bgndVideo" class="player" data-property="{videoURL:'https://www.youtube.com/watch?v=zGtz_GOA79w',containment:'.video-section', quality:'large', autoPlay:true, mute:true, opacity:1}">bg</a>
+        <div class="container">
+            <div class="page-header text-center hidden-xs">
+                <h1><i class="glyphicon glyphicon-heart-empty red"></i>WheresMyStuff.com</h1>
+            </div>
+            <div class="page-header text-center visible-xs">
+                <h1><i class="glyphicon glyphicon-heart-empty red"></i>Where's My Stuff</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="form-group">
+    <div class="form-horizontal">
+        <form name="form1" role="form">
+            <div class="form-group" style="padding:14px;">
+                <h1 class="page-header">Profile</h1>
+                <!-- /.col-lg-12 -->
+            </div>
+            <div>
+                <input type="hidden" name="id" ng-value="vm.user.userId" />
+            </div>
+            <div class="form-group" style="padding:14px;">
+                Username
+                <textarea class="form-control" placeholder="Username" data-ng-model="vm.user.userName"></textarea>
+            </div>
+            <div class="form-group" style="padding:14px;">
+                Email
+                <textarea class="form-control" placeholder="Email" data-ng-model="vm.user.email" required></textarea>
+            </div>
+            <div class="form-group" style="padding:14px;">
+                Store
+                <input class="text-box single-line" data-val="true" data-ng-model="vm.user.isStore" type="checkbox" value="" autofocus />
+            </div>
+            <div class="form-group" style="padding:14px;">
+                Nationality
+                <textarea class="form-control" placeholder="Nationality" data-ng-model="vm.user.nationality"
+                          typeahead="nationality as nationality.name for nationality in vm.nationalities | filter:{name:$viewValue} | limitTo:8" required></textarea>
+
+            </div>
+            <div class="form-group" style="padding:14px;">
+                City
+                <textarea class="form-control" placeholder="City" data-ng-model="vm.user.city"
+                          typeahead="city as city.name for city in vm.cities | filter:{name:$viewValue} | limitTo:8" required></textarea>
+
+            </div>
+            <div class="form-group" style="padding:14px;">
+                <input type="submit" value="Save" class="btn btn-default" ng-click="vm.addOrUpdateUser(vm.user)" />
+            </div>
+        </form>
+    </div>
+</div>

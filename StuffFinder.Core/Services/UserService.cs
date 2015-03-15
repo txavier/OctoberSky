@@ -3,11 +3,9 @@ using AutoClutch.Auto.Service.Interfaces;
 using AutoClutch.Auto.Service.Services;
 using StuffFinder.Core.Interfaces;
 using StuffFinder.Core.Models;
-using StuffFinder.Core.Models.ViewModels;
 using StuffFinder.Core.Objects;
 using System.Collections.Generic;
 using System.Linq;
-using Omu.ValueInjecter;
 
 namespace StuffFinder.Core.Services
 {
@@ -56,17 +54,35 @@ namespace StuffFinder.Core.Services
 
         public user AddOrUpdate(user user)
         {
-            // If this is an update then dont update the related entities
-            // too.
-            if (user.userId != 0)
-            {
-                user.city = null;
-                user.nationality = null;
-            }
+            SendEmailNotificationIfFirstTime(user);
+
+            user.cityId = user.city == null ? user.cityId : user.city.cityId;
+            user.city = null;
+            user.nationalityId = user.nationality == null ? user.nationalityId : user.nationality.nationalityId;
+            user.nationality = null;
 
             user = base.AddOrUpdate(user);
 
             return user;
+        }
+
+        private void SendEmailNotificationIfFirstTime(user user)
+        {
+            // TODO
+        }
+
+        public user GetLoggedInUser(string loggedInUserName)
+        {
+            var result = Get(filter: i => i.userName == loggedInUserName).SingleOrDefault();
+
+            if(result == null)
+            {
+                SyncUserTable();
+
+                result = Get(filter: i => i.userName == loggedInUserName).SingleOrDefault();
+            }
+
+            return result;
         }
 
         public IEnumerable<user> SyncUserTable()
@@ -79,7 +95,7 @@ namespace StuffFinder.Core.Services
             // Create new user records for all new usernames to add.
             var usersToAdd = userNamesToAdd.Select(i => new user() { userName = i.UserName });
 
-            foreach(var user in usersToAdd)
+            foreach (var user in usersToAdd)
             {
                 Add(user);
             }
