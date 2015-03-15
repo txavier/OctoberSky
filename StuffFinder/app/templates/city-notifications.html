@@ -1,15 +1,15 @@
 ﻿<div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">NationalityNotifications</h1>
+        <h1 class="page-header">City Notifications</h1>
     </div>
     <!-- /.col-lg-12 -->
 </div>
 <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
 <div class="row col-lg-12">
-    <a href="#/nationalityNotification/add">Add nationalityNotification</a>
+    <a href="#/city-notification/add">Add City Notification</a>
 </div>
 <div class="row col-lg-12">
-    <label class="control-label">{{ vm.totalItems }} total nationalityNotifications</label>
+    <label class="control-label">{{ vm.totalItems }} total city notifications</label>
 </div>
 <div class="row col-lg-12">
     <table class="table table-striped">
@@ -17,20 +17,26 @@
             <th>
                 <a ng-click="vm.setSortOrder('name')">Name</a>
             </th>
+            <th>
+                <a data-ng-click="vm.setSortOrder('dateSent')">Sent</a>
+            </th>
             <th>Edit</th>
             <th>Delete</th>
         </tr>
-        <tr ng-repeat="nationalityNotification in vm.nationalityNotifications">
+        <tr ng-repeat="cityNotification in vm.cityNotifications">
             <td>
-                {{ nationalityNotification.messageBody }}
+                {{ cityNotification.messageBody }}
             </td>
             <td>
-                <a class="btn btn-default" href="#/nationalityNotification/update/{{ nationalityNotification.nationalityNotificationId }}">
+                {{ cityNotification.dateSent }}
+            </td>
+            <td>
+                <a class="btn btn-default" href="#/city-notification/update/{{ cityNotification.cityNotificationId }}">
                     Edit
                 </a>
             </td>
             <td>
-                <a class="btn btn-default" data-ng-click="vm.deleteNationalityNotification(nationalityNotification.nationalityNotificationId)">
+                <a class="btn btn-default" data-ng-click="vm.deleteCityNotification(cityNotification.cityNotificationId)">
                     Delete
                 </a>
             </td>

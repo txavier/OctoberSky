@@ -22,6 +22,8 @@
         var locationsApiUrl = 'api/locationsApi';
         var thingsApiUrl = 'api/thingsApi';
         var me2ApiUrl = 'api/me2Api';
+        var cityNotificationsApiUrl = 'api/cityNotificationsApi';
+        var nationalityNotificationsApiUrl = 'api/nationalityNotificationsApi';
 
         var jumbotronVideoUrlSetting = {};
 

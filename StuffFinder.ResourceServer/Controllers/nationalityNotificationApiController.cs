@@ -58,7 +58,7 @@ namespace StuffFinder.ResourceServer.Controllers
         [HttpPost]
         public IHttpActionResult Send(nationalityNotification nationalityNotification)
         {
-            _nationalityNotificationService.Send(nationalityNotification);
+            _nationalityNotificationService.Send(nationalityNotification, User.Identity.Name);
 
             return Ok(nationalityNotification);
         }
@@ -66,7 +66,7 @@ namespace StuffFinder.ResourceServer.Controllers
         // POST: api/nationalityNotificationApi
         public IHttpActionResult Post(nationalityNotification nationalityNotification)
         {
-            _nationalityNotificationService.AddOrUpdate(nationalityNotification);
+            _nationalityNotificationService.AddOrUpdate(nationalityNotification, User.Identity.Name);
 
             return Ok(nationalityNotification);
         }

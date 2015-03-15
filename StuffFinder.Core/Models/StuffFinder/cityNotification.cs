@@ -12,6 +12,12 @@ namespace StuffFinder.Core.Models
         public int cityNotificationId { get; set; }
 
         [Required]
+        [ForeignKey("city")]
+        public int cityId { get; set; }
+
+        public virtual city city { get; set; }
+
+        [Required]
         [StringLength(256)]
         public string userName { get; set; }
 

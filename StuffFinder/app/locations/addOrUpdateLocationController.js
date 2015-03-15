@@ -44,7 +44,9 @@
         function addOrUpdateLocation(location) {
             return dataService.addOrUpdateLocation(location)
                 .then(function(){
-                    $location.path('/locations');
+                    $scope.$apply();
+
+                    history.back();
                 });
         }
 

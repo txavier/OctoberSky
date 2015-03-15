@@ -12,6 +12,7 @@ namespace StuffFinder.Core.Models
         public nationality()
         {
             users = new HashSet<user>();
+            nationalityNotifications = new HashSet<nationalityNotification>();
         }
 
         public int nationalityId { get; set; }
@@ -21,5 +22,7 @@ namespace StuffFinder.Core.Models
         public string name { get; set; }
 
         public virtual ICollection<user> users { get; set; }
+
+        public virtual ICollection<nationalityNotification> nationalityNotifications { get; set; }
     }
 }

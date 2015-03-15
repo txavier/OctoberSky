@@ -52,11 +52,35 @@ namespace StuffFinder.Core.Services
             return result;
         }
 
-        public void Send(nationalityNotification nationalityNotification)
+        public void Send(nationalityNotification nationalityNotification, string userName)
         {
-            var emailUsers = _userService.Get(filter: i => i.email != null).Select(i => i.email).ToList();
+            var emailUsers = _userService
+                .Get(filter: i => 
+                    i.nationality != null 
+                    && i.email != null
+                    && i.nationalityId == nationalityNotification.nationalityId)
+                .Select(i => i.email)
+                .ToList();
 
-            _stuffFinderEmailService.SendEmail(nationalityNotification.messageBody, emailUsers, "NationalityNotification");
+            _stuffFinderEmailService.SendEmail(nationalityNotification.messageBody, emailUsers, "Nationality Notification");
+
+            nationalityNotification.dateSent = DateTime.Now;
+
+            AddOrUpdate(nationalityNotification, userName);
+        }
+
+        public nationalityNotification AddOrUpdate(nationalityNotification nationalityNotification, string userName)
+        {
+            nationalityNotification.userName = userName;
+
+            nationalityNotification.nationalityId = nationalityNotification.nationality == null ?
+                nationalityNotification.nationalityId : nationalityNotification.nationality.nationalityId;
+
+            nationalityNotification.nationality = null;
+
+            base.AddOrUpdate(nationalityNotification);
+
+            return nationalityNotification;
         }
     }
 }

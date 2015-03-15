@@ -58,7 +58,7 @@ namespace StuffFinder.ResourceServer.Controllers
         [HttpPost]
         public IHttpActionResult Send(cityNotification cityNotification)
         {
-            _cityNotificationService.Send(cityNotification);
+            _cityNotificationService.Send(cityNotification, User.Identity.Name);
 
             return Ok(cityNotification);
         }
@@ -66,7 +66,7 @@ namespace StuffFinder.ResourceServer.Controllers
         // POST: api/cityNotificationApi
         public IHttpActionResult Post(cityNotification cityNotification)
         {
-            _cityNotificationService.AddOrUpdate(cityNotification);
+            _cityNotificationService.AddOrUpdate(cityNotification, User.Identity.Name);
 
             return Ok(cityNotification);
         }

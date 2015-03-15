@@ -12,6 +12,12 @@ namespace StuffFinder.Core.Models
         public int nationalityNotificationId { get; set; }
 
         [Required]
+        [ForeignKey("nationality")]
+        public int nationalityId { get; set; }
+
+        public virtual nationality nationality { get; set; }
+
+        [Required]
         [StringLength(256)]
         public string userName { get; set; }
 

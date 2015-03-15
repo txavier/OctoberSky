@@ -26,7 +26,9 @@ namespace StuffFinder.Data
         public virtual DbSet<thingCity> thingCities { get; set; }
         public virtual DbSet<user> users { get; set; }
         public virtual DbSet<vote> votes { get; set; }
-
+        public virtual DbSet<cityNotification> cityNotifications {get; set;}
+        public virtual DbSet<nationalityNotification> nationalityNotifications { get; set; }
+        
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<city>()

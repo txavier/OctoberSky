@@ -238,6 +238,42 @@ app.config(function ($routeProvider) {
         templateUrl: '/app/templates/how-it-works.html'
     });
 
+    $routeProvider.when('/city-notifications', {
+        controller: 'cityNotificationsController',
+        controllerAs: 'vm',
+        templateUrl: '/app/templates/city-notifications.html'
+    });
+
+    $routeProvider.when('/city-notification/add', {
+        controller: 'addOrUpdateCityNotificationController',
+        controllerAs: 'vm',
+        templateUrl: '/app/templates/add-or-update-city-notification.html'
+    });
+
+    $routeProvider.when('/city-notification/update/:cityNotificationId', {
+        controller: 'addOrUpdateCityNotificationController',
+        controllerAs: 'vm',
+        templateUrl: '/app/templates/add-or-update-city-notification.html'
+    });
+
+    $routeProvider.when('/nationality-notifications', {
+        controller: 'nationalityNotificationsController',
+        controllerAs: 'vm',
+        templateUrl: '/app/templates/nationality-notifications.html'
+    });
+
+    $routeProvider.when('/nationality-notification/add', {
+        controller: 'addOrUpdateNationalityNotificationController',
+        controllerAs: 'vm',
+        templateUrl: '/app/templates/add-or-update-nationality-notification.html'
+    });
+
+    $routeProvider.when('/nationality-notification/update/:nationalityNotificationId', {
+        controller: 'addOrUpdateNationalityNotificationController',
+        controllerAs: 'vm',
+        templateUrl: '/app/templates/add-or-update-nationality-notification.html'
+    });
+
     $routeProvider.otherwise({ redirectTo: "/index" });
 });
 

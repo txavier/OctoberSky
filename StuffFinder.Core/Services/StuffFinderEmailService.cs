@@ -23,6 +23,11 @@ namespace StuffFinder.Core.Services
 
         public void SendEmail(string emailMessage, List<string> adminGroupEmailList, string subject)
         {
+            if(!adminGroupEmailList.Any())
+            {
+                return;
+            }
+
             _emailService.smtpHost = _settingService.GetSettingValueBySettingKey("smtpHost");
 
             _emailService.smtpPort = int.Parse(_settingService.GetSettingValueBySettingKey("smtpPort"));

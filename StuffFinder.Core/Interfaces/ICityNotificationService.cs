@@ -5,6 +5,7 @@ namespace StuffFinder.Core.Interfaces
     {
         System.Collections.Generic.IEnumerable<StuffFinder.Core.Models.cityNotification> Search(StuffFinder.Core.Objects.SearchCriteria searchCriteria);
         int SearchCount(StuffFinder.Core.Objects.SearchCriteria searchCriteria);
-        void Send(StuffFinder.Core.Models.cityNotification cityNotification);
+        void Send(StuffFinder.Core.Models.cityNotification cityNotification, string userName);
+        StuffFinder.Core.Models.cityNotification AddOrUpdate(StuffFinder.Core.Models.cityNotification cityNotification, string userName);
     }
 }

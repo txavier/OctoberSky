@@ -1,60 +1,98 @@
 ﻿(function () {
     'use strict';
 
-    app.controller('addOrUpdateNationalityNotificationController', addOrUpdateNationalityNotificationController);
+    app.controller('addOrUpdateCityNotificationController', addOrUpdateCityNotificationController);
 
-    addOrUpdateNationalityNotificationController.$inject = ['$scope', '$log', '$routeParams', '$location', 'dataService', 'authService'];
+    addOrUpdateCityNotificationController.$inject = ['$scope', '$log', '$routeParams', '$location', 'dataService', 'authService'];
 
-    function addOrUpdateNationalityNotificationController($scope, $log, $routeParams, $location, dataService, authService) {
+    function addOrUpdateCityNotificationController($scope, $log, $routeParams, $location, dataService, authService) {
         var vm = this;
 
-        vm.nationalityNotifications = [];
-        vm.nationalityNotification = { nationalityNotificationId: 0, messageBody: '' };
-        vm.addOrUpdateNationalityNotification = addOrUpdateNationalityNotification;
+        vm.cityNotifications = [];
+        vm.cityNotification = { cityNotificationId: 0, messageBody: '' };
+        vm.addOrUpdateCityNotification = addOrUpdateCityNotification;
         vm.send = send;
+        vm.cities = [];
 
         activate();
 
         function activate() {
-            getNationalityNotification($routeParams.nationalityNotificationId);
+            setView($routeParams.cityNotificationId);
 
             return vm;
         }
 
-        function getNationalityNotification(nationalityNotificationId) {
-            if (!nationalityNotificationId) {
-                return;
-            }
-            return dataService.getNationalityNotification(nationalityNotificationId).then(function (data) {
-                vm.nationalityNotification = data;
+        function getCities() {
+            return dataService.getCities().then(function (data) {
+                vm.cities = data;
 
-                return vm.nationalityNotification;
+                return vm.cities;
             });
         }
 
-        function addOrUpdateNationalityNotification(nationalityNotification) {
-            nationalityNotification.userName = authService.authentication.userName;
-            nationalityNotification.dateCreated = new Date();
+        function getCityNotification(cityNotificationId) {
+            //if (!cityNotificationId) {
+            //    return;
+            //}
+            return dataService.getCityNotification(cityNotificationId).then(function (data) {
+                vm.cityNotification = data;
 
-            return dataService.addOrUpdateNationalityNotification(nationalityNotification)
-                .then(function () {
-                    $location.path('/nationalityNotifications');
+                return vm.cityNotification;
+            });
+        }
+
+        function setView(cityNotificationId) {
+            if (!cityNotificationId) {
+                    getCities();
+                    return;
+                }
+            getCityNotification(cityNotificationId).then(function (data) {
+                getCities().then(function () {
+                    vm.cityNotification.city = vm.cities[vm.cities.getIndexBy("name", vm.cityNotification.city.name)];
+                });
+            });
+        }
+
+        Array.prototype.getIndexBy = function (name, value) {
+            for (var i = 0; i < this.length; i++) {
+                if (this[i][name] == value) {
+                    return i;
+                }
+            }
+        }
+
+        function addOrUpdateCityNotification(cityNotification, isGoBack) {
+            cityNotification.userName = authService.authentication.userName;
+            cityNotification.dateCreated = new Date();
+
+            return dataService.addOrUpdateCityNotification(cityNotification)
+                .then(function (data) {
+                    vm.cityNotification = data;
+
+                    if (isGoBack || true) {
+                        $scope.$apply();
+
+                        history.back();
+                    }
+
+                    return vm.cityNotification;
                 });
         }
 
-        function send(nationalityNotification) {
-            if (nationalityNotification.nationalityNotificationId == 0) {
-                addOrUpdateNationalityNotification(nationalityNotification).then(sendNationalityNotification);
+        function send(cityNotification) {
+            if (cityNotification.cityNotificationId == 0) {
+                addOrUpdateCityNotification(cityNotification).then(sendCityNotification);
             }
             else
             {
-                sendNationalityNotification();
+                sendCityNotification(cityNotification);
             }
 
+            function sendCityNotification(cityNotification) {
+                return dataService.sendCityNotification(cityNotification).then(function () {
+                    $scope.$apply();
 
-            function sendNationalityNotification() {
-                return dataService.sendNationalityNotification(nationalityNotification).then(function () {
-                    $location.path('/nationalityNotifications');
+                    history.back();
                 });
             }
         }

@@ -34,7 +34,9 @@
         function addOrUpdateCategory(category) {
             return dataService.addOrUpdateCategory(category)
                 .then(function(){
-                    $location.path('/categories');
+                    $scope.$apply();
+
+                    history.back();
                 });
         }
 

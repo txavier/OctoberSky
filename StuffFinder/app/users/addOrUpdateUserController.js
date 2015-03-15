@@ -62,7 +62,9 @@
 
             return dataService.addOrUpdateUser(user)
                 .then(function(){
-                    $location.path('/users');
+                    $scope.$apply();
+
+                    history.back();
                 });
         }
 

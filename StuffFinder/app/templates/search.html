@@ -32,7 +32,7 @@
                 <a href="#/thing/{{ thing.thingId }}">
                     <p>
                         <h5 data-ng-style="{ 'color': thing.findings.length == 0 ? vm.redFont : vm.greenFont }"><b>{{ thing.findings.length == 0 ? ('Wanted') : ('Found') }}</b></h5>
-                        <h5 style="min-height:20px">{{ thing.name | limitTo:50 }}</h5>
+                        <h5 style="min-height:20px">{{ thing.name.length > 25 ? thing.name.substring(0,30) + '[&hellip;]' : thing.name }}</h5>
                     </p>
                 </a>
                 <p>

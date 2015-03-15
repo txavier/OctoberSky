@@ -34,7 +34,9 @@
         function addOrUpdateCity(city) {
             return dataService.addOrUpdateCity(city)
                 .then(function(){
-                    $location.path('/cities');
+                    $scope.$apply();
+
+                    history.back();
                 });
         }
 

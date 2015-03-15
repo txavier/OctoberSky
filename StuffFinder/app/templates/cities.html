@@ -41,8 +41,12 @@
                     Edit
                 </a>
             </td>
-            <td title="{{ city.locations.length > 0 ? 'Currently being used by location ' + city.locations[0].locationName : 'Delete' }}">
-                <button class="btn btn-default" data-ng-click="vm.deleteCity(city.cityId)" data-ng-disabled="city.locations.length > 0">
+            <td title="{{ city.locations.length > 0 ? 
+                'Currently being used by location ' + city.locations[0].locationName 
+                : (city.cityNotifications.length > 0 ? 'Currently being used by city notification ' + city.cityNotifications[0].cityNotificationId 
+                : (city.users.length > 0 ? 'Currently being used by user ' + city.users[0].userName
+                : 'Delete')) }}">
+                <button class="btn btn-default" data-ng-click="vm.deleteCity(city.cityId)" data-ng-disabled="city.locations.length > 0 || city.cityNotifications.length > 0 || city.users.length > 0">
                     Delete
                 </button>
             </td>

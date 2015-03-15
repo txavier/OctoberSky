@@ -34,7 +34,9 @@
         function addOrUpdateNationality(nationality) {
             return dataService.addOrUpdateNationality(nationality)
                 .then(function(){
-                    $location.path('/nationalities');
+                    $scope.$apply();
+
+                    history.back();
                 });
         }
 

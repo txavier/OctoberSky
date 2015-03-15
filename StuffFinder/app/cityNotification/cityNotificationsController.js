@@ -1,16 +1,16 @@
 ﻿(function () {
     'use strict';
 
-    app.controller('nationalityNotificationsController', nationalityNotificationsController);
+    app.controller('cityNotificationsController', cityNotificationsController);
 
-    nationalityNotificationsController.$inject = ['$scope', '$log', 'dataService'];
+    cityNotificationsController.$inject = ['$scope', '$log', 'dataService'];
 
-    function nationalityNotificationsController($scope, $log, dataService) {
+    function cityNotificationsController($scope, $log, dataService) {
         var vm = this;
 
-        vm.nationalityNotifications = [];
-        vm.searchNationalityNotifications = searchNationalityNotifications;
-        vm.deleteNationalityNotification = deleteNationalityNotification;
+        vm.cityNotifications = [];
+        vm.searchCityNotifications = searchCityNotifications;
+        vm.deleteCityNotification = deleteCityNotification;
         vm.totalItems = 0;
         vm.itemsPerPage = 10;
         vm.currentPage = 1;
@@ -25,8 +25,8 @@
 
         function activate() {
             setSearchCriteria(vm.currentPage, vm.itemsPerPage, vm.orderBy, vm.searchText);
-            searchNationalityNotifications(vm.searchCriteria);
-            searchNationalityNotificationsCount(vm.searchCriteria);
+            searchCityNotifications(vm.searchCriteria);
+            searchCityNotificationsCount(vm.searchCriteria);
 
             return vm;
         }
@@ -36,17 +36,17 @@
 
             setSearchCriteria(vm.currentPage, vm.itemsPerPage, vm.orderBy, vm.searchText);
 
-            searchNationalityNotifications(vm.searchCriteria);
+            searchCityNotifications(vm.searchCriteria);
         }
 
-        function searchNationalityNotifications(searchCriteria) {
-            dataService.searchNationalityNotifications(searchCriteria).then(function (data) {
-                vm.nationalityNotifications = data;
+        function searchCityNotifications(searchCriteria) {
+            dataService.searchCityNotifications(searchCriteria).then(function (data) {
+                vm.cityNotifications = data;
 
-                return vm.nationalityNotifications;
+                return vm.cityNotifications;
             });
 
-            searchNationalityNotificationsCount(searchCriteria);
+            searchCityNotificationsCount(searchCriteria);
         }
 
         function setSearchCriteria(currentPage, itemsPerPage, orderBy, searchText) {
@@ -60,15 +60,15 @@
             return vm.searchCriteria;
         }
 
-        function deleteNationalityNotification(nationalityNotificationId) {
-            return dataService.deleteNationalityNotification(nationalityNotificationId)
+        function deleteCityNotification(cityNotificationId) {
+            return dataService.deleteCityNotification(cityNotificationId)
                 .then(function (data) {
-                    searchNationalityNotifications(vm.searchCriteria);
+                    searchCityNotifications(vm.searchCriteria);
                 });
         }
 
-        function searchNationalityNotificationsCount(searchCriteria) {
-            return dataService.searchNationalityNotificationsCount(searchCriteria).then(function (data) {
+        function searchCityNotificationsCount(searchCriteria) {
+            return dataService.searchCityNotificationsCount(searchCriteria).then(function (data) {
                 vm.totalItems = data || 0;
 
                 return vm.totalItems;
@@ -78,7 +78,7 @@
         function pageChanged() {
             setSearchCriteria(vm.currentPage, vm.itemsPerPage, vm.orderBy, vm.searchText);
 
-            searchNationalityNotifications(vm.searchCriteria);
+            searchCityNotifications(vm.searchCriteria);
         }
     }
 })();

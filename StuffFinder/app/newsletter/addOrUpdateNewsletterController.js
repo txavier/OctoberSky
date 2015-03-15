@@ -38,7 +38,9 @@
 
             return dataService.addOrUpdateNewsletter(newsletter)
                 .then(function () {
-                    $location.path('/newsletters');
+                    $scope.$apply();
+
+                    history.back();
                 });
         }
 
@@ -54,7 +56,9 @@
 
             function sendNewsletter() {
                 return dataService.sendNewsletter(newsletter).then(function () {
-                    $location.path('/newsletters');
+                    $scope.$apply();
+
+                    history.back();
                 });
             }
         }

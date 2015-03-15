@@ -14,6 +14,7 @@ namespace StuffFinder.Core.Models
             locations = new HashSet<location>();
             thingCities = new HashSet<thingCity>();
             users = new HashSet<user>();
+            cityNotifications = new HashSet<cityNotification>();
         }
 
         public int cityId { get; set; }
@@ -31,5 +32,7 @@ namespace StuffFinder.Core.Models
         public virtual ICollection<thingCity> thingCities { get; set; }
 
         public virtual ICollection<user> users { get; set; }
+
+        public virtual ICollection<cityNotification> cityNotifications { get; set; }
     }
 }
