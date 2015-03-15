@@ -206,7 +206,7 @@ namespace StuffFinder.Core.Services
 
             var adminGroupEmailList = _userService.GetAdminGroupEmailList();
 
-            var subject = "New Item Added To WheresMyStuff.com!";
+            var subject = "New Item Added To myFindr!";
 
             _stuffFinderEmailService.SendEmail(emailMessage, adminGroupEmailList, subject);
         }

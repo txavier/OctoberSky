@@ -57,7 +57,7 @@
                                     data-ng-options="city as city.name for city in vm.cities"></select>
                         </div>
                         <div class="form-group-sm input-group input-group-sm" style="max-width:360px;">
-                            <input type="text" class="form-control" placeholder="Search WheresMyStuff.com" data-ng-model="vm.query" name="srch-term" id="srch-term" >
+                            <input type="text" class="form-control" placeholder="Search myFindr" data-ng-model="vm.query" name="srch-term" id="srch-term" >
                             <div class="input-group-btn">
                                 @*<button class="btn btn-default" type="submit" ng-hide="true"><i class="glyphicon glyphicon-search"></i></button>*@
                                 <a class="btn btn-default" href="#/search/{{ vm.searchCity.name || 'all' | escape }}/{{ vm.query || '' | escape }}"><i class="glyphicon glyphicon-search"></i></a>
@@ -86,7 +86,7 @@
                     <!-- top nav -->
                     <div class="navbar navbar-blue navbar-static-top visible-xs" style="max-height:50px;">
                         <div class="form-group-sm input-group input-group-sm">
-                            <input type="text" class="form-control" placeholder="Search WheresMyStuff.com" data-ng-model="vm.query" name="srch-term" id="srch-term">
+                            <input type="text" class="form-control" placeholder="Search myFindr" data-ng-model="vm.query" name="srch-term" id="srch-term">
                             <div class="input-group-btn">
                                 <button class="btn btn-default" type="submit" ng-hide="true"><i class="glyphicon glyphicon-search"></i></button>
                                 <a class="btn btn-default" href="#/search/{{ vm.query }}"><i class="glyphicon glyphicon-search"></i></a>
