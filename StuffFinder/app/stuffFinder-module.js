@@ -274,6 +274,12 @@ app.config(function ($routeProvider) {
         templateUrl: '/app/templates/add-or-update-nationality-notification.html'
     });
 
+    $routeProvider.when('/feedback', {
+        controller: 'feedbackController',
+        controllerAs: 'vm',
+        templateUrl: '/app/templates/feedback.html'
+    });
+
     $routeProvider.otherwise({ redirectTo: "/index" });
 });
 

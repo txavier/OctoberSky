@@ -24,6 +24,7 @@
         var me2ApiUrl = 'api/me2Api';
         var cityNotificationsApiUrl = 'api/cityNotificationsApi';
         var nationalityNotificationsApiUrl = 'api/nationalityNotificationsApi';
+        var feedbackApiUrl = 'api/feedbackApi';
 
         var jumbotronVideoUrlSetting = {};
 
@@ -97,9 +98,28 @@
             addOrUpdateCityNotification: addOrUpdateCityNotification,
             deleteCityNotification: deleteCityNotification,
             sendCityNotification: sendCityNotification,
+            sendFeedback: sendFeedback
         };
 
         return service;
+
+        function sendFeedback(feedback) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.post(serverUrl.resourceServerUrl + feedbackApiUrl + '/sendfeedback', feedback)
+                            .then(sendFeedbackComplete)
+                            .catch(sendFeedbackFailed);
+
+                function sendFeedbackComplete(response) {
+                    return response.data;
+                }
+
+                function sendFeedbackFailed(error) {
+                    $log.error('XHR failed for sendFeedbackFailed.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
 
         function getCityNotification(cityNotificationId) {
             return getServerUrl().then(function (resource) {

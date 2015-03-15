@@ -31,9 +31,6 @@
         }
 
         function getCityNotification(cityNotificationId) {
-            //if (!cityNotificationId) {
-            //    return;
-            //}
             return dataService.getCityNotification(cityNotificationId).then(function (data) {
                 vm.cityNotification = data;
 

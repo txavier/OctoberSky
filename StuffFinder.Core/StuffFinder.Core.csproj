@@ -99,6 +99,7 @@
     <Compile Include="Models\ViewModels\ThingViewModel.cs" />
     <Compile Include="Models\ViewModels\UserViewModel.cs" />
     <Compile Include="Models\StuffFinder\vote.cs" />
+    <Compile Include="Objects\Feedback.cs" />
     <Compile Include="Objects\SearchCriteria.cs" />
     <Compile Include="Objects\SearchParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -112,10 +113,12 @@
     <Compile Include="Interfaces\IStuffFinderEmailService.cs" />
     <Compile Include="Interfaces\IMe2Service.cs" />
     <Compile Include="Models\StuffFinder\cityNotification.cs" />
+    <Compile Include="Services\FeedbackService.cs" />
     <Compile Include="Services\FindingService.cs" />
     <Compile Include="Interfaces\IFindingService.cs" />
     <Compile Include="Interfaces\ICityNotificationService.cs" />
     <Compile Include="Interfaces\INationalityNotificationService.cs" />
+    <Compile Include="Services\IFeedbackService.cs" />
     <Compile Include="Services\LocationService.cs" />
     <Compile Include="Services\Me2Service.cs" />
     <Compile Include="Models\StuffFinder\nationalityNotification.cs" />

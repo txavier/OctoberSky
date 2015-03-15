@@ -24,7 +24,7 @@
         vm.datepickerDateOptions = { formatYear: 'yy', startingDay: 1 };
         vm.clear = datepickerClear;
         vm.locations = [];
-        vm.finding = { location: { locationName: '' }, date: null, price: null, upcCode: null };
+        vm.finding = { location: { locationName: '' }, date: new Date(), price: null, upcCode: null };
         vm.cities = [];
 
         // Scope variables have to be accessible for the watch statements.

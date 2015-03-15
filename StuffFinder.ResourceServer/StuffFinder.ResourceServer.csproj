@@ -140,6 +140,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\feedbackApiController.cs" />
     <Compile Include="Controllers\me2ApiController.cs" />
     <Compile Include="Controllers\nationalityNotificationApiController.cs" />
     <Compile Include="Controllers\cityNotificationApiController.cs" />

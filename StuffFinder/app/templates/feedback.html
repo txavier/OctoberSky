@@ -1,0 +1,31 @@
+﻿<section class="content-section video-section">
+    <div class="jumbotron pattern-overlay">
+        <a id="bgndVideo" class="player" data-property="{videoURL:'https://www.youtube.com/watch?v=zGtz_GOA79w',containment:'.video-section', quality:'large', autoPlay:true, mute:true, opacity:1}">bg</a>
+        <div class="container">
+            <div class="page-header text-center hidden-xs">
+                <h1><i class="glyphicon glyphicon-heart-empty red"></i>WheresMyStuff.com</h1>
+            </div>
+            <div class="page-header text-center visible-xs">
+                <h1><i class="glyphicon glyphicon-heart-empty red"></i>Where's My Stuff</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="page-header">
+    <h1>Let us know how we are doing</h1>
+</div>
+<div class="form-group" style="padding:14px;">
+    Name
+    <textarea class="form-control" placeholder="The name of the item you found" data-ng-model="vm.feedback.name" ></textarea>
+</div>
+<div class="form-group" style="padding:14px;">
+    Email
+    <textarea class="form-control" placeholder="The name of the item you found" data-ng-model="vm.feedback.email" ></textarea>
+</div>
+<div class="form-group" style="padding:14px;">
+    Message
+    <textarea class="form-control" style="height:200px" placeholder="The name of the item you found" data-ng-model="vm.feedback.message" ></textarea>
+</div>
+<div class="row" style="padding:14px;">
+    <button class="btn" data-ng-click="vm.send(vm.feedback)">Send</button>
+</div>

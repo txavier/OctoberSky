@@ -239,6 +239,7 @@
     <Content Include="app\admin\dashboardEmailSettingsController.js" />
     <Content Include="app\cityNotification\addOrUpdateCityNotificationController.js" />
     <Content Include="app\cityNotification\cityNotificationsController.js" />
+    <Content Include="app\feedback\feedbackController.js" />
     <Content Include="app\locations\addOrUpdateLocationController.js" />
     <Content Include="app\locations\locationsController.js" />
     <Content Include="app\cities\addOrUpdateCityController.js" />
@@ -264,6 +265,7 @@
     <Content Include="app\templates\add-or-update-nationality.html" />
     <Content Include="app\templates\add-or-update-city.html" />
     <Content Include="app\templates\add-or-update-category.html" />
+    <Content Include="app\templates\feedback.html" />
     <Content Include="app\templates\how-it-works.html" />
     <Content Include="app\templates\locations.html" />
     <Content Include="app\templates\city-notifications.html" />
