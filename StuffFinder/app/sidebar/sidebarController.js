@@ -20,13 +20,14 @@
         vm.smallClass = 'visible-lg';
         vm.changeClassEnter = changeClassEnter;
         vm.changeClassLeave = changeClassLeave;
-        vm.activeClass = 'row-offcanvas-left';
-        vm.largeMenuClass = 'hidden-lg';
-        vm.smallMenuClass = 'visible-lg';
+        vm.activeClass = '';
+        vm.largeMenuClass = 'hidden-lg hidden-xs';
+        vm.smallMenuClass = 'visible-lg hidden-xs';
         vm.sidebarColumnClass = 'col-sm-1 col-xs-1';
         vm.mainColumnClass = 'col-sm-11';
         vm.toggleClasses = toggleClasses;
         vm.smallScreenLargeMenuClass = 'hidden-xs';
+        vm.smallScreenSmallMenuClass = 'visible-xs';
 
         // Scope references needed for deep watch on service variable.
         // http://stackoverflow.com/questions/12576798/how-to-watch-service-variables
@@ -53,31 +54,34 @@
         });
 
         function toggleClasses() {
-            vm.activeClass = "active";
-            vm.largeMenuClass = 'visible-lg hidden-xs';
-            vm.smallMenuClass = 'hidden-lg hidden-xs';
             if (vm.smallScreenLargeMenuClass == 'hidden-xs') {
                 vm.smallScreenLargeMenuClass = 'visible-xs';
+                vm.smallScreenSmallMenuClass = 'hidden-xs';
+                vm.sidebarColumnClass = 'col-sm-1 col-xs-2';
+                vm.activeClass = 'active';
             }
             else {
                 vm.smallScreenLargeMenuClass = 'hidden-xs';
+                vm.smallScreenSmallMenuClass = 'visible-xs';
+                vm.sidebarColumnClass = 'col-sm-1 col-xs-1';
+                vm.activeClass = '';
             }
             
         }
 
         function changeClassEnter() {
             vm.activeClass = "active";
-            vm.largeMenuClass = 'visible-lg';
-            vm.smallMenuClass = 'hidden-lg';
-            vm.sidebarColumnClass = 'col-sm-2';
+            vm.largeMenuClass = 'visible-lg hidden-xs';
+            vm.smallMenuClass = 'hidden-lg hidden-xs';
+            vm.sidebarColumnClass = 'col-sm-2 col-xs-1';
             vm.mainColumnClass = 'col-sm-10';
         }
 
         function changeClassLeave() {
             vm.activeClass = '';
-            vm.largeMenuClass = 'hidden-lg';
-            vm.smallMenuClass = 'visible-lg';
-            vm.sidebarColumnClass = 'col-sm-1';
+            vm.largeMenuClass = 'hidden-lg hidden-xs';
+            vm.smallMenuClass = 'visible-lg hidden-xs';
+            vm.sidebarColumnClass = 'col-sm-1  col-xs-1';
             vm.mainColumnClass = 'col-sm-11';
         }
 

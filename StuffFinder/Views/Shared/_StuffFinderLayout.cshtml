@@ -38,7 +38,7 @@
 
                     <ul class="nav">
                         @*<li><a href="#" data-toggle="offcanvas" class="visible-xs text-center" ng-click="vm.toggleClasses()"><i class="glyphicon glyphicon-chevron-right"></i></a></li>*@
-                        <li><a href="#" class="visible-xs text-center" ng-click="vm.toggleClasses()"><i class="glyphicon glyphicon-chevron-right"></i></a></li>
+                        <li><a class="visible-xs text-center" ng-click="vm.toggleClasses()"><i class="glyphicon glyphicon-chevron-right"></i></a></li>
                     </ul>
 
                     <ul class="nav hidden-xs" data-ng-class="vm.largeMenuClass">
@@ -85,7 +85,7 @@
                         </li>
                     </ul>
 
-                    <ul class="nav visible-xs" id="xs-menu">
+                    <ul class="nav" id="xs-menu" data-ng-class="vm.smallScreenSmallMenuClass">
                         <li><a href="/areas/dashboard/pages/#/admin"><i class="glyphicon glyphicon-wrench "></i></a></li>
                         <li><a href="#/user-profile"><i class="glyphicon glyphicon-user "></i> </a></li>
                         <li><a href="#/home" data-ng-click="vm.authentication.loginlogout()"><i class="glyphicon glyphicon-share "></i></a></li>
@@ -96,7 +96,7 @@
                         <li><a href="#/feedback"><i class="glyphicon glyphicon-retweet "></i> </a></li>
                     </ul>
 
-                    <ul class="nav visible-xs" data-ng-class="vm.smallMenuClass">
+                    <ul class="nav" data-ng-class="vm.smallMenuClass">
                         <li><a class="glyphicon-text-center" href="/areas/dashboard/pages/#/admin"><i class="glyphicon glyphicon-wrench glyphiconLarge"></i></a></li>
                         <li><a class="glyphicon-text-center" href="#/user-profile"><i class="glyphicon glyphicon-user glyphiconLarge"></i> </a></li>
                         <li><a class="glyphicon-text-center" href="#/home" data-ng-click="vm.authentication.loginlogout()"><i class="glyphicon glyphicon-share glyphiconLarge"></i></a></li>
