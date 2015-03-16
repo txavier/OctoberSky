@@ -6,5 +6,6 @@ namespace StuffFinder.Core.Interfaces
         StuffFinder.Core.Models.city AddOrUpdate(StuffFinder.Core.Models.city city);
         System.Collections.Generic.IEnumerable<StuffFinder.Core.Models.city> Search(StuffFinder.Core.Objects.SearchCriteria searchCriteria);
         int SearchCount(StuffFinder.Core.Objects.SearchCriteria searchCriteria);
+        System.Collections.Generic.IEnumerable<StuffFinder.Core.Models.CityViewModel> GetAllViewModels();
     }
 }

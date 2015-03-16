@@ -22,7 +22,7 @@ namespace StuffFinder.ResourceServer.Controllers
         // GET: api/cityApi
         public IHttpActionResult Get()
         {
-            var result = _cityService.Get();
+            var result = _cityService.GetAllViewModels();
 
             return Ok(result);
         }

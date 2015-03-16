@@ -69,7 +69,7 @@ namespace StuffFinder.ResourceServer.Controllers
         // GET: api/locationApi/5
         public IHttpActionResult Search(SearchCriteria searchCriteria)
         {
-            var result = _thingService.ToViewModels(_thingService.Search(searchCriteria));
+            var result = _thingService.SearchViewModels(searchCriteria);
 
             return Ok(result);
         }

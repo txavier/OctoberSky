@@ -7,6 +7,7 @@ using StuffFinder.Core.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using StructureMap;
 using StuffFinder.Core.Interfaces;
+using StuffFinder.Core.Objects;
 namespace StuffFinder.Core.Services.Tests
 {
     [TestClass()]
@@ -20,13 +21,21 @@ namespace StuffFinder.Core.Services.Tests
 
             var thingService = container.GetInstance<IThingService>();
 
+            var searchCriteria = new Objects.SearchCriteria() 
+            { 
+                itemsPerPage = 100, 
+                currentPage = 1,
+                includeProperties = "findings",
+                searchParams = new List<SearchParam>() { new SearchParam() { key = "cityName", value = "all" } }
+            };
+
             // Act.
-            var results = thingService.Search(new Objects.SearchCriteria() { itemsPerPage = 100, currentPage = 1 });
+            var results = thingService.SearchViewModels(searchCriteria);
 
             // Assert.
             Assert.IsTrue(results.Any());
 
-            Assert.IsTrue(results.First().category != null);
+            Assert.IsTrue(results.Where(i => i.findings.Any()).Any());
         }
     }
 }

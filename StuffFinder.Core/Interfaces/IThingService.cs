@@ -14,7 +14,7 @@ namespace StuffFinder.Core.Interfaces
 
         StuffFinder.Core.Models.ThingViewModel ToViewModel(StuffFinder.Core.Models.thing thing);
 
-        System.Collections.Generic.IEnumerable<Models.thing> Search(Objects.SearchCriteria searchCriteria);
+        System.Collections.Generic.IEnumerable<Models.thing> Search(Objects.SearchCriteria searchCriteria, bool lazyLoadingEnabled = true, bool proxyCreationEnabled = true);
 
         int SearchCount(Objects.SearchCriteria searchCriteria);
 
@@ -24,5 +24,6 @@ namespace StuffFinder.Core.Interfaces
 
         StuffFinder.Core.Models.thing Delete(int thingId);
 
+        System.Collections.Generic.IEnumerable<StuffFinder.Core.Models.ThingViewModel> SearchViewModels(StuffFinder.Core.Objects.SearchCriteria searchCriteria);
     }
 }

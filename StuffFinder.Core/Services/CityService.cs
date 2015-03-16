@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Omu.ValueInjecter;
 
 namespace StuffFinder.Core.Services
 {
@@ -56,6 +57,31 @@ namespace StuffFinder.Core.Services
             city = base.AddOrUpdate(city);
 
             return city;
+        }
+
+        public IEnumerable<CityViewModel> GetAllViewModels()
+        {
+            var results = Get(lazyLoadingEnabled: false, proxyCreationEnabled: false);
+
+            var resultViewModels = ToViewModels(results);
+
+            return resultViewModels;
+        }
+
+        public IEnumerable<CityViewModel> ToViewModels(IEnumerable<city> results)
+        {
+            var result = results.Select(i => ToViewModels(i));
+
+            return result;
+        }
+
+        public CityViewModel ToViewModels(city city)
+        {
+            var cityViewModel = new CityViewModel();
+
+            cityViewModel.InjectFrom(city);
+
+            return cityViewModel;
         }
     }
 }

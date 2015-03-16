@@ -26,8 +26,8 @@
         vm.sidebarColumnClass = 'col-sm-1 col-xs-1';
         vm.mainColumnClass = 'col-sm-11';
         vm.toggleClasses = toggleClasses;
-        vm.smallScreenLargeMenuClass = 'hidden-xs';
-        vm.smallScreenSmallMenuClass = 'visible-xs';
+        vm.smallScreenLargeMenuClass = 'hidden-lg hidden-xs';
+        vm.smallScreenSmallMenuClass = 'hidden-lg visible-xs';
 
         // Scope references needed for deep watch on service variable.
         // http://stackoverflow.com/questions/12576798/how-to-watch-service-variables
@@ -54,19 +54,18 @@
         });
 
         function toggleClasses() {
-            if (vm.smallScreenLargeMenuClass == 'hidden-xs') {
-                vm.smallScreenLargeMenuClass = 'visible-xs';
-                vm.smallScreenSmallMenuClass = 'hidden-xs';
+            if (vm.smallScreenLargeMenuClass == 'hidden-lg hidden-xs') {
+                vm.smallScreenLargeMenuClass = 'hidden-lg visible-xs';
+                vm.smallScreenSmallMenuClass = 'hidden-lg hidden-xs';
                 vm.sidebarColumnClass = 'col-sm-1 col-xs-2';
                 vm.activeClass = 'active';
             }
             else {
-                vm.smallScreenLargeMenuClass = 'hidden-xs';
-                vm.smallScreenSmallMenuClass = 'visible-xs';
+                vm.smallScreenLargeMenuClass = 'hidden-lg hidden-xs';
+                vm.smallScreenSmallMenuClass = 'hidden-lg visible-xs';
                 vm.sidebarColumnClass = 'col-sm-1 col-xs-1';
                 vm.activeClass = '';
             }
-            
         }
 
         function changeClassEnter() {

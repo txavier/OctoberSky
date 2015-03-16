@@ -9,7 +9,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using XavierEnterpriseLibrary.Core.Interfaces;
 
 namespace StuffFinder.Core.Services
 {
@@ -30,18 +29,18 @@ namespace StuffFinder.Core.Services
         private readonly IMe2Service _me2Service;
 
         private readonly ISettingService _settingService;
-        
+
         private readonly IService<thingCity> _thingCityService;
 
         public ThingService(IRepository<thing> thingRepository
-            ,IUserService userService
-            ,IStuffFinderEmailService stuffFinderEmailService
-            ,IService<image> imageService
-            ,IFindingService findingService
-            ,IVoteService voteService
-            ,IMe2Service me2Service
-            ,ISettingService settingService
-            ,IService<thingCity> thingCityService)
+            , IUserService userService
+            , IStuffFinderEmailService stuffFinderEmailService
+            , IService<image> imageService
+            , IFindingService findingService
+            , IVoteService voteService
+            , IMe2Service me2Service
+            , ISettingService settingService
+            , IService<thingCity> thingCityService)
             : base(thingRepository)
         {
             _thingRepository = thingRepository;
@@ -81,7 +80,34 @@ namespace StuffFinder.Core.Services
             return result;
         }
 
-        public IEnumerable<thing> Search(SearchCriteria searchCriteria)
+        public IEnumerable<ThingViewModel> SearchViewModels(SearchCriteria searchCriteria)
+        {
+            // Include properties that are needed for the ToViewModel method to create all
+            // of the additional display properties that it needs.
+            if(searchCriteria.includeProperties == null)
+            {
+                searchCriteria.includeProperties = string.Empty;
+            }
+
+            searchCriteria.includeProperties = searchCriteria.includeProperties.Contains("images") ?
+                searchCriteria.includeProperties : searchCriteria.includeProperties + ",images";
+
+            searchCriteria.includeProperties = searchCriteria.includeProperties.Contains("findings") ?
+                searchCriteria.includeProperties : searchCriteria.includeProperties + ",findings";
+
+            searchCriteria.includeProperties = searchCriteria.includeProperties.Contains("me2") ?
+                searchCriteria.includeProperties : searchCriteria.includeProperties + ",me2";
+
+            // Search with lazy loading and proxy creation turned off because these arent
+            // needed for display purposes.
+            var results = Search(searchCriteria, lazyLoadingEnabled: false, proxyCreationEnabled: false);
+
+            var resultViewModels = ToViewModels(results);
+
+            return resultViewModels;
+        }
+
+        public IEnumerable<thing> Search(SearchCriteria searchCriteria, bool lazyLoadingEnabled = true, bool proxyCreationEnabled = true)
         {
             var queryLowered = string.IsNullOrEmpty(searchCriteria.searchText) ? null : searchCriteria.searchText.ToLower();
 
@@ -92,8 +118,8 @@ namespace StuffFinder.Core.Services
             var result = Get(
                filter: i =>
                    // Must have this...
-                   (!cityNamesLowered.Any() || cityNamesLowered.Contains("all") ? 
-                    true : (i.findings.Any(j => cityNamesLowered.Contains(j.location.city.name.ToLower())) 
+                   (!cityNamesLowered.Any() || cityNamesLowered.Contains("all") ?
+                    true : (i.findings.Any(j => cityNamesLowered.Contains(j.location.city.name.ToLower()))
                     || i.thingCities.Select(k => k.city.name).Any(l => cityNamesLowered.Contains(l.ToLower())))) &&
                        // Have any of these...
                    (queryLowered == null ? true : i.findings.Any(j => j.location.formattedAddress.ToLower().Contains(queryLowered))
@@ -110,7 +136,10 @@ namespace StuffFinder.Core.Services
                    : (searchCriteria.orderBy == "city.name" ? j.OrderBy(k => k.findings.SelectMany(x => x.location.city.name))
                    : j.OrderBy(k => k.name))),
                skip: ((searchCriteria.currentPage - 1) ?? 1) * (searchCriteria.itemsPerPage ?? int.MaxValue),
-               take: (searchCriteria.itemsPerPage ?? int.MaxValue));
+               take: (searchCriteria.itemsPerPage ?? int.MaxValue),
+               includeProperties: searchCriteria.includeProperties ?? "",
+               lazyLoadingEnabled: lazyLoadingEnabled,
+               proxyCreationEnabled: proxyCreationEnabled);
 
             return result;
         }
@@ -168,8 +197,8 @@ namespace StuffFinder.Core.Services
 
         public thing AddOrUpdate(thing thing)
         {
-            // Remove child references. This is needed in order for entity 
-            // framework to provide the vanilla update to just this item 
+            // Remove child references. This is needed in order for entity
+            // framework to provide the vanilla update to just this item
             // without walking down the entity tree.
             thing.categoryId = thing.category == null ? thing.categoryId : thing.category.categoryId;
 
@@ -181,7 +210,7 @@ namespace StuffFinder.Core.Services
 
             thing.images = null;
 
-            foreach(var thingCity in thing.thingCities)
+            foreach (var thingCity in thing.thingCities)
             {
                 thingCity.cityId = thingCity.city == null ? thingCity.cityId : thingCity.city.cityId;
 
@@ -277,7 +306,7 @@ namespace StuffFinder.Core.Services
 
         private void SafeDeleteThingCityByThing(thing thing)
         {
-            foreach(var thingCityId in thing.thingCities.Select(i => i.thingCityId).ToList())
+            foreach (var thingCityId in thing.thingCities.Select(i => i.thingCityId).ToList())
             {
                 _thingCityService.Delete(thingCityId);
             }
