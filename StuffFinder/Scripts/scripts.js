@@ -1,6 +1,7 @@
 
 $(document).ready(function(){/* off-canvas sidebar toggle */
 
+    // We are initially toggling on and making the menu bigger.
 $('[data-toggle=offcanvas]').click(function() {
   	$(this).toggleClass('visible-xs text-center');
     $(this).find('i').toggleClass('glyphicon-chevron-right glyphicon-chevron-left');
