@@ -11,21 +11,23 @@
         </div>
     </div>
 </section>
-<div class="page-header">
-    <h1>Let us know how we are doing</h1>
-</div>
-<div class="form-group" style="padding:14px;">
-    Name
-    <textarea class="form-control" placeholder="The name of the item you found" data-ng-model="vm.feedback.name" ></textarea>
-</div>
-<div class="form-group" style="padding:14px;">
-    Email
-    <textarea class="form-control" placeholder="The name of the item you found" data-ng-model="vm.feedback.email" ></textarea>
-</div>
-<div class="form-group" style="padding:14px;">
-    Message
-    <textarea class="form-control" style="height:200px" placeholder="The name of the item you found" data-ng-model="vm.feedback.message" ></textarea>
-</div>
-<div class="row" style="padding:14px;">
-    <button class="btn" data-ng-click="vm.send(vm.feedback)">Send</button>
+<div class="well">
+    <div class="page-header">
+        <h1>Let us know how we are doing</h1>
+    </div>
+    <div class="form-group" style="padding:14px;">
+        Name
+        <textarea class="form-control" placeholder="Your username" data-ng-model="vm.feedback.name"></textarea>
+    </div>
+    <div class="form-group" style="padding:14px;">
+        Email
+        <textarea class="form-control" placeholder="Your email address" data-ng-model="vm.feedback.email"></textarea>
+    </div>
+    <div class="form-group" style="padding:14px;">
+        Message
+        <textarea class="form-control" style="height:200px" placeholder="Your message to myFindr" data-ng-model="vm.feedback.message"></textarea>
+    </div>
+    <div class="row" style="padding:14px;">
+        <button class="btn btn-primary pull-right" data-ng-click="vm.send(vm.feedback)">Send</button>
+    </div>
 </div>

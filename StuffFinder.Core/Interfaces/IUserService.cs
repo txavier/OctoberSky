@@ -2,7 +2,7 @@
 {
     public interface IUserService : AutoClutch.Auto.Service.Interfaces.IService<StuffFinder.Core.Models.user>
     {
-        StuffFinder.Core.Models.user AddOrUpdate(StuffFinder.Core.Models.user user);
+        StuffFinder.Core.Models.user AddOrUpdate(StuffFinder.Core.Models.user user, string loggedInUserName);
 
         System.Collections.Generic.IEnumerable<StuffFinder.Core.Models.user> Search(StuffFinder.Core.Objects.SearchCriteria searchCriteria);
 

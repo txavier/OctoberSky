@@ -76,7 +76,7 @@ namespace StuffFinder.ResourceServer.Controllers
         // POST: api/userApi
         public IHttpActionResult Post(user user)
         {
-            _userService.AddOrUpdate(user);
+            _userService.AddOrUpdate(user, User.Identity.Name);
 
             return Ok(user);
         }

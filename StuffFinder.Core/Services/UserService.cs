@@ -15,12 +15,17 @@ namespace StuffFinder.Core.Services
 
         private readonly IService<AspNetUser> _aspNetUserService;
 
-        public UserService(IRepository<user> userRepository, IService<AspNetUser> aspNetUserService)
+        private readonly IStuffFinderEmailService _stuffFinderEmailService;
+
+        public UserService(IRepository<user> userRepository, IService<AspNetUser> aspNetUserService, 
+            IStuffFinderEmailService stuffFinderEmailService)
             : base(userRepository)
         {
             _userRepository = userRepository;
 
             _aspNetUserService = aspNetUserService;
+
+            _stuffFinderEmailService = stuffFinderEmailService;
         }
 
         public IEnumerable<user> Search(SearchCriteria searchCriteria)
@@ -52,9 +57,9 @@ namespace StuffFinder.Core.Services
             return result;
         }
 
-        public user AddOrUpdate(user user)
+        public user AddOrUpdate(user user, string loggedInUsername)
         {
-            SendEmailNotificationIfFirstTime(user);
+            SendEmailNotificationIfFirstTime(user, loggedInUsername);
 
             user.cityId = user.city == null ? user.cityId : user.city.cityId;
             user.city = null;
@@ -66,9 +71,28 @@ namespace StuffFinder.Core.Services
             return user;
         }
 
-        private void SendEmailNotificationIfFirstTime(user user)
+        private void SendEmailNotificationIfFirstTime(user user, string loggedInUsername)
         {
-            // TODO
+            // If the logged in user is not in the user table then 
+            // this is a new user and needs a new user email sent.
+            var userEntity = Get(filter: i => i.userName == user.userName);
+
+            // If the user was found in the database then there is no 
+            // need to send a first time user notification.
+            if(userEntity != null)
+            {
+                return;
+            }
+
+            string emailMessage = "Hi " + user.userName + ", <br/><br/>     Thanks for signing up to myFindr, the site that "
+                + "connects you to the the things you love. By using myFindr you can find the items you have been "
+                + "looking high and low for. <br/><br/>     Alternatively, maybe you have found something that you know someone "
+                + "on myFindr has been posted and is looking desperately for.  Whether you are looking or finding visit "
+                + "myFindr and get started! <br/><br/>Great to have you on board! <br/><br/>Mollie <br/><br/><br/> myFindr.";
+
+            var adminGroupEmailList = GetAdminGroupEmailList();
+
+            _stuffFinderEmailService.SendEmail(emailMessage, adminGroupEmailList, "Welcome to myFindr");
         }
 
         public user GetLoggedInUser(string loggedInUserName)
