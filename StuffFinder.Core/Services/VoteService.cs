@@ -20,18 +20,22 @@ namespace StuffFinder.Core.Services
             _voteRepository = voteRepository;
         }
 
-        public vote upVote(vote vote)
+        public vote upVote(vote vote, string loggedInUsername)
         {
             vote.value = 1;
+
+            vote.userName = loggedInUsername;
 
             vote = addOrUpdateVote(vote);
 
             return vote;
         }
 
-        public vote downVote(vote vote)
+        public vote downVote(vote vote, string loggedInUsername)
         {
             vote.value = -1;
+
+            vote.userName = loggedInUsername;
 
             vote = addOrUpdateVote(vote);
 
@@ -41,7 +45,9 @@ namespace StuffFinder.Core.Services
         private Models.vote addOrUpdateVote(vote vote)
         {
             // Has this user voted on this thing already.
-            var previousVote = Get(filter: i => i.userName == vote.userName && i.thingId == vote.thingId).FirstOrDefault();
+            var previousVote = 
+                Get(filter: i => i.userName == vote.userName && i.thingId == vote.thingId && i.findingId == vote.findingId)
+                .FirstOrDefault();
 
             // If there was a prevous vote then use the vote id 
             // and update.

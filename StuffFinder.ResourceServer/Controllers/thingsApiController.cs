@@ -51,7 +51,7 @@ namespace StuffFinder.ResourceServer.Controllers
         [Route("GetMostMe2Things")]
         public IHttpActionResult GetMostMe2Things()
         {
-            var result = _thingService.ToViewModels(_thingService.GetMostMe2Things());
+            var result = _thingService.GetSixMonths10MostMe2Things();
 
             return Ok(result);
         }

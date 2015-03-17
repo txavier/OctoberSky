@@ -764,6 +764,8 @@
     <Content Include="Areas\dashboard\pages\tables.html" />
     <Content Include="Areas\dashboard\pages\typography.html" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Areas\Splash\splash-app\index\indexController.js" />
+    <Content Include="Areas\Splash\splash-app\splash-app.js" />
     <Content Include="assets\example\betty-crocker chocolate frosting.jpg" />
     <Content Include="assets\example\bg_5.jpg" />
     <Content Include="assets\example\bobs_red_mill_brown_rice_flour_072G.jpg" />

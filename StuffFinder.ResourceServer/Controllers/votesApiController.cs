@@ -30,7 +30,7 @@ namespace StuffFinder.ResourceServer.Controllers
         [HttpPost]
         public IHttpActionResult upVote(vote vote)
         {
-            vote = _voteService.upVote(vote);
+            vote = _voteService.upVote(vote, User.Identity.Name);
 
             return Ok(vote);
         }
@@ -39,7 +39,7 @@ namespace StuffFinder.ResourceServer.Controllers
         [HttpPost]
         public IHttpActionResult downVote(vote vote)
         {
-            vote = _voteService.downVote(vote);
+            vote = _voteService.downVote(vote, User.Identity.Name);
 
             return Ok(vote);
         }

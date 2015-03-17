@@ -19,7 +19,11 @@ namespace StuffFinder.Core.Objects
         public string cityName { get; set; }
 
         public IEnumerable<SearchParam> searchParams { get; set; }
-
+        
         public string includeProperties { get; set; }
+
+        public DateTime? startDateTime { get; set; }
+
+        public DateTime? endDateTime { get; set; }
     }
 }

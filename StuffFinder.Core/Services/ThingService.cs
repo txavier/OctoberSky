@@ -62,13 +62,9 @@ namespace StuffFinder.Core.Services
             _thingCityService = thingCityService;
         }
 
-        public IEnumerable<thing> GetMostMe2Things()
+        public IEnumerable<ThingViewModel> GetSixMonths10MostMe2Things()
         {
-            // Get things that have not been found yet have the most me2's.
-            var result = Get(
-                filter: i => !i.findings.Any(),
-                orderBy: j => j.OrderByDescending(k => k.votes.Any() ? k.votes.Sum(m => m.value) : 0),
-                take: 10);
+            var result = GetMostMe2(DateTime.Now.AddMonths(-6), DateTime.MaxValue).Take(10);
 
             return result;
         }
@@ -121,7 +117,9 @@ namespace StuffFinder.Core.Services
                    (!cityNamesLowered.Any() || cityNamesLowered.Contains("all") ?
                     true : (i.findings.Any(j => cityNamesLowered.Contains(j.location.city.name.ToLower()))
                     || i.thingCities.Select(k => k.city.name).Any(l => cityNamesLowered.Contains(l.ToLower())))) &&
-                       // Have any of these...
+                    (searchCriteria.startDateTime != null ? i.postedDate > searchCriteria.startDateTime : true) &&
+                    (searchCriteria.endDateTime != null ? i.postedDate < searchCriteria.endDateTime : true) &&
+                   // Have any of these...
                    (queryLowered == null ? true : i.findings.Any(j => j.location.formattedAddress.ToLower().Contains(queryLowered))
                     || i.category.name.ToLower().Contains(queryLowered)
                     || i.description.ToLower().Contains(queryLowered)
@@ -168,29 +166,6 @@ namespace StuffFinder.Core.Services
                     || queryLowered.ToLower().Contains(i.name)
                     || queryLowered.ToLower().Contains(i.upcCode)
                     || queryLowered.ToLower().Contains(i.userName)));
-
-            return result;
-        }
-
-        public IEnumerable<thing> SearchThings(string query)
-        {
-            if (string.IsNullOrEmpty(query) || string.IsNullOrWhiteSpace(query))
-            {
-                return Get();
-            }
-
-            var queryLowered = query.ToLower();
-
-            var result = Get(filter: i =>
-                   i.findings.Any(j => j.location.formattedAddress.ToLower().Contains(queryLowered))
-                || i.category.name.ToLower().Contains(queryLowered)
-                || i.description.ToLower().Contains(queryLowered)
-                || i.name.ToLower().Contains(queryLowered)
-                || i.upcCode.ToLower().Contains(queryLowered)
-                || i.userName.ToLower().Contains(queryLowered)
-                || queryLowered.ToLower().Contains(i.name)
-                || queryLowered.ToLower().Contains(i.upcCode)
-                || queryLowered.ToLower().Contains(i.userName));
 
             return result;
         }
@@ -375,6 +350,28 @@ namespace StuffFinder.Core.Services
                     }
                 }
             }
+        }
+
+        public IEnumerable<ThingViewModel> GetMostMe2(DateTime startDateTime, DateTime endDateTime)
+        {
+            var result = _me2Service
+                .Get(filter: i => i.date > startDateTime && i.date < endDateTime)
+                .GroupBy(i => new
+                {
+                    thingId = i.thingId,
+                })
+                .Select(j => ToViewModel(j.Key.thingId));
+
+            return result;
+        }
+
+        private ThingViewModel ToViewModel(int thingId)
+        {
+            var thing = Find(thingId);
+
+            var thingViewModel = ToViewModel(thing);
+
+            return thingViewModel;
         }
     }
 }

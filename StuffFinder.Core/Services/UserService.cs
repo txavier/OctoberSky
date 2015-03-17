@@ -16,9 +16,11 @@ namespace StuffFinder.Core.Services
         private readonly IService<AspNetUser> _aspNetUserService;
 
         private readonly IStuffFinderEmailService _stuffFinderEmailService;
+        
+        private readonly ISettingService _settingService;
 
         public UserService(IRepository<user> userRepository, IService<AspNetUser> aspNetUserService, 
-            IStuffFinderEmailService stuffFinderEmailService)
+            IStuffFinderEmailService stuffFinderEmailService, ISettingService settingService)
             : base(userRepository)
         {
             _userRepository = userRepository;
@@ -26,6 +28,8 @@ namespace StuffFinder.Core.Services
             _aspNetUserService = aspNetUserService;
 
             _stuffFinderEmailService = stuffFinderEmailService;
+
+            _settingService = settingService;
         }
 
         public IEnumerable<user> Search(SearchCriteria searchCriteria)
@@ -88,7 +92,8 @@ namespace StuffFinder.Core.Services
                 + "connects you to the the things you love. By using myFindr you can find the items you have been "
                 + "looking high and low for. <br/><br/>     Alternatively, maybe you have found something that you know someone "
                 + "on myFindr has been posted and is looking desperately for.  Whether you are looking or finding visit "
-                + "myFindr and get started! <br/><br/>Great to have you on board! <br/><br/>Mollie <br/><br/><br/> myFindr.";
+                + "myFindr and get started! <br/><br/>Great to have you on board! <br/><br/>Mollie <br/><br/><br/> " 
+                + "<a href=\"" + _settingService.GetSettingValueBySettingKey("emailLandingPageUrl") + "\" >myFindr</a>";
 
             var adminGroupEmailList = GetAdminGroupEmailList();
 
