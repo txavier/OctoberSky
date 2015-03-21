@@ -3,11 +3,8 @@ using AutoClutch.Auto.Service.Services;
 using StuffFinder.Core.Interfaces;
 using StuffFinder.Core.Models;
 using StuffFinder.Core.Objects;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StuffFinder.Core.Services
 {
@@ -15,7 +12,7 @@ namespace StuffFinder.Core.Services
     {
         private readonly IRepository<location> _locationRepository;
 
-        public LocationService(IRepository<location> locationRepository) 
+        public LocationService(IRepository<location> locationRepository)
             : base(locationRepository)
         {
             _locationRepository = locationRepository;
@@ -26,12 +23,12 @@ namespace StuffFinder.Core.Services
             var result = searchCriteria == null ?
                Get()
                : Get(
-               filter: i => searchCriteria.searchText == null ? true 
+               filter: i => searchCriteria.searchText == null ? true
                    : i.locationName.Contains(searchCriteria.searchText) || searchCriteria.searchText.Contains(i.locationName)
                    || searchCriteria.searchText.Contains(i.formattedAddress) || searchCriteria.searchText.Contains(i.formattedAddress)
                    || searchCriteria.searchText.Contains(i.city.name) || searchCriteria.searchText.Contains(i.city.name),
-               orderBy: j => 
-                   (searchCriteria.orderBy == "locationName" ? j.OrderBy(k => k.locationName) 
+               orderBy: j =>
+                   (searchCriteria.orderBy == "locationName" ? j.OrderBy(k => k.locationName)
                    : (searchCriteria.orderBy == "formattedAddress" ? j.OrderBy(k => k.formattedAddress)
                    : (searchCriteria.orderBy == "city.name" ? j.OrderBy(k => k.city.name)
                    : j.OrderBy(k => k.locationName)))),
@@ -56,14 +53,10 @@ namespace StuffFinder.Core.Services
 
         public location AddOrUpdate(location location)
         {
-            // If this is an update then dont update the related entities
-            // too.
-            if (location.locationId != 0)
-            {
-                location.cityId = location.city == null ? (int?)null : location.city.cityId;
-                location.city = null;
-                location.findings = null;
-            }
+            // Dont update the related entities.
+            location.cityId = location.city == null ? (int?)null : location.city.cityId;
+            location.city = null;
+            location.findings = null;
 
             location = base.AddOrUpdate(location);
 

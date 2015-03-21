@@ -123,6 +123,18 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="XavierEnterpriseLibrary.Core">
+      <HintPath>..\packages\XavierEnterpriseLibrary.1.0.9\lib\net45\XavierEnterpriseLibrary.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="XavierEnterpriseLibrary.Infrastructure">
+      <HintPath>..\packages\XavierEnterpriseLibrary.1.0.9\lib\net45\XavierEnterpriseLibrary.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing">
+      <HintPath>..\packages\ZXing.Net.0.14.0.1\lib\net40\zxing.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.presentation">
+      <HintPath>..\packages\ZXing.Net.0.14.0.1\lib\net40\zxing.presentation.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Web.Http.WebHost">

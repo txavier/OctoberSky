@@ -17,11 +17,13 @@ namespace StuffFinder.Core.Services
         private readonly IStuffFinderEmailService _stuffFinderEmailService;
 
         private readonly IUserService _userService;
-        
+
         private readonly ISettingService _settingService;
 
+        private readonly ILocationService _locationService;
+
         public FindingService(IRepository<finding> findingRepository, IStuffFinderEmailService stuffFinderEmailService,
-            IUserService userService, ISettingService settingService)
+            IUserService userService, ISettingService settingService, ILocationService locationService)
             : base(findingRepository)
         {
             _findingRepository = findingRepository;
@@ -31,10 +33,19 @@ namespace StuffFinder.Core.Services
             _userService = userService;
 
             _settingService = settingService;
+
+            _locationService = locationService;
         }
 
         public finding AddOrUpdate(finding finding)
         {
+            if (finding.location != null && finding.location.locationId == 0)
+            {
+                // If this is a new object then save it to 
+                // the database first so we can use the 
+                finding.location = _locationService.AddOrUpdate(finding.location);
+            }
+
             finding.locationId = finding.location != null ? finding.location.locationId : finding.locationId;
             finding.location = null;
             finding.images = null;
@@ -46,42 +57,49 @@ namespace StuffFinder.Core.Services
 
             base.AddOrUpdate(finding);
 
-            if(newFinding)
+            if (newFinding)
             {
-                SendNewItemEmailNotification(finding);
+                finding = Find(finding.findingId);
+
+                var adminEmailAddresses = _userService.GetAdminGroupEmailList();
+
+                // Send new item notification to the admin group.
+                _stuffFinderEmailService.SendNewItemEmailNotification(finding, finding.location, finding.thing, adminEmailAddresses);
+
+                var users = _userService.Get(filter: i => finding.thing.thingCities
+                .Where(k => k.cityId == finding.location.cityId)
+                .Select(j => j.user.userName)
+                .Contains(i.userName));
+
+                var emailAddresses = users.Select(i => i.email).ToList();
+
+                // Add the email address of the original poster.
+                var originalPosterUserEmailAddress = 
+                    _userService.Get(filter: i => i.userName == finding.thing.userName).Select(j => j.email).SingleOrDefault();
+
+                if (originalPosterUserEmailAddress != null)
+                {
+                    emailAddresses.Add(originalPosterUserEmailAddress);
+                }
+
+                // Add the email addresses of people who have me2'd this item and live in the same city as where it was found.
+                //List<string> me2Users = finding.thing.me2.Any() ? finding.thing.me2.Select(i => i.userName).ToList() : new List<string>();
+
+                //if (me2Users != null)
+                //{
+                //    var me2SameCityUserEmailAddresses = _userService.Get(filter: i => me2Users.Contains(i.userName)).Where(i => i.cityId == finding.location.cityId).Select(i => i.email);
+
+                //    emailAddresses.AddRange(me2SameCityUserEmailAddresses);
+                //}
+
+                // Filter out duplicates.
+                emailAddresses = emailAddresses.Distinct().ToList();
+
+                _stuffFinderEmailService.SendItemFindingNotification(finding, finding.location, finding.thing, emailAddresses);
             }
 
             return finding;
         }
 
-        public void SendNewItemEmailNotification(finding finding)
-        {
-            var emailMessage = CreateNewFindingEmailMessage(finding);
-
-            var adminGroupEmailList = _userService.GetAdminGroupEmailList();
-
-            var subject = "New Finding Added To myFindr!";
-
-            _stuffFinderEmailService.SendEmail(emailMessage, adminGroupEmailList, subject);
-        }
-
-        public string CreateNewFindingEmailMessage(finding finding)
-        {
-            var emailLandingPageUrl = _settingService.GetSettingValueBySettingKey("emailLandingPageUrl");
-
-            StringBuilder sb = new StringBuilder();
-
-            sb.AppendLine("User Name: " + finding.userName);
-
-            sb.AppendLine("Created Item: <a href='" + emailLandingPageUrl + "/#/thing/" + finding.thing.thingId + "'>" + finding.thing.name + "</a>");
-
-            sb.AppendLine("Location: " + finding.location != null ? (finding.location.formattedAddress != null ? finding.location.formattedAddress : finding.location.latitude + ", " + finding.location.longitude) : null);
-
-            sb.AppendLine("Price: " + finding.price);
-
-            sb.AppendLine("Find date: " + finding.date);
-
-            return sb.ToString();
-        }
     }
 }

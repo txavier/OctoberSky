@@ -69,6 +69,7 @@ app.config(function ($routeProvider) {
 
     $routeProvider.when("/admin", {
         controller: 'adminController',
+        controllerAs: 'vm',
         templateUrl: '/app/templates/admin.html'
     });
 

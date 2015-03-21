@@ -28,6 +28,7 @@
         vm.toggleClasses = toggleClasses;
         vm.smallScreenLargeMenuClass = 'hidden-lg hidden-xs';
         vm.smallScreenSmallMenuClass = 'hidden-lg visible-xs';
+        vm.loggedInUser = {};
 
         // Scope references needed for deep watch on service variable.
         // http://stackoverflow.com/questions/12576798/how-to-watch-service-variables
@@ -35,14 +36,13 @@
         $scope.authService.authentication = authService.authentication;
         $scope.authService.authentication.userName = authService.authentication.userName;
 
-        //$scope.searchCity = vm.searchCity;
-
         activate();
 
         function activate() {
             playJumbotronVideo();
             getSidebarAuthenticationLabel();
             setView();
+            getLoggedInUser();
         }
 
         $scope.$watch('authService.authentication.userName', function (current, original) {
@@ -52,6 +52,12 @@
             vm.authentication.userName = current;
             getSidebarAuthenticationLabel();
         });
+
+        function getLoggedInUser() {
+            return dataService.getLoggedInUser().then(function (data) {
+                vm.loggedInUser = data;
+            });
+        }
 
         function toggleClasses() {
             if (vm.smallScreenLargeMenuClass == 'hidden-lg hidden-xs') {

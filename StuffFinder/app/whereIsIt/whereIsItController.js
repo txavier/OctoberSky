@@ -17,6 +17,7 @@
         vm.thing.thingCity.city = {};
         vm.thing.thingCity.cityId = 0;
         vm.thing.thingCity.thingId = 0;
+        vm.thing.thingCity.userId = 0;
         vm.thing.thingCities = [];
         vm.thing.categoryId = null;
         vm.categories = [];

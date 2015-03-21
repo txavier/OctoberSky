@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-
 namespace StuffFinder.Core.Models
 {
-    public class nationalityNotification
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
+
+    public partial class nationalityNotification
     {
         public int nationalityNotificationId { get; set; }
 
-        [Required]
-        [ForeignKey("nationality")]
         public int nationalityId { get; set; }
-
-        public virtual nationality nationality { get; set; }
 
         [Required]
         [StringLength(256)]
@@ -32,5 +27,7 @@ namespace StuffFinder.Core.Models
 
         [Column(TypeName = "datetime2")]
         public DateTime? dateLastModified { get; set; }
+
+        public virtual nationality nationality { get; set; }
     }
 }

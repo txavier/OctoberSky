@@ -165,6 +165,18 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
     </Reference>
+    <Reference Include="XavierEnterpriseLibrary.Core">
+      <HintPath>..\packages\XavierEnterpriseLibrary.1.0.9\lib\net45\XavierEnterpriseLibrary.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="XavierEnterpriseLibrary.Infrastructure">
+      <HintPath>..\packages\XavierEnterpriseLibrary.1.0.9\lib\net45\XavierEnterpriseLibrary.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing">
+      <HintPath>..\packages\ZXing.Net.0.14.0.1\lib\net40\zxing.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.presentation">
+      <HintPath>..\packages\ZXing.Net.0.14.0.1\lib\net40\zxing.presentation.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.AspNet.Identity.Core">
@@ -265,6 +277,7 @@
     <Content Include="app\templates\add-or-update-nationality.html" />
     <Content Include="app\templates\add-or-update-city.html" />
     <Content Include="app\templates\add-or-update-category.html" />
+    <Content Include="app\templates\dashboard.html" />
     <Content Include="app\templates\user-profile.html" />
     <Content Include="app\templates\feedback.html" />
     <Content Include="app\templates\how-it-works.html" />

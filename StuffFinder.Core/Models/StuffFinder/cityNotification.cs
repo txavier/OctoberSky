@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-
 namespace StuffFinder.Core.Models
 {
-    public class cityNotification
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
+
+    public partial class cityNotification
     {
         public int cityNotificationId { get; set; }
 
-        [Required]
-        [ForeignKey("city")]
         public int cityId { get; set; }
-
-        public virtual city city { get; set; }
 
         [Required]
         [StringLength(256)]
@@ -32,5 +27,7 @@ namespace StuffFinder.Core.Models
 
         [Column(TypeName = "datetime2")]
         public DateTime? dateLastModified { get; set; }
+
+        public virtual city city { get; set; }
     }
 }

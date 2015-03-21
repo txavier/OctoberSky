@@ -30,6 +30,7 @@
         vm.searchCriteria = {};
         vm.searchCriteria.searchText = null;
         vm.me2 = me2;
+        vm.loggedInUser = {};
 
         activate();
 
@@ -38,8 +39,15 @@
             searchThings(vm.searchCriteria);
             searchThingsCount(vm.searchCriteria);
             getJumbotronVideoUrlSetting();
+            getLoggedInUser();
 
             return vm;
+        }
+
+        function getLoggedInUser() {
+            return dataService.getLoggedInUser().then(function (data) {
+                vm.loggedInUser = data;
+            });
         }
 
         function me2(thingId) {

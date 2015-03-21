@@ -15,8 +15,12 @@ namespace StuffFinder.Core.Models
 
         public int cityId { get; set; }
 
+        public int? userId { get; set; }
+
         public virtual city city { get; set; }
 
         public virtual thing thing { get; set; }
+
+        public virtual user user { get; set; }
     }
 }

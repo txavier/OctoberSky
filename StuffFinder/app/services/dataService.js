@@ -25,6 +25,7 @@
         var cityNotificationsApiUrl = 'api/cityNotificationsApi';
         var nationalityNotificationsApiUrl = 'api/nationalityNotificationsApi';
         var feedbackApiUrl = 'api/feedbackApi';
+        var statisticsApiUrl = 'api/statisticsApi';
 
         var jumbotronVideoUrlSetting = {};
 
@@ -99,10 +100,86 @@
             deleteCityNotification: deleteCityNotification,
             sendCityNotification: sendCityNotification,
             sendFeedback: sendFeedback,
-            getLoggedInUser: getLoggedInUser
+            getLoggedInUser: getLoggedInUser,
+            getNewThingsInPastWeekCount: getNewThingsInPastWeekCount,
+            getNewFindingsInPastWeekCount: getNewFindingsInPastWeekCount,
+            getTotalUsersCount: getTotalUsersCount,
+            getNewMe2sInPastWeekCount: getNewMe2sInPastWeekCount
         };
 
         return service;
+
+        function getTotalUsersCount() {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.get(serverUrl.resourceServerUrl + statisticsApiUrl + '/getTotalUsersCount')
+                            .then(getTotalUsersCountComplete)
+                            .catch(getTotalUsersCountFailed);
+
+                function getTotalUsersCountComplete(response) {
+                    return response.data;
+                }
+
+                function getTotalUsersCountFailed(error) {
+                    $log.error('XHR failed for getTotalUsersCountFailed.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function getNewFindingsInPastWeekCount() {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.get(serverUrl.resourceServerUrl + statisticsApiUrl + '/getNewFindingsInPastWeekCount')
+                            .then(getNewFindingsInPastWeekCountComplete)
+                            .catch(getNewFindingsInPastWeekCountFailed);
+
+                function getNewFindingsInPastWeekCountComplete(response) {
+                    return response.data;
+                }
+
+                function getNewFindingsInPastWeekCountFailed(error) {
+                    $log.error('XHR failed for getNewFindingsInPastWeekCountFailed.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function getNewThingsInPastWeekCount() {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.get(serverUrl.resourceServerUrl + statisticsApiUrl + '/getNewThingsInPastWeekCount')
+                            .then(getNewThingsInPastWeekCountComplete)
+                            .catch(getNewThingsInPastWeekCountFailed);
+
+                function getNewThingsInPastWeekCountComplete(response) {
+                    return response.data;
+                }
+
+                function getNewThingsInPastWeekCountFailed(error) {
+                    $log.error('XHR failed for getNewThingsInPastWeekCountFailed.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function getNewMe2sInPastWeekCount() {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.get(serverUrl.resourceServerUrl + statisticsApiUrl + '/getNewMe2sInPastWeekCount')
+                            .then(getNewMe2sInPastWeekCountComplete)
+                            .catch(getNewMe2sInPastWeekCountFailed);
+
+                function getNewMe2sInPastWeekCountComplete(response) {
+                    return response.data;
+                }
+
+                function getNewMe2sInPastWeekCountFailed(error) {
+                    $log.error('XHR failed for getNewMe2sInPastWeekCountFailed.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
 
         function getLoggedInUser() {
             return getServerUrl().then(function (resource) {

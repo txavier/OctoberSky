@@ -3,19 +3,15 @@
 
     app.controller('dashboardEmailSettingsController', dashboardEmailSettingsController);
 
-    dashboardEmailSettingsController.$inject = ['$scope', '$location', '$log', '$timeout', 'authService', 'dataService'];
+    dashboardEmailSettingsController.$inject = ['$scope'];
 
-    function dashboardEmailSettingsController($scope, $location, $log, $timeout, authService, dataService) {
-
+    function dashboardEmailSettingsController($scope) {
         var vm = this;
 
         activate();
 
         function activate() {
-
-
             return vm;
         }
     }
-
 })();

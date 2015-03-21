@@ -9,6 +9,11 @@ namespace StuffFinder.Core.Models
     [Table("user")]
     public partial class user
     {
+        public user()
+        {
+            thingCities = new HashSet<thingCity>();
+        }
+
         public int userId { get; set; }
 
         [Required]
@@ -31,5 +36,7 @@ namespace StuffFinder.Core.Models
         public virtual city city { get; set; }
 
         public virtual nationality nationality { get; set; }
+
+        public virtual ICollection<thingCity> thingCities { get; set; }
     }
 }

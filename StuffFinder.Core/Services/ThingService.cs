@@ -85,14 +85,7 @@ namespace StuffFinder.Core.Services
                 searchCriteria.includeProperties = string.Empty;
             }
 
-            searchCriteria.includeProperties = searchCriteria.includeProperties.Contains("images") ?
-                searchCriteria.includeProperties : searchCriteria.includeProperties + ",images";
-
-            searchCriteria.includeProperties = searchCriteria.includeProperties.Contains("findings") ?
-                searchCriteria.includeProperties : searchCriteria.includeProperties + ",findings";
-
-            searchCriteria.includeProperties = searchCriteria.includeProperties.Contains("me2") ?
-                searchCriteria.includeProperties : searchCriteria.includeProperties + ",me2";
+            searchCriteria.includeProperties = GetDefaultIncludeProperties(searchCriteria.includeProperties);
 
             // Search with lazy loading and proxy creation turned off because these arent
             // needed for display purposes.
@@ -101,6 +94,30 @@ namespace StuffFinder.Core.Services
             var resultViewModels = ToViewModels(results);
 
             return resultViewModels;
+        }
+
+        private static string GetDefaultIncludeProperties(string includeProperties = "")
+        {
+            includeProperties = includeProperties.Contains("images") ?
+                includeProperties : includeProperties + ",images";
+
+            includeProperties = includeProperties.Contains("findings") ?
+                includeProperties : includeProperties + ",findings";
+
+            includeProperties = includeProperties.Contains("me2") ?
+                includeProperties : includeProperties + ",me2";
+
+            // Extended properties.
+            //includeProperties = includeProperties.Contains("category.name") ?
+            //    includeProperties : includeProperties + ",category.name";
+
+            //includeProperties = includeProperties.Contains("thingCities") ?
+            //    includeProperties : includeProperties + ",thingCities";
+
+            //includeProperties = includeProperties.Contains("thingCities") ?
+            //    includeProperties : includeProperties + ",thingCities";
+
+            return includeProperties;
         }
 
         public IEnumerable<thing> Search(SearchCriteria searchCriteria, bool lazyLoadingEnabled = true, bool proxyCreationEnabled = true)
@@ -146,7 +163,9 @@ namespace StuffFinder.Core.Services
         {
             var queryLowered = string.IsNullOrEmpty(searchCriteria.searchText) ? null : searchCriteria.searchText.ToLower();
 
-            var cityNamesLowered = searchCriteria.searchParams
+            var cityNamesLowered = searchCriteria.searchParams == null ?
+                new List<string> { "all" }
+                : searchCriteria.searchParams
                 .Where(i => i.key == "cityName" && i.value != null)
                 .Select(i => i.value.ToLower());
 
@@ -170,7 +189,7 @@ namespace StuffFinder.Core.Services
             return result;
         }
 
-        public thing AddOrUpdate(thing thing)
+        public thing AddOrUpdate(thing thing, string loggedInUsername)
         {
             // Remove child references. This is needed in order for entity
             // framework to provide the vanilla update to just this item
@@ -190,6 +209,10 @@ namespace StuffFinder.Core.Services
                 thingCity.cityId = thingCity.city == null ? thingCity.cityId : thingCity.city.cityId;
 
                 thingCity.city = null;
+
+                var user = _userService.Get(filter: i => i.userName == loggedInUsername).SingleOrDefault();
+
+                thingCity.userId = user == null ? null : (int?)user.userId;
             }
 
             bool newThing = thing.thingId == 0;
@@ -367,7 +390,7 @@ namespace StuffFinder.Core.Services
 
         private ThingViewModel ToViewModel(int thingId)
         {
-            var thing = Find(thingId);
+            var thing = Get(filter: i => i.thingId == thingId, includeProperties: GetDefaultIncludeProperties()).SingleOrDefault();
 
             var thingViewModel = ToViewModel(thing);
 

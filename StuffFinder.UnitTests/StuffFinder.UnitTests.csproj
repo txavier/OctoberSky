@@ -72,11 +72,11 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="XavierEnterpriseLibrary.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\XavierEnterpriseLibrary.1.0.8\lib\net45\XavierEnterpriseLibrary.Core.dll</HintPath>
+      <HintPath>..\packages\XavierEnterpriseLibrary.1.0.9\lib\net45\XavierEnterpriseLibrary.Core.dll</HintPath>
     </Reference>
     <Reference Include="XavierEnterpriseLibrary.Infrastructure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\XavierEnterpriseLibrary.1.0.8\lib\net45\XavierEnterpriseLibrary.Infrastructure.dll</HintPath>
+      <HintPath>..\packages\XavierEnterpriseLibrary.1.0.9\lib\net45\XavierEnterpriseLibrary.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="zxing, Version=0.14.0.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

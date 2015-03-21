@@ -63,11 +63,11 @@
     <Reference Include="System.Xml" />
     <Reference Include="XavierEnterpriseLibrary.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\XavierEnterpriseLibrary.1.0.8\lib\net45\XavierEnterpriseLibrary.Core.dll</HintPath>
+      <HintPath>..\packages\XavierEnterpriseLibrary.1.0.9\lib\net45\XavierEnterpriseLibrary.Core.dll</HintPath>
     </Reference>
     <Reference Include="XavierEnterpriseLibrary.Infrastructure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\XavierEnterpriseLibrary.1.0.8\lib\net45\XavierEnterpriseLibrary.Infrastructure.dll</HintPath>
+      <HintPath>..\packages\XavierEnterpriseLibrary.1.0.9\lib\net45\XavierEnterpriseLibrary.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="zxing">
       <HintPath>..\packages\ZXing.Net.0.14.0.1\lib\net40\zxing.dll</HintPath>
@@ -120,6 +120,7 @@
     <Compile Include="Interfaces\ICityNotificationService.cs" />
     <Compile Include="Interfaces\INationalityNotificationService.cs" />
     <Compile Include="Interfaces\IFeedbackService.cs" />
+    <Compile Include="Interfaces\IStatisticsService.cs" />
     <Compile Include="Services\LocationService.cs" />
     <Compile Include="Services\Me2Service.cs" />
     <Compile Include="Models\StuffFinder\nationalityNotification.cs" />
@@ -127,6 +128,7 @@
     <Compile Include="Services\NationalityNotificationService.cs" />
     <Compile Include="Services\CityNotificationService.cs" />
     <Compile Include="Services\NewsletterService.cs" />
+    <Compile Include="Services\StatisticsService.cs" />
     <Compile Include="Services\StuffFinderEmailService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Services\CityService.cs" />

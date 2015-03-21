@@ -55,6 +55,20 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="XavierEnterpriseLibrary.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\XavierEnterpriseLibrary.1.0.9\lib\net45\XavierEnterpriseLibrary.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="XavierEnterpriseLibrary.Infrastructure">
+      <HintPath>..\packages\XavierEnterpriseLibrary.1.0.9\lib\net45\XavierEnterpriseLibrary.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing, Version=0.14.0.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ZXing.Net.0.14.0.1\lib\net40\zxing.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.presentation">
+      <HintPath>..\packages\ZXing.Net.0.14.0.1\lib\net40\zxing.presentation.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Migrations\201501300800340_InitialMigration.cs" />
@@ -161,6 +175,10 @@
     <Compile Include="Migrations\201503150317203_AddCityAndNationalityNotificationEntities.Designer.cs">
       <DependentUpon>201503150317203_AddCityAndNationalityNotificationEntities.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201503180447340_AddUserEntityToThingCity.cs" />
+    <Compile Include="Migrations\201503180447340_AddUserEntityToThingCity.Designer.cs">
+      <DependentUpon>201503180447340_AddUserEntityToThingCity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="stuffFinderAuthDbContext.cs" />
@@ -254,6 +272,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201503150317203_AddCityAndNationalityNotificationEntities.resx">
       <DependentUpon>201503150317203_AddCityAndNationalityNotificationEntities.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503180447340_AddUserEntityToThingCity.resx">
+      <DependentUpon>201503180447340_AddUserEntityToThingCity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

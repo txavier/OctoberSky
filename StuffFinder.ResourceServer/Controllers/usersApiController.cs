@@ -39,7 +39,7 @@ namespace StuffFinder.ResourceServer.Controllers
         [HttpGet]
         public IHttpActionResult GetLoggedInUser()
         {
-            var result = _userService.Get(filter: i => i.userName == User.Identity.Name).SingleOrDefault();
+            var result = _userService.Get(filter: i => i.userName == User.Identity.Name, lazyLoadingEnabled: false, proxyCreationEnabled: false).SingleOrDefault();
 
             return Ok(result);
         }
