@@ -26,7 +26,6 @@
         vm.sumVotes = sumVotes;
         vm.me2 = me2;
 
-
         // Scope variables have to be accessible for the watch statements.
         $scope.coordsUpdates = 0;
         $scope.dynamicMoveCtr = 0;

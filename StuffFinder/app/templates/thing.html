@@ -42,7 +42,7 @@
                     {{ vm.thing.userName }}
                 </div>
                 <div>
-                    <a class="btn btn-default" href="#/thing/edit/{{ vm.thing.thingId }}">Edit this posting</a>
+                    <a class="btn btn-default" href="#/thing/edit/{{ vm.thing.thingId }}" data-ng-show="vm.thing.userName == authService.authentication.userName">Edit this posting</a>
                 </div>
             </div>
             <div class="row" ng-show="(vm.thing.description)">
@@ -109,7 +109,7 @@
                     {{ finding.location.locationName }} {{ finding.location.formattedAddress }} ({{ finding.location.longitude }}, {{ finding.location.latitude }})
                 </div>
                 <div>
-                    <a class="btn btn-default" href="#/finding/edit/{{ finding.findingId }}">Edit this find</a>
+                    <a class="btn btn-default" href="#/finding/edit/{{ finding.findingId }}" data-ng-show="finding.userName == authService.authentication.userName">Edit this find</a>
                 </div>
             </div>
             <div class="row" style="padding:14px;">
@@ -167,8 +167,8 @@
             <!--<div class="fb-comments" width="100%" data-href="http://developers.facebook.com/docs/plugins/comments/" data-numposts="3" data-colorscheme="light"></div>-->
             <div class="fb-comments" width="100%" dyn-fb-comment-box page-href="#/thing/{{ thing.thingId }}" data-numposts="5" data-colorscheme="light"></div>
         </p>
-        <button class="btn btn-primary pull-right" type="button" ng-click="vm.addOrUpdateThing()">Save</button>
-        <button class="btn btn-primary pull-right" type="button" ng-click="vm.deleteThing()">Delete</button>
+        <button class="btn btn-primary pull-right" type="button" ng-click="vm.addOrUpdateThing()" data-ng-show="vm.thing.userName == authService.authentication.userName">Save</button>
+        <button class="btn btn-primary pull-right" type="button" ng-click="vm.deleteThing()" data-ng-show="vm.thing.userName == authService.authentication.userName">Delete</button>
         <ul class="list-inline"><li><a href=""><i class="glyphicon glyphicon-upload"></i></a></li><li><a href=""><i class="glyphicon glyphicon-camera"></i></a></li><li><a href=""><i class="glyphicon glyphicon-map-marker"></i></a></li></ul>
     </form>
 </div>
