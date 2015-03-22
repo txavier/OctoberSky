@@ -140,5 +140,21 @@ namespace StuffFinder.Core.Services
 
             return result;
         }
+
+        public List<string> GetAdminUsernameList()
+        {
+            var result = Get(filter: i => i.isAdmin ?? false)
+                .Where(i => !string.IsNullOrEmpty(i.userName))
+                .Select(i => i.userName).ToList();
+
+            return result;
+        }
+
+        public bool IsAdmin(string userName)
+        {
+            var result = Get(filter: i => (i.isAdmin ?? false) && i.userName == userName).Any();
+
+            return result;
+        }
     }
 }

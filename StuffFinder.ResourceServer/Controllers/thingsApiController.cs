@@ -22,7 +22,7 @@ namespace StuffFinder.ResourceServer.Controllers
         private readonly IThingService _thingService;
 
         private readonly IService<image> _imageService;
-
+        
         public thingsApiController()
         {
             var container = IoC.Initialize();
@@ -87,6 +87,11 @@ namespace StuffFinder.ResourceServer.Controllers
         // POST: api/thingsApi
         public IHttpActionResult Post(thing thing)
         {
+            if (!_thingService.IsWriteAccessAllowed(thing, User.Identity.Name))
+            {
+                return Unauthorized();
+            }
+
             thing = _thingService.AddOrUpdate(thing);
 
             return Ok(thing);
@@ -135,6 +140,15 @@ namespace StuffFinder.ResourceServer.Controllers
                         fileName = fileName,
                     };
 
+                    // If this user is not the same user as the one that owns this image
+                    // and this user is not an admin then return with this http status.
+                    var thing = _thingService.Find(thingId);
+
+                    if(!_thingService.IsWriteAccessAllowed(thingId, User.Identity.Name))
+                    {
+                        return Request.CreateErrorResponse(HttpStatusCode.Unauthorized, "User " + User.Identity.Name + " is not authorized to make this change.");
+                    }
+
                     _imageService.AddOrUpdate(image);
                 }
 
@@ -155,6 +169,11 @@ namespace StuffFinder.ResourceServer.Controllers
         // DELETE: api/thingsApi/5
         public IHttpActionResult Delete(int id)
         {
+            if(!_thingService.IsWriteAccessAllowed(id, User.Identity.Name))
+            {
+                return Unauthorized();
+            }
+
             _thingService.Delete(id);
 
             return Ok();

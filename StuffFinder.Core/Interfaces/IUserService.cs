@@ -11,5 +11,7 @@
         System.Collections.Generic.IEnumerable<StuffFinder.Core.Models.user> SyncUserTable();
 
         System.Collections.Generic.List<string> GetAdminGroupEmailList();
+
+        bool IsAdmin(string userName);
     }
 }

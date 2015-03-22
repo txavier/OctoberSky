@@ -39,6 +39,11 @@ namespace StuffFinder.ResourceServer.Controllers
         // POST: api/findingsApi
         public IHttpActionResult Post(finding finding)
         {
+            if (!_findingService.IsWriteAccessAllowed(finding, User.Identity.Name))
+            {
+                return Unauthorized();
+            }
+
             finding = _findingService.AddOrUpdate(finding);
 
             return Ok(finding);
@@ -47,6 +52,11 @@ namespace StuffFinder.ResourceServer.Controllers
         // DELETE: api/findingsApi/5
         public IHttpActionResult Delete(int id)
         {
+            if (!_findingService.IsWriteAccessAllowed(id, User.Identity.Name))
+            {
+                return Unauthorized();
+            }
+
             _findingService.Delete(id);
 
             return Ok();

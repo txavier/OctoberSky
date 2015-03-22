@@ -101,5 +101,23 @@ namespace StuffFinder.Core.Services
             return finding;
         }
 
+        public bool IsWriteAccessAllowed(int findingId, string userName)
+        {
+            var finding = Find(findingId);
+
+            var result = IsWriteAccessAllowed(finding, userName);
+
+            return result;
+        }
+
+        public bool IsWriteAccessAllowed(finding finding, string userName)
+        {
+            if (finding != null && (finding.userName == userName || _userService.IsAdmin(userName)))
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }

@@ -283,7 +283,7 @@ namespace StuffFinder.Core.Services
             return thingViewModel;
         }
 
-        public thing Delete(int thingId)
+        public thing Delete(int thingId, string loggedInUsername)
         {
             var thing = Find(thingId);
 
@@ -395,6 +395,25 @@ namespace StuffFinder.Core.Services
             var thingViewModel = ToViewModel(thing);
 
             return thingViewModel;
+        }
+
+        public bool IsWriteAccessAllowed(thing thing, string username)
+        {
+            if(thing != null && (thing.userName == username || _userService.IsAdmin(username)))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool IsWriteAccessAllowed(int thingId, string username)
+        {
+            var thing = Find(thingId);
+
+            var result = IsWriteAccessAllowed(thing, username);
+
+            return result;
         }
     }
 }

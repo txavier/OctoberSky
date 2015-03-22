@@ -22,8 +22,12 @@ namespace StuffFinder.Core.Interfaces
 
         void SendNewItemEmailNotification(StuffFinder.Core.Models.thing thing);
 
-        StuffFinder.Core.Models.thing Delete(int thingId);
+        StuffFinder.Core.Models.thing Delete(int thingId, string loggedInUsername);
 
         System.Collections.Generic.IEnumerable<StuffFinder.Core.Models.ThingViewModel> SearchViewModels(StuffFinder.Core.Objects.SearchCriteria searchCriteria);
+
+        bool IsWriteAccessAllowed(StuffFinder.Core.Models.thing thing, string username);
+
+        bool IsWriteAccessAllowed(int thingId, string username);
     }
 }
