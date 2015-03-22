@@ -41,6 +41,15 @@ namespace StuffFinder.ResourceServer.Controllers
         {
             var result = _userService.Get(filter: i => i.userName == User.Identity.Name, lazyLoadingEnabled: false, proxyCreationEnabled: false).SingleOrDefault();
 
+            // If the user is not in the main database it is possible the user is in the authentication database
+            // and it has not yet been synced.  Sync the databases now and check again to see if the user exists.
+            if(result == null)
+            {
+                _userService.SyncUserTable();
+
+                result = _userService.Get(filter: i => i.userName == User.Identity.Name, lazyLoadingEnabled: false, proxyCreationEnabled: false).SingleOrDefault();
+            }
+
             return Ok(result);
         }
 

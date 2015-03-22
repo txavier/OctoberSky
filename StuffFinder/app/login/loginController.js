@@ -1,6 +1,5 @@
 ﻿'use strict';
 app.controller('loginController', ['$scope', '$location', 'authService', 'ngAuthSettings', 'dataService', function ($scope, $location, authService, ngAuthSettings, dataService) {
-
     var serviceBase = ngAuthSettings.apiServiceBaseUri;
 
     dataService.getServerUrl().then(function (resource) {
@@ -16,11 +15,15 @@ app.controller('loginController', ['$scope', '$location', 'authService', 'ngAuth
     $scope.message = "";
 
     $scope.login = function () {
-
         authService.login($scope.loginData).then(function (response) {
-
-            $location.path('/start');
-
+            dataService.getLoggedInUser().then(function (data) {
+                if (!data.email) {
+                    $location.path('/user-profile');
+                }
+                else {
+                    $location.path('/start');
+                }
+            });
         },
          function (err) {
              $scope.message = err.error_description;
@@ -28,7 +31,6 @@ app.controller('loginController', ['$scope', '$location', 'authService', 'ngAuth
     };
 
     $scope.authExternalProvider = function (provider) {
-
         var redirectUri = location.protocol + '//' + location.host + '/authcomplete.html';
 
         var externalProviderUrl = serviceBase + "api/Account/ExternalLogin?provider=" + provider
@@ -40,11 +42,8 @@ app.controller('loginController', ['$scope', '$location', 'authService', 'ngAuth
     };
 
     $scope.authCompletedCB = function (fragment) {
-
         $scope.$apply(function () {
-
             if (fragment.haslocalaccount == 'False') {
-
                 authService.logOut();
 
                 authService.externalAuthData = {
@@ -54,28 +53,21 @@ app.controller('loginController', ['$scope', '$location', 'authService', 'ngAuth
                 };
 
                 $location.path('/associate');
-
             }
             else {
                 //Obtain access token and redirect to orders
                 var externalData = { provider: fragment.provider, externalAccessToken: fragment.external_access_token };
                 authService.obtainAccessToken(externalData).then(function (response) {
-
                     $location.path('/orders');
-
                 },
              function (err) {
                  $scope.message = err.error_description;
              });
             }
-
         });
     }
 
     $(document).ready(function () {
-
         $(".player").mb_YTPlayer();
-
     });
-
 }]);

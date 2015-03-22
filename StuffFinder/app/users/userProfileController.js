@@ -23,11 +23,35 @@
         activate();
 
         function activate() {
-            getUser();
-            getNationalities();
-            getCities();
+            setView();
 
             return vm;
+        }
+
+        function setView() {
+            return getUser().then(function () {
+                getNationalities().then(function () {
+                    if (vm.user.nationalityId) {
+                        vm.user.nationality = vm.nationalities[vm.nationalities.getIndexBy("nationalityId", vm.user.nationalityId)];
+                    }
+                });
+
+                getCities().then(function () {
+                    if (vm.user.cityId) {
+                        vm.user.city = vm.cities[vm.cities.getIndexBy("cityId", vm.user.cityId)];
+                    }
+                });
+
+                return vm.user;
+            });
+        }
+
+        Array.prototype.getIndexBy = function (name, value) {
+            for (var i = 0; i < this.length; i++) {
+                if (this[i][name] == value) {
+                    return i;
+                }
+            }
         }
 
         function getNationalities() {
@@ -55,14 +79,18 @@
         }
 
         function addOrUpdateUser(user) {
+            if (!user.email
+                || !user.city
+                || !user.nationality) {
+                return;
+            }
+
             user.cityId = user.city ? user.city.cityId : null;
             user.nationalityId = user.nationality ? user.nationality.nationalityId : null;
 
             return dataService.addOrUpdateUser(user)
                 .then(function () {
-                    $scope.$apply();
-
-                    history.back();
+                    $location.path('/start');
                 });
         }
 
