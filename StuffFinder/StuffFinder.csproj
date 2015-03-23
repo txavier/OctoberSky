@@ -800,6 +800,7 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\loading-bar.css" />
     <Content Include="Content\site.css" />
+    <Content Include="Content\social-buttons.css" />
     <Content Include="Content\styles.css" />
     <Content Include="Content\textAngular.css" />
     <Content Include="favicon.ico" />

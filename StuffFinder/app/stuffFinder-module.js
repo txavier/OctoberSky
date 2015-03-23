@@ -49,17 +49,17 @@ app.config(function ($routeProvider) {
 
     $routeProvider.when("/refresh", {
         controller: "refreshController",
-        templateUrl: "/app/views/refresh.html"
+        templateUrl: "/app/templates/refresh.html"
     });
 
     $routeProvider.when("/tokens", {
         controller: "tokensManagerController",
-        templateUrl: "/app/views/tokens.html"
+        templateUrl: "/app/templates/tokens.html"
     });
 
     $routeProvider.when("/associate", {
         controller: "associateController",
-        templateUrl: "/app/views/associate.html"
+        templateUrl: "/app/templates/associate.html"
     });
 
     $routeProvider.when("/index", {
@@ -327,7 +327,10 @@ app.run(['dataService', function activateFaceBook() {
 
 app.constant('ngAuthSettings', {
     apiServiceBaseUri: serviceBase,
-    clientId: '915674078507-ersdkqkfl2nah49s5ier2drnlstajqov.apps.googleusercontent.com'
+    clientId: 'ngAuthApp'
+        //'StuffFinder'
+        //'1540766432878939'
+    //915674078507-ersdkqkfl2nah49s5ier2drnlstajqov.apps.googleusercontent.com'
 });
 
 app.config(function ($httpProvider) {

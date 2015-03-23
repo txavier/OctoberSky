@@ -65,7 +65,10 @@ namespace StuffFinder.AuthenticationApi
             facebookAuthOptions = new FacebookAuthenticationOptions()
             {
                 AppId = "1540766432878939",
-                AppSecret = "1540766432878939|Uph1ZIx0zSi8G4mXX4QA8SdIsRs",
+                AppSecret = "efb74c890aa78e26b062648f1de8a751",
+                //AppSecret = "1540766432878939|Uph1ZIx0zSi8G4mXX4QA8SdIsRs",
+                //AppId = "1541990042756578",
+                //AppSecret = "9b6828b40ff7d56a632f2043069aa7ce",
                 Provider = new FacebookAuthProvider()
             };
             app.UseFacebookAuthentication(facebookAuthOptions);
