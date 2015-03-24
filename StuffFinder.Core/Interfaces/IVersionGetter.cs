@@ -1,10 +1,11 @@
-﻿using System;
-
-namespace StuffFinder.Core.Interfaces
+﻿namespace StuffFinder.Core.Interfaces
 {
     public interface IVersionGetter
     {
         string GetAssemblyVersion();
+
         string GetFileAssemblyVersion();
+
+        string GetProductVersion();
     }
 }

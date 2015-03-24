@@ -29,6 +29,7 @@ namespace StuffFinder.ResourceServer.Controllers
             return new string[] { "value1", "value2" };
         }
 
+        [Route("{settingKey}")]
         // GET: api/settingsApi/5
         public IHttpActionResult Get(string settingKey)
         {

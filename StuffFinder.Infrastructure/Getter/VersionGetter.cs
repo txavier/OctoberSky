@@ -16,7 +16,7 @@ namespace StuffFinder.Infrastructure.Getter
             Assembly asm = Assembly.GetExecutingAssembly();
 
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(asm.Location);
-            
+           
             return String.Format("{0}.{1}", fvi.ProductMajorPart, fvi.ProductMinorPart);
         }
 
@@ -27,6 +27,15 @@ namespace StuffFinder.Infrastructure.Getter
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(asm.Location);
 
             return String.Format("{0}.{1}", fvi.FileMajorPart, fvi.FileMinorPart);
+        }
+
+        public string GetProductVersion()
+        {
+            Assembly asm = Assembly.GetExecutingAssembly();
+
+            FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(asm.Location);
+
+            return fvi.ProductVersion;
         }
     }
 }

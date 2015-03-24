@@ -22,9 +22,9 @@
                 // Commented the below line out because 'FB' doesnt exist.
                 // This line was probably meant for XFBML comment tag use.
                 //FB.XFBML.parse(elem[0]);
-                if (FB) {
-                    FB.XFBML.parse();
-                }
+                //if (FB) {
+                //    FB.XFBML.parse();
+                //}
             });
         }
     };

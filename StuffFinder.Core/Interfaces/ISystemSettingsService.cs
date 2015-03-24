@@ -8,5 +8,7 @@ namespace StuffFinder.Core.Interfaces
         string GetAssemblyVersion();
 
         string GetFileAssemblyVersion();
+
+        string GetProductVersion();
     }
 }

@@ -36,7 +36,7 @@ namespace StuffFinder.Core.Services
         {
             if(settingKey == "version")
             {
-                var version = _systemSettingsService.GetAssemblyVersion();
+                var version = _systemSettingsService.GetProductVersion();
 
                 return version;
             }

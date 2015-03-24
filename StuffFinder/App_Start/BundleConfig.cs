@@ -30,6 +30,9 @@ namespace StuffFinder
                       "~/Content/bootstrap.min.css",
                       "~/Content/styles.css"));
 
+            bundles.Add(new ScriptBundle("~/bundles/angular").IncludeDirectory(
+                "~/app", "*Controller.js", true));
+
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862
             BundleTable.EnableOptimizations = true;

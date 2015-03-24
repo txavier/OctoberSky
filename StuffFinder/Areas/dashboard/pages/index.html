@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>myFindr - Admin</title>
+    <title>myFindr version - Admin</title>
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- MetisMenu CSS -->
@@ -27,10 +27,10 @@
     <![endif]-->
     <link href="../../../Content/textAngular.css" rel="stylesheet" type="text/css" />
 </head>
-<body>
+<body data-ng-controller="dashboardSidebarController as vm">
     <div id="wrapper">
         <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0" ng-cloak>
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -38,7 +38,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">myFindr - Admin</a>
+                <a class="navbar-brand" href="index.html">myFindr Version {{ vm.version }} - Admin</a>
             </div>
             <!-- /.navbar-header -->
             <ul class="nav navbar-top-links navbar-right">
@@ -1083,5 +1083,9 @@
     <script src="/app/nationalityNotification/nationalityNotificationsController.js"></script>
     <script src="/app/cityNotification/cityNotificationsController.js"></script>
     <script src="/app/cityNotification/addOrUpdateCityNotificationController.js"></script>
+    <script src="/app/sidebar/dashboardSidebarController.js"></script>
+    <!-- Load directives -->
+    <script src="/shared-directives/shared-directives.js"></script>
+    <script src="/shared-directives/back-button/back-button.js"></script>
 </body>
 </html>

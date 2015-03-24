@@ -41,5 +41,13 @@ namespace StuffFinder.Core.Services
 
             return result;
         }
+
+        public string GetProductVersion()
+        {
+            var result = _versionGetter.GetProductVersion();
+
+            return result;
+        }
+
     }
 }

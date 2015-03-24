@@ -1440,7 +1440,7 @@
         function getSetting(settingKey) {
             return getServerUrl().then(function (resource) {
                 serverUrl = resource;
-                return $http.get(serverUrl.resourceServerUrl + 'api/settingsApi/', settingKey)
+                return $http.get(serverUrl.resourceServerUrl + 'api/settingsApi/' + settingKey)
                             .then(getSettingComplete)
                             .catch(getSettingFailed);
 

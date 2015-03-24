@@ -11,7 +11,7 @@ namespace StuffFinder.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Title = "Stuff Finder";
+            ViewBag.Title = "myFinder";
 
             return View();
         }
