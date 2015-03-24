@@ -55,10 +55,10 @@ app.controller('loginController', ['$scope', '$location', 'authService', 'ngAuth
                 $location.path('/associate');
             }
             else {
-                //Obtain access token and redirect to orders
+                //Obtain access token and redirect to the start page.
                 var externalData = { provider: fragment.provider, externalAccessToken: fragment.external_access_token };
                 authService.obtainAccessToken(externalData).then(function (response) {
-                    $location.path('/orders');
+                    $location.path('/start');
                 },
              function (err) {
                  $scope.message = err.error_description;

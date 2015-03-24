@@ -50,7 +50,7 @@ namespace StuffFinder.AuthenticationApi
 
             // Token Generation
             app.UseOAuthAuthorizationServer(OAuthServerOptions);
-            app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
+            app.UseOAuthBearerAuthentication(OAuthBearerOptions);
 
             //Configure Google External Login
             googleAuthOptions = new GoogleOAuth2AuthenticationOptions()
