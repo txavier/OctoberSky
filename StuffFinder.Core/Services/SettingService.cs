@@ -14,11 +14,15 @@ namespace StuffFinder.Core.Services
     public class SettingService: Service<setting>, ISettingService
     {
         private readonly IRepository<setting> _settingRepository;
+        
+        private readonly ISystemSettingsService _systemSettingsService;
 
-        public SettingService(IRepository<setting> settingRepository)
+        public SettingService(IRepository<setting> settingRepository, ISystemSettingsService systemSettingsService)
             :base(settingRepository)
         {
             _settingRepository = settingRepository;
+
+            _systemSettingsService = systemSettingsService;
         }
 
         public setting GetSettingBySettingKey(string settingKey)
@@ -30,6 +34,13 @@ namespace StuffFinder.Core.Services
 
         public string GetSettingValueBySettingKey(string settingKey)
         {
+            if(settingKey == "version")
+            {
+                var version = _systemSettingsService.GetAssemblyVersion();
+
+                return version;
+            }
+
             var result = GetSettingBySettingKey(settingKey);
 
             var value = result.settingValue;

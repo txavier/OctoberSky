@@ -59,6 +59,8 @@ app.controller('loginController', ['$scope', '$location', 'authService', 'ngAuth
                 var externalData = { provider: fragment.provider, externalAccessToken: fragment.external_access_token };
                 authService.obtainAccessToken(externalData).then(function (response) {
                     $location.path('/start');
+
+                    $scope.$apply();
                 },
              function (err) {
                  $scope.message = err.error_description;

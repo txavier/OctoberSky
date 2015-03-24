@@ -17,6 +17,7 @@ using XavierEnterpriseLibrary.Core.Interfaces;
 using XavierEnterpriseLibrary.Core.Services;
 using XavierEnterpriseLibrary.Infrastructure.Senders;
 using StuffFinder.Core.Models;
+using StuffFinder.Infrastructure.Getter;
 
 namespace StuffFinder.CompositionRoot
 {
@@ -43,6 +44,8 @@ namespace StuffFinder.CompositionRoot
             For(typeof(IRepository<StuffFinder.Core.Models.AspNetUser>)).Use(typeof(Repository<AspNetUser>)).Ctor<DbContext>("context").IsNamedInstance("stuffFinderAuth");
 
             For<IEmailSender>().Use<EmailSender>();
+
+            For<ISystemSettingsGetter>().Use<SystemSettingsGetter>();
         }
     }
 }

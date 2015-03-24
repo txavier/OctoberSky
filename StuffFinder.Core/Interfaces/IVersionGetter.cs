@@ -1,12 +1,10 @@
 ﻿using System;
+
 namespace StuffFinder.Core.Interfaces
 {
-    public interface ISystemSettingsService
+    public interface IVersionGetter
     {
-        StuffFinder.Core.Models.ViewModels.SettingsViewModel GetSystemSettings();
-
         string GetAssemblyVersion();
-
         string GetFileAssemblyVersion();
     }
 }
