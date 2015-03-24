@@ -26,6 +26,13 @@ namespace StuffFinder
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.min.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/ngToast").Include(
+                "~/Scripts/vendor/ngToast/ngToast.js"));
+
+            bundles.Add(new StyleBundle("~/Content/ngToast").Include(
+                "~/Content/ngToast.css",
+                "~/Content/ngToast-animations.css"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.min.css",
                       "~/Content/styles.css"));

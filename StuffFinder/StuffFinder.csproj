@@ -800,6 +800,10 @@
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\loading-bar.css" />
+    <Content Include="Content\ngToast-animations.css" />
+    <Content Include="Content\ngToast-animations.min.css" />
+    <Content Include="Content\ngToast.css" />
+    <Content Include="Content\ngToast.min.css" />
     <Content Include="Content\site.css" />
     <Content Include="Content\social-buttons.css" />
     <Content Include="Content\styles.css" />
@@ -1200,6 +1204,8 @@
     <Content Include="Scripts\scripts.js" />
     <Content Include="Scripts\vendor\lodash\lodash.min.js" />
     <Content Include="Scripts\vendor\ng-droplet\ng-droplet.js" />
+    <Content Include="Scripts\vendor\ngToast\ngToast.js" />
+    <Content Include="Scripts\vendor\ngToast\ngToast.min.js" />
     <Content Include="Scripts\vendor\progressbar.js\dist\progressbar.js" />
     <Content Include="Scripts\vendor\textAngular\textAngular-rangy.min.js" />
     <Content Include="Scripts\vendor\textAngular\textAngular-sanitize.min.js" />
