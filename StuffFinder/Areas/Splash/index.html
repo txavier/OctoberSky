@@ -91,9 +91,7 @@
                         </div>
                         <!--<div class="or"><div>OR</div></div>
                         <div class="post-box">
-
                         </div>-->
-
                     </div>
                     <!-- <div class="banner-video-toggle">
                       <a id="btnViewVideo" href="#">
@@ -150,7 +148,7 @@
     </section>
     <section id="contact">
 
-        <div class="carousel" >
+        <div class="carousel">
             <carousel interval="vm.slideInterval">
                 <slide ng-repeat="slide in vm.slides" active="slide.active">
                     <a href="../../#/thing/{{ slide.thingId }}"><img ng-src="{{slide.image}}" style="margin:auto; max-height: 300px;border-radius: 4px"></a>
@@ -161,7 +159,6 @@
                 </slide>
             </carousel>
         </div>
-
     </section>
     <!--<section id="contact">
         <div class="container">
@@ -430,5 +427,17 @@
     <script src="../../app/services/dataService.js"></script>
     <!-- Controllers -->
     <script src="splash-app/index/indexController.js"></script>
+    <!-- Google Analytics -->
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-61352919-1', 'auto');
+        ga('send', 'pageview');
+    </script>
 </body>
 </html>
