@@ -8,5 +8,7 @@ namespace StuffFinder.Core.Interfaces
         bool IsWriteAccessAllowed(int id, string p);
 
         bool IsWriteAccessAllowed(Models.finding finding, string p);
+
+        void NotifyOnNewFinding(StuffFinder.Core.Models.finding finding);
     }
 }

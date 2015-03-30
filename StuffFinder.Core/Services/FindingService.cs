@@ -57,48 +57,63 @@ namespace StuffFinder.Core.Services
 
             base.AddOrUpdate(finding);
 
+            // If this is a new finding then send an email alert about this finding to
+            // those who have me2'd this item.
             if (newFinding)
             {
-                finding = Find(finding.findingId);
-
-                var adminEmailAddresses = _userService.GetAdminGroupEmailList();
-
-                // Send new item notification to the admin group.
-                _stuffFinderEmailService.SendNewItemEmailNotification(finding, finding.location, finding.thing, adminEmailAddresses);
-
-                var users = _userService.Get(filter: i => finding.thing.thingCities
-                .Where(k => k.cityId == finding.location.cityId)
-                .Select(j => j.user.userName)
-                .Contains(i.userName));
-
-                var emailAddresses = users.Select(i => i.email).ToList();
-
-                // Add the email address of the original poster.
-                var originalPosterUserEmailAddress = 
-                    _userService.Get(filter: i => i.userName == finding.thing.userName).Select(j => j.email).SingleOrDefault();
-
-                if (originalPosterUserEmailAddress != null)
-                {
-                    emailAddresses.Add(originalPosterUserEmailAddress);
-                }
-
-                // Add the email addresses of people who have me2'd this item and live in the same city as where it was found.
-                //List<string> me2Users = finding.thing.me2.Any() ? finding.thing.me2.Select(i => i.userName).ToList() : new List<string>();
-
-                //if (me2Users != null)
-                //{
-                //    var me2SameCityUserEmailAddresses = _userService.Get(filter: i => me2Users.Contains(i.userName)).Where(i => i.cityId == finding.location.cityId).Select(i => i.email);
-
-                //    emailAddresses.AddRange(me2SameCityUserEmailAddresses);
-                //}
-
-                // Filter out duplicates.
-                emailAddresses = emailAddresses.Distinct().ToList();
-
-                _stuffFinderEmailService.SendItemFindingNotification(finding, finding.location, finding.thing, emailAddresses);
+                NotifyOnNewFinding(finding);
             }
 
             return finding;
+        }
+
+        public void NotifyOnNewFinding(finding finding)
+        {
+            finding = Find(finding.findingId);
+
+            var adminEmailAddresses = _userService.GetAdminGroupEmailList();
+
+            // Send new item notification to the admin group.
+            _stuffFinderEmailService.SendNewItemEmailNotification(finding, finding.location, finding.thing, adminEmailAddresses);
+
+            // Add the email addresses of users who posted this in their city
+            // which is the same as the finding city.
+            var users = _userService.Get(filter: i => finding.thing.thingCities
+            .Where(k => k.cityId == finding.location.cityId)
+            .Select(j => j.user.userName)
+            .Contains(i.userName));
+
+            var emailAddresses = users.Select(i => i.email).ToList();
+
+            // Add the email address of the original poster.
+            var originalPosterUserEmailAddress =
+                _userService.Get(filter: i => i.userName == finding.thing.userName).Select(j => j.email).SingleOrDefault();
+
+            if (originalPosterUserEmailAddress != null)
+            {
+                emailAddresses.Add(originalPosterUserEmailAddress);
+            }
+
+            // Add the email addresses of people who have me2'd this item and live in the same city as where it was found.
+            List<string> me2Users = finding.thing.me2.Any() ? finding.thing.me2.Select(i => i.userName).ToList() : new List<string>();
+
+            if (me2Users != null)
+            {
+                var me2SameCityUserEmailAddresses = _userService
+                    .Get(filter: i => me2Users.Contains(i.userName))
+                    .Where(i => i.cityId == finding.location.cityId)
+                    .Select(i => i.email);
+
+                if (me2SameCityUserEmailAddresses.Any())
+                {
+                    emailAddresses.AddRange(me2SameCityUserEmailAddresses);
+                }
+            }
+
+            // Filter out duplicates.
+            emailAddresses = emailAddresses.Distinct().ToList();
+
+            _stuffFinderEmailService.SendItemFindingNotification(finding, finding.location, finding.thing, emailAddresses);
         }
 
         public bool IsWriteAccessAllowed(int findingId, string userName)
