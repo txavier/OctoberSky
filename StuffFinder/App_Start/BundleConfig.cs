@@ -19,15 +19,21 @@ namespace StuffFinder
             //bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
             //            "~/Scripts/modernizr-*"));
 
-            //bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-            //          "~/Scripts/bootstrap.js",
-            //          "~/Scripts/respond.js"));
-
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.min.js"));
+                      "~/Scripts/bootstrap.min.js",
+                      "~/Scripts/respond.js"));
+
+            //bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+            //          "~/Scripts/bootstrap.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/ngToast").Include(
                 "~/Scripts/vendor/ngToast/ngToast.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/angular").IncludeDirectory(
+                "~/app", "*Controller.js", true));
+
+            bundles.Add(new ScriptBundle("~/bundles/nya-bs-select").Include(
+                "~/Scripts/vendor/nya-bootstrap-select/dist/js/nya-bs-select.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/ngToast").Include(
                 "~/Content/ngToast.css",
@@ -37,12 +43,12 @@ namespace StuffFinder
                       "~/Content/bootstrap.min.css",
                       "~/Content/styles.css"));
 
-            bundles.Add(new ScriptBundle("~/bundles/angular").IncludeDirectory(
-                "~/app", "*Controller.js", true));
+            bundles.Add(new StyleBundle("~/Content/nya-bootstrap-select").Include(
+                "~/Content/nya-bootstrap-select/dist/css/nya-bs-select.css"));
 
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862
-            BundleTable.EnableOptimizations = true;
+            //BundleTable.EnableOptimizations = true;
         }
     }
 }

@@ -6,15 +6,12 @@
     <title>@ViewBag.Title</title>
     <meta name="generator" content="StuffFinder" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    @*
-        <link href="Content/bootstrap.min.css" rel="stylesheet">*@
-    @*
-        <link href="Content/styles.css" rel="stylesheet">*@
-
+    @*<link href="Content/bootstrap.min.css" rel="stylesheet">*@
+    @*<link href="Content/styles.css" rel="stylesheet">*@
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/ngToast")
-    @*
-        <link rel="stylesheet" href="~/Content/animate.css">*@
+    @Styles.Render("~/Content/nya-bootstrap-select")
+    @*<link rel="stylesheet" href="~/Content/animate.css">*@
     <link href="content/loading-bar.css" rel="stylesheet" />
     <link href="content/site.css" rel="stylesheet" />
     <link href="content/textAngular.css" rel="stylesheet" type="text/css" />
@@ -278,6 +275,8 @@
     <script type="text/javascript" src="scripts/vendor/ng-droplet/ng-droplet.js"></script>
     <script type="text/javascript" src="scripts/vendor/progressbar.js/dist/progressbar.js"></script>
     <script src="scripts/vendor/lodash/lodash.min.js"></script>
+    <!-- nya-bootstrap-select -->
+    @Scripts.Render("~/bundles/nya-bs-select")
     <!-- Text Angular -->
     <script src="../../../Scripts/vendor/textAngular/textAngular-rangy.min.js"></script>
     <script src="../../../Scripts/vendor/textAngular/textAngular-sanitize.min.js"></script>

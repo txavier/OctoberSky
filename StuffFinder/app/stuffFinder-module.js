@@ -1,5 +1,15 @@
-﻿var app = angular.module('stuffFinderModule', ['ngRoute', 'LocalStorageModule', 'angular-loading-bar',
-    'ngResource', 'ui.bootstrap', 'ngDroplet', 'uiGmapgoogle-maps', 'textAngular', 'shared.directives', 'ngToast']);
+﻿var app = angular.module('stuffFinderModule',
+    ['ngRoute',
+        'LocalStorageModule',
+        'angular-loading-bar',
+        'ngResource',
+        'ui.bootstrap',
+        'ngDroplet',
+        'uiGmapgoogle-maps',
+        'textAngular',
+        'shared.directives',
+        'ngToast',
+        'nya.bootstrap.select']);
 
 app.config(function ($routeProvider) {
 
