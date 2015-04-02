@@ -9,13 +9,17 @@
     @*<link href="Content/bootstrap.min.css" rel="stylesheet">*@
     @*<link href="Content/styles.css" rel="stylesheet">*@
     @Styles.Render("~/Content/css")
-    @Styles.Render("~/Content/ngToast")
-    @Styles.Render("~/Content/nya-bootstrap-select")
+    @*@Styles.Render("~/Content/ngToast")*@
+    @Styles.Render("~/Content/thirdParty")
+    @*@Styles.Render("~/Content/loadingBar")
+    @Styles.Render("~/Content/textAngular")
+    @Styles.Render("~/Content/socialButtons")*@
     @*<link rel="stylesheet" href="~/Content/animate.css">*@
-    <link href="content/loading-bar.css" rel="stylesheet" />
-    <link href="content/site.css" rel="stylesheet" />
-    <link href="content/textAngular.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/social-buttons.css" rel="stylesheet" type="text/css" />
+    @*<link href="content/loading-bar.css" rel="stylesheet" />*@
+    @*<link href="content/site.css" rel="stylesheet" />*@
+    @Styles.Render("~/Content/site")
+    @*<link href="content/textAngular.css" rel="stylesheet" type="text/css" />*@
+    @*<link href="~/Content/social-buttons.css" rel="stylesheet" type="text/css" />*@
 
     <!--[if lt IE 9]>
         <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -284,29 +288,29 @@
     <!-- Load app main script -->
     <script src="app/stuffFinder-module.js"></script>
     <!-- Load services -->
-    <script src="app/services/dataService.js"></script>
+    @*<script src="app/services/dataService.js"></script>*@
     <script src="app/authInterceptor/authInterceptorService.js"></script>
     <script src="app/auth/authService.js"></script>
-    <script src="app/things/thingsService.js"></script>
+    @*<script src="app/things/thingsService.js"></script>*@
     <script src="app/services/tokensManagerService.js"></script>
-    <script src="app/services/votesService.js"></script>
-    <script src="app/services/me2Service.js"></script>
+    @*<script src="app/services/votesService.js"></script>*@
+    @*<script src="app/services/me2Service.js"></script>*@
     <!-- Load controllers -->
-    @*
-        <script src="app/index/indexController.js"></script>
-        <script src="app/home/homeController.js"></script>
-        <script src="app/login/loginController.js"></script>
-        <script src="app/signup/signupController.js"></script>
-        <script src="app/things/thingsController.js"></script>
-        <script src="app/start/startController.js"></script>
-        <script src="app/finding/foundItController.js"></script>
-        <script src="app/admin/adminController.js"></script>
-        <script src="app/sidebar/sidebarController.js"></script>
-        <script src="app/associate/associateController.js"></script>
-        <script src="app/refresh/refreshController.js"></script>
-        <script src="app/tokensManager/tokensManagerController.js"></script>
-        <script src="app/whereIsIt/whereIsItController.js"></script>
-        <script src="app/things/thingController.js"></script>*@
+    
+    @*<script src="app/index/indexController.js"></script>*@
+    @*<script src="app/home/homeController.js"></script>*@
+    <script src="app/login/loginController.js"></script>
+    <script src="app/signup/signupController.js"></script>
+    @*<script src="app/things/thingsController.js"></script>*@
+    @*<script src="app/start/startController.js"></script>*@
+    @*<script src="app/finding/foundItController.js"></script>*@
+    @*<script src="app/admin/adminController.js"></script>*@
+    @*<script src="app/sidebar/sidebarController.js"></script>*@
+    <script src="app/associate/associateController.js"></script>
+    <script src="app/refresh/refreshController.js"></script>
+    <script src="app/tokensManager/tokensManagerController.js"></script>
+    @*<script src="app/whereIsIt/whereIsItController.js"></script>*@
+    @*<script src="app/things/thingController.js"></script>*@
     @*
         <script src="app/admin/jumbotronYoutubeVideoSettingsController.js"></script>*@
     @*

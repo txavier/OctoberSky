@@ -804,8 +804,8 @@
     <Content Include="Content\ngToast-animations.min.css" />
     <Content Include="Content\ngToast.css" />
     <Content Include="Content\ngToast.min.css" />
-    <Content Include="Content\nya-bootstrap-select\dist\css\nya-bs-select.css" />
-    <Content Include="Content\nya-bootstrap-select\dist\css\nya-bs-select.min.css" />
+    <Content Include="Content\nya-bs-select.css" />
+    <Content Include="Content\nya-bs-select.min.css" />
     <Content Include="Content\site.css" />
     <Content Include="Content\social-buttons.css" />
     <Content Include="Content\styles.css" />

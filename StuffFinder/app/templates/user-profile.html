@@ -37,9 +37,17 @@
                 </div>
                 <div class="form-group" style="padding:14px;">
                     Nationality
-                    <textarea class="form-control" placeholder="Nationality" name="userNationality" data-ng-model="vm.user.nationality"
-                              typeahead="nationality as nationality.name for nationality in vm.nationalities | filter:{name:$viewValue} | limitTo:8" required></textarea>
-
+                    <!--<textarea class="form-control" placeholder="Nationality" name="userNationality" data-ng-model="vm.user.nationality"
+                              typeahead="nationality as nationality.name for nationality in vm.nationalities | filter:{name:$viewValue} | limitTo:8" required></textarea>-->
+                    <ol class="nya-bs-select" ng-model="vm.user.nationality" data-live-search="true" style="width:100%">
+                        <li nya-bs-option="nationality in vm.nationalities">
+                            <!-- the text content of anchor element will be used for search -->
+                            <a>
+                                {{ nationality.name }}
+                                <span class="glyphicon glyphicon-ok check-mark"></span>
+                            </a>
+                        </li>
+                    </ol>
                 </div>
                 <div class="form-group" style="padding:14px;">
                     City
