@@ -1,12 +1,24 @@
-﻿using AutoClutch.Auto.Service.Interfaces;
+﻿//using AutoClutch.Auto.Service.Interfaces;
+//using StuffFinder.Core.Interfaces;
+//using StuffFinder.Core.Models;
+//using StuffFinder.Core.Objects;
+//using myFinder.ResourceServer.DependencyResolution;
+//using System.Web.Http;
+//using System.Linq;
+
+using myFinder.ResourceServer.DependencyResolution;
 using StuffFinder.Core.Interfaces;
 using StuffFinder.Core.Models;
 using StuffFinder.Core.Objects;
-using StuffFinder.ResourceServer.DependencyResolution;
-using System.Web.Http;
+using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Security.Claims;
+using System.Web.Http;
 
-namespace StuffFinder.ResourceServer.Controllers
+namespace myFinder.ResourceServer.Controllers
 {
     [RoutePrefix("api/usersApi")]
     public class usersApiController : ApiController
@@ -20,6 +32,7 @@ namespace StuffFinder.ResourceServer.Controllers
             _userService = container.GetInstance<IUserService>();
         }
 
+        [Route("")]
         // GET: api/userApi
         public IHttpActionResult Get()
         {
@@ -29,6 +42,7 @@ namespace StuffFinder.ResourceServer.Controllers
         }
 
         [AllowAnonymous]
+        [Route("{id}")]
         public IHttpActionResult Get(int id)
         {
             var result = _userService.Find(id);
