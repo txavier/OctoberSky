@@ -1206,6 +1206,7 @@
     <Content Include="Scripts\scripts.js" />
     <Content Include="Scripts\vendor\lodash\lodash.min.js" />
     <Content Include="Scripts\vendor\ng-droplet\ng-droplet.js" />
+    <Content Include="Scripts\vendor\ngInfiniteScroll\ng-infinite-scroll.js" />
     <Content Include="Scripts\vendor\ngToast\ngToast.js" />
     <Content Include="Scripts\vendor\ngToast\ngToast.min.js" />
     <Content Include="Scripts\vendor\nya-bootstrap-select\dist\js\nya-bs-select.js" />
@@ -1316,6 +1317,7 @@
     <Content Include="Areas\Splash\less\mixins.less" />
     <Content Include="Areas\Splash\less\variables.less" />
     <Content Include="Areas\Splash\mail\contact_me.php" />
+    <Content Include="Scripts\vendor\ngInfiniteScroll\ng-infinite-scroll.min.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

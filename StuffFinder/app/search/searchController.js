@@ -22,7 +22,7 @@
         vm.greenBoxShadow = '0 0 1em rgb(57,118,40)';
         vm.greenFont = 'rgb(57,118,40)';
         vm.totalItems = 0;
-        vm.itemsPerPage = 100;
+        vm.itemsPerPage = 14;
         vm.currentPage = 1;
         vm.pageChanged = pageChanged;
         vm.setSortOrder = setSortOrder;
@@ -40,7 +40,7 @@
             searchThings(vm.searchCriteria);
             searchThingsCount(vm.searchCriteria);
             getJumbotronVideoUrlSetting();
-            getLoggedInUser();
+            //getLoggedInUser();
 
             return vm;
         }
@@ -48,26 +48,24 @@
         function getLoggedInUser() {
             return dataService.getLoggedInUser().then(function (data) {
                 vm.loggedInUser = data;
+
+                return vm.loggedInUser;
             });
         }
 
         function me2(thingId) {
-            if (!vm.loggedInUser) {
-                ngToast.create('Sorry you have to be logged in to do this.');
+            getLoggedInUser().then(function (data) {
+                ngToast.create('You want it? You got it.  An email will be sent to you when this item is found in your city!');
 
-                return;
-            }
-
-            ngToast.create('You want it? You got it.  An email will be sent to you when this item is found in your city!');
-
-            return me2Service.me2(thingId).then(function (data) {
-                searchThings(vm.searchCriteria);
+                return me2Service.me2(thingId).then(function (data) {
+                    searchThings(vm.searchCriteria);
+                });
             });
         }
 
         function searchThings(searchCriteria) {
             dataService.searchThings(searchCriteria).then(function (data) {
-                vm.things = data;
+                vm.things = vm.things.concat(data);
 
                 return vm.things;
             });
@@ -120,9 +118,11 @@
         }
 
         function pageChanged() {
+            vm.currentPage++;
+
             setSearchCriteria(vm.currentPage, vm.itemsPerPage, vm.orderBy, vm.searchText, vm.cityName);
 
-            searchCities(vm.searchCriteria);
+            searchThings(vm.searchCriteria);
         }
 
         function setSortOrder(orderBy) {
@@ -130,7 +130,7 @@
 
             setSearchCriteria(vm.currentPage, vm.itemsPerPage, vm.orderBy, vm.searchText);
 
-            searchCities(vm.searchCriteria);
+            searchThings(vm.searchCriteria);
         }
 
         function upVote(thing) {

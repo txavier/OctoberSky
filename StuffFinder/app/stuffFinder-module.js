@@ -9,7 +9,8 @@
         'textAngular',
         'shared.directives',
         'ngToast',
-        'nya.bootstrap.select']);
+        'nya.bootstrap.select',
+        'infinite-scroll']);
 
 app.config(function ($routeProvider) {
 

@@ -16,5 +16,8 @@ function config($routeProvider, $locationProvider) {
             controllerAs: 'vm'
         })
         .otherwise({ redirectTo: '/' });
-
 }
+
+app.filter('escape', function () {
+    return window.encodeURIComponent;
+});

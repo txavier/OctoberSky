@@ -12,11 +12,27 @@
         var slides = vm.slides = [];
         var things = [];
         vm.mostMe2Things = [];
+        vm.cities = [];
+        vm.city = {};
+        vm.searchText = '';
 
         activate();
 
         function activate() {
             setView();
+            getCities();
+        }
+
+        function getCities() {
+            vm.cities.push({ name: 'All' });
+
+            vm.city = vm.cities[0];
+
+            dataService.getCities().then(function (data) {
+                vm.cities = vm.cities.concat(data);
+            });
+
+            return vm.cities;
         }
 
         function setView() {

@@ -25,12 +25,12 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script type="text/javascript">
+    <!--<script type="text/javascript">
         function SubmitFrm() {
             var Searchtxt = document.getElementById("findService").value;
             window.location = window.location.origin + "/#/search/all/" + encodeURIComponent(Searchtxt);
         }
-    </script>
+    </script>-->
 </head>
 <body id="page-top" class="index" ng-controller="indexController as vm">
     <!-- Navigation -->
@@ -82,13 +82,27 @@
                     <hr>
                     <div class="banner-cta clearfix">
                         <div class="banner-searchBox">
-                            <input type="text" placeholder="Search for some stuff" id="findService" name="hdrkeyword">
-                            <!--<a id="btnSearch" href="#" class="searchBtn btnGreenFlat"><i class="fs1" aria-hidden="true" data-icon=""></i></a>-->
+                           
                         </div>
-                        <div class="clearfix">
+                        <div class="row">
+                            <div class="col-lg-12 text-center">
+                                <div class="col-lg-4">
+                                    <select class="form-control" style="height:60px" data-ng-model="vm.city"
+                                            data-ng-options="city as city.name for city in vm.cities">
+                                    </select>
+                                </div>
+                                <div class="col-lg-6">
+                                    <input class="form-control" style="height:60px" type="text" placeholder="Search for some stuff" id="findService" name="hdrkeyword" data-ng-model="vm.searchText">
+                                    <!--<a id="btnSearch" href="#" class="searchBtn btnGreenFlat"><i class="fs1" aria-hidden="true" data-icon=""></i></a>-->
+                                </div>
+                                <div class="col-lg-2">
+                                    <a id="btnBannerPostJob" href="../../#/search/{{ vm.city.name || 'all' | escape }}/{{ vm.searchText || '' | escape }}" class="page-scroll btn btn-xl" >Search</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--<div class="clearfix">
                             <a id="btnBannerPostJob" href="../../#/search" class="page-scroll btn btn-xl" onclick="SubmitFrm(); return false;">Search</a>
-                            <!--<input type="submit" name="btnBannerPostJob" value="" id="btnBannerPostJob" class="page-scroll btn btn-x1" onclick="SubmitFrm(); return false;" />-->
-                        </div>
+                        </div>-->
                         <!--<div class="or"><div>OR</div></div>
                         <div class="post-box">
                         </div>-->

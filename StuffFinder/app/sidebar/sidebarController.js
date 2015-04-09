@@ -54,9 +54,11 @@
         });
 
         function getLoggedInUser() {
-            return dataService.getLoggedInUser().then(function (data) {
-                vm.loggedInUser = data;
-            });
+            if (vm.authentication.userName) {
+                return dataService.getLoggedInUser().then(function (data) {
+                    vm.loggedInUser = data;
+                });
+            }
         }
 
         function toggleClasses() {

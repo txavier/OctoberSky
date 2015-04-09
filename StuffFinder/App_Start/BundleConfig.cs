@@ -28,6 +28,9 @@ namespace StuffFinder
             bundles.Add(new ScriptBundle("~/bundles/ngToast").Include(
                 "~/Scripts/vendor/ngToast/ngToast.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/ngInfiniteScroll").Include(
+                "~/Scripts/vendor/ngInfiniteScroll/ng-infinite-scroll.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                 "~/app/home/homeController.js",
                 "~/app/things/thingsController.js",
@@ -86,7 +89,7 @@ namespace StuffFinder
 
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862
-            BundleTable.EnableOptimizations = false;
+            //BundleTable.EnableOptimizations = false;
         }
     }
 }
