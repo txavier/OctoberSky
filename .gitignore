@@ -149,6 +149,7 @@ ehthumbs.db
 
 # Folder config file
 Desktop.ini
+*.Release.config
 
 # Recycle Bin used on file shares
 $RECYCLE.BIN/

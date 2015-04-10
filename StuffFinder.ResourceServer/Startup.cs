@@ -14,7 +14,7 @@ namespace StuffFinder.ResourceServer
 {
     public class Startup
     {
-        public static OAuthBearerAuthenticationOptions OAuthBearerOptions { get; private set; }
+        //public static OAuthBearerAuthenticationOptions OAuthBearerOptions { get; private set; }
         
         public void Configuration(IAppBuilder app)
         {
@@ -34,9 +34,13 @@ namespace StuffFinder.ResourceServer
 
         private void ConfigureOAuth(IAppBuilder app)
         {
-            OAuthBearerOptions = new OAuthBearerAuthenticationOptions();
-            //Token Consumption
-            app.UseOAuthBearerAuthentication(OAuthBearerOptions);
+            //OAuthBearerOptions = new OAuthBearerAuthenticationOptions();
+            ////Token Consumption
+            //app.UseOAuthBearerAuthentication(OAuthBearerOptions);
+
+            app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions
+            {
+            });
         }
     }
 }

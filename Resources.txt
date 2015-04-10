@@ -148,3 +148,9 @@
  -- To add a encode uri filter to angular the following guide was followed.
 
 	http://stackoverflow.com/questions/14512583/how-to-generate-url-encoded-anchor-links-with-angularjs
+
+ -- In order to fix the bug with authentication not working in staging a machine key had to be generated 
+	and placed in the web.config.
+
+	http://bitoftech.net/2014/09/24/decouple-owin-authorization-server-resource-server-oauth-2-0-web-api/
+	https://support.microsoft.com/en-us/kb/2915218?wa=wsignin1.0
