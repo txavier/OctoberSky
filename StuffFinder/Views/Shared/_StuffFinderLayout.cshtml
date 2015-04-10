@@ -50,7 +50,7 @@
                     </ul>
 
                     <ul class="nav hidden-xs" data-ng-class="vm.largeMenuClass">
-                        <li data-ng-show="vm.loggedInUser.isAdmin || false"><a href="/areas/dashboard/pages/#/admin" class="glyphicon-text-center"><i class="glyphicon glyphicon-wrench glyphiconLarge "></i> Admin Dashboard</a></li>
+                        <li data-ng-show="vm.showDashboard || false"><a href="/areas/dashboard/pages/#/admin" class="glyphicon-text-center"><i class="glyphicon glyphicon-wrench glyphiconLarge "></i> Admin Dashboard</a></li>
                         <li><a href="#/user-profile" class="glyphicon-text-center"><i class="glyphicon glyphicon-user glyphiconLarge"></i> Profile </a></li>
                         <li><a href="#/home" class="glyphicon-text-center" data-ng-cloak data-ng-click="vm.authentication.loginlogout()"><i class="glyphicon glyphicon-log-out glyphiconLarge"></i> {{ vm.authentication.sidebarAuthenticationLabel }} </a></li>
                         <li class="active"><a class="glyphicon-text-center" href="#/start"><i class="glyphicon glyphicon-list-alt glyphiconLarge"></i> Featured</a></li>

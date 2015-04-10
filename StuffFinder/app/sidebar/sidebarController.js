@@ -29,6 +29,7 @@
         vm.smallScreenLargeMenuClass = 'hidden-lg hidden-xs';
         vm.smallScreenSmallMenuClass = 'hidden-lg visible-xs';
         vm.loggedInUser = {};
+        vm.showDashboard = false;
 
         // Scope references needed for deep watch on service variable.
         // http://stackoverflow.com/questions/12576798/how-to-watch-service-variables
@@ -42,7 +43,10 @@
             playJumbotronVideo();
             getSidebarAuthenticationLabel();
             setView();
-            getLoggedInUser();
+
+            if (authService.authentication.userName) {
+                getLoggedInUser();
+            }
         }
 
         $scope.$watch('authService.authentication.userName', function (current, original) {
@@ -51,14 +55,26 @@
 
             vm.authentication.userName = current;
             getSidebarAuthenticationLabel();
+
+            if (authService.authentication.userName) {
+                getLoggedInUser().then(function (data) {
+                    if (vm.loggedInUser.isAdmin) {
+                        vm.showDashboard = true;
+                    }
+                    else {
+                        vm.showDashboard = false;
+                    }
+                });
+            }
+            else {
+                vm.showDashboard = false;
+            }
         });
 
         function getLoggedInUser() {
-            if (vm.authentication.userName) {
-                return dataService.getLoggedInUser().then(function (data) {
-                    vm.loggedInUser = data;
-                });
-            }
+            return dataService.getLoggedInUser().then(function (data) {
+                vm.loggedInUser = data;
+            });
         }
 
         function toggleClasses() {
@@ -125,6 +141,8 @@
             // If the is auth is false then we want to login now.
             if (authService.authentication.isAuth) {
                 authService.logOut();
+
+                vm.showDashboard = false;
             }
             else {
                 $location.path("/home");

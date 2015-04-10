@@ -40,7 +40,10 @@
             searchThings(vm.searchCriteria);
             searchThingsCount(vm.searchCriteria);
             getJumbotronVideoUrlSetting();
-            //getLoggedInUser();
+            
+            if (authService.authentication.userName) {
+                getLoggedInUser();
+            }
 
             return vm;
         }
