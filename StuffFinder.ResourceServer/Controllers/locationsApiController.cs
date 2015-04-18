@@ -26,7 +26,7 @@ namespace StuffFinder.ResourceServer.Controllers
 
         public IHttpActionResult Get()
         {
-            var result = _locationService.GetAll();
+            var result = _locationService.Get(includeProperties: "city", lazyLoadingEnabled: false, proxyCreationEnabled: false);
 
             return Ok(result);
         }
