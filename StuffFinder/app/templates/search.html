@@ -1,6 +1,6 @@
 ﻿<section class="content-section video-section">
     <div class="jumbotron pattern-overlay">
-        <a id="bgndVideo" class="player" data-property="{videoURL:'https://www.youtube.com/watch?v=zGtz_GOA79w',containment:'.video-section', quality:'large', autoPlay:true, mute:true, opacity:1}">bg</a>
+        <a id="bgndVideo" class="player" data-property="{videoURL:'https://www.youtube.com/watch?v=TDM18lJ18VA',startAt:5,quality:'hd1080',containment:'.video-section', quality:'large', autoPlay:true, mute:true, opacity:1}">bg</a>
         <div class="container">
             <div class="page-header text-center hidden-xs">
                 <h1><i class="glyphicon glyphicon-heart-empty red"></i>myFindr</h1>
@@ -16,9 +16,11 @@
         <button id="list" class="btn btn-default btn-sm" ng-disabled="true">
             <span class="glyphicon glyphicon-th-list">
             </span>{{ vm.totalItems }} Wanted and Found
-        </button> <button id="grid" class="btn btn-default btn-sm">
-            <span class="glyphicon glyphicon-th"></span>[Total Found Items] Found
-        </button>
+        </button> 
+        <a id="grid" class="btn btn-default btn-sm" href="#/search/all/{{ vm.query }}"
+                ng-show="vm.totalItemsInAllCities != 0 && vm.totalItemsInAllCities != vm.totalItems">
+            <span class="glyphicon glyphicon-th"></span>{{ vm.totalItemsInAllCities }} Items Found in All Cities
+        </a>
     </div>
 </div>
 <p><a class="btn btn-info" data-ng-hide="vm.loggedInUser.isStore || false" href="#/where-is-it" role="button"><i class="glyphicon glyphicon-plus"></i> Looking for something? Add it here! &raquo;</a></p>

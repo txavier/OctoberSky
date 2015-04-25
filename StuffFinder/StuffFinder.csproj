@@ -797,6 +797,9 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrapIndex.min.css" />
+    <Content Include="Content\dist\css\app.css" />
+    <Content Include="Content\dist\css\app.min.css" />
+    <Content Include="Content\dist\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\loading-bar.css" />
@@ -813,6 +816,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="gulpfile.js" />
     <Content Include="Images\about.png" />
     <Content Include="Images\check.png" />
     <Content Include="Images\desktop.png" />
@@ -823,6 +827,7 @@
     <Content Include="Images\sprites.png" />
     <Content Include="Images\title.png" />
     <Content Include="index.html" />
+    <Content Include="Scripts\angular-bundle.min.js" />
     <Content Include="Scripts\angular-local-storage.js" />
     <Content Include="Scripts\angular-local-storage.min.js" />
     <Content Include="Scripts\angular-mocks.js" />
@@ -838,6 +843,7 @@
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\authComplete.js" />
+    <Content Include="Scripts\bootstrap-bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -1175,6 +1181,11 @@
     <Content Include="Areas\dashboard\less\variables.less" />
     <Content Include="Areas\dashboard\LICENSE" />
     <Content Include="Areas\dashboard\README.md" />
+    <Content Include="bower.json" />
+    <Content Include="Content\dist\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\dist\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\dist\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\dist\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Properties\PublishProfiles\deltanovember.xaviersoftware.com - Web Deploy.pubxml" />
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Scripts\angular-route.min.js.map" />
@@ -1183,11 +1194,13 @@
     <Content Include="Scripts\cbpAnimatedHeader.js" />
     <Content Include="Scripts\cbpAnimatedHeader.min.js" />
     <Content Include="Scripts\classie.js" />
+    <Content Include="Scripts\facebook-theme-bundle.min.js" />
     <Content Include="Scripts\init.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-bundle.min.js" />
     <Content Include="Scripts\jquery.easing.min.js" />
     <Content Include="Scripts\jquery.mb.YTPlayer.js" />
     <Content Include="Scripts\jquery.mb.YTPlayer.min.js" />
@@ -1197,6 +1210,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\loading-bar.js" />
     <Content Include="Scripts\loading-bar.min.js" />
+    <Content Include="Scripts\modernizer-min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\respond.js" />

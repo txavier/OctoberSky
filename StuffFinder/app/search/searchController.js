@@ -22,7 +22,8 @@
         vm.greenBoxShadow = '0 0 1em rgb(57,118,40)';
         vm.greenFont = 'rgb(57,118,40)';
         vm.totalItems = 0;
-        vm.itemsPerPage = 14;
+        vm.totalItemsInAllCities = 0;
+        vm.itemsPerPage = 10;
         vm.currentPage = 1;
         vm.pageChanged = pageChanged;
         vm.setSortOrder = setSortOrder;
@@ -39,6 +40,7 @@
             setSearchCriteria(vm.currentPage, vm.itemsPerPage, vm.orderBy, vm.query, vm.cityName);
             searchThings(vm.searchCriteria);
             searchThingsCount(vm.searchCriteria);
+            searchAllThingsCount(vm.searchCriteria);
             getJumbotronVideoUrlSetting();
             
             if (authService.authentication.userName) {
@@ -82,7 +84,26 @@
             });
         }
 
-        function setSearchCriteria(currentPage, itemsPerPage, orderBy, searchText, cityName) {
+        function searchAllThingsCount(searchCriteria) {
+            for (var i = 0; i < searchCriteria.searchParams.length; i++) {
+                if (searchCriteria.searchParams[i].key === 'cityName'
+                    && searchCriteria.searchParams[i].value
+                    && searchCriteria.searchParams[i].value.toLowerCase() != 'all') {
+                    var allSearchCriteria =
+                        createSearchCriteria(searchCriteria.currentPage, searchCriteria.itemsPerPage, searchCriteria.orderBy, searchCriteria.searchText, 'all');
+
+                    return dataService.searchThingsCount(allSearchCriteria).then(function (data) {
+                        vm.totalItemsInAllCities = data || 0;
+
+                        return vm.totalItemsInAllCities;
+                    });
+                }
+            }
+        }
+        
+        function createSearchCriteria(currentPage, itemsPerPage, orderBy, searchText, cityName) {
+            var searchCriteria = {};
+
             var searchParams = [
                 {
                     key: "cityName",
@@ -90,13 +111,19 @@
                 }
             ];
 
-            vm.searchCriteria = {
+            searchCriteria = {
                 currentPage: currentPage,
                 itemsPerPage: itemsPerPage,
                 orderBy: orderBy,
                 searchText: searchText,
                 searchParams: searchParams
             }
+
+            return searchCriteria;
+        }
+
+        function setSearchCriteria(currentPage, itemsPerPage, orderBy, searchText, cityName) {
+            vm.searchCriteria = createSearchCriteria(currentPage, itemsPerPage, orderBy, searchText, cityName);
 
             return vm.searchCriteria;
         }
@@ -123,7 +150,7 @@
         function pageChanged() {
             vm.currentPage++;
 
-            setSearchCriteria(vm.currentPage, vm.itemsPerPage, vm.orderBy, vm.searchText, vm.cityName);
+            setSearchCriteria(vm.currentPage, vm.itemsPerPage, vm.orderBy, vm.searchCriteria.searchText, vm.cityName);
 
             searchThings(vm.searchCriteria);
         }

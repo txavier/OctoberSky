@@ -16,7 +16,7 @@
 	http://www.bootstrapstage.com/agency-start/
 	http://startbootstrap.com/template-overviews/agency/
 
- -- The following guide was used for code-first entity framework setup.
+ -- The following guide was used for code-first entity framework setup. 
 
 	http://msdn.microsoft.com/en-us/data/jj591621.aspx#model
 
@@ -200,3 +200,7 @@
 		  $validationAlgorithm.ToUpperInvariant(), $validationKey)
 	  }
 	}
+
+ -- Drop down with autocomplete/typeahead
+
+	http://nya.io/nya-bootstrap-select/#!/examples/live-search
