@@ -92,6 +92,12 @@ DocProject/Help/html
 # Click-Once directory
 publish/
 
+# Node modules
+StuffFinder/node_modules/
+
+# Bower
+StuffFinder/bower_components/
+
 # Publish Web Output
 *.Publish.xml
 *.pubxml*

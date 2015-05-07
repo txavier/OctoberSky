@@ -21,7 +21,8 @@
     <div class="col-sm-6 col-md-3" data-ng-repeat="thing in vm.things">
         <div class="thumbnail" data-ng-style="{ 'box-shadow': thing.findings.length == 0 ? vm.redBoxShadow : vm.greenBoxShadow }">
             <a href="#/thing/{{ thing.thingId }}">
-                <img src="{{ thing.imageUrl }}" alt="..." style="height: 200px;">
+                <!--<img src="{{ thing.imageUrl }}" alt="..." style="height: 200px;">-->
+                <img src="{{ thing.images.length > 0 ? 'data:image/jpeg;base64,' + thing.images[0].imageBinary : thing.imageUrl || '/images/logo.png' }}" alt=". alt=" ..." style="height: 200px;">
             </a>
             <div class="caption">
                 <a href="#/thing/{{ thing.thingId }}">

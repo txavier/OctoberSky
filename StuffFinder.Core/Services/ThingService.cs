@@ -277,8 +277,8 @@ namespace StuffFinder.Core.Services
 
             thingViewModel.found = thing.findings.Any();
 
-            thingViewModel.imageUrl = thingViewModel.images.Any() ?
-                "data:image/jpeg;base64," + Convert.ToBase64String(thingViewModel.images.First().imageBinary) : thingViewModel.imageUrl;
+            //thingViewModel.imageUrl = thingViewModel.images.Any() ?
+            //    "data:image/jpeg;base64," + Convert.ToBase64String(thingViewModel.images.First().imageBinary) : thingViewModel.imageUrl;
 
             return thingViewModel;
         }
