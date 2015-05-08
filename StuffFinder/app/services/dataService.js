@@ -1117,7 +1117,7 @@
         function getJumbotronVideoUrlSetting() {
             return getServerUrl().then(function (resource) {
                 serverUrl = resource;
-                return $http.get(serverUrl.resourceServerUrl + 'api/settingsApi' + '/getJumbotronVideoUrlSetting')
+                return $http.get(serverUrl.resourceServerUrl + 'api/settingsApi' + '/getJumbotronVideoUrlSetting', { cache: true })
                             .then(getJumbotronVideoUrlSettingComplete)
                             .catch(getJumbotronVideoUrlSettingFailed);
 

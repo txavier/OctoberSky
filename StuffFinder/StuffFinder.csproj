@@ -1277,6 +1277,7 @@
     <Content Include="Areas\Splash\js\jquery.easing.min.js" />
     <Content Include="Areas\Splash\js\jquery.js" />
     <Content Include="shared-directives\back-button\back-button.js" />
+    <Content Include="shared-directives\ng-enter\ng-enter.js" />
     <Content Include="shared-directives\shared-directives.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

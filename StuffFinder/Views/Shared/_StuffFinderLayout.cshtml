@@ -31,12 +31,12 @@
             <div class="row row-offcanvas row-offcanvas-left" ng-class="vm.activeClass" data-ng-cloak>
                 <!--LargeSidebar-->
                 <!-- sidebar -->
-                <div class="column sidebar-offcanvas" id="sidebar" ng-class="vm.sidebarColumnClass"
-                     ng-mouseleave="vm.changeClassLeave()" ng-mouseenter="vm.changeClassEnter()">
+                <div class="column sidebar-offcanvas" id="sidebar" data-ng-class="vm.sidebarColumnClass"
+                     data-ng-mouseleave="vm.changeClassLeave()" data-ng-mouseenter="vm.changeClassEnter()" data-ng-cloak>
 
                     <ul class="nav">
                         @*
-                            <li><a href="#" data-toggle="offcanvas" class="visible-xs text-center" ng-click="vm.toggleClasses()"><i class="glyphicon glyphicon-chevron-right"></i></a></li>*@
+                <li><a href="#" data-toggle="offcanvas" class="visible-xs text-center" ng-click="vm.toggleClasses()"><i class="glyphicon glyphicon-chevron-right"></i></a></li>*@
                         <li><a class="visible-xs text-center" ng-click="vm.toggleClasses()"><i class="glyphicon glyphicon-chevron-right"></i></a></li>
                     </ul>
 
@@ -71,7 +71,7 @@
                                     data-ng-options="city as city.name for city in vm.cities"></select>
                         </div>
                         <div class="form-group-sm input-group input-group-sm" style="max-width:360px;">
-                            <input type="text" class="form-control" placeholder="Search myFindr" data-ng-model="vm.query" name="srch-term" id="srch-term">
+                            <input type="text" class="form-control" placeholder="Search myFindr" data-ng-enter="vm.navigateSearch()" data-ng-model="vm.query" name="srch-term" id="srch-term">
                             <div class="input-group-btn">
                                 <a class="btn btn-default" href="#/search/{{ vm.searchCity.name || 'all' | escape }}/{{ vm.query || '' | escape }}"><i class="glyphicon glyphicon-search"></i></a>
                             </div>

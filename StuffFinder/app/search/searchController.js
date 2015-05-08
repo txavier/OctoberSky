@@ -41,7 +41,8 @@
             searchThings(vm.searchCriteria);
             searchThingsCount(vm.searchCriteria);
             searchAllThingsCount(vm.searchCriteria);
-            getJumbotronVideoUrlSetting();
+            //getJumbotronVideoUrlSetting();
+            playJumbotronVideo();
             
             if (authService.authentication.userName) {
                 getLoggedInUser();

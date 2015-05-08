@@ -87,6 +87,7 @@ var config = {
         'app/dynFbCommentBox/dynFbCommentBox.js',
         'shared-directives/shared-directives.js',
         'shared-directives/back-button/back-button.js',
+        'shared-directives/ng-enter/ng-enter.js',
         'bower_components/ngtoast/dist/ngToast.min.js'
     ],
     angularbundle: 'Scripts/angular-bundle.min.js',

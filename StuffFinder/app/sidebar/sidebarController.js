@@ -30,6 +30,7 @@
         vm.smallScreenSmallMenuClass = 'hidden-lg visible-xs';
         vm.loggedInUser = {};
         vm.showDashboard = false;
+        vm.navigateSearch = navigateSearch;
 
         // Scope references needed for deep watch on service variable.
         // http://stackoverflow.com/questions/12576798/how-to-watch-service-variables
@@ -154,6 +155,12 @@
             $(document).ready(function () {
                 $(".player").mb_YTPlayer();
             });
+        }
+
+        function navigateSearch() {
+            $log.log('In navigateSearch');
+
+            $location.path('/search/' + (vm.searchCity.name || 'all' | escape) + '/' + (vm.query || '' | escape));
         }
     }
 })();

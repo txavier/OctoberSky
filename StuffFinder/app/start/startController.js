@@ -25,7 +25,8 @@
 
         function activate() {
             getMostMe2Things();
-            getJumbotronVideoUrlSetting();
+            //getJumbotronVideoUrlSetting();
+            playJumbotronVideo();
 
             if (authService.authentication.userName) {
                 getLoggedInUser();

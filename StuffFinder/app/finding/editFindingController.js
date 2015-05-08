@@ -42,7 +42,7 @@
 
         function activate() {
             setView($routeParams.findingId);
-            getJumbotronVideoUrlSetting();
+            playJumbotronVideo();
             getCategories();
             datepickerToggleMin();
             datepickerToggleMax();
@@ -136,17 +136,6 @@
         function playJumbotronVideo() {
             $(document).ready(function () {
                 $(".player").mb_YTPlayer();
-            });
-        }
-
-        function getJumbotronVideoUrlSetting() {
-            return dataService.getJumbotronVideoUrlSetting().then(function (data) {
-                vm.jumbotronVideoUrlSetting = data;
-                vm.dataProperty = '{ videoURL: \'' + vm.jumbotronVideoUrlSetting.settingValue + '\', containment: \'.video-section\', quality: \'large\', autoPlay: true, mute: true, opacity: 1 }';
-
-                playJumbotronVideo();
-
-                return vm.jumbotronVideoUrlSetting;
             });
         }
 
