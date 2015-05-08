@@ -43,7 +43,10 @@ namespace StuffFinder.ResourceServer.Controllers
         // GET: api/thingsApi/5
         public IHttpActionResult Get(int id)
         {
-            var result = _thingService.ToViewModel(_thingService.Find(id));
+            // Faster but is not displaying the findings.
+            var result = _thingService.ToViewModel(
+                _thingService.Get(filter: i => i.thingId == id, includeProperties: "images,findings,findings.location,me2",
+                lazyLoadingEnabled: false, proxyCreationEnabled: false).FirstOrDefault());
 
             return Ok(result);
         }

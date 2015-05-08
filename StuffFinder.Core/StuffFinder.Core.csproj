@@ -34,11 +34,11 @@
   <ItemGroup>
     <Reference Include="Auto.Repo, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\AutoClutch.AutoRepo.1.0.4\lib\net45\Auto.Repo.dll</HintPath>
+      <HintPath>..\..\AutoClutch\Auto.Repo\bin\Release\Auto.Repo.dll</HintPath>
     </Reference>
     <Reference Include="Auto.Service, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\AutoClutch.AutoService.1.0.4\lib\net45\Auto.Service.dll</HintPath>
+      <HintPath>..\..\AutoClutch\Auto.Service\bin\Release\Auto.Service.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
