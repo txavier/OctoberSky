@@ -3,7 +3,8 @@ var app = angular
     .module('splash-app', [
         'ngRoute',
         'ngResource',
-        'ui.bootstrap'
+        'ui.bootstrap',
+        'shared.directives',
     ]);
 
 app.config(config);

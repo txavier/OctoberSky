@@ -31,6 +31,8 @@ namespace StuffFinder.Core.Services
         private readonly ISettingService _settingService;
 
         private readonly IService<thingCity> _thingCityService;
+        
+        private readonly IEfQueryGetMostMe2ThingsByDate _efQueryGetMostMe2ThingsByDate;
 
         public ThingService(IRepository<thing> thingRepository
             , IUserService userService
@@ -40,7 +42,8 @@ namespace StuffFinder.Core.Services
             , IVoteService voteService
             , IMe2Service me2Service
             , ISettingService settingService
-            , IService<thingCity> thingCityService)
+            , IService<thingCity> thingCityService
+            , IEfQueryGetMostMe2ThingsByDate efQueryGetMostMe2ThingsByDate)
             : base(thingRepository)
         {
             _thingRepository = thingRepository;
@@ -60,11 +63,13 @@ namespace StuffFinder.Core.Services
             _settingService = settingService;
 
             _thingCityService = thingCityService;
+
+            _efQueryGetMostMe2ThingsByDate = efQueryGetMostMe2ThingsByDate;
         }
 
         public IEnumerable<ThingViewModel> GetSixMonths10MostMe2Things()
         {
-            var result = GetMostMe2(DateTime.Now.AddMonths(-6), DateTime.MaxValue).Take(10);
+            var result = GetMostMe2(DateTime.Now.AddMonths(-6), DateTime.MaxValue, take: 10);
 
             return result;
         }
@@ -375,15 +380,18 @@ namespace StuffFinder.Core.Services
             }
         }
 
-        public IEnumerable<ThingViewModel> GetMostMe2(DateTime startDateTime, DateTime endDateTime)
+        public IEnumerable<ThingViewModel> GetMostMe2(DateTime startDateTime, DateTime endDateTime, int? take = null)
         {
-            var result = _me2Service
-                .Get(filter: i => i.date > startDateTime && i.date < endDateTime)
-                .GroupBy(i => new
-                {
-                    thingId = i.thingId,
-                })
-                .Select(j => ToViewModel(j.Key.thingId));
+            //var result = _me2Service
+            //    .Get(filter: i => i.date > startDateTime && i.date < endDateTime, lazyLoadingEnabled: false, proxyCreationEnabled: false)
+            //    .GroupBy(i => new
+            //    {
+            //        thingId = i.thingId,
+            //    })
+            //    .Select(j => ToViewModel(j.Key.thingId));
+
+            var result = ToViewModels(_efQueryGetMostMe2ThingsByDate.GetMostMe2(startDateTime, endDateTime, take: take, 
+                includeProperties: GetDefaultIncludeProperties(), LazyLoadingEnabled: false, ProxyCreationEnabled: false));
 
             return result;
         }

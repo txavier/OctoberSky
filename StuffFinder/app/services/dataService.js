@@ -185,7 +185,7 @@
             return getServerUrl().then(function (resource) {
                 serverUrl = resource;
 
-                return $http.get(serverUrl.resourceServerUrl + usersApiUrl + '/getloggedinuser')
+                return $http.get(serverUrl.resourceServerUrl + usersApiUrl + '/getloggedinuser', { cache: true })
                             .then(getLoggedInUserComplete)
                             .catch(getLoggedInUserFailed);
 
@@ -1387,7 +1387,7 @@
         function getMostMe2Things() {
             return getServerUrl().then(function (resource) {
                 serverUrl = resource;
-                return $http.get(serverUrl.resourceServerUrl + thingsApiUrl + '/getMostMe2Things')
+                return $http.get(serverUrl.resourceServerUrl + thingsApiUrl + '/getMostMe2Things', { cache: true })
                             .then(getMostMe2ThingsComplete)
                             .catch(getMostMe2ThingsFailed);
 

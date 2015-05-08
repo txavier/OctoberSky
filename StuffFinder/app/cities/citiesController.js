@@ -60,7 +60,8 @@
                 currentPage: currentPage,
                 itemsPerPage: itemsPerPage,
                 orderBy: orderBy,
-                searchText: searchText
+                searchText: searchText,
+                includeProperties: 'locations,cityNotifications,users'
             }
 
             return vm.searchCriteria;

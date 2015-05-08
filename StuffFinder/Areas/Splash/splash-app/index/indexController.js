@@ -3,9 +3,9 @@
 
     app.controller('indexController', indexController);
 
-    indexController.$inject = ['$scope', '$location', 'dataService'];
+    indexController.$inject = ['$scope', '$location', '$log', '$window', 'dataService'];
 
-    function indexController($scope, $location, dataService) {
+    function indexController($scope, $location, $log, $window, dataService) {
         var vm = this;
 
         vm.slideInterval = 5000;
@@ -15,6 +15,7 @@
         vm.cities = [];
         vm.city = {};
         vm.searchText = '';
+        vm.navigateSearch = navigateSearch;
 
         activate();
 
@@ -51,6 +52,12 @@
                     this.push({ image: "data:image/jpeg;base64," + image.imageBinary, thingId: thing.thingId });
                 }, slides);
             }, things);
+        }
+
+        function navigateSearch() {
+            $log.log('In navigateSearch');
+
+            $window.location.href = '/#/search/' + (vm.city.name || 'all' | escape) + '/' + (vm.searchText || '' | escape);
         }
     }
 })();

@@ -22,7 +22,7 @@ namespace StuffFinder.Core.Services
             _cityRepository = cityRepository;
         }
 
-        public IEnumerable<city> Search(SearchCriteria searchCriteria)
+        public IEnumerable<city> Search(SearchCriteria searchCriteria, bool lazyLoadingEnabled = true, bool proxyCreationEnabled = true)
         {
             var result = searchCriteria == null ?
                Get()
@@ -30,7 +30,10 @@ namespace StuffFinder.Core.Services
                filter: i => searchCriteria.searchText == null ? true : i.name.Contains(searchCriteria.searchText) || searchCriteria.searchText.Contains(i.name),
                orderBy: j => searchCriteria.orderBy == "name" ? j.OrderBy(k => k.name) : j.OrderBy(k => k.name),
                skip: ((searchCriteria.currentPage - 1) ?? 1) * (searchCriteria.itemsPerPage ?? int.MaxValue),
-               take: (searchCriteria.itemsPerPage ?? int.MaxValue));
+               take: (searchCriteria.itemsPerPage ?? int.MaxValue),
+               includeProperties: searchCriteria.includeProperties,
+               lazyLoadingEnabled: lazyLoadingEnabled,
+               proxyCreationEnabled: proxyCreationEnabled);
 
             return result;
         }

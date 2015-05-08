@@ -77,6 +77,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IEfQueryGetMostMe2ThingsByDate.cs" />
     <Compile Include="Interfaces\IVersionGetter.cs" />
     <Compile Include="Models\ViewModels\CityViewModel.cs" />
     <Compile Include="Interfaces\INewsletterService.cs" />

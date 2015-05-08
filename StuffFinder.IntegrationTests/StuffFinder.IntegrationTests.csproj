@@ -93,6 +93,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Data\EfQueryGetMostMe2ThingsByDate_GetMostMe2_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CategoryService_Search_Should.cs" />
     <Compile Include="Services\FindingService_NotifyOnNewFinding_Should.cs" />
@@ -109,6 +110,10 @@
     <ProjectReference Include="..\StuffFinder.Core\StuffFinder.Core.csproj">
       <Project>{C3727208-C733-4180-917E-E4267F1DE105}</Project>
       <Name>StuffFinder.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StuffFinder.Infrastructure\StuffFinder.Infrastructure.csproj">
+      <Project>{BD976EB7-0435-4ED1-856D-37CC9010B8C4}</Project>
+      <Name>StuffFinder.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

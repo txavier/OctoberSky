@@ -39,7 +39,7 @@ namespace StuffFinder.ResourceServer.Controllers
         // GET: api/cityApi/5
         public IHttpActionResult Search(SearchCriteria searchCriteria)
         {
-            var result = _cityService.Search(searchCriteria);
+            var result = _cityService.Search(searchCriteria, lazyLoadingEnabled: false, proxyCreationEnabled: false);
 
             return Ok(result);
         }
