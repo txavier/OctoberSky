@@ -40,28 +40,32 @@
             </div>
             <div class="form-group">
                 <label class="control-label col-md-2" for="{{ vm.user.nationality.name }}">Nationality</label>
-                <div class="col-md-10">
-                    <!--<input class="text-box single-line" data-val="true" data-ng-model="vm.user.nationality" type="text" value=""
-                           typeahead="nationality as nationality.name for nationality in vm.nationalities | filter:{name:$viewValue} | limitTo:8"/>-->
-                    <ol class="nya-bs-select" ng-model="vm.user.nationality" data-live-search="true" style="width:100%">
-                        <li nya-bs-option="nationality in vm.nationalities">
-                            <!-- the text content of anchor element will be used for search -->
-                            <a>
-                                {{ nationality.name }}
-                                <span class="glyphicon glyphicon-ok check-mark"></span>
-                            </a>
-                        </li>
-                    </ol>
-                    <span class="field-validation-valid" data-valmsg-for="vm.user.nationality.name" data-valmsg-replace="true"></span>
-                </div>
+                <ol class="col-md-10 nya-bs-select" ng-model="vm.user.nationality" data-live-search="true">
+                    <li nya-bs-option="nationality in vm.nationalities">
+                        <!-- the text content of anchor element will be used for search -->
+                        <a>
+                            {{ nationality.name }}
+                            <!--<span class="glyphicon glyphicon-ok check-mark"></span>-->
+                        </a>
+                    </li>
+                </ol>
             </div>
             <div class="form-group">
                 <label class="control-label col-md-2" for="{{ vm.user.city.name }}">City</label>
-                <div class="col-md-10">
+                <!--<div class="col-md-10">
                     <input class="text-box single-line" data-val="true" data-ng-model="vm.user.city" type="text" value=""
                            typeahead="city as city.name for city in vm.cities | filter:{name:$viewValue} | limitTo:8" />
                     <span class="field-validation-valid" data-valmsg-for="vm.user.city.name" data-valmsg-replace="true"></span>
-                </div>
+                </div>-->
+                <ol class="col-md-10 nya-bs-select" ng-model="vm.user.city" data-live-search="true">
+                    <li nya-bs-option="city in vm.cities">
+                        <!-- the text content of anchor element will be used for search -->
+                        <a>
+                            {{ city.name }}
+                            <!--<span class="glyphicon glyphicon-ok check-mark"></span>-->
+                        </a>
+                    </li>
+                </ol>
             </div>
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">

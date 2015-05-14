@@ -88,9 +88,15 @@
             user.cityId = user.city ? user.city.cityId : null;
             user.nationalityId = user.nationality ? user.nationality.nationalityId : null;
 
+            user.thingCities = null;
+            user.nationality = null;
+            user.city = null;
+
             return dataService.addOrUpdateUser(user)
                 .then(function () {
-                    $location.path('/start');
+                    $scope.$apply();
+
+                    history.back();
                 });
         }
 
