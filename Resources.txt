@@ -214,3 +214,7 @@
 	server the following answer was implemented.
 
 	http://stackoverflow.com/questions/20125389/iis-7-5-and-web-api-2-put-delete-requests
+
+ -- CORS Guide
+
+	http://www.asp.net/web-api/overview/security/enabling-cross-origin-requests-in-web-api#allowed-origins
