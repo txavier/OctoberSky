@@ -95,7 +95,7 @@ namespace StuffFinder.ResourceServer.Controllers
                 return Unauthorized();
             }
 
-            thing = _thingService.AddOrUpdate(thing);
+            thing = _thingService.AddOrUpdate(thing, User.Identity.Name);
 
             return Ok(thing);
         }
