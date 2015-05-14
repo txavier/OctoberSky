@@ -204,3 +204,13 @@
  -- Drop down with autocomplete/typeahead
 
 	http://nya.io/nya-bootstrap-select/#!/examples/live-search
+
+ -- In order to fix a problem that occurs when a dll is missing on the web server I turned off the copy to 
+	output directory option for that dll in the dll properties and then published to the server making sure
+	to check "remove unnecessary files" in the publish profile.  Then I reenable to the copy to output 
+	directory option and republish the project.
+
+ -- In order to fix the bug that was causing DELETE and PUT web actions not to hit the web api in the resource
+	server the following answer was implemented.
+
+	http://stackoverflow.com/questions/20125389/iis-7-5-and-web-api-2-put-delete-requests
