@@ -78,7 +78,7 @@
                     <slide ng-repeat="slide in vm.slides" active="slide.active">
                         <img ng-src="{{slide.image}}" style="margin:auto; max-height: 300px;border-radius: 4px">
                         <div class="carousel-caption">
-                            <button class="btn btn-primary" data-ng-click="deleteImage(slide.imageId)">Delete</button>
+                            <button class="btn btn-primary" data-ng-click="vm.deleteImage(slide.imageId)">Delete</button>
                             <!--<h4>Slide {{$index}}</h4>
                         <p>{{slide.text}}</p>-->
                         </div>

@@ -28,6 +28,7 @@
         var slides = vm.slides = [];
         vm.locations = [];
         vm.cities = [];
+        vm.deleteImage = deleteImage;
 
         // Scope variables have to be accessible for the watch statements.
         $scope.coordsUpdates = 0;
@@ -153,7 +154,7 @@
 
             dataService.addOrUpdateFinding(vm.finding)
                 .then(function (data) {
-                    vm.interface.setPostData({ id: data.findingId });
+                    vm.interface.setPostData({ id: data.findingId, userName: authService.authentication.userName });
 
                     vm.interface.uploadFiles();
 

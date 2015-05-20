@@ -114,7 +114,9 @@ namespace StuffFinder.ResourceServer.Controllers
             await Request.Content.ReadAsMultipartAsync(provider);
 
             // Extract the fields from the form data.
-            int thingId = Int32.Parse(provider.FormData[0]);
+            int thingId = Int32.Parse(provider.FormData["id"]);
+
+            var userName = provider.FormData["userName"];
 
             // Check if files are on the request.
             if (!provider.FileStreams.Any())
@@ -147,9 +149,9 @@ namespace StuffFinder.ResourceServer.Controllers
                     // and this user is not an admin then return with this http status.
                     var thing = _thingService.Find(thingId);
 
-                    if(!_thingService.IsWriteAccessAllowed(thingId, User.Identity.Name))
+                    if(!_thingService.IsWriteAccessAllowed(thingId, userName))
                     {
-                        return Request.CreateErrorResponse(HttpStatusCode.Unauthorized, "User " + User.Identity.Name + " is not authorized to make this change.");
+                        return Request.CreateErrorResponse(HttpStatusCode.Unauthorized, "User " + userName + " is not authorized to make this change.");
                     }
 
                     _imageService.AddOrUpdate(image);

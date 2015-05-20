@@ -18,11 +18,11 @@ namespace StuffFinder.Core.Interfaces
 
         int SearchCount(Objects.SearchCriteria searchCriteria);
 
-        string CreateNewThingEmailMessage(StuffFinder.Core.Models.thing thing);
+        string CreateNewThingEmailMessage(StuffFinder.Core.Models.thing thing, StuffFinder.Core.Models.category category = null);
 
-        void SendNewItemEmailNotification(StuffFinder.Core.Models.thing thing);
+        void SendNewItemEmailNotification(StuffFinder.Core.Models.thing thing, StuffFinder.Core.Models.category category = null);
 
-        StuffFinder.Core.Models.thing Delete(int thingId, string loggedInUsername);
+        StuffFinder.Core.Models.thing Delete(int thingId);
 
         System.Collections.Generic.IEnumerable<StuffFinder.Core.Models.ThingViewModel> SearchViewModels(StuffFinder.Core.Objects.SearchCriteria searchCriteria);
 

@@ -94,9 +94,7 @@
 
             return dataService.addOrUpdateUser(user)
                 .then(function () {
-                    $scope.$apply();
-
-                    history.back();
+                    $location.path('/start');
                 });
         }
 

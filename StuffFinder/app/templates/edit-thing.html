@@ -24,7 +24,7 @@
                     <slide ng-repeat="slide in vm.slides" active="slide.active">
                         <img ng-src="{{slide.image}}" style="margin:auto; max-height: 300px;border-radius: 4px">
                         <div class="carousel-caption">
-                            <button class="btn btn-primary" data-ng-click="deleteImage(slide.imageId)">Delete</button>
+                            <button class="btn btn-primary" data-ng-click="vm.deleteImage(slide.imageId)">Delete</button>
                             <!--<h4>Slide {{$index}}</h4>
                         <p>{{slide.text}}</p>-->
                         </div>
@@ -63,6 +63,16 @@
             Description
             <textarea class="form-control" placeholder="The description or type of item" data-ng-model="vm.thing.description"></textarea>
         </div>
-        <button class="btn btn-primary pull-right" type="button" ng-click="vm.addOrUpdate()">Save</button><ul class="list-inline"><li><a href=""><i class="glyphicon glyphicon-upload"></i></a></li><li><a href=""><i class="glyphicon glyphicon-camera"></i></a></li><li><a href=""><i class="glyphicon glyphicon-map-marker"></i></a></li></ul>
+        <div class="form-group">
+            <ul class="list-inline pull-right">
+                <li>
+                    <button class="btn btn-primary pull-right" type="button" ng-click="vm.addOrUpdate()">Save</button>
+                </li>
+                <li>
+                    <back-button></back-button>
+                </li>
+            </ul>
+        </div>
+        <!--<ul class="list-inline"><li><a href=""><i class="glyphicon glyphicon-upload"></i></a></li><li><a href=""><i class="glyphicon glyphicon-camera"></i></a></li><li><a href=""><i class="glyphicon glyphicon-map-marker"></i></a></li></ul>-->
     </form>
 </div>

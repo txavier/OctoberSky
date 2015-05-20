@@ -16,6 +16,7 @@
         vm.categories = [];
         vm.addOrUpdate = addOrUpdate;
         vm.slideInterval = 5000;
+        vm.deleteImage = deleteImage;
         var slides = vm.slides = [];
 
         activate();
@@ -92,11 +93,9 @@
         function addOrUpdate() {
             dataService.addOrUpdateThing(vm.thing)
                 .then(function (data) {
-                    vm.interface.setPostData({ id: data.thingId });
+                    vm.interface.setPostData({ id: data.thingId, userName: authService.authentication.userName });
 
                     vm.interface.uploadFiles();
-
-                    $scope.$apply();
 
                     history.back();
                 })

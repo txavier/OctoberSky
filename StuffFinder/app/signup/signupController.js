@@ -1,46 +1,53 @@
-﻿'use strict';
-app.controller('signupController', ['$scope', '$location', '$timeout', 'authService', function ($scope, $location, $timeout, authService) {
+﻿(function () {
+    'use strict';
 
-    $scope.savedSuccessfully = false;
-    $scope.message = "";
+    app.controller('signupController', signupController);
 
-    $scope.registration = {
-        userName: "",
-        password: "",
-        confirmPassword: ""
-    };
+    signupController.$inject = ['$scope', '$location', '$timeout', 'authService'];
 
-    $scope.signUp = function () {
+    function signupController($scope, $location, $timeout, authService) {
 
-        authService.saveRegistration($scope.registration).then(function (response) {
+        $scope.savedSuccessfully = false;
+        $scope.message = "";
 
-            $scope.savedSuccessfully = true;
-            $scope.message = "User has been registered successfully, you will be redicted to login page in 2 seconds.";
-            startTimer();
+        $scope.registration = {
+            userName: "",
+            password: "",
+            confirmPassword: ""
+        };
 
-        },
-         function (response) {
-             var errors = [];
-             for (var key in response.data.modelState) {
-                 for (var i = 0; i < response.data.modelState[key].length; i++) {
-                     errors.push(response.data.modelState[key][i]);
+        $scope.signUp = function () {
+
+            authService.saveRegistration($scope.registration).then(function (response) {
+
+                $scope.savedSuccessfully = true;
+                $scope.message = "User has been registered successfully, you will be redicted to login page in 2 seconds.";
+                startTimer();
+
+            },
+             function (response) {
+                 var errors = [];
+                 for (var key in response.data.modelState) {
+                     for (var i = 0; i < response.data.modelState[key].length; i++) {
+                         errors.push(response.data.modelState[key][i]);
+                     }
                  }
-             }
-             $scope.message = "Failed to register user due to:" + errors.join(' ');
-         });
-    };
+                 $scope.message = "Failed to register user due to:" + errors.join(' ');
+             });
+        };
 
-    var startTimer = function () {
-        var timer = $timeout(function () {
-            $timeout.cancel(timer);
-            $location.path('/login');
-        }, 2000);
+        var startTimer = function () {
+            var timer = $timeout(function () {
+                $timeout.cancel(timer);
+                $location.path('/login');
+            }, 2000);
+        }
+
+        $(document).ready(function () {
+
+            $(".player").mb_YTPlayer();
+
+        });
+
     }
-
-    $(document).ready(function () {
-
-        $(".player").mb_YTPlayer();
-
-    });
-
-}]);
+})();

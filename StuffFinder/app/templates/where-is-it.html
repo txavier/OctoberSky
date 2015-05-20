@@ -39,7 +39,7 @@
         </section>
         <div class="form-group" style="padding:14px;">
             Category
-            <!--<textarea class="form-control" placeholder="The category or type of item" data-ng-model="vm.thing.category" 
+            <!--<textarea class="form-control" placeholder="The category or type of item" data-ng-model="vm.thing.category"
                       typeahead="category as category.name for category in vm.categories | filter:{name:$viewValue} | limitTo:8"></textarea>-->
             <ol class="nya-bs-select" ng-model="vm.thing.category" data-live-search="true" style="width:100%">
                 <li nya-bs-option="category in vm.categories">
@@ -55,6 +55,16 @@
             Description
             <textarea class="form-control" placeholder="The description or type of item" data-ng-model="vm.thing.description"></textarea>
         </div>
-        <button class="btn btn-primary pull-right" type="button" ng-click="vm.addOrUpdate()">Save</button><ul class="list-inline"><li><a href=""><i class="glyphicon glyphicon-upload"></i></a></li><li><a href=""><i class="glyphicon glyphicon-camera"></i></a></li><li><a href=""><i class="glyphicon glyphicon-map-marker"></i></a></li></ul>
+        <div class="form-group">
+            <ul class="list-inline pull-right">
+                <li>
+                    <button class="btn btn-primary pull-right" type="button" ng-click="vm.addOrUpdate()">Save</button>
+                </li>
+                <li>
+                    <back-button></back-button>
+                </li>
+            </ul>
+        </div>
+        <!--<ul class="list-inline"><li><a href=""><i class="glyphicon glyphicon-upload"></i></a></li><li><a href=""><i class="glyphicon glyphicon-camera"></i></a></li><li><a href=""><i class="glyphicon glyphicon-map-marker"></i></a></li></ul>-->
     </form>
 </div>

@@ -196,6 +196,8 @@ namespace StuffFinder.Core.Services
 
         public thing AddOrUpdate(thing thing, string loggedInUsername)
         {
+            var category = thing.category;
+
             // Remove child references. This is needed in order for entity
             // framework to provide the vanilla update to just this item
             // without walking down the entity tree.
@@ -226,15 +228,15 @@ namespace StuffFinder.Core.Services
 
             if (newThing)
             {
-                SendNewItemEmailNotification(thing);
+                SendNewItemEmailNotification(thing, category: category);
             }
 
             return thing;
         }
 
-        public void SendNewItemEmailNotification(thing thing)
+        public void SendNewItemEmailNotification(thing thing, category category = null)
         {
-            var emailMessage = CreateNewThingEmailMessage(thing);
+            var emailMessage = CreateNewThingEmailMessage(thing, category: category);
 
             var adminGroupEmailList = _userService.GetAdminGroupEmailList();
 
@@ -243,7 +245,7 @@ namespace StuffFinder.Core.Services
             _stuffFinderEmailService.SendEmail(emailMessage, adminGroupEmailList, subject);
         }
 
-        public string CreateNewThingEmailMessage(thing thing)
+        public string CreateNewThingEmailMessage(thing thing, category category = null)
         {
             // Get all the properties for thing, especially the category property.
             thing = Find(thing.thingId);
@@ -256,7 +258,8 @@ namespace StuffFinder.Core.Services
 
             sb.AppendLine("Created Item: <a href='" + emailLandingPageUrl + "/#/thing/" + thing.thingId + "'>" + thing.name + "</a>");
 
-            sb.AppendLine("Item Category: " + thing.category.name);
+            sb.AppendLine("Item Category: " + (thing.category != null ? thing.category.name : 
+                (category != null ? category.name : "[Not found]")));
 
             sb.AppendLine("Item Description: " + thing.description);
 
@@ -288,7 +291,7 @@ namespace StuffFinder.Core.Services
             return thingViewModel;
         }
 
-        public thing Delete(int thingId, string loggedInUsername)
+        public thing Delete(int thingId)
         {
             var thing = Find(thingId);
 

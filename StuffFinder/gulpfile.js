@@ -65,6 +65,7 @@ var config = {
         'app/associate/associateController.js',
         'app/refresh/refreshController.js',
         'app/tokensManager/tokensManagerController.js',
+        'app/signup/signupController.js',
         // End no minify section.
         'app/services/dataService.js',
         'app/things/thingsService.js',

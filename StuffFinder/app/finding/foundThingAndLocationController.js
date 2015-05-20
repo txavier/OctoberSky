@@ -113,7 +113,7 @@
 
             dataService.addOrUpdateThing(vm.thing)
                 .then(function (data) {
-                    vm.interface.setPostData({ id: data.thingId });
+                    vm.interface.setPostData({ id: data.thingId, userName: authService.authentication.userName });
 
                     vm.interface.uploadFiles();
 

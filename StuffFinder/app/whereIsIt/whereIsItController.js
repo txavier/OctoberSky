@@ -93,7 +93,7 @@
                 .then(function (data) {
                     vm.thing = data;
 
-                    vm.interface.setPostData({ id: vm.thing.thingId });
+                    vm.interface.setPostData({ id: vm.thing.thingId, userName: authService.authentication.userName });
 
                     vm.interface.uploadFiles();
 

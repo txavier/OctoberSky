@@ -104,7 +104,8 @@
             getNewThingsInPastWeekCount: getNewThingsInPastWeekCount,
             getNewFindingsInPastWeekCount: getNewFindingsInPastWeekCount,
             getTotalUsersCount: getTotalUsersCount,
-            getNewMe2sInPastWeekCount: getNewMe2sInPastWeekCount
+            getNewMe2sInPastWeekCount: getNewMe2sInPastWeekCount,
+            deleteImage: deleteImage
         };
 
         return service;
@@ -1476,7 +1477,7 @@
             return getServerUrl().then(function (resource) {
                 serverUrl = resource;
 
-                return $http.delete(serverUrl.resourceServerUrl + 'api/imagesApi', imageId)
+                return $http.delete(serverUrl.resourceServerUrl + 'api/imagesApi/' + imageId)
                             .then(deleteImageComplete)
                             .catch(deleteImageFailed);
 

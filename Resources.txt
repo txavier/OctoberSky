@@ -218,3 +218,7 @@
  -- CORS Guide
 
 	http://www.asp.net/web-api/overview/security/enabling-cross-origin-requests-in-web-api#allowed-origins
+
+ -- Add google image search using the custom search api.
+
+	https://developers.google.com/custom-search/json-api/v1/introduction
