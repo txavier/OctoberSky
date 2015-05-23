@@ -59,7 +59,8 @@
                 currentPage: currentPage,
                 itemsPerPage: itemsPerPage,
                 orderBy: orderBy,
-                searchText: searchText
+                searchText: searchText,
+                includeProperties: 'nationality,city'
             }
 
             return vm.searchCriteria;

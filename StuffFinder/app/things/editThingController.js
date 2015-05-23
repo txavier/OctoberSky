@@ -78,8 +78,22 @@
 
                 addSlide(vm.thing.images);
 
+                getCategories().then(function (data) {
+                    if (vm.thing.categoryId) {
+                        vm.thing.category = vm.categories[vm.categories.getIndexBy("categoryId", vm.thing.categoryId)];
+                    }
+                });
+
                 return vm.thing;
             });
+        }
+
+        Array.prototype.getIndexBy = function (name, value) {
+            for (var i = 0; i < this.length; i++) {
+                if (this[i][name] == value) {
+                    return i;
+                }
+            }
         }
 
         function deleteImage(imageId) {
@@ -96,6 +110,8 @@
                     vm.interface.setPostData({ id: data.thingId, userName: authService.authentication.userName });
 
                     vm.interface.uploadFiles();
+
+                    $scope.$apply();
 
                     history.back();
                 })

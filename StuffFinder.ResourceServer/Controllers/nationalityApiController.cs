@@ -22,7 +22,7 @@ namespace StuffFinder.ResourceServer.Controllers
         // GET: api/nationalityApi
         public IHttpActionResult Get()
         {
-            var result = _nationalityService.Get();
+            var result = _nationalityService.Get(lazyLoadingEnabled: false, proxyCreationEnabled: false);
 
             return Ok(result);
         }

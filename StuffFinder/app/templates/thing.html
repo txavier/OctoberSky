@@ -165,7 +165,8 @@
         </div>
         <div class="form-group">
             <p>
-                <div class="fb-comments" width="100%" dyn-fb-comment-box data-href="#/thing/{{ thing.thingId }}" data-numposts="5" data-colorscheme="light"></div>
+                <!--http://stackoverflow.com/questions/23516305/facebook-comment-plugin-angularjs-->
+                <div class="fb-comments" width="100%" dyn-fb-comment-box page-href="#/thing/{{ vm.thing.thingId}}" data-numposts="5" data-colorscheme="light"></div>
             </p>
             <ul class="list-inline pull-right">
                 <li>
@@ -175,7 +176,7 @@
                     <button class="btn btn-primary pull-right" type="button" ng-click="vm.deleteThing()" data-ng-show="vm.thing.userName == authService.authentication.userName">Delete</button>
                 </li>
                 <li>
-                    <back-button></back-button>
+                    <back-button inner-class="btn btn-primary pull-right"></back-button>
                 </li>
             </ul>
         </div>

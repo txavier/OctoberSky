@@ -45,7 +45,7 @@ namespace StuffFinder.ResourceServer.Controllers
         {
             // Faster but is not displaying the findings.
             var result = _thingService.ToViewModel(
-                _thingService.Get(filter: i => i.thingId == id, includeProperties: "images,findings,findings.location,me2",
+                _thingService.Get(filter: i => i.thingId == id, includeProperties: "images,findings,findings.location,me2,thingCities,thingCities.city,category",
                 lazyLoadingEnabled: false, proxyCreationEnabled: false).FirstOrDefault());
 
             return Ok(result);

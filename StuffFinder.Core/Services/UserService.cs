@@ -32,7 +32,8 @@ namespace StuffFinder.Core.Services
             _settingService = settingService;
         }
 
-        public IEnumerable<user> Search(SearchCriteria searchCriteria)
+        public IEnumerable<user> Search(SearchCriteria searchCriteria, bool lazyLoadingEnabled = true, 
+            bool proxyCreationEnabled = true)
         {
             var result = searchCriteria == null ?
                Get()
@@ -44,7 +45,10 @@ namespace StuffFinder.Core.Services
                    : searchCriteria.orderBy == "email" ? j.OrderBy(k => k.email)
                    : j.OrderBy(k => k.userName),
                skip: ((searchCriteria.currentPage - 1) ?? 1) * (searchCriteria.itemsPerPage ?? int.MaxValue),
-               take: (searchCriteria.itemsPerPage ?? int.MaxValue));
+               take: (searchCriteria.itemsPerPage ?? int.MaxValue),
+               includeProperties: searchCriteria.includeProperties,
+               lazyLoadingEnabled: lazyLoadingEnabled,
+               proxyCreationEnabled: proxyCreationEnabled);
 
             return result;
         }

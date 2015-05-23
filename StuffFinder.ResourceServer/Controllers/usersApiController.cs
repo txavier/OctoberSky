@@ -31,7 +31,9 @@ namespace StuffFinder.ResourceServer.Controllers
         [AllowAnonymous]
         public IHttpActionResult Get(int id)
         {
-            var result = _userService.Find(id);
+            var result = _userService
+                .Get(i => i.userId == id, lazyLoadingEnabled: false, proxyCreationEnabled: false)
+                .SingleOrDefault();
 
             return Ok(result);
         }
@@ -60,7 +62,7 @@ namespace StuffFinder.ResourceServer.Controllers
         // GET: api/userApi/5
         public IHttpActionResult Search(SearchCriteria searchCriteria)
         {
-            var result = _userService.Search(searchCriteria);
+            var result = _userService.Search(searchCriteria, lazyLoadingEnabled: false, proxyCreationEnabled: false);
 
             return Ok(result);
         }

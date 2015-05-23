@@ -7,9 +7,10 @@ angular
 function backButton() {
     var directive = {
         restrict: 'E',
-        template: "<input type='submit' value='Back' class='btn btn-primary pull-right' />",
+        template: "<input type='submit' value='Back' class='{{innerClass}}' />",   //class='btn btn-primary pull-right'
         scope: {
             back: '@back',
+            innerClass: '@innerClass'
         },
         link: link
     };
