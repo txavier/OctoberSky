@@ -778,6 +778,7 @@
     <Content Include="Areas\dashboard\pages\tables.html" />
     <Content Include="Areas\dashboard\pages\typography.html" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Areas\Splash\img\uae-dark-gray-canvas-map.PNG" />
     <Content Include="Areas\Splash\splash-app\index\indexController.js" />
     <Content Include="Areas\Splash\splash-app\splash-app.js" />
     <Content Include="assets\example\betty-crocker chocolate frosting.jpg" />

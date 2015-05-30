@@ -8,3 +8,7 @@
 .banner-searchBox input[type='text'] {
     color: #333;
 }
+
+section#contact {
+    background-image: none;
+}
