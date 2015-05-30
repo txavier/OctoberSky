@@ -112,13 +112,11 @@
         function getCities() {
             return dataService.getCities().then(function (data) {
                 vm.cities = data;
-
-                //return vm.cities;
             });
         }
 
         function setDropDown() {
-            vm.cities.splice(0, 0, { name: "All" });
+            vm.cities.splice(0, 0, { name: "All Cities" });
 
             vm.searchCity = vm.cities[0];
         }

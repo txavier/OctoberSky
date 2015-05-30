@@ -25,7 +25,7 @@
         }
 
         function getCities() {
-            vm.cities.push({ name: 'All' });
+            vm.cities.push({ name: 'All Cities' });
 
             vm.city = vm.cities[0];
 

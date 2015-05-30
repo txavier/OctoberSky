@@ -136,7 +136,7 @@ namespace StuffFinder.Core.Services
             var result = Get(
                filter: i =>
                    // Must have this...
-                   (!cityNamesLowered.Any() || cityNamesLowered.Contains("all") ?
+                   (!cityNamesLowered.Any() || cityNamesLowered.Contains("all") || cityNamesLowered.Contains("all cities") ?
                     true : (i.findings.Any(j => cityNamesLowered.Contains(j.location.city.name.ToLower()))
                     || i.thingCities.Select(k => k.city.name).Any(l => cityNamesLowered.Contains(l.ToLower())))) &&
                     (searchCriteria.startDateTime != null ? i.postedDate > searchCriteria.startDateTime : true) &&
@@ -168,18 +168,41 @@ namespace StuffFinder.Core.Services
         {
             var queryLowered = string.IsNullOrEmpty(searchCriteria.searchText) ? null : searchCriteria.searchText.ToLower();
 
-            var cityNamesLowered = searchCriteria.searchParams == null ?
-                new List<string> { "all" }
-                : searchCriteria.searchParams
+            //var cityNamesLowered = searchCriteria.searchParams == null ?
+            //    new List<string> { "all" }
+            //    : searchCriteria.searchParams
+            //    .Where(i => i.key == "cityName" && i.value != null)
+            //    .Select(i => i.value.ToLower());
+
+            //var result = GetCount(
+            //    filter: i =>
+            //        // Must have this...
+            //       (!cityNamesLowered.Any() || cityNamesLowered.Contains("all") ?
+            //        true : (i.findings.Any(j => cityNamesLowered.Contains(j.location.city.name.ToLower()))
+            //        || i.thingCities.Select(k => k.city.name).Any(l => cityNamesLowered.Contains(l.ToLower())))) &&
+            //        // Have any of these...
+            //       (queryLowered == null ? true : i.findings.Any(j => j.location.formattedAddress.ToLower().Contains(queryLowered))
+            //        || i.category.name.ToLower().Contains(queryLowered)
+            //        || i.description.ToLower().Contains(queryLowered)
+            //        || i.name.ToLower().Contains(queryLowered)
+            //        || i.upcCode.ToLower().Contains(queryLowered)
+            //        || i.userName.ToLower().Contains(queryLowered)
+            //        || queryLowered.ToLower().Contains(i.name)
+            //        || queryLowered.ToLower().Contains(i.upcCode)
+            //        || queryLowered.ToLower().Contains(i.userName)));
+
+            var cityNamesLowered = searchCriteria.searchParams
                 .Where(i => i.key == "cityName" && i.value != null)
                 .Select(i => i.value.ToLower());
 
             var result = GetCount(
-                filter: i =>
-                    // Must have this...
-                   (!cityNamesLowered.Any() || cityNamesLowered.Contains("all") ?
+               filter: i =>
+                   // Must have this...
+                   (!cityNamesLowered.Any() || cityNamesLowered.Contains("all") || cityNamesLowered.Contains("all cities") ?
                     true : (i.findings.Any(j => cityNamesLowered.Contains(j.location.city.name.ToLower()))
                     || i.thingCities.Select(k => k.city.name).Any(l => cityNamesLowered.Contains(l.ToLower())))) &&
+                    (searchCriteria.startDateTime != null ? i.postedDate > searchCriteria.startDateTime : true) &&
+                    (searchCriteria.endDateTime != null ? i.postedDate < searchCriteria.endDateTime : true) &&
                        // Have any of these...
                    (queryLowered == null ? true : i.findings.Any(j => j.location.formattedAddress.ToLower().Contains(queryLowered))
                     || i.category.name.ToLower().Contains(queryLowered)
