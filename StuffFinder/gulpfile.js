@@ -56,6 +56,8 @@ var config = {
         'bower_components/textAngular/dist/textAngular-rangy.min.js',
         'bower_components/textAngular/dist/textAngular-sanitize.min.js',
         'bower_components/textAngular/dist/textAngular.min.js',
+        'bower_components/angular-animate/angular-animate.min.js',
+        'bower_components/angularjs-toaster/toaster.min.js',
         // No minify section
         'app/stuffFinder-module.js',
         'app/authInterceptor/authInterceptorService.js',
@@ -88,8 +90,7 @@ var config = {
         'app/dynFbCommentBox/dynFbCommentBox.js',
         'shared-directives/shared-directives.js',
         'shared-directives/back-button/back-button.js',
-        'shared-directives/ng-enter/ng-enter.js',
-        'bower_components/ngtoast/dist/ngToast.min.js'
+        'shared-directives/ng-enter/ng-enter.js'
     ],
     angularbundle: 'Scripts/angular-bundle.min.js',
 
@@ -101,11 +102,8 @@ var config = {
     //fontawesomecss: 'bower_components/font-awesome/css/font-awesome.min.css',
     //fontawesomefonts: 'bower_components/font-awesome/fonts/*.*',
 
-    // ngToast CSS
-    ngtoastcss: 'bower_components/ngtoast/dist/ngToast.min.css',
-
-    // ngToast Animations CSS
-    ngtoastanimationscss: 'bower_components/ngtoast/dist/ngToast-animations.min.css',
+    // Angular toaster CSS
+    toastercss: 'bower_components/angularjs-toaster/toaster.min.css',
 
     // nya-bs-select CSS
     nyabsselectcss: 'bower_components/nya-bootstrap-select/dist/css/nya-bs-select.min.css',
@@ -198,8 +196,7 @@ gulp.task('css', ['clean-styles', 'bower-restore'], function () {
     return gulp.src([
         config.bootstrapcss,
         config.stylescss,
-        config.ngtoastcss,
-        config.ngtoastanimationscss,
+        config.toastercss,
         config.nyabsselectcss,
         config.angularloadingbarcss,
         config.textangularcss,

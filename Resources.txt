@@ -222,3 +222,7 @@
  -- Add google image search using the custom search api.
 
 	https://developers.google.com/custom-search/json-api/v1/introduction
+
+ -- Using Bower and Gulp with Visual Studio
+
+	http://blogs.msdn.com/b/cdndevs/archive/2015/02/17/using-bower-with-visual-studio-2013.aspx

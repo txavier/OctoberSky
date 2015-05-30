@@ -3,9 +3,9 @@
 
     app.controller('sidebarController', sidebarController);
 
-    sidebarController.$inject = ['$scope', '$location', '$log', 'authService', 'dataService'];
+    sidebarController.$inject = ['$scope', '$location', '$log', 'authService', 'dataService', 'toaster'];
 
-    function sidebarController($scope, $location, $log, authService, dataService) {
+    function sidebarController($scope, $location, $log, authService, dataService, toaster) {
         var vm = this;
 
         vm.authentication = {};
@@ -31,6 +31,8 @@
         vm.loggedInUser = {};
         vm.showDashboard = false;
         vm.navigateSearch = navigateSearch;
+        vm.pop = pop;
+        vm.clearpop = clearpop;
 
         // Scope references needed for deep watch on service variable.
         // http://stackoverflow.com/questions/12576798/how-to-watch-service-variables
@@ -71,6 +73,19 @@
                 vm.showDashboard = false;
             }
         });
+
+        function pop() {
+            toaster.pop({
+                type: 'info',
+                title: 'Feedback',
+                body: 'We are a new site and we would LOVE to hear your comments, suggestions, and feeback.',
+                showCloseButton: true
+            });
+        }
+
+        function clearpop() {
+            toaster.clear('*');
+        }
 
         function getLoggedInUser() {
             return dataService.getLoggedInUser().then(function (data) {
