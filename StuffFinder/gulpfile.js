@@ -70,7 +70,7 @@ var config = {
         'app/signup/signupController.js',
         // End no minify section.
         'app/services/dataService.js',
-        'app/things/thingsService.js',
+        'app/services/thingService.js',
         'app/services/votesService.js',
         'app/services/me2Service.js',
         'app/home/homeController.js',

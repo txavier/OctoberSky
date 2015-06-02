@@ -25,5 +25,13 @@
             });
         }
 
+        function me2(thing) {
+            return dataService.addOrUpdateThing(thing).then(function (data) {
+                return me2(data.thingId).then(function (data2) {
+                    return data2;
+                });
+            });
+        }
+
     }
 })();

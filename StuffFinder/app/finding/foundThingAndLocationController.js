@@ -3,9 +3,11 @@
 
     app.controller('foundThingAndLocationController', foundThingAndLocationController);
 
-    foundThingAndLocationController.$inject = ['$scope', '$log', '$timeout', '$http', '$location', '$routeParams', 'authService', 'dataService'];
+    foundThingAndLocationController.$inject = ['$scope', '$log', '$timeout', '$http', '$location', '$routeParams', 'authService',
+        'dataService', 'thingService'];
 
-    function foundThingAndLocationController($scope, $log, $timeout, $http, $location, $routeParams, authService, dataService) {
+    function foundThingAndLocationController($scope, $log, $timeout, $http, $location, $routeParams, authService, dataService,
+        thingService) {
 
         var vm = this;
         
@@ -67,6 +69,11 @@
         }
 
         function getThing() {
+            if (thingService.getThing() != null) {
+                vm.thing = thingService.getThing();
+
+                thingService.clearThing();
+            }
             if ($routeParams.thingId) {
                 dataService.getThing($routeParams.thingId).then(function (data) {
                     vm.thing = data;

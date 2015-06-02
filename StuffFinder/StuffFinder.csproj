@@ -318,7 +318,7 @@
     <Content Include="app\templates\tokens.html" />
     <Content Include="app\things\thingController.js" />
     <Content Include="app\things\thingsController.js" />
-    <Content Include="app\things\thingsService.js" />
+    <Content Include="app\services\thingService.js" />
     <Content Include="app\signup\signupController.js" />
     <Content Include="app\stuffFinder-module.js" />
     <Content Include="app\templates\home.html" />

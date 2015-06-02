@@ -11,43 +11,70 @@
         </div>
     </div>
 </section>
-<div class="well well-sm">
-    <div class="btn-group">
-        <button id="list" class="btn btn-default btn-sm" ng-disabled="true">
-            <span class="glyphicon glyphicon-th-list">
-            </span>{{ vm.totalItems }} Wanted and Found
-        </button> 
-        <a id="grid" class="btn btn-default btn-sm" href="#/search/all/{{ vm.query }}"
-                ng-show="vm.totalItemsInAllCities != 0 && vm.totalItemsInAllCities != vm.totalItems">
-            <span class="glyphicon glyphicon-th"></span>{{ vm.totalItemsInAllCities }} Items Found in All Cities
-        </a>
+<div class="full col-sm-9">
+    <div class="well well-sm">
+        <div class="btn-group">
+            <button id="list" class="btn btn-default btn-sm" ng-disabled="true">
+                <span class="glyphicon glyphicon-th-list">
+                </span>{{ vm.totalItems }} Wanted and Found
+            </button>
+            <a id="grid" class="btn btn-default btn-sm" href="#/search/all/{{ vm.query }}"
+               ng-show="vm.totalItemsInAllCities != 0 && vm.totalItemsInAllCities != vm.totalItems">
+                <span class="glyphicon glyphicon-th"></span>{{ vm.totalItemsInAllCities }} Items Found in All Cities
+            </a>
+        </div>
     </div>
-</div>
-<p><a class="btn btn-info" data-ng-hide="vm.loggedInUser.isStore || false" href="#/where-is-it" role="button"><i class="glyphicon glyphicon-plus"></i> Looking for something? Add it here! &raquo;</a></p>
-<div class="row" style="min-height: 277px">
-    <div infinite-scroll="vm.pageChanged()" infinite-scroll-distance="0">
-        <div class="col-sm-6 col-md-3" data-ng-repeat="thing in vm.things">
+    <p><a class="btn btn-info" data-ng-hide="vm.loggedInUser.isStore || false" href="#/where-is-it" role="button"><i class="glyphicon glyphicon-plus"></i> Looking for something? Add it here! &raquo;</a></p>
+    <div class="row" style="min-height: 277px" data-ng-show="vm.things && vm.things.length > 0">
+        <div infinite-scroll="vm.pageChanged()" infinite-scroll-distance="0">
+            <div class="col-sm-6 col-md-3" data-ng-repeat="thing in vm.things">
+                <div class="thumbnail" data-ng-style="{ 'box-shadow': thing.findings.length == 0 ? vm.redBoxShadow : vm.greenBoxShadow }">
+                    <a href="#/thing/{{ thing.thingId }}">
+                        <!--<img src="{{ thing.imageUrl }}" alt="..." style="height: 200px;">-->
+                        <img src="{{ thing.images.length > 0 ? 'data:image/jpeg;base64,' + thing.images[0].imageBinary : thing.imageUrl || '/images/logo.png' }}" alt=". alt=" ..." style="height: 200px;">
+                    </a>
+                    <div class="caption">
+                        <a href="#/thing/{{ thing.thingId }}">
+                            <p>
+                                <h5 data-ng-style="{ 'color': thing.findings.length == 0 ? vm.redFont : vm.greenFont }"><b>{{ thing.findings.length == 0 ? ('Wanted') : ('Found') }}</b></h5>
+                                <h5 style="min-height:20px">{{ thing.name.length > 25 ? thing.name.substring(0,30) + '[&hellip;]' : thing.name }}</h5>
+                            </p>
+                        </a>
+                        <p>
+                            <a class="btn btn-info btn-group hidden-xs" href="#/found-it/{{ thing.thingId }}" role="button">I found it</a>
+                            <a class="btn btn-info btn-group hidden-xs" data-ng-click="vm.me2(thing.thingId)" role="button">I want it {{ thing.me2 > 0 ? '(' + thing.me2 + ')' : '' }}</a>
+                            <a class="btn btn-info btn-group visible-xs" href="#/found-it/{{ thing.thingId }}" role="button">Found</a>
+                            <a class="btn btn-info btn-group visible-xs" data-ng-click="vm.me2(thing.thingId)" role="button">Want {{ thing.me2 > 0 ? '(' + thing.me2 + ')' : '' }}</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="min-height: 277px" data-ng-show="vm.googleThings && vm.googleThings.length > 0">
+        <hr />
+        <h2>Did you mean these?</h2>
+        <div class="col-sm-6 col-md-3" data-ng-repeat="thing in vm.googleThings">
             <div class="thumbnail" data-ng-style="{ 'box-shadow': thing.findings.length == 0 ? vm.redBoxShadow : vm.greenBoxShadow }">
                 <a href="#/thing/{{ thing.thingId }}">
                     <!--<img src="{{ thing.imageUrl }}" alt="..." style="height: 200px;">-->
-                    <img src="{{ thing.images.length > 0 ? 'data:image/jpeg;base64,' + thing.images[0].imageBinary : thing.imageUrl || '/images/logo.png' }}" alt=". alt="..." style="height: 200px;">
+                    <img src="{{ thing.images.length > 0 ? 'data:image/jpeg;base64,' + thing.images[0].imageBinary : thing.imageUrl || '/images/logo.png' }}" alt=". alt=" ..." style="height: 200px;">
                 </a>
                 <div class="caption">
                     <a href="#/thing/{{ thing.thingId }}">
                         <p>
-                            <h5 data-ng-style="{ 'color': thing.findings.length == 0 ? vm.redFont : vm.greenFont }"><b>{{ thing.findings.length == 0 ? ('Wanted') : ('Found') }}</b></h5>
+                            <h5 data-ng-style="{ 'color': (thing.findings == null || thing.findings.length == 0) ? vm.redFont : vm.greenFont }"><b>{{ (thing.findings == null || thing.findings.length == 0) ? ('Wanted') : ('Found') }}</b></h5>
                             <h5 style="min-height:20px">{{ thing.name.length > 25 ? thing.name.substring(0,30) + '[&hellip;]' : thing.name }}</h5>
                         </p>
                     </a>
                     <p>
-                        <a class="btn btn-info btn-group hidden-xs" href="#/found-it/{{ thing.thingId }}" role="button">I found it</a>
-                        <a class="btn btn-info btn-group hidden-xs" data-ng-click="vm.me2(thing.thingId)" role="button">I want it {{ thing.me2 > 0 ? '(' + thing.me2 + ')' : '' }}</a>
-                        <a class="btn btn-info btn-group visible-xs" href="#/found-it/{{ thing.thingId }}" role="button">Found</a>
-                        <a class="btn btn-info btn-group visible-xs" data-ng-click="vm.me2(thing.thingId)" role="button">Want {{ thing.me2 > 0 ? '(' + thing.me2 + ')' : '' }}</a>
+                        <a class="btn btn-info btn-group hidden-xs" data-ng-click="vm.foundThingAndLocationGoogleThing(thing)" role="button">I found it</a>
+                        <a class="btn btn-info btn-group hidden-xs" data-ng-click="vm.foundGoogleThing(thing)" role="button">I want it {{ thing.me2 > 0 ? '(' + thing.me2 + ')' : '' }}</a>
+                        <a class="btn btn-info btn-group visible-xs" data-ng-click="vm.foundThingAndLocationGoogleThing(thing)" role="button">Found</a>
+                        <a class="btn btn-info btn-group visible-xs" data-ng-click="vm.foundGoogleThing(thing)" role="button">Want {{ thing.me2 > 0 ? '(' + thing.me2 + ')' : '' }}</a>
                     </p>
                 </div>
             </div>
         </div>
     </div>
 </div>
-

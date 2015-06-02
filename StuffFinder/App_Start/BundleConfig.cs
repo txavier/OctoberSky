@@ -47,7 +47,7 @@ namespace StuffFinder
                 "~/app/feedback/feedbackController.js",
                 "~/app/users/userProfileController.js",
                 "~/app/services/dataService.js",
-                "~/app/things/thingsService.js",
+                "~/app/things/thingService.js",
                 "~/app/services/votesService.js",
                 "~/app/services/me2Service.js"
                 ));

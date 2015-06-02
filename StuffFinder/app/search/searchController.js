@@ -3,10 +3,11 @@
 
     app.controller('searchController', searchController);
 
-    searchController.$inject = ['$scope', '$location', '$log', '$timeout', '$routeParams', 'authService', 'dataService', 'me2Service',
-    'toaster'];
+    searchController.$inject = ['$scope', '$location', '$log', '$timeout', '$routeParams', 'authService', 'dataService',
+        'me2Service', 'toaster', 'thingService'];
 
-    function searchController($scope, $location, $log, $timeout, $routeParams, authService, dataService, me2Service, toaster) {
+    function searchController($scope, $location, $log, $timeout, $routeParams, authService, dataService, me2Service, toaster,
+        thingService) {
 
         var vm = this;
         
@@ -33,6 +34,8 @@
         vm.searchCriteria.searchText = null;
         vm.me2 = me2;
         vm.loggedInUser = {};
+        vm.googleThings = [];
+        vm.foundGoogleThing = foundGoogleThing;
 
         activate();
 
@@ -61,12 +64,36 @@
 
         function me2(thingId) {
             getLoggedInUser().then(function (data) {
-                toaster.pop('You want it? You got it.  An email will be sent to you when this item is found in your city!');
+                toaster.pop('success', 'Done', 'You want it? You got it.  An email will be sent to you when this item is found in your city!');
 
                 return me2Service.me2(thingId).then(function (data) {
                     searchThings(vm.searchCriteria);
                 });
             });
+        }
+
+        // This overloaded message handles me2's for things that dont yet exist.  This method will persist all the objects
+        // to the database.
+        function me2(thing) {
+            getLoggedInUser().then(function (data) {
+                toaster.pop('success', 'Done', 'You want it? You got it.  An email will be sent to you when this item is found in your city!');
+
+                return me2Service.me2(thing).then(function (data) {
+                    searchThings(vm.searchCriteria);
+                });
+            });
+        }
+
+        function foundGoogleThing(thing) {
+            thingService.setThing(thing);
+
+            $location.path('/where-is-it');
+        }
+
+        function foundThingAndLocationGoogleThing(thing) {
+            thingService.setThing(thing);
+
+            $location.path('/found-thing-and-location');
         }
 
         function searchThings(searchCriteria) {
@@ -81,7 +108,19 @@
             return dataService.searchThingsCount(searchCriteria).then(function (data) {
                 vm.totalItems = data || 0;
 
+                if (vm.totalItems < 5) {
+                    searchThingsInGoogle(searchCriteria.searchText);
+                }
+
                 return vm.totalItems;
+            });
+        }
+
+        function searchThingsInGoogle(searchText) {
+            return dataService.searchThingsInGoogle(searchText).then(function (data) {
+                vm.googleThings = data;
+
+                return vm.googleThings;
             });
         }
 

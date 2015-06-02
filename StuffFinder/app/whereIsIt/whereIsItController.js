@@ -3,9 +3,9 @@
 
     app.controller('whereIsItController', whereIsItController);
 
-    whereIsItController.$inject = ['$scope', '$location', '$log', '$timeout', 'authService', 'dataService'];
+    whereIsItController.$inject = ['$scope', '$location', '$log', '$timeout', 'authService', 'dataService', 'thingService'];
 
-    function whereIsItController($scope, $location, $log, $timeout, authService, dataService) {
+    function whereIsItController($scope, $location, $log, $timeout, authService, dataService, thingService) {
 
         var vm = this;
 
@@ -75,6 +75,12 @@
         }
 
         function getNewThing() {
+            if (thingService.getThing() != null) {
+                vm.thing = thingService.getThing();
+
+                thingService.clearThing();
+            }
+
             vm.thing.postedDate = new Date();
 
             vm.thing.userName = authService.authentication.userName;

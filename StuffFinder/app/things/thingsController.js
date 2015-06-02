@@ -1,5 +1,5 @@
 ﻿'use strict';
-app.controller('thingsController', ['$scope', 'thingsService', 'dataService', function ($scope, thingsService, dataService) {
+app.controller('thingsController', ['$scope', 'dataService', function ($scope, thingsService, dataService) {
 
     $scope.mostMeTooed = dataService.getMostMe2Things().then(function (data) {
         $scope.mostMeTooed = data;

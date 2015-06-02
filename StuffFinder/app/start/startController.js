@@ -3,9 +3,9 @@
 
     app.controller('startController', startController);
 
-    startController.$inject = ['$scope', '$location', '$log', '$timeout', '$routeParams', 'authService', 'dataService', 'ngToast'];
+    startController.$inject = ['$scope', '$location', '$log', '$timeout', '$routeParams', 'authService', 'dataService', 'toaster'];
 
-    function startController($scope, $location, $log, $timeout, $routeParams, authService, dataService, ngToast) {
+    function startController($scope, $location, $log, $timeout, $routeParams, authService, dataService, toaster) {
 
         var vm = this;
 
@@ -43,12 +43,12 @@
 
         function me2(thingId) {
             if (!vm.loggedInUser) {
-                ngToast.create('Sorry you have to be logged in to do this.');
+                toaster.pop('error', 'Uh oh', 'Sorry you have to be logged in to do this.');
 
                 return;
             }
 
-            ngToast.create('You want it? You got it.  An email will be sent to you when this item is found in your city!');
+            toaster.pop('success', 'Done', 'You want it? You got it.  An email will be sent to you when this item is found in your city!');
 
             return me2Service.me2(thingId).then(function (data) {
                 searchThings(vm.searchCriteria);

@@ -29,5 +29,11 @@ namespace StuffFinder.Core.Interfaces
         bool IsWriteAccessAllowed(StuffFinder.Core.Models.thing thing, string username);
 
         bool IsWriteAccessAllowed(int thingId, string username);
+
+        System.Collections.Generic.IEnumerable<StuffFinder.Core.Models.ThingViewModel> SearchThingsInGoogle(string searchText);
+        
+        System.Collections.Generic.IEnumerable<string> GetErrors();
+
+        void AddImageToThingByImageUrl(int thingId, string imageUrl);
     }
 }

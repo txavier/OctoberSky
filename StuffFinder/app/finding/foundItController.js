@@ -26,6 +26,7 @@
         vm.locations = [];
         vm.finding = { location: { locationName: '' }, date: new Date(), price: null, upcCode: null };
         vm.cities = [];
+        vm.searchNewLocation = searchNewLocation;
 
         // Scope variables have to be accessible for the watch statements.
         $scope.coordsUpdates = 0;
@@ -52,6 +53,17 @@
             return vm;
         }
 
+        function searchNewLocation(locationName) {
+            dataService.searchNewLocation(locationName).then(function (data) {
+                if (data != null) {
+
+                    vm.finding.location = data;
+
+                    return vm.finding.location;
+                }
+            });
+        }
+        
         function getCities() {
             dataService.getCities().then(function (data) {
                 vm.cities = data;

@@ -48,6 +48,9 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -70,6 +73,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\EfQueryGetMostMe2ThingsByDate.cs" />
+    <Compile Include="Getter\GoogleGeocodingGetter.cs" />
+    <Compile Include="Getter\GoogleCustomSearchGetter.cs" />
+    <Compile Include="Getter\ImageFromUrlGetter.cs" />
     <Compile Include="Getter\SystemSettingsGetter.cs" />
     <Compile Include="Getter\VersionGetter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

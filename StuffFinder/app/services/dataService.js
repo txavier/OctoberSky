@@ -39,6 +39,7 @@
             getFoundThings: getFoundThings,
             searchThings: searchThings,
             searchThingsCount: searchThingsCount,
+            searchThingsInGoogle: searchThingsInGoogle,
             deleteThing: deleteThing,
             getJumbotronVideoUrlSetting: getJumbotronVideoUrlSetting,
             upVote: upVote,
@@ -50,6 +51,7 @@
             getLocation: getLocation,
             searchLocations: searchLocations,
             searchLocationsCount: searchLocationsCount,
+            searchNewLocation: searchNewLocation,
             addOrUpdateLocation: addOrUpdateLocation,
             deleteLocation: deleteLocation,
             getCategory: getCategory,
@@ -1170,6 +1172,24 @@
             });
         }
 
+        function searchThingsInGoogle(searchText) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.get(serverUrl.resourceServerUrl + thingsApiUrl + '/searchThingsInGoogle/' + searchText)
+                            .then(searchThingsInGoogleComplete)
+                            .catch(searchThingsInGoogleFailed);
+
+                function searchThingsInGoogleComplete(response) {
+                    return response.data;
+                }
+
+                function searchThingsInGoogleFailed(error) {
+                    $log.error('XHR failed for searchThingsInGoogle.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
         function getLocations() {
             return getServerUrl().then(function (resource) {
                 serverUrl = resource;
@@ -1238,6 +1258,24 @@
 
                 function searchLocationsCountFailed(error) {
                     $log.error('XHR failed for searchLocations.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
+                }
+            });
+        }
+
+        function searchNewLocation(locationName) {
+            return getServerUrl().then(function (resource) {
+                serverUrl = resource;
+
+                return $http.get(serverUrl.resourceServerUrl + locationsApiUrl + '/searchNewLocation/' + locationName)
+                            .then(searchNewLocationComplete)
+                            .catch(searchNewLocationFailed);
+
+                function searchNewLocationComplete(response) {
+                    return response.data;
+                }
+
+                function searchNewLocationFailed(error) {
+                    $log.error('XHR failed for searchNewLocation.' + error.data.message + ': ' + (error.data.messageDetail || error.data.exceptionMessage));
                 }
             });
         }

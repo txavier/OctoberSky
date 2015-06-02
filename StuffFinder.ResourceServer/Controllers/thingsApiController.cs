@@ -87,6 +87,20 @@ namespace StuffFinder.ResourceServer.Controllers
             return Ok(result);
         }
 
+        [Route("searchThingsInGoogle/{searchText}")]
+        [HttpGet]
+        public IHttpActionResult SearchThingsInGoogle(string searchText)
+        {
+            var result = _thingService.SearchThingsInGoogle(searchText);
+
+            if(result == null)
+            {
+                return BadRequest(_thingService.GetErrors().Aggregate((current, next) => current + " " + next));
+            }
+
+            return Ok(result);
+        }
+
         // POST: api/thingsApi
         public IHttpActionResult Post(thing thing)
         {

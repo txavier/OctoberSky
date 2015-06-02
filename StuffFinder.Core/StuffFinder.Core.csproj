@@ -78,6 +78,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\IEfQueryGetMostMe2ThingsByDate.cs" />
+    <Compile Include="Interfaces\IGoogleCustomSearchGetter.cs" />
+    <Compile Include="Interfaces\IGoogleGeocodingGetter.cs" />
+    <Compile Include="Interfaces\IImageFromUrlGetter.cs" />
     <Compile Include="Interfaces\IVersionGetter.cs" />
     <Compile Include="Models\ViewModels\CityViewModel.cs" />
     <Compile Include="Interfaces\INewsletterService.cs" />
@@ -103,6 +106,8 @@
     <Compile Include="Models\ViewModels\UserViewModel.cs" />
     <Compile Include="Models\StuffFinder\vote.cs" />
     <Compile Include="Objects\Feedback.cs" />
+    <Compile Include="Objects\GoogleCustomSearchResponse.cs" />
+    <Compile Include="Objects\GoogleGeocodingResponse.cs" />
     <Compile Include="Objects\SearchCriteria.cs" />
     <Compile Include="Objects\SearchParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

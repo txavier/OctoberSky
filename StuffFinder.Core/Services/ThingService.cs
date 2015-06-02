@@ -14,6 +14,10 @@ namespace StuffFinder.Core.Services
 {
     public class ThingService : Service<thing>, IThingService
     {
+        private readonly string bingMapsKey = "AIzaSyBPUGy5syJHUaDeR_E_FTwgOO4Th8vm63Y";
+
+        private readonly List<string> _errors;
+
         private readonly IRepository<thing> _thingRepository;
 
         private readonly IUserService _userService;
@@ -31,8 +35,12 @@ namespace StuffFinder.Core.Services
         private readonly ISettingService _settingService;
 
         private readonly IService<thingCity> _thingCityService;
-        
+
         private readonly IEfQueryGetMostMe2ThingsByDate _efQueryGetMostMe2ThingsByDate;
+
+        private readonly IGoogleCustomSearchGetter _googleCustomSearchGetter;
+
+        private readonly IImageFromUrlGetter _imageFromUrlGetter;
 
         public ThingService(IRepository<thing> thingRepository
             , IUserService userService
@@ -43,9 +51,13 @@ namespace StuffFinder.Core.Services
             , IMe2Service me2Service
             , ISettingService settingService
             , IService<thingCity> thingCityService
-            , IEfQueryGetMostMe2ThingsByDate efQueryGetMostMe2ThingsByDate)
+            , IEfQueryGetMostMe2ThingsByDate efQueryGetMostMe2ThingsByDate
+            , IGoogleCustomSearchGetter googleCustomSearchGetter
+            , IImageFromUrlGetter imageFromUrlGetter)
             : base(thingRepository)
         {
+            _errors = new List<string>();
+
             _thingRepository = thingRepository;
 
             _userService = userService;
@@ -65,6 +77,15 @@ namespace StuffFinder.Core.Services
             _thingCityService = thingCityService;
 
             _efQueryGetMostMe2ThingsByDate = efQueryGetMostMe2ThingsByDate;
+
+            _googleCustomSearchGetter = googleCustomSearchGetter;
+
+            _imageFromUrlGetter = imageFromUrlGetter;
+        }
+
+        public IEnumerable<string> GetErrors()
+        {
+            return _errors.Distinct();
         }
 
         public IEnumerable<ThingViewModel> GetSixMonths10MostMe2Things()
@@ -85,7 +106,7 @@ namespace StuffFinder.Core.Services
         {
             // Include properties that are needed for the ToViewModel method to create all
             // of the additional display properties that it needs.
-            if(searchCriteria.includeProperties == null)
+            if (searchCriteria.includeProperties == null)
             {
                 searchCriteria.includeProperties = string.Empty;
             }
@@ -141,7 +162,7 @@ namespace StuffFinder.Core.Services
                     || i.thingCities.Select(k => k.city.name).Any(l => cityNamesLowered.Contains(l.ToLower())))) &&
                     (searchCriteria.startDateTime != null ? i.postedDate > searchCriteria.startDateTime : true) &&
                     (searchCriteria.endDateTime != null ? i.postedDate < searchCriteria.endDateTime : true) &&
-                   // Have any of these...
+                       // Have any of these...
                    (queryLowered == null ? true : i.findings.Any(j => j.location.formattedAddress.ToLower().Contains(queryLowered))
                     || i.category.name.ToLower().Contains(queryLowered)
                     || i.description.ToLower().Contains(queryLowered)
@@ -249,12 +270,39 @@ namespace StuffFinder.Core.Services
 
             thing = base.AddOrUpdate(thing);
 
+            // If there are any images in the url property then add it to the image table.
+            if (thing.imageUrl != null && string.IsNullOrEmpty(thing.imageUrl.Trim()))
+            {
+                AddImageToThingByImageUrl(thing.thingId, thing.imageUrl);
+            }
+
             if (newThing)
             {
                 SendNewItemEmailNotification(thing, category: category);
             }
 
             return thing;
+        }
+
+        /// <summary>
+        /// This method takes an image from the web and turns it into a byte array.
+        /// </summary>
+        /// <param name="thingId">This must be a non 0 id for a thing already in the database.</param>
+        /// <param name="imageUrl">This is the web url of the image.</param>
+        public void AddImageToThingByImageUrl(int thingId, string imageUrl)
+        {
+            Uri uri = new Uri("http://example.com/title/index.htm");
+
+            var filename = uri.Segments[uri.Segments.Length - 1];
+
+            var image = new image()
+            {
+                thingId = thingId,
+                imageBinary = _imageFromUrlGetter.GetImageFromUrl(imageUrl),
+                fileName = filename
+            };
+
+            _imageService.Add(image);
         }
 
         public void SendNewItemEmailNotification(thing thing, category category = null)
@@ -281,7 +329,7 @@ namespace StuffFinder.Core.Services
 
             sb.AppendLine("Created Item: <a href='" + emailLandingPageUrl + "/#/thing/" + thing.thingId + "'>" + thing.name + "</a>");
 
-            sb.AppendLine("Item Category: " + (thing.category != null ? thing.category.name : 
+            sb.AppendLine("Item Category: " + (thing.category != null ? thing.category.name :
                 (category != null ? category.name : "[Not found]")));
 
             sb.AppendLine("Item Description: " + thing.description);
@@ -416,7 +464,7 @@ namespace StuffFinder.Core.Services
             //    })
             //    .Select(j => ToViewModel(j.Key.thingId));
 
-            var result = ToViewModels(_efQueryGetMostMe2ThingsByDate.GetMostMe2(startDateTime, endDateTime, take: take, 
+            var result = ToViewModels(_efQueryGetMostMe2ThingsByDate.GetMostMe2(startDateTime, endDateTime, take: take,
                 includeProperties: GetDefaultIncludeProperties(), LazyLoadingEnabled: false, ProxyCreationEnabled: false));
 
             return result;
@@ -433,7 +481,7 @@ namespace StuffFinder.Core.Services
 
         public bool IsWriteAccessAllowed(thing thing, string username)
         {
-            if(thing != null && (thing.userName == username || _userService.IsAdmin(username)))
+            if (thing != null && (thing.userName == username || _userService.IsAdmin(username)))
             {
                 return true;
             }
@@ -448,6 +496,34 @@ namespace StuffFinder.Core.Services
             var result = IsWriteAccessAllowed(thing, username);
 
             return result;
+        }
+
+        public IEnumerable<ThingViewModel> SearchThingsInGoogle(string searchText)
+        {
+            var googleCustomSearch = _googleCustomSearchGetter.GetGoogleCustomSearch(searchText, bingMapsKey);
+
+            if (googleCustomSearch != null && googleCustomSearch.items != null)
+            {
+                // Convert the google results into things.
+                var result = googleCustomSearch.items.Select(i => new ThingViewModel()
+                                {
+                                    description = i.snippet,
+                                    name = (i.pagemap != null && i.pagemap.hproduct != null && i.pagemap.hproduct.Any()) ?
+                                            i.pagemap.hproduct.FirstOrDefault().fn
+                                            : ((string.IsNullOrEmpty(i.title.Trim()) && i.title.Contains('-')) ?
+                                                    searchText : i.title.Split("-".ToCharArray()).First().Trim()),
+                                    imageUrl = (i.pagemap != null && i.pagemap.cse_image != null && i.pagemap.cse_image.Any()) ?
+                                            i.pagemap.cse_image.FirstOrDefault().src : null,
+                                    found = false,
+                                    findings = new List<finding>()
+                                }).ToList();
+
+                return result;
+            }
+
+            _errors.AddRange(_googleCustomSearchGetter.GetErrors());
+
+            return null;
         }
     }
 }
