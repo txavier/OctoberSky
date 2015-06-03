@@ -10,14 +10,16 @@ namespace StuffFinder.Core.Services
 {
     public class LocationService : Service<location>, ILocationService
     {
+        private readonly string bingMapsKey = "AIzaSyBPUGy5syJHUaDeR_E_FTwgOO4Th8vm63Y";
+
+        private string region = "ae";
+
         private readonly IRepository<location> _locationRepository;
-        
+
         private readonly IGoogleGeocodingGetter _googleGeocodingGetter;
 
-        private readonly string bingMapsKey = "AIzaSyBPUGy5syJHUaDeR_E_FTwgOO4Th8vm63Y";
-        
         private readonly ICityService _cityService;
-
+        
         public LocationService(IRepository<location> locationRepository, IGoogleGeocodingGetter googleGeocodingGetter,
             ICityService cityService)
             : base(locationRepository)
@@ -85,16 +87,24 @@ namespace StuffFinder.Core.Services
         {
             var cities = _cityService.Get(lazyLoadingEnabled: false, proxyCreationEnabled: false);
 
-            var result = _googleGeocodingGetter.GetGoogleCustomSearch(locationName, bingMapsKey)
-                            .results
+            var locations = _googleGeocodingGetter.GetGoogleCustomSearch(locationName, bingMapsKey, region);
+
+            var result = locations.results
+                            .Where(i => i.partial_match)
                             .Select(i => new location()
                             {
                                 formattedAddress = i.formatted_address,
                                 latitude = i.geometry.location.lat,
                                 longitude = i.geometry.location.lng,
-                                cityId =  cities.Where(j => i.address_components.Any(k => k.types.Contains(j.name))).Any() ? 
-                                            (int?)cities.FirstOrDefault(j => i.address_components.Any(k => k.types.Contains(j.name))).cityId
-                                            : null
+                                city =  cities.Where(j => i.address_components.Any(k => k.types.Contains("locality"))).Any() ?
+                                            cities.FirstOrDefault(j => i.address_components.Any(k => k.types.Contains("locality")))
+                                            : null,
+                                locationName = i.address_components.FirstOrDefault().long_name
+                            })
+                            .Select(i =>
+                            {
+                                i.cityId = i.city == null ? (int?)null : i.city.cityId;
+                                return i;
                             });
 
             return result;

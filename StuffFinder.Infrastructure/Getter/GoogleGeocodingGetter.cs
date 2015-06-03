@@ -25,7 +25,8 @@ namespace StuffFinder.Infrastructure.Getter
             return _errors;
         }
 
-        public StuffFinder.Core.Objects.GoogleGeocodingResponse.RootObject GetGoogleCustomSearch(string searchQuery, string bingMapsKey, string baseAddress = null)
+        public StuffFinder.Core.Objects.GoogleGeocodingResponse.RootObject GetGoogleCustomSearch(string searchQuery, string bingMapsKey, 
+            string regionTld, string baseAddress = null)
         {
             string urlArguments = string.Empty;
 
@@ -39,7 +40,7 @@ namespace StuffFinder.Infrastructure.Getter
                 throw new ArgumentNullException("Unable to continue, the query string has not been supplied.");
             }
 
-            urlArguments = "api/geocode/json?address=" + HttpUtility.UrlEncode(searchQuery) + "&key=" + bingMapsKey;
+            urlArguments = "api/geocode/json?address=" + HttpUtility.UrlEncode(searchQuery) + "&key=" + bingMapsKey + "&region=" + regionTld;
 
             baseAddress = baseAddress ?? "https://maps.googleapis.com/maps/";
 

@@ -36,6 +36,7 @@
         vm.loggedInUser = {};
         vm.googleThings = [];
         vm.foundGoogleThing = foundGoogleThing;
+        vm.foundThingAndLocationGoogleThing = foundThingAndLocationGoogleThing;
 
         activate();
 

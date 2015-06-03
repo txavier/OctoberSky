@@ -54,14 +54,20 @@
         }
 
         function searchNewLocation(locationName) {
-            dataService.searchNewLocation(locationName).then(function (data) {
-                if (data != null) {
+            if (locationName.length > 5) {
+                dataService.searchNewLocation(locationName).then(function (data) {
+                    if (data != null) {
+                        if (!vm.thing.finding) {
+                            vm.thing.finding = { location: { locationName: '' }, date: new Date(), price: null, upcCode: null };
+                        }
+                        vm.thing.finding.location = data;
 
-                    vm.finding.location = data;
+                        $scope.finding.location = data;
 
-                    return vm.finding.location;
-                }
-            });
+                        vm.finding.location.city = vm.cities[vm.cities.getIndexBy("name", vm.thing.finding.location.city.name)];
+                    }
+                });
+            }
         }
         
         function getCities() {

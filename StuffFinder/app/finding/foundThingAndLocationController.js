@@ -72,6 +72,10 @@
             if (thingService.getThing() != null) {
                 vm.thing = thingService.getThing();
 
+                vm.thing.finding = vm.thing.finding == null ? 
+                    { location: { locationName: '', city: { cityId: null } }, date: null, price: null, upcCode: null }
+                    : vm.thing.finding;
+
                 thingService.clearThing();
             }
             if ($routeParams.thingId) {
