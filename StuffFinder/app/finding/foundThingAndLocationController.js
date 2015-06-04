@@ -28,6 +28,7 @@
         vm.locations = [];
         vm.thing.finding = { location: { locationName: '', city: { cityId: null } }, date: null, price: null, upcCode: null };
         vm.cities = [];
+        vm.searchNewLocation = searchNewLocation;
 
         // Scope variables have to be accessible for the watch statements.
         $scope.coordsUpdates = 0;
@@ -52,6 +53,23 @@
             getCities();
 
             return vm;
+        }
+
+        function searchNewLocation(locationName) {
+            if (locationName.length > 5) {
+                dataService.searchNewLocation(locationName).then(function (data) {
+                    if (data != null) {
+                        if (!vm.thing.finding) {
+                            vm.thing.finding = { location: { locationName: '' }, date: new Date(), price: null, upcCode: null };
+                        }
+                        vm.thing.finding.location = data;
+
+                        $scope.finding.location = data;
+
+                        vm.finding.location.city = vm.cities[vm.cities.getIndexBy("name", vm.thing.finding.location.city.name)];
+                    }
+                });
+            }
         }
 
         function getCities() {

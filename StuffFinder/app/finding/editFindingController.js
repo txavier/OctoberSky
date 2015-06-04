@@ -29,6 +29,7 @@
         vm.locations = [];
         vm.cities = [];
         vm.deleteImage = deleteImage;
+        vm.searchNewLocation = searchNewLocation;
 
         // Scope variables have to be accessible for the watch statements.
         $scope.coordsUpdates = 0;
@@ -51,6 +52,23 @@
             getLocations();
 
             return vm;
+        }
+
+        function searchNewLocation(locationName) {
+            if (locationName.length > 5) {
+                dataService.searchNewLocation(locationName).then(function (data) {
+                    if (data != null) {
+                        if (!vm.finding) {
+                            vm.finding = { location: { locationName: '' }, date: new Date(), price: null, upcCode: null };
+                        }
+                        vm.finding.location = data;
+
+                        $scope.finding.location = data;
+
+                        vm.finding.location.city = vm.cities[vm.cities.getIndexBy("name", vm.finding.location.city.name)];
+                    }
+                });
+            }
         }
 
         function setView(findingId) {

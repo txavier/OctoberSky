@@ -107,18 +107,40 @@
     </header>
     <!-- Services Section -->
     <section id="contact">
-
-        <div class="carousel">
-            <carousel interval="vm.slideInterval">
-                <slide ng-repeat="slide in vm.slides" active="slide.active">
-                    <a href="../../#/thing/{{ slide.thingId }}"><img ng-src="{{slide.image}}" style="margin:auto; max-height: 300px;border-radius: 4px"></a>
-                    <div class="carousel-caption">
-                        <!--<h4>Slide {{$index}}</h4>
-                        <p>{{slide.text}}</p>-->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Featured</h2>
+                    <h3 class="section-subheading text-muted">The things you love.</h3>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-sm-6 col-md-3" data-ng-repeat="thing in vm.mostMe2Things">
+                    <div class="thumbnail" data-ng-style="{ 'box-shadow': thing.findings.length == 0 ? vm.redBoxShadow : vm.greenBoxShadow }">
+                        <a href="../../#/thing/{{ thing.thingId }}">
+                            <!--<img src="{{ thing.imageUrl }}" alt="..." style="height: 200px;">-->
+                            <img src="{{ thing.images.length > 0 ? 'data:image/jpeg;base64,' + thing.images[0].imageBinary : thing.imageUrl || '/images/logo.png' }}" alt=". alt=" ..." style="height: 200px;">
+                        </a>
+                        <div class="caption">
+                            <a href="../../#/thing/{{ thing.thingId }}">
+                                <p>
+                                    <h5 data-ng-style="{ 'color': thing.findings.length == 0 ? vm.redFont : vm.greenFont }"><b>{{ thing.findings.length == 0 ? ('Wanted') : ('Found') }}</b></h5>
+                                    <h5 style="min-height:20px">{{ thing.name | limitTo:50 }}</h5>
+                                </p>
+                            </a>
+                        </div>
                     </div>
-                </slide>
-            </carousel>
-        </div>
+                </div>
+            </div>
+            <!--<div class="carousel">
+                <carousel interval="vm.slideInterval">
+                    <slide ng-repeat="slide in vm.slides" active="slide.active">
+                        <a href="../../#/thing/{{ slide.thingId }}"><img ng-src="{{slide.image}}" style="margin:auto; max-height: 300px;border-radius: 4px"></a>
+                        <div class="carousel-caption">
+                        </div>
+                    </slide>
+                </carousel>
+            </div>-->
     </section>
     <section id="services">
         <div class="container">
