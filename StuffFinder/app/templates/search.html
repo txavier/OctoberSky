@@ -1,4 +1,5 @@
-﻿<section class="content-section video-section">
+﻿<div class="row">
+    <section class="content-section video-section">
     <div class="jumbotron pattern-overlay">
         <a id="bgndVideo" class="player" data-property="{videoURL:'https://www.youtube.com/watch?v=TDM18lJ18VA',startAt:5,quality:'hd1080',containment:'.video-section', quality:'large', autoPlay:true, mute:true, opacity:1}">bg</a>
         <div class="container">
@@ -11,7 +12,8 @@
         </div>
     </div>
 </section>
-<div class="full col-sm-9">
+</div>
+<div class="row full col-sm-9">
     <div class="well well-sm">
         <div class="btn-group">
             <button id="list" class="btn btn-default btn-sm" ng-disabled="true">
@@ -56,12 +58,12 @@
         <h2>Did you mean these?</h2>
         <div class="col-sm-6 col-md-3" data-ng-repeat="thing in vm.googleThings">
             <div class="thumbnail" data-ng-style="{ 'box-shadow': thing.findings.length == 0 ? vm.redBoxShadow : vm.greenBoxShadow }">
-                <a href="#/thing/{{ thing.thingId }}">
+                <a data-ng-click="vm.whereIsGoogleThing(thing)">
                     <!--<img src="{{ thing.imageUrl }}" alt="..." style="height: 200px;">-->
                     <img src="{{ thing.images.length > 0 ? 'data:image/jpeg;base64,' + thing.images[0].imageBinary : thing.imageUrl || '/images/logo.png' }}" alt=". alt=" ..." style="height: 200px;">
                 </a>
                 <div class="caption">
-                    <a href="#/thing/{{ thing.thingId }}">
+                    <a data-ng-click="vm.whereIsGoogleThing(thing)">
                         <p>
                             <h5 data-ng-style="{ 'color': (thing.findings == null || thing.findings.length == 0) ? vm.redFont : vm.greenFont }"><b>{{ (thing.findings == null || thing.findings.length == 0) ? ('Wanted') : ('Found') }}</b></h5>
                             <h5 style="min-height:20px">{{ thing.name.length > 25 ? thing.name.substring(0,30) + '[&hellip;]' : thing.name }}</h5>
@@ -69,9 +71,9 @@
                     </a>
                     <p>
                         <a class="btn btn-info btn-group hidden-xs" data-ng-click="vm.foundThingAndLocationGoogleThing(thing)" role="button">I found it</a>
-                        <a class="btn btn-info btn-group hidden-xs" data-ng-click="vm.foundGoogleThing(thing)" role="button">I want it {{ thing.me2 > 0 ? '(' + thing.me2 + ')' : '' }}</a>
+                        <a class="btn btn-info btn-group hidden-xs" data-ng-click="vm.whereIsGoogleThing(thing)" role="button">I want it {{ thing.me2 > 0 ? '(' + thing.me2 + ')' : '' }}</a>
                         <a class="btn btn-info btn-group visible-xs" data-ng-click="vm.foundThingAndLocationGoogleThing(thing)" role="button">Found</a>
-                        <a class="btn btn-info btn-group visible-xs" data-ng-click="vm.foundGoogleThing(thing)" role="button">Want {{ thing.me2 > 0 ? '(' + thing.me2 + ')' : '' }}</a>
+                        <a class="btn btn-info btn-group visible-xs" data-ng-click="vm.whereIsGoogleThing(thing)" role="button">Want {{ thing.me2 > 0 ? '(' + thing.me2 + ')' : '' }}</a>
                     </p>
                 </div>
             </div>

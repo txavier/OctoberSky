@@ -94,6 +94,86 @@ var config = {
     ],
     angularbundle: 'Scripts/angular-bundle.min.js',
 
+    // Angular-Dashboard
+    angulardashboardsrc: [
+        'bower_components/angular/angular.min.js',
+        'bower_components/angular-resource/angular-resource.min.js',
+        'bower_components/angular-route/angular-route.min.js',
+        'bower_components/angular-local-storage/dist/angular-local-storage.min.js',
+        //'bower_components/angular-loading-bar/build/loading-bar.min.js',
+        'bower_components/angular-animate/angular-animate.min.js',
+        'bower_components/angular-sanitize/angular-sanitize.min.js',
+        'bower_components/angular-bootstrap/ui-bootstrap.min.js',
+        'bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
+        'bower_components/lodash/dist/lodash.min.js',
+        'bower_components/angular-google-maps/dist/angular-google-maps.min.js',
+        'bower_components/angular-loading-bar/build/loading-bar.min.js',
+        'bower_components/ng-droplet/dist/ng-droplet.min.js',
+        'bower_components/progressbar.js/dist/progressbar.min.js',
+        'bower_components/nya-bootstrap-select/dist/js/nya-bs-select.min.js',
+        'bower_components/ngInfiniteScroll/build/ng-infinite-scroll.min.js',
+        'bower_components/textAngular/dist/textAngular-rangy.min.js',
+        'bower_components/textAngular/dist/textAngular-sanitize.min.js',
+        'bower_components/textAngular/dist/textAngular.min.js',
+        'bower_components/angular-animate/angular-animate.min.js',
+        'bower_components/angularjs-toaster/toaster.min.js',
+        // No minify section
+        'app/stuffFinder-module.js',
+        'app/authInterceptor/authInterceptorService.js',
+        'app/auth/authService.js',
+        'app/services/tokensManagerService.js',
+        'app/login/loginController.js',
+        'app/associate/associateController.js',
+        'app/refresh/refreshController.js',
+        'app/tokensManager/tokensManagerController.js',
+        'app/signup/signupController.js',
+        // End no minify section.
+        'app/services/dataService.js',
+        'app/services/thingService.js',
+        'app/services/votesService.js',
+        'app/services/me2Service.js',
+        'app/home/homeController.js',
+        'app/things/thingsController.js',
+        'app/start/startController.js',
+        'app/finding/foundItController.js',
+        'app/sidebar/sidebarController.js',
+        'app/whereIsIt/whereIsItController.js',
+        'app/things/thingController.js',
+        'app/admin/jumbotronYoutubeVideoSettingsController.js',
+        'app/search/searchController.js',
+        'app/things/editThingController.js',
+        'app/finding/editFindingController.js',
+
+        'app/finding/foundThingAndLocationController.js',
+        'app/feedback/feedbackController.js',
+        'app/users/userProfileController.js',
+        'app/admin/adminController.js',
+        // Dashboard specific controllers.
+        'app/categories/addOrUpdateCategoryController.js',
+        'app/categories/categoriesController.js',
+        'app/cities/addOrUpdateCityController.js',
+        'app/cities/citiesController.js',
+        'app/users/addOrUpdateUserController.js',
+        'app/users/usersController.js',
+        'app/nationalities/addOrUpdateNationalityController.js',
+        'app/nationalities/nationalitiesController.js',
+        'app/locations/locationsController.js',
+        'app/locations/addOrUpdateLocationController.js',
+        'app/newsletter/addOrUpdateNewsletterController.js',
+        'app/newsletter/newslettersController.js',
+        'app/nationalityNotification/addOrUpdateNationalityNotificationController.js',
+        'app/nationalityNotification/nationalityNotificationsController.js',
+        'app/cityNotification/cityNotificationsController.js',
+        'app/cityNotification/addOrUpdateCityNotificationController.js',
+        'app/sidebar/dashboardSidebarController.js',
+        // Third party and shared directives.
+        'app/dynFbCommentBox/dynFbCommentBox.js',
+        'shared-directives/shared-directives.js',
+        'shared-directives/back-button/back-button.js',
+        'shared-directives/ng-enter/ng-enter.js'
+    ],
+    angulardashboardbundle: 'Scripts/angular-dashboard-bundle.min.js',
+
     //Bootstrap CSS and Fonts
     bootstrapcss: 'bower_components/bootstrap/dist/css/bootstrap.css',
     boostrapfonts: 'bower_components/bootstrap/dist/fonts/*',
@@ -130,6 +210,7 @@ gulp.task('clean-vendor-scripts', function (cb) {
               config.bootstrapbundle,
               config.modernizrbundle,
               config.angularbundle,
+              config.angulardashboardbundle,
               config.facebookthemebundle], cb);
 });
 
@@ -180,8 +261,19 @@ gulp.task('angular-bundle', ['clean-vendor-scripts', 'bower-restore'], function 
         .pipe(gulp.dest('Scripts'));
 });
 
+//Create an angular-dashboard bundled file
+gulp.task('angular-dashboard-bundle', ['clean-vendor-scripts', 'bower-restore'], function () {
+    return gulp.src(config.angulardashboardsrc)
+        .pipe(sourcemaps.init())
+        //.pipe(uglify())
+        .pipe(concat('angular-dashboard-bundle.min.js'))
+        .pipe(sourcemaps.write('maps'))
+        .pipe(gulp.dest('Scripts'));
+});
+
 // Combine and the vendor files from bower into bundles (output to the Scripts folder)
-gulp.task('vendor-scripts', ['jquery-bundle', 'bootstrap-bundle', 'modernizer', 'angular-bundle', 'facebook-theme-bundle'],
+gulp.task('vendor-scripts', ['jquery-bundle', 'bootstrap-bundle', 'modernizer', 'angular-bundle', 'facebook-theme-bundle',
+                                'angular-dashboard-bundle'],
     function () {
 
 });

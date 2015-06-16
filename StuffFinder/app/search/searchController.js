@@ -35,7 +35,7 @@
         vm.me2 = me2;
         vm.loggedInUser = {};
         vm.googleThings = [];
-        vm.foundGoogleThing = foundGoogleThing;
+        vm.whereIsGoogleThing = whereIsGoogleThing;
         vm.foundThingAndLocationGoogleThing = foundThingAndLocationGoogleThing;
 
         activate();
@@ -85,7 +85,7 @@
             });
         }
 
-        function foundGoogleThing(thing) {
+        function whereIsGoogleThing(thing) {
             thingService.setThing(thing);
 
             $location.path('/where-is-it');
