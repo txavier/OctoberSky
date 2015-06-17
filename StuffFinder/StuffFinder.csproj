@@ -829,6 +829,7 @@
     <Content Include="Images\title.png" />
     <Content Include="index.html" />
     <Content Include="Scripts\angular-bundle.min.js" />
+    <Content Include="Scripts\angular-dashboard-bundle.min.js" />
     <Content Include="Scripts\angular-local-storage.js" />
     <Content Include="Scripts\angular-local-storage.min.js" />
     <Content Include="Scripts\angular-mocks.js" />

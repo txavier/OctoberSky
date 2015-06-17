@@ -35,9 +35,9 @@ namespace StuffFinder.ResourceServer.Controllers
         }
 
         [Route("search")]
-        [HttpPost]
+        [HttpGet]
         // GET: api/cityApi/5
-        public IHttpActionResult Search(SearchCriteria searchCriteria)
+        public IHttpActionResult Search([FromUri]SearchCriteria searchCriteria)
         {
             var result = _cityService.Search(searchCriteria, lazyLoadingEnabled: false, proxyCreationEnabled: false);
 
@@ -45,9 +45,9 @@ namespace StuffFinder.ResourceServer.Controllers
         }
 
         [Route("search/count")]
-        [HttpPost]
+        [HttpGet]
         // GET: api/cityApi/5
-        public IHttpActionResult SearchCount(SearchCriteria searchCriteria)
+        public IHttpActionResult SearchCount([FromUri]SearchCriteria searchCriteria)
         {
             var result = _cityService.SearchCount(searchCriteria);
 

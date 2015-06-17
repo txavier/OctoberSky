@@ -27,7 +27,7 @@ namespace StuffFinder.Core.Services
             _userService = userService;
         }
 
-        public IEnumerable<cityNotification> Search(Objects.SearchCriteria searchCriteria)
+        public IEnumerable<cityNotification> Search(Objects.SearchCriteria searchCriteria, bool lazyLoadingEnabled = true, bool proxyCreationEnabled = true)
         {
             var result = searchCriteria == null ?
                Get()
@@ -35,7 +35,10 @@ namespace StuffFinder.Core.Services
                filter: i => searchCriteria.searchText == null ? true : i.messageBody.Contains(searchCriteria.searchText) || searchCriteria.searchText.Contains(i.messageBody),
                orderBy: j => searchCriteria.orderBy == "dateCreated" ? j.OrderBy(k => k.dateCreated) : j.OrderBy(k => k.dateCreated),
                skip: ((searchCriteria.currentPage - 1) ?? 1) * (searchCriteria.itemsPerPage ?? int.MaxValue),
-               take: (searchCriteria.itemsPerPage ?? int.MaxValue));
+               take: (searchCriteria.itemsPerPage ?? int.MaxValue),
+               includeProperties: searchCriteria.includeProperties,
+               lazyLoadingEnabled: lazyLoadingEnabled,
+               proxyCreationEnabled: proxyCreationEnabled);
 
             return result;
         }

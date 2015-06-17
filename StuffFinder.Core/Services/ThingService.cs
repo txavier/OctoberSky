@@ -102,7 +102,8 @@ namespace StuffFinder.Core.Services
             return result;
         }
 
-        public IEnumerable<ThingViewModel> SearchViewModels(SearchCriteria searchCriteria)
+        public IEnumerable<ThingViewModel> SearchViewModels(SearchCriteria searchCriteria, bool lazyLoadingEnabled = true, 
+            bool proxyCreationEnabled = true)
         {
             // Include properties that are needed for the ToViewModel method to create all
             // of the additional display properties that it needs.
@@ -115,7 +116,7 @@ namespace StuffFinder.Core.Services
 
             // Search with lazy loading and proxy creation turned off because these arent
             // needed for display purposes.
-            var results = Search(searchCriteria, lazyLoadingEnabled: false, proxyCreationEnabled: false);
+            var results = Search(searchCriteria, lazyLoadingEnabled: lazyLoadingEnabled, proxyCreationEnabled: proxyCreationEnabled);
 
             var resultViewModels = ToViewModels(results);
 

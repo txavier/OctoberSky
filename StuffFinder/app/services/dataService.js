@@ -278,7 +278,7 @@
             return getServerUrl().then(function (resource) {
                 serverUrl = resource;
 
-                return $http.post(serverUrl.resourceServerUrl + cityNotificationsApiUrl + '/search', searchCriteria)
+                return $http.get(serverUrl.resourceServerUrl + cityNotificationsApiUrl + '/search', { params: searchCriteria, cache: true })
                             .then(searchCityNotificationsComplete)
                             .catch(searchCityNotificationsFailed);
 
@@ -296,7 +296,7 @@
             return getServerUrl().then(function (resource) {
                 serverUrl = resource;
 
-                return $http.post(serverUrl.resourceServerUrl + cityNotificationsApiUrl + '/search/count', searchCriteria)
+                return $http.get(serverUrl.resourceServerUrl + cityNotificationsApiUrl + '/search/count', { params: searchCriteria, cache: true })
                             .then(searchCityNotificationsCountComplete)
                             .catch(searchCityNotificationsCountFailed);
 
@@ -404,7 +404,7 @@
             return getServerUrl().then(function (resource) {
                 serverUrl = resource;
 
-                return $http.post(serverUrl.resourceServerUrl + nationalityNotificationsApiUrl + '/search', searchCriteria)
+                return $http.get(serverUrl.resourceServerUrl + nationalityNotificationsApiUrl + '/search', { params: searchCriteria, cache: true })
                             .then(searchNationalityNotificationsComplete)
                             .catch(searchNationalityNotificationsFailed);
 
@@ -422,7 +422,7 @@
             return getServerUrl().then(function (resource) {
                 serverUrl = resource;
 
-                return $http.post(serverUrl.resourceServerUrl + nationalityNotificationsApiUrl + '/search/count', searchCriteria)
+                return $http.get(serverUrl.resourceServerUrl + nationalityNotificationsApiUrl + '/search/count', { params: searchCriteria, cache: true })
                             .then(searchNationalityNotificationsCountComplete)
                             .catch(searchNationalityNotificationsCountFailed);
 
@@ -530,7 +530,7 @@
             return getServerUrl().then(function (resource) {
                 serverUrl = resource;
 
-                return $http.post(serverUrl.resourceServerUrl + categoriesApiUrl + '/search', searchCriteria)
+                return $http.get(serverUrl.resourceServerUrl + categoriesApiUrl + '/search', { params: searchCriteria, cache: true })
                             .then(searchCategoriesComplete)
                             .catch(searchCategoriesFailed);
 
@@ -548,7 +548,7 @@
             return getServerUrl().then(function (resource) {
                 serverUrl = resource;
 
-                return $http.post(serverUrl.resourceServerUrl + categoriesApiUrl + '/search/count', searchCriteria)
+                return $http.get(serverUrl.resourceServerUrl + categoriesApiUrl + '/search/count', { params: searchCriteria, cache: true })
                             .then(searchCategoriesCountComplete)
                             .catch(searchCategoriesCountFailed);
 
@@ -638,7 +638,7 @@
             return getServerUrl().then(function (resource) {
                 serverUrl = resource;
 
-                return $http.post(serverUrl.resourceServerUrl + citiesApiUrl + '/search', searchCriteria)
+                return $http.get(serverUrl.resourceServerUrl + citiesApiUrl + '/search', { params: searchCriteria, cache: true })
                             .then(searchCitiesComplete)
                             .catch(searchCitiesFailed);
 
@@ -656,7 +656,7 @@
             return getServerUrl().then(function (resource) {
                 serverUrl = resource;
 
-                return $http.post(serverUrl.resourceServerUrl + citiesApiUrl + '/search/count', searchCriteria)
+                return $http.get(serverUrl.resourceServerUrl + citiesApiUrl + '/search/count', { params: searchCriteria, cache: true })
                             .then(searchCitiesCountComplete)
                             .catch(searchCitiesCountFailed);
 
@@ -746,7 +746,7 @@
             return getServerUrl().then(function (resource) {
                 serverUrl = resource;
 
-                return $http.post(serverUrl.resourceServerUrl + usersApiUrl + '/search', searchCriteria)
+                return $http.get(serverUrl.resourceServerUrl + usersApiUrl + '/search', { params: searchCriteria, cache: true })
                             .then(searchUsersComplete)
                             .catch(searchUsersFailed);
 
@@ -764,7 +764,7 @@
             return getServerUrl().then(function (resource) {
                 serverUrl = resource;
 
-                return $http.post(serverUrl.resourceServerUrl + usersApiUrl + '/search/count', searchCriteria)
+                return $http.get(serverUrl.resourceServerUrl + usersApiUrl + '/search/count', { params: searchCriteria, cache: true })
                             .then(searchUsersCountComplete)
                             .catch(searchUsersCountFailed);
 
@@ -872,7 +872,7 @@
             return getServerUrl().then(function (resource) {
                 serverUrl = resource;
 
-                return $http.post(serverUrl.resourceServerUrl + nationalitiesApiUrl + '/search', searchCriteria)
+                return $http.get(serverUrl.resourceServerUrl + nationalitiesApiUrl + '/search', { params: searchCriteria, cache: true })
                             .then(searchNationalitiesComplete)
                             .catch(searchNationalitiesFailed);
 
@@ -890,7 +890,7 @@
             return getServerUrl().then(function (resource) {
                 serverUrl = resource;
 
-                return $http.post(serverUrl.resourceServerUrl + nationalitiesApiUrl + '/search/count', searchCriteria)
+                return $http.get(serverUrl.resourceServerUrl + nationalitiesApiUrl + '/search/count', { params: searchCriteria, cache: true })
                             .then(searchNationalitiesCountComplete)
                             .catch(searchNationalitiesCountFailed);
 
@@ -998,7 +998,7 @@
             return getServerUrl().then(function (resource) {
                 serverUrl = resource;
 
-                return $http.post(serverUrl.resourceServerUrl + newslettersApiUrl + '/search', searchCriteria)
+                return $http.get(serverUrl.resourceServerUrl + newslettersApiUrl + '/search', { params: searchCriteria, cache: true })
                             .then(searchNewslettersComplete)
                             .catch(searchNewslettersFailed);
 
@@ -1016,7 +1016,7 @@
             return getServerUrl().then(function (resource) {
                 serverUrl = resource;
 
-                return $http.post(serverUrl.resourceServerUrl + newslettersApiUrl + '/search/count', searchCriteria)
+                return $http.get(serverUrl.resourceServerUrl + newslettersApiUrl + '/search/count', { params: searchCriteria, cache: true })
                             .then(searchNewslettersCountComplete)
                             .catch(searchNewslettersCountFailed);
 
@@ -1140,7 +1140,7 @@
             return getServerUrl().then(function (resource) {
                 serverUrl = resource;
 
-                return $http.post(serverUrl.resourceServerUrl + thingsApiUrl + '/search', searchCriteria)
+                return $http.get(serverUrl.resourceServerUrl + thingsApiUrl + '/search', { params: searchCriteria, cache: true })
                             .then(searchThingsComplete)
                             .catch(searchThingsFailed);
 
@@ -1158,7 +1158,7 @@
             return getServerUrl().then(function (resource) {
                 serverUrl = resource;
 
-                return $http.post(serverUrl.resourceServerUrl + thingsApiUrl + '/search/count', searchCriteria)
+                return $http.get(serverUrl.resourceServerUrl + thingsApiUrl + '/search/count', { params: searchCriteria, cache: true })
                             .then(searchThingsCountComplete)
                             .catch(searchThingsCountFailed);
 
@@ -1230,7 +1230,7 @@
             return getServerUrl().then(function (resource) {
                 serverUrl = resource;
 
-                return $http.post(serverUrl.resourceServerUrl + locationsApiUrl + '/search', searchCriteria)
+                return $http.get(serverUrl.resourceServerUrl + locationsApiUrl + '/search', { params: searchCriteria, cache: true })
                             .then(searchLocationsComplete)
                             .catch(searchLocationsFailed);
 
@@ -1248,7 +1248,7 @@
             return getServerUrl().then(function (resource) {
                 serverUrl = resource;
 
-                return $http.post(serverUrl.resourceServerUrl + locationsApiUrl + '/search/count', searchCriteria)
+                return $http.get(serverUrl.resourceServerUrl + locationsApiUrl + '/search/count', { params: searchCriteria, cache: true })
                             .then(searchLocationsCountComplete)
                             .catch(searchLocationsCountFailed);
 

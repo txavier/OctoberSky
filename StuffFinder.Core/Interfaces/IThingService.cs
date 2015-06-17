@@ -24,7 +24,7 @@ namespace StuffFinder.Core.Interfaces
 
         StuffFinder.Core.Models.thing Delete(int thingId);
 
-        System.Collections.Generic.IEnumerable<StuffFinder.Core.Models.ThingViewModel> SearchViewModels(StuffFinder.Core.Objects.SearchCriteria searchCriteria);
+        System.Collections.Generic.IEnumerable<StuffFinder.Core.Models.ThingViewModel> SearchViewModels(StuffFinder.Core.Objects.SearchCriteria searchCriteria, bool lazyLoadingEnabled = true, bool proxyCreationEnabled = true);
 
         bool IsWriteAccessAllowed(StuffFinder.Core.Models.thing thing, string username);
 

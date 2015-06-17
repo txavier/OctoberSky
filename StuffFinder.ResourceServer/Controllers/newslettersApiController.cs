@@ -35,19 +35,19 @@ namespace StuffFinder.ResourceServer.Controllers
         }
 
         [Route("search")]
-        [HttpPost]
+        [HttpGet]
         // GET: api/newsletterApi/5
-        public IHttpActionResult Search(SearchCriteria searchCriteria)
+        public IHttpActionResult Search([FromUri]SearchCriteria searchCriteria)
         {
-            var result = _newsletterService.Search(searchCriteria);
+            var result = _newsletterService.Search(searchCriteria, lazyLoadingEnabled: false, proxyCreationEnabled: false);
 
             return Ok(result);
         }
 
         [Route("search/count")]
-        [HttpPost]
+        [HttpGet]
         // GET: api/newsletterApi/5
-        public IHttpActionResult SearchCount(SearchCriteria searchCriteria)
+        public IHttpActionResult SearchCount([FromUri]SearchCriteria searchCriteria)
         {
             var result = _newsletterService.SearchCount(searchCriteria);
 
