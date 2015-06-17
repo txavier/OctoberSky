@@ -39,20 +39,8 @@
         function setView() {
             dataService.getMostMe2Things().then(function (data) {
                 vm.mostMe2Things = data;
-
-                // Set the carousel.
-                //addSlide(vm.mostMe2Things);
             });
         }
-
-        //function addSlide(mostMe2Things) {
-            
-        //    angular.forEach(mostMe2Things, function (thing, key1) {
-        //        angular.forEach(thing.images, function (image, key) {
-        //            this.push({ image: "data:image/jpeg;base64," + image.imageBinary, thingId: thing.thingId });
-        //        }, slides);
-        //    }, things);
-        //}
 
         function navigateSearch() {
             $log.log('In navigateSearch');

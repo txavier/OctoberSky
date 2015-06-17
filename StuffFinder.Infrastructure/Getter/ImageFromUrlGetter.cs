@@ -33,7 +33,6 @@ namespace StuffFinder.Infrastructure.Getter
                     using (BinaryReader br = new BinaryReader(receiveStream))
                     {
                         b = br.ReadBytes(500000);
-                        br.Close();
                     }
                 }
             }

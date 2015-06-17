@@ -279,7 +279,7 @@ namespace StuffFinder.Core.Services
         /// <param name="imageUrl">This is the web url of the image.</param>
         public void AddImageToThingByImageUrl(int thingId, string imageUrl)
         {
-            Uri uri = new Uri("http://example.com/title/index.htm");
+            Uri uri = new Uri(imageUrl);
 
             var filename = uri.Segments[uri.Segments.Length - 1];
 
