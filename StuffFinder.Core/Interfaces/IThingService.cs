@@ -4,7 +4,7 @@ namespace StuffFinder.Core.Interfaces
 {
     public interface IThingService : AutoClutch.Auto.Service.Interfaces.IService<StuffFinder.Core.Models.thing>
     {
-        System.Collections.Generic.IEnumerable<StuffFinder.Core.Models.ThingViewModel> GetSixMonths10MostMe2Things();
+        System.Collections.Generic.IEnumerable<StuffFinder.Core.Models.ThingViewModel> GetSixMonthsMostMe2Things(int itemsPerPage);
 
         System.Collections.Generic.IEnumerable<StuffFinder.Core.Models.thing> GetFoundThings();
 

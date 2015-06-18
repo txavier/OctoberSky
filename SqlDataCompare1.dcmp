@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DataComparison>
+  <Version>10</Version>
+  <ConnectionProperties1>
+    <ConnectionString>Data Source=dodder.arvixe.com;Initial Catalog=stuffFinderDb;Integrated Security=False;Persist Security Info=True;User ID=mollie;Pooling=False</ConnectionString>
+    <FullDisplayName>dodder.arvixe.com.stuffFinderDb (mollie)</FullDisplayName>
+  </ConnectionProperties1>
+  <ConnectionProperties2>
+    <ConnectionString>Data Source=SIERRAGOLF\sqlexpress;Initial Catalog=stuffFinderDb;Integrated Security=True;Persist Security Info=False;Pooling=False</ConnectionString>
+    <FullDisplayName>SIERRAGOLF\sqlexpress.stuffFinderDb (SIERRAGOLF\Theo)</FullDisplayName>
+  </ConnectionProperties2>
+  <SessionSettings>Default</SessionSettings>
+</DataComparison>

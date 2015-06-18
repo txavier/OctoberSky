@@ -20,12 +20,13 @@
         vm.greenBoxShadow = '0 0 1em rgb(57,118,40)';
         vm.greenFont = 'rgb(57,118,40)';
         vm.loggedInUser = {};
+        vm.itemsPerPage = 10
 
         activate();
 
         function activate() {
-            getMostMe2Things();
-            //getJumbotronVideoUrlSetting();
+            getMostMe2Things(vm.itemsPerPage);
+
             playJumbotronVideo();
 
             if (authService.authentication.userName) {
@@ -55,8 +56,8 @@
             });
         }
 
-        function getMostMe2Things() {
-            return dataService.getMostMe2Things().then(function (data) {
+        function getMostMe2Things(itemsPerPage) {
+            return dataService.getMostMe2Things(itemsPerPage).then(function (data) {
                 vm.things = data;
 
                 return vm.things;
@@ -89,7 +90,7 @@
             vote.thingId = thing.thingId;
 
             return dataService.upVote(vote).then(function (data) {
-                getMostMe2Things();
+                getMostMe2Things(vm.itemsPerPage);
             });
         }
 
@@ -100,7 +101,7 @@
             vote.thingId = thing.thingId;
 
             return dataService.downVote(vote).then(function (data) {
-                getMostMe2Things();
+                getMostMe2Things(vm.itemsPerPage);
             });
         }
     }

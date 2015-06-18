@@ -33,7 +33,6 @@ namespace StuffFinder
 
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                 "~/app/home/homeController.js",
-                "~/app/things/thingsController.js",
                 "~/app/start/startController.js",
                 "~/app/finding/foundItController.js",
                 "~/app/sidebar/sidebarController.js",

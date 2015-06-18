@@ -1423,10 +1423,10 @@
             });
         }
 
-        function getMostMe2Things() {
+        function getMostMe2Things(itemsPerPage) {
             return getServerUrl().then(function (resource) {
                 serverUrl = resource;
-                return $http.get(serverUrl.resourceServerUrl + thingsApiUrl + '/getMostMe2Things', { cache: true })
+                return $http.get(serverUrl.resourceServerUrl + thingsApiUrl + '/getMostMe2Things/' + itemsPerPage, { cache: true })
                             .then(getMostMe2ThingsComplete)
                             .catch(getMostMe2ThingsFailed);
 

@@ -27,7 +27,7 @@
         function getCities() {
             vm.cities.push({ name: 'All Cities' });
 
-            vm.city = vm.cities[0];
+            vm.city = vm.cities[4];
 
             dataService.getCities().then(function (data) {
                 vm.cities = vm.cities.concat(data);
@@ -37,7 +37,7 @@
         }
 
         function setView() {
-            dataService.getMostMe2Things().then(function (data) {
+            dataService.getMostMe2Things(12).then(function (data) {
                 vm.mostMe2Things = data;
             });
         }

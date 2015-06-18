@@ -30,11 +30,6 @@ app.config(function ($routeProvider) {
         templateUrl: "/app/templates/signup.html"
     });
 
-    $routeProvider.when("/things", {
-        controller: "thingsController",
-        templateUrl: "/app/templates/things.html"
-    });
-
     $routeProvider.when("/thing/:thingId", {
         controller: "thingController",
         controllerAs: 'vm',

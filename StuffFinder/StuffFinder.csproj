@@ -314,10 +314,8 @@
     <Content Include="app\templates\found-it.html" />
     <Content Include="app\templates\refresh.html" />
     <Content Include="app\templates\start.html" />
-    <Content Include="app\templates\things.html" />
     <Content Include="app\templates\tokens.html" />
     <Content Include="app\things\thingController.js" />
-    <Content Include="app\things\thingsController.js" />
     <Content Include="app\services\thingService.js" />
     <Content Include="app\signup\signupController.js" />
     <Content Include="app\stuffFinder-module.js" />

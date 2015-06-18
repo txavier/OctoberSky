@@ -88,9 +88,9 @@ namespace StuffFinder.Core.Services
             return _errors.Distinct();
         }
 
-        public IEnumerable<ThingViewModel> GetSixMonths10MostMe2Things()
+        public IEnumerable<ThingViewModel> GetSixMonthsMostMe2Things(int itemsPerPage)
         {
-            var result = GetMostMe2(DateTime.Now.AddMonths(-6), DateTime.MaxValue, take: 10);
+            var result = GetMostMe2(DateTime.Now.AddMonths(-6), DateTime.MaxValue, take: itemsPerPage);
 
             return result;
         }
@@ -444,14 +444,6 @@ namespace StuffFinder.Core.Services
 
         public IEnumerable<ThingViewModel> GetMostMe2(DateTime startDateTime, DateTime endDateTime, int? take = null)
         {
-            //var result = _me2Service
-            //    .Get(filter: i => i.date > startDateTime && i.date < endDateTime, lazyLoadingEnabled: false, proxyCreationEnabled: false)
-            //    .GroupBy(i => new
-            //    {
-            //        thingId = i.thingId,
-            //    })
-            //    .Select(j => ToViewModel(j.Key.thingId));
-
             var result = ToViewModels(_efQueryGetMostMe2ThingsByDate.GetMostMe2(startDateTime, endDateTime, take: take,
                 includeProperties: GetDefaultIncludeProperties(), LazyLoadingEnabled: false, ProxyCreationEnabled: false));
 
@@ -495,11 +487,6 @@ namespace StuffFinder.Core.Services
                 // Convert the google results into things.
                 var result = googleCustomSearch.items.Select(i => new ThingViewModel()
                                 {
-                                    description = i.snippet,
-                                    name = (i.pagemap != null && i.pagemap.hproduct != null && i.pagemap.hproduct.Any()) ?
-                                            i.pagemap.hproduct.FirstOrDefault().fn
-                                            : ((string.IsNullOrEmpty(i.title.Trim()) && i.title.Contains('-')) ?
-                                                    searchText : i.title.Split("-".ToCharArray()).First().Trim()),
                                     imageUrl = (i.pagemap != null && i.pagemap.cse_image != null && i.pagemap.cse_image.Any()) ?
                                             i.pagemap.cse_image.FirstOrDefault().src : null,
                                     found = false,

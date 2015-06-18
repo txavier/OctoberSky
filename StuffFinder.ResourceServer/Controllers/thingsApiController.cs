@@ -51,10 +51,11 @@ namespace StuffFinder.ResourceServer.Controllers
             return Ok(result);
         }
 
-        [Route("GetMostMe2Things")]
-        public IHttpActionResult GetMostMe2Things()
+        [Route("GetMostMe2Things/{itemsPerPage}")]
+        [HttpGet]
+        public IHttpActionResult GetMostMe2Things(int itemsPerPage)
         {
-            var result = _thingService.GetSixMonths10MostMe2Things();
+            var result = _thingService.GetSixMonthsMostMe2Things(itemsPerPage);
 
             return Ok(result);
         }

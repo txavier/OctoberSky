@@ -33,6 +33,7 @@
         vm.navigateSearch = navigateSearch;
         vm.pop = pop;
         vm.clearpop = clearpop;
+        vm.defaultCityIndex = 4;
 
         // Scope references needed for deep watch on service variable.
         // http://stackoverflow.com/questions/12576798/how-to-watch-service-variables
@@ -46,10 +47,6 @@
             playJumbotronVideo();
             getSidebarAuthenticationLabel();
             setView();
-
-            if (authService.authentication.userName) {
-                getLoggedInUser();
-            }
         }
 
         $scope.$watch('authService.authentication.userName', function (current, original) {
@@ -124,6 +121,14 @@
             vm.mainColumnClass = 'col-sm-11';
         }
 
+        Array.prototype.getIndexBy = function (name, value) {
+            for (var i = 0; i < this.length; i++) {
+                if (this[i][name] == value) {
+                    return i;
+                }
+            }
+        }
+
         function getCities() {
             return dataService.getCities().then(function (data) {
                 vm.cities = data;
@@ -133,7 +138,19 @@
         function setDropDown() {
             vm.cities.splice(0, 0, { name: "All Cities" });
 
-            vm.searchCity = vm.cities[0];
+            if (authService.authentication.userName) {
+                getLoggedInUser().then(function (data) {
+                    if (vm.loggedInUser.cityId) {
+                        vm.searchCity = vm.cities[vm.cities.getIndexBy("cityId", vm.loggedInUser.cityId)];
+                    }
+                    else {
+                        vm.searchCity = vm.cities[vm.defaultCityIndex];
+                    }
+                });
+            }
+            else {
+                vm.searchCity = vm.cities[vm.defaultCityIndex];
+            }
         }
 
         function setView() {
