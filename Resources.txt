@@ -226,3 +226,27 @@
  -- Using Bower and Gulp with Visual Studio
 
 	http://blogs.msdn.com/b/cdndevs/archive/2015/02/17/using-bower-with-visual-studio-2013.aspx
+
+ -- In order to modify the Google Custom Search API page url use the following link.
+
+	https://cse.google.com/cse/setup/basic?cx=003278039953552359606%3Az1fmi1jpvfw
+	https://developers.google.com/custom-search/json-api/v1/using_rest
+	https://developers.google.com/custom-search/json-api/v1/reference/cse/list#response
+	https://developers.google.com/custom-search/json-api/v1/overview
+
+ -- In order to get information on Google Maps API Geocoding the following information can be utilized.
+
+	https://developers.google.com/maps/documentation/geocoding/
+	https://developers.google.com/maps/documentation/javascript/examples/geocoding-reverse
+	https://developers.google.com/maps/documentation/geocoding/?csw=1#geocoding
+
+ -- If a future feature request is for a smarter text search algorithm then perhaps the following resources 
+	should be used.
+ 
+	http://rosettacode.org/wiki/Rosetta_Code 
+	http://stackoverflow.com/questions/9842188/compare-similarity-algorithms
+
+ -- Google API and API key information.
+
+	https://console.developers.google.com/project/arched-glass-807/apiui/credential?authuser=0
+	https://code.google.com/apis/console/b/0/?noredirect#project:915674078507:services

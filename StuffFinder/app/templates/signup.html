@@ -1,23 +1,29 @@
-﻿<section class="content-section video-section">
-    <div class="jumbotron pattern-overlay">
-        <a id="bgndVideo" class="player" data-property="{videoURL:'https://www.youtube.com/watch?v=TDM18lJ18VA',startAt:5,quality:'hd1080',containment:'.video-section', quality:'large', autoPlay:true, mute:true, opacity:1}">bg</a>
-        <div class="container">
-            <div class="page-header text-center hidden-xs">
-                <h1><i class="glyphicon glyphicon-heart-empty red"></i>myFindr</h1>
+﻿<div class="row">
+    <div class="col-lg-12">
+        <section class="content-section video-section">
+            <div class="jumbotron pattern-overlay">
+                <a id="bgndVideo" class="player" data-property="{videoURL:'https://www.youtube.com/watch?v=TDM18lJ18VA',startAt:5,quality:'hd1080',containment:'.video-section', quality:'large', autoPlay:true, mute:true, opacity:1}">bg</a>
+                <div class="container">
+                    <div class="page-header text-center hidden-xs">
+                        <h1><i class="glyphicon glyphicon-heart-empty red"></i>myFindr</h1>
+                    </div>
+                    <div class="page-header text-center visible-xs">
+                        <h1><i class="glyphicon glyphicon-heart-empty red"></i>myFindr</h1>
+                    </div>
+                </div>
             </div>
-            <div class="page-header text-center visible-xs">
-                <h1><i class="glyphicon glyphicon-heart-empty red"></i>myFindr</h1>
-            </div>
+        </section>
+    </div>
+</div>
+<div class="row">
+    <form class="form-login" role="form">
+        <h2 class="form-login-heading">Sign up</h2>
+        <input type="text" class="form-control" placeholder="Username" data-ng-model="registration.userName" required autofocus>
+        <input type="password" class="form-control" placeholder="Password" data-ng-model="registration.password" required>
+        <input type="password" class="form-control" placeholder="Confirm Password" data-ng-model="registration.confirmPassword" required>
+        <button class="btn btn-lg btn-info btn-block" type="submit" data-ng-click="signUp()">Submit</button>
+        <div data-ng-hide="message == ''" data-ng-class="(savedSuccessfully) ? 'alert alert-success' : 'alert alert-danger'">
+            {{message}}
         </div>
-    </div>
-</section>
-<form class="form-login" role="form">
-    <h2 class="form-login-heading">Sign up</h2>
-    <input type="text" class="form-control" placeholder="Username" data-ng-model="registration.userName" required autofocus>
-    <input type="password" class="form-control" placeholder="Password" data-ng-model="registration.password" required>
-    <input type="password" class="form-control" placeholder="Confirm Password" data-ng-model="registration.confirmPassword" required>
-    <button class="btn btn-lg btn-info btn-block" type="submit" data-ng-click="signUp()">Submit</button>
-    <div data-ng-hide="message == ''" data-ng-class="(savedSuccessfully) ? 'alert alert-success' : 'alert alert-danger'">
-        {{message}}
-    </div>
-</form>
+    </form>
+</div>
