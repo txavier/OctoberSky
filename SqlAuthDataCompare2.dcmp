@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DataComparison>
+  <Version>10</Version>
+  <ConnectionProperties1>
+    <ConnectionString>Data Source=dodder.arvixe.com;Initial Catalog=stuffFinderAuthDb;Integrated Security=False;Persist Security Info=True;User ID=mollie;Pooling=False</ConnectionString>
+    <FullDisplayName>dodder.arvixe.com.stuffFinderAuthDb (mollie)</FullDisplayName>
+  </ConnectionProperties1>
+  <ConnectionProperties2>
+    <ConnectionString>Data Source=ec2-54-169-9-225.ap-southeast-1.compute.amazonaws.com;Initial Catalog=stuffFinderAuthDb;Integrated Security=False;Persist Security Info=True;User ID=mollie;Pooling=False</ConnectionString>
+    <FullDisplayName>ec2-54-169-9-225.ap-southeast-1.compute.amazonaws.com.stuffFinderAuthDb (mollie)</FullDisplayName>
+  </ConnectionProperties2>
+  <SessionSettings>Default</SessionSettings>
+</DataComparison>
