@@ -21,7 +21,7 @@ namespace StuffFinder.Core.Services.Tests
             var thingService = container.GetInstance<IThingService>();
 
             // Act.
-            var result = thingService.GetSixMonthsMostMe2Things();
+            var result = thingService.GetSixMonthsMostMe2Things(2);
 
             // Assert.
             Assert.AreEqual(2, result.Count());

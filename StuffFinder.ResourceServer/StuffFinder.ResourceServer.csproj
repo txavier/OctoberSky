@@ -163,6 +163,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <None Include="Properties\PublishProfiles\Amazon - Staging.pubxml" />
     <None Include="Properties\PublishProfiles\resourceserver.deltanovember.xaviersoftware.com - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\resourceserver.deltanovember.xaviersoftware.com - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">

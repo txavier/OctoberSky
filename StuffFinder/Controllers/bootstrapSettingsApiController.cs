@@ -18,10 +18,16 @@ namespace StuffFinder.Controllers
                 resourceServerUrl = "http://localhost:22252/",
             };
 #else
+            //var result = new
+            //{
+            //    authenticationServerUrl = "http://authenticationapi.deltanovember.xaviersoftware.com/",
+            //    resourceServerUrl = "http://resourceserver.deltanovember.xaviersoftware.com/",
+            //};
+
             var result = new
             {
-                authenticationServerUrl = "http://authenticationapi.deltanovember.xaviersoftware.com/",
-                resourceServerUrl = "http://resourceserver.deltanovember.xaviersoftware.com/",
+                authenticationServerUrl = "http://ec2-52-74-233-209.ap-southeast-1.compute.amazonaws.com/myFindr.AuthenticationApi/",
+                resourceServerUrl = "http://ec2-52-74-233-209.ap-southeast-1.compute.amazonaws.com/myFindr.ResourceServer/",
             };
 #endif
 
