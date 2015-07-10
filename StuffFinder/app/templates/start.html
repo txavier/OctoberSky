@@ -26,14 +26,13 @@
         <div class="thumbnail" data-ng-style="{ 'box-shadow': thing.findings.length == 0 ? vm.redBoxShadow : vm.greenBoxShadow }">
             <a href="#/thing/{{ thing.thingId }}">
                 <!--<img src="{{ thing.imageUrl }}" alt="..." style="height: 200px;">-->
-                <img src="{{ thi
                 <img src="{{ thing.images.length > 0 ? 'data:image/jpeg;base64,' + thing.images[0].imageBinary : thing.imageUrl || '/images/logo.png' }}" alt=". alt=" ..." style="height: 200px;">
             </a>
             <div class="caption">
                 <a href="#/thing/{{ thing.thingId }}">
                     <p>
                         <h5 data-ng-style="{ 'color': thing.findings.length == 0 ? vm.redFont : vm.greenFont }"><b>{{ thing.findings.length == 0 ? ('Wanted') : ('Found') }}</b></h5>
-                        <h5 style="min-height:20px">{{ thing.name | limitTo:50 }}</h5>
+                        <h5 style="min-height:20px">{{ thing.name.length > 25 ? thing.name.substring(0,30) + '[&hellip;]' : thing.name }}</h5>
                     </p>
                 </a>
                 <p>
