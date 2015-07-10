@@ -24,10 +24,11 @@ namespace StuffFinder.Controllers
             //    resourceServerUrl = "http://resourceserver.deltanovember.xaviersoftware.com/",
             //};
 
+            // Amazon EC2 machine dns: ec2-52-74-233-209.ap-southeast-1.compute.amazonaws.com
             var result = new
             {
-                authenticationServerUrl = "http://ec2-52-74-233-209.ap-southeast-1.compute.amazonaws.com/myFindr.AuthenticationApi/",
-                resourceServerUrl = "http://ec2-52-74-233-209.ap-southeast-1.compute.amazonaws.com/myFindr.ResourceServer/",
+                authenticationServerUrl = "http://52.74.233.209/myFindr.AuthenticationApi/",
+                resourceServerUrl = "http://52.74.233.209/myFindr.ResourceServer/",
             };
 #endif
 
