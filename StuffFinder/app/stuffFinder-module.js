@@ -294,7 +294,7 @@ app.config(function ($routeProvider) {
         templateUrl: '/app/templates/user-profile.html'
     });
 
-    $routeProvider.otherwise({ redirectTo: "/index" });
+    //$routeProvider.otherwise({ redirectTo: "/index" });
 });
 
 app.config(function (uiGmapGoogleMapApiProvider) {

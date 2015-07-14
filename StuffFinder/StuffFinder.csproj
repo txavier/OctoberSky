@@ -268,8 +268,10 @@
     <Content Include="app\newsletter\addOrUpdateNewsletterController.js" />
     <Content Include="app\newsletter\newslettersController.js" />
     <Content Include="app\services\me2Service.js" />
+    <Content Include="app\services\splashService.js" />
     <Content Include="app\services\votesService.js" />
     <Content Include="app\sidebar\dashboardSidebarController.js" />
+    <Content Include="app\splash\splashController.js" />
     <Content Include="app\templates\add-or-update-location.html" />
     <Content Include="app\templates\add-or-update-city-notification.html" />
     <Content Include="app\templates\add-or-update-nationality-notification.html" />

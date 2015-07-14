@@ -3,9 +3,9 @@
 
     app.controller('sidebarController', sidebarController);
 
-    sidebarController.$inject = ['$scope', '$location', '$log', 'authService', 'dataService', 'toaster'];
+    sidebarController.$inject = ['$scope', '$location', '$log', 'authService', 'dataService', 'splashService', 'toaster'];
 
-    function sidebarController($scope, $location, $log, authService, dataService, toaster) {
+    function sidebarController($scope, $location, $log, authService, dataService, splashService, toaster) {
         var vm = this;
 
         vm.authentication = {};
@@ -34,6 +34,8 @@
         vm.pop = pop;
         vm.clearpop = clearpop;
         vm.defaultCityIndex = 4;
+        vm.setShowSplash = setShowSplash;
+        vm.getShowSplash = getShowSplash;
 
         // Scope references needed for deep watch on service variable.
         // http://stackoverflow.com/questions/12576798/how-to-watch-service-variables
@@ -191,6 +193,14 @@
             $log.log('In navigateSearch');
 
             $location.path('/search/' + (vm.searchCity.name || 'all' | escape) + '/' + (vm.query || '' | escape));
+        }
+
+        function setShowSplash(showSplash) {
+            splashService.setShowSplash(showSplash);
+        }
+
+        function getShowSplash() {
+            return splashService.getShowSplash();
         }
     }
 })();

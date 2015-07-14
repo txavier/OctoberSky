@@ -1,14 +1,14 @@
 ﻿@media(min-width:768px) {
-    header .intro-text {
+    .splash header .intro-text {
         padding-top: 100px;
         padding-bottom: 200px;
     }
 }
 
-.banner-searchBox input[type='text'] {
+.splash .banner-searchBox input[type='text'] {
     color: #333;
 }
 
-section#contact {
+.splash section#contact {
     background-image: none;
 }
