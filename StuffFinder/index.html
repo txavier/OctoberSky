@@ -29,7 +29,7 @@
 </head>
 <body>
     <!--Splash Page-->
-    <div id="page-top" class="splash index" ng-controller="splashController as vm" ng-show="vm.getShowSplash()">
+    <div id="page-top" class="splash index" ng-cloak data-ng-controller="splashController as vm" data-ng-show="vm.getShowSplash()">
             <!-- Navigation -->
             <nav class="navbar navbar-default navbar-fixed-top">
                 <div class="container">
@@ -416,7 +416,7 @@
             </div>
     </div>
     <!--Main Layout Page-->
-    <div data-ng-controller="sidebarController as vm" ng-show="!vm.getShowSplash()">
+    <div ng-cloak data-ng-controller="sidebarController as vm" ng-show="!vm.getShowSplash()">
         <toaster-container toaster-options="{'position-class': 'toast-top-full-width', 'preventduplicates': true}"></toaster-container>
         <div class="wrapper">
             <div class="box">

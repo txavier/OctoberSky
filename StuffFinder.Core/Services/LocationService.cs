@@ -12,14 +12,14 @@ namespace StuffFinder.Core.Services
     {
         private readonly string bingMapsKey = "AIzaSyBPUGy5syJHUaDeR_E_FTwgOO4Th8vm63Y";
 
-        private string region = "ae";
+        private string region = "united+arab+emirates";
 
         private readonly IRepository<location> _locationRepository;
 
         private readonly IGoogleGeocodingGetter _googleGeocodingGetter;
 
         private readonly ICityService _cityService;
-        
+
         public LocationService(IRepository<location> locationRepository, IGoogleGeocodingGetter googleGeocodingGetter,
             ICityService cityService)
             : base(locationRepository)
@@ -79,30 +79,41 @@ namespace StuffFinder.Core.Services
             return location;
         }
 
-        public location SearchSingleNewLocation(string locationName)
+        public location SearchSingleNewLocation(string locationName, string city = "Dubai")
         {
-            var result = SearchNewLocation(locationName).FirstOrDefault();
+            var result = SearchNewLocation(locationName, city).FirstOrDefault();
 
             return result;
         }
 
-        public IEnumerable<location> SearchNewLocation(string locationName)
+        public IEnumerable<location> SearchNewLocation(string locationName, string city = "Dubai")
         {
             var cities = _cityService.Get(lazyLoadingEnabled: false, proxyCreationEnabled: false);
+
+            region = city;
 
             var locations = _googleGeocodingGetter.GetGoogleCustomSearch(locationName, bingMapsKey, region);
 
             var result = locations.results
-                            .Where(i => i.partial_match)
+                            .Where(i => i.types.Contains("store"))
+                            .Select(i =>
+                                {
+                                    i.address_components = _googleGeocodingGetter.GetGoogleCustomSearchAddressComponents(bingMapsKey, i.place_id).result.address_components.Select(
+                                        j => new GoogleGeocodingResponse.AddressComponent() 
+                                        {
+                                            long_name = j.long_name,
+                                            short_name = j.short_name,
+                                            types = j.types
+                                        }).ToList();
+                                    return i;
+                                })
                             .Select(i => new location()
                             {
                                 formattedAddress = i.formatted_address,
                                 latitude = i.geometry.location.lat,
                                 longitude = i.geometry.location.lng,
-                                city =  cities.Where(j => i.address_components.Any(k => k.types.Contains("locality"))).Any() ?
-                                            cities.FirstOrDefault(j => i.address_components.Any(k => k.types.Contains("locality")))
-                                            : null,
-                                locationName = i.address_components.FirstOrDefault().long_name
+                                city = cities.FirstOrDefault(j => j.name == city) ?? cities.FirstOrDefault(j => j.name == "Dubai"),
+                                locationName = i.name
                             })
                             .Select(i =>
                             {

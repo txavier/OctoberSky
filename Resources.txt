@@ -250,3 +250,15 @@
 
 	https://console.developers.google.com/project/arched-glass-807/apiui/credential?authuser=0
 	https://code.google.com/apis/console/b/0/?noredirect#project:915674078507:services
+
+ -- Amazon application server guide.
+
+	http://docs.aws.amazon.com/gettingstarted/latest/wah/getting-started-application-server.html
+
+ -- Set up web deploy guide.
+
+	https://msdn.microsoft.com/en-us/library/vstudio/dd465323(v=vs.100).aspx
+
+ -- In order to make sure ng-cloak runs correctly on large pages the following information was referenced
+
+	http://weblog.west-wind.com/posts/2014/Jun/02/AngularJs-ngcloak-Problems-on-large-Pages#Addtheng-cloakStylesmanually

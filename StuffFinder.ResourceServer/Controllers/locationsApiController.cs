@@ -58,11 +58,11 @@ namespace StuffFinder.ResourceServer.Controllers
             return Ok(result);
         }
 
-        [Route("searchNewLocation/{locationName}")]
+        [Route("searchNewLocation/{cityName}/{locationName}")]
         [HttpGet]
-        public IHttpActionResult SearchNewLocation(string locationName)
+        public IHttpActionResult SearchNewLocation(string cityName, string locationName)
         {
-            var result = _locationService.SearchSingleNewLocation(locationName);
+            var result = _locationService.SearchSingleNewLocation(locationName, city: cityName);
 
             return Ok(result);
         }

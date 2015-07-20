@@ -56,8 +56,8 @@
         }
 
         function searchNewLocation(locationName) {
-            if (locationName.length > 5) {
-                dataService.searchNewLocation(locationName).then(function (data) {
+            if (locationName.length > 3) {
+                dataService.searchNewLocation(locationName, (vm.thing.finding.location.city.name) ? vm.thing.finding.location.city.name : 'dubai').then(function (data) {
                     if (data != null) {
                         if (!vm.thing.finding) {
                             vm.thing.finding = { location: { locationName: '' }, date: new Date(), price: null, upcCode: null };

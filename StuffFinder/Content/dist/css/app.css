@@ -8475,3 +8475,9 @@ overflow: hidden;
 {
     margin: 0 0 11px;
 }
+
+
+[ng-cloak]
+{
+  display: none !important;
+}

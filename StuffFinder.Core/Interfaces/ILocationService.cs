@@ -6,7 +6,7 @@ namespace StuffFinder.Core.Interfaces
         StuffFinder.Core.Models.location AddOrUpdate(StuffFinder.Core.Models.location location);
         System.Collections.Generic.IEnumerable<StuffFinder.Core.Models.location> Search(StuffFinder.Core.Objects.SearchCriteria searchCriteria, bool lazyLoadingEnabled = true, bool proxyCreationEnabled = true);
         int SearchCount(StuffFinder.Core.Objects.SearchCriteria searchCriteria);
-        System.Collections.Generic.IEnumerable<StuffFinder.Core.Models.location> SearchNewLocation(string locationName);
-        StuffFinder.Core.Models.location SearchSingleNewLocation(string locationName);
+        System.Collections.Generic.IEnumerable<StuffFinder.Core.Models.location> SearchNewLocation(string locationName, string city = "Dubai");
+        StuffFinder.Core.Models.location SearchSingleNewLocation(string locationName, string city = "Dubai");
     }
 }

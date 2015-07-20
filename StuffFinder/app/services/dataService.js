@@ -1262,11 +1262,11 @@
             });
         }
 
-        function searchNewLocation(locationName) {
+        function searchNewLocation(locationName, cityName) {
             return getServerUrl().then(function (resource) {
                 serverUrl = resource;
 
-                return $http.get(serverUrl.resourceServerUrl + locationsApiUrl + '/searchNewLocation/' + locationName)
+                return $http.get(serverUrl.resourceServerUrl + locationsApiUrl + '/searchNewLocation/' + cityName + '/' + locationName)
                             .then(searchNewLocationComplete)
                             .catch(searchNewLocationFailed);
 
