@@ -1,4 +1,6 @@
-﻿/// <vs BeforeBuild='default' />
+﻿/// <reference path="bower_components/angular-video-bg/angular-video-bg.min.js" />
+/// <reference path="bower_components/angular-video-bg/angular-video-bg.min.js" />
+/// <vs BeforeBuild='default' />
 ///
 // include plug-ins
 var gulp = require('gulp');
@@ -15,8 +17,7 @@ var config = {
     jquerysrc: [
         'bower_components/jquery/dist/jquery.min.js',
         'bower_components/jquery-validation/dist/jquery.validate.min.js',
-        'bower_components/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js',
-        'bower_components/jquery.mb.ytplayer/inc/jquery.mb.YTPlayer.min.js'
+        'bower_components/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js'
     ],
     jquerybundle: 'Scripts/jquery-bundle.min.js',
 
@@ -46,7 +47,7 @@ var config = {
         'bower_components/angular-sanitize/angular-sanitize.min.js',
         'bower_components/angular-bootstrap/ui-bootstrap.min.js',
         'bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
-        'bower_components/lodash/dist/lodash.min.js',
+        'bower_components/lodash/lodash.min.js',
         'bower_components/angular-google-maps/dist/angular-google-maps.min.js',
         'bower_components/angular-loading-bar/build/loading-bar.min.js',
         'bower_components/ng-droplet/dist/ng-droplet.min.js',
@@ -58,6 +59,7 @@ var config = {
         'bower_components/textAngular/dist/textAngular.min.js',
         'bower_components/angular-animate/angular-animate.min.js',
         'bower_components/angularjs-toaster/toaster.min.js',
+        'bower_components/angular-video-bg/angular-video-bg.min.js',
         // No minify section
         'app/stuffFinder-module.js',
         'app/authInterceptor/authInterceptorService.js',
@@ -118,6 +120,7 @@ var config = {
         'bower_components/textAngular/dist/textAngular.min.js',
         'bower_components/angular-animate/angular-animate.min.js',
         'bower_components/angularjs-toaster/toaster.min.js',
+        'bower_components/angular-video-bg/angular-video-bg.min.js',
         // No minify section
         'app/stuffFinder-module.js',
         'app/authInterceptor/authInterceptorService.js',

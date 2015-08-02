@@ -27,8 +27,6 @@
         function activate() {
             getMostMe2Things(vm.itemsPerPage);
 
-            playJumbotronVideo();
-
             if (authService.authentication.userName) {
                 getLoggedInUser();
             }
@@ -61,25 +59,6 @@
                 vm.things = data;
 
                 return vm.things;
-            });
-        }
-
-        function playJumbotronVideo() {
-            $(document).ready(function () {
-
-                $(".player").mb_YTPlayer();
-
-            });
-        }
-
-        function getJumbotronVideoUrlSetting() {
-            return dataService.getJumbotronVideoUrlSetting().then(function (data) {
-                vm.jumbotronVideoUrlSetting = data;
-                vm.dataProperty = '{ videoURL: \'' + vm.jumbotronVideoUrlSetting.settingValue + '\', containment: \'.video-section\', quality: \'large\', autoPlay: true, mute: true, opacity: 1 }';
-
-                playJumbotronVideo();
-
-                return vm.jumbotronVideoUrlSetting;
             });
         }
 

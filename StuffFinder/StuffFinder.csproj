@@ -1188,6 +1188,7 @@
     <Content Include="Content\dist\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\dist\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\dist\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="bower - Copy.json" />
     <None Include="Properties\PublishProfiles\Amazon - Staging.pubxml" />
     <None Include="Properties\PublishProfiles\deltanovember.xaviersoftware.com - Web Deploy.pubxml" />
     <Content Include="Scripts\angular.min.js.map" />

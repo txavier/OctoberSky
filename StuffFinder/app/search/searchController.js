@@ -37,6 +37,15 @@
         vm.googleThings = [];
         vm.whereIsGoogleThing = whereIsGoogleThing;
         vm.foundThingAndLocationGoogleThing = foundThingAndLocationGoogleThing;
+        vm.videoId = 'TDM18lJ18VA';
+        vm.videos = [{
+            videoId: 'TDM18lJ18VA',
+            mute: false
+        },{
+            videoId: 'TDM18lJ18VA',
+            start: 10,
+            end: 50
+        }];
 
         activate();
 
@@ -45,8 +54,6 @@
             searchThings(vm.searchCriteria);
             searchThingsCount(vm.searchCriteria);
             searchAllThingsCount(vm.searchCriteria);
-            //getJumbotronVideoUrlSetting();
-            playJumbotronVideo();
             
             if (authService.authentication.userName) {
                 getLoggedInUser();
@@ -171,25 +178,6 @@
             vm.searchCriteria = createSearchCriteria(currentPage, itemsPerPage, orderBy, searchText, cityName);
 
             return vm.searchCriteria;
-        }
-
-        function playJumbotronVideo() {
-            $(document).ready(function () {
-
-                $(".player").mb_YTPlayer();
-
-            });
-        }
-
-        function getJumbotronVideoUrlSetting() {
-            return dataService.getJumbotronVideoUrlSetting().then(function (data) {
-                vm.jumbotronVideoUrlSetting = data;
-                vm.dataProperty = '{ videoURL: \'' + vm.jumbotronVideoUrlSetting.settingValue + '\', containment: \'.video-section\', quality: \'large\', autoPlay: true, mute: true, opacity: 1 }';
-
-                playJumbotronVideo();
-
-                return vm.jumbotronVideoUrlSetting;
-            });
         }
 
         function pageChanged() {

@@ -44,7 +44,6 @@
 
         function activate() {
             setView($routeParams.findingId);
-            playJumbotronVideo();
             getCategories();
             datepickerToggleMin();
             datepickerToggleMax();
@@ -149,12 +148,6 @@
                 var serverUrl = resource;
 
                 vm.interface.setRequestUrl(serverUrl.resourceServerUrl + 'api/thingsApi' + '/files');
-            });
-        }
-
-        function playJumbotronVideo() {
-            $(document).ready(function () {
-                $(".player").mb_YTPlayer();
             });
         }
 

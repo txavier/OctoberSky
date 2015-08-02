@@ -27,7 +27,7 @@
         activate();
 
         function activate() {
-            playJumbotronVideo();
+            
             getCategories();
             getNewThing();
             initiateDroplet();

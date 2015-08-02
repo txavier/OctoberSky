@@ -11,7 +11,8 @@
         'toaster',
         'ngAnimate',
         'nya.bootstrap.select',
-        'infinite-scroll']);
+        'infinite-scroll',
+        'angularVideoBg']);
 
 app.config(function ($routeProvider) {
 

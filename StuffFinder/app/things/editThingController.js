@@ -22,7 +22,6 @@
         activate();
 
         function activate() {
-            playJumbotronVideo();
             getCategories();
             getThing();
             initiateDroplet();
@@ -54,13 +53,6 @@
                 var serverUrl = resource;
 
                 vm.interface.setRequestUrl(serverUrl.resourceServerUrl + 'api/thingsApi' + '/files');
-            });
-        }
-
-        // When the page is ready this plays the youtube video.
-        function playJumbotronVideo() {
-            $(document).ready(function () {
-                $(".player").mb_YTPlayer();
             });
         }
 

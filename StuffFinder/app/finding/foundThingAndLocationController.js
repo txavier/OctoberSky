@@ -42,7 +42,6 @@
         activate();
 
         function activate() {
-            playJumbotronVideo();
             setMapMarker();
             getCategories();
             datepickerToggleMin();
@@ -116,12 +115,6 @@
                 var serverUrl = resource;
 
                 vm.interface.setRequestUrl(serverUrl.resourceServerUrl + 'api/thingsApi' + '/files');
-            });
-        }
-
-        function playJumbotronVideo() {
-            $(document).ready(function () {
-                $(".player").mb_YTPlayer();
             });
         }
 
