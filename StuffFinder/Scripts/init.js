@@ -23,8 +23,8 @@ $(document).ready(function(){
 /* Create HTML5 element for IE */
 document.createElement("section");
 
-$(document).ready(function () {
+//$(document).ready(function () {
 
-    $(".player").mb_YTPlayer();
+//    $(".player").mb_YTPlayer();
 
-});
+//});

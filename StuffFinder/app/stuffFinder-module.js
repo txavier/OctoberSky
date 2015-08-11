@@ -295,7 +295,14 @@ app.config(function ($routeProvider) {
         templateUrl: '/app/templates/user-profile.html'
     });
 
-    //$routeProvider.otherwise({ redirectTo: "/index" });
+    //$routeProvider.otherwise({ redirectTo: '~/Areas/Splash/index.html' });
+
+    $routeProvider.otherwise({
+        controller : function(){
+            window.location.replace('/Areas/Splash/index.html');
+        }, 
+        template : "<div></div>"
+    });
 });
 
 app.config(function (uiGmapGoogleMapApiProvider) {

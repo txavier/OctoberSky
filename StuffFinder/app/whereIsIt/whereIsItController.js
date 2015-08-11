@@ -62,9 +62,9 @@
 
         // When the page is ready this plays the youtube video.
         function playJumbotronVideo() {
-            $(document).ready(function () {
-                $(".player").mb_YTPlayer();
-            });
+            //$(document).ready(function () {
+            //    $(".player").mb_YTPlayer();
+            //});
         }
 
         function getCategories() {

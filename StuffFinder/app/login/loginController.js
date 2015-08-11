@@ -69,7 +69,7 @@ app.controller('loginController', ['$scope', '$location', 'authService', 'ngAuth
         });
     }
 
-    $(document).ready(function () {
-        $(".player").mb_YTPlayer();
-    });
+    //$(document).ready(function () {
+    //    $(".player").mb_YTPlayer();
+    //});
 }]);
