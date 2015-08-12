@@ -5,6 +5,7 @@ var app = angular
         'ngResource',
         'ui.bootstrap',
         'shared.directives',
+        'angularVideoBg'
     ]);
 
 app.config(config);
