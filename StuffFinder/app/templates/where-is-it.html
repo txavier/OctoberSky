@@ -27,6 +27,10 @@
             <select class="form-control" data-ng-model="vm.thing.thingCity.city"
                     data-ng-options="city as city.name for city in vm.cities"></select>
         </div>
+        <div class="form-group" style="padding:14px;">
+            Image URL
+            <input class="form-control" placeholder="The url of the image" data-ng-model="vm.thing.imageUrl" />
+        </div>
         <div class="form-group" style="padding:14px;" data-ng-show="vm.thing.imageUrl">
             Pictures Auto-Submitted
             <p>
