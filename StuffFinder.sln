@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StuffFinder", "StuffFinder\StuffFinder.csproj", "{1EB1809E-F120-4518-A3A8-CC557DF0B88D}"
 EndProject
@@ -98,8 +98,5 @@ Global
 		{DF0249BA-9DE3-4B0A-AD04-88E170D0E7EF} = {BFAF4C8C-F351-40A2-9162-02470844AF89}
 		{DE1C4553-5FFF-4043-9D95-3B7F13F101F9} = {BFAF4C8C-F351-40A2-9162-02470844AF89}
 		{59E69696-7EA5-4A59-B04B-25A6AFF8715E} = {D23E285E-4EDD-499C-85DC-526F1E90F153}
-	EndGlobalSection
-	GlobalSection(Performance) = preSolution
-		HasPerformanceSessions = true
 	EndGlobalSection
 EndGlobal
