@@ -21,13 +21,14 @@
         vm.changeClassEnter = changeClassEnter;
         vm.changeClassLeave = changeClassLeave;
         vm.activeClass = '';
-        vm.largeMenuClass = 'hidden-lg hidden-xs';
-        vm.smallMenuClass = 'visible-lg hidden-xs';
+        // Regular screen large menu and small menu
+        vm.largeMenuClass = 'hidden-lg hidden-xs hidden-md hidden-sm';
+        vm.smallMenuClass = 'visible-lg hidden-xs visible-md hidden-sm';
         vm.sidebarColumnClass = 'col-sm-1 col-xs-1';
         vm.mainColumnClass = 'col-sm-11';
         vm.toggleClasses = toggleClasses;
-        vm.smallScreenLargeMenuClass = 'hidden-lg hidden-xs';
-        vm.smallScreenSmallMenuClass = 'hidden-lg visible-xs';
+        vm.smallScreenLargeMenuClass = 'hidden-lg hidden-xs hidden-md hidden-sm';
+        vm.smallScreenSmallMenuClass = 'hidden-lg visible-xs hidden-md visible-sm';
         vm.loggedInUser = {};
         vm.showDashboard = false;
         vm.navigateSearch = navigateSearch;
@@ -92,15 +93,15 @@
         }
 
         function toggleClasses() {
-            if (vm.smallScreenLargeMenuClass == 'hidden-lg hidden-xs') {
-                vm.smallScreenLargeMenuClass = 'hidden-lg visible-xs';
-                vm.smallScreenSmallMenuClass = 'hidden-lg hidden-xs';
+            if (vm.smallScreenLargeMenuClass == 'hidden-lg hidden-xs hidden-sm') {
+                vm.smallScreenLargeMenuClass = 'hidden-lg visible-xs visible-sm';
+                vm.smallScreenSmallMenuClass = 'hidden-lg hidden-xs hidden-sm';
                 vm.sidebarColumnClass = 'col-sm-1 col-xs-2';
                 vm.activeClass = 'active';
             }
             else {
-                vm.smallScreenLargeMenuClass = 'hidden-lg hidden-xs';
-                vm.smallScreenSmallMenuClass = 'hidden-lg visible-xs';
+                vm.smallScreenLargeMenuClass = 'hidden-lg hidden-xs hidden-sm';
+                vm.smallScreenSmallMenuClass = 'hidden-lg visible-xs visible-sm';
                 vm.sidebarColumnClass = 'col-sm-1 col-xs-1';
                 vm.activeClass = '';
             }
@@ -108,16 +109,20 @@
 
         function changeClassEnter() {
             vm.activeClass = "active";
-            vm.largeMenuClass = 'visible-lg hidden-xs';
-            vm.smallMenuClass = 'hidden-lg hidden-xs';
+            vm.largeMenuClass = 'visible-lg hidden-xs visible-md hidden-sm';
+            vm.smallMenuClass = 'hidden-lg hidden-xs hidden-md hidden-sm';
+            vm.smallScreenLargeMenuClass = 'hidden-lg visible-xs visible-sm';
+            vm.smallScreenSmallMenuClass = 'hidden-lg hidden-xs hidden-sm';
             vm.sidebarColumnClass = 'col-sm-2 col-xs-1';
             vm.mainColumnClass = 'col-sm-10';
         }
 
         function changeClassLeave() {
             vm.activeClass = '';
-            vm.largeMenuClass = 'hidden-lg hidden-xs';
-            vm.smallMenuClass = 'visible-lg hidden-xs';
+            vm.largeMenuClass = 'hidden-lg hidden-xs hidden-md hidden-sm';
+            vm.smallMenuClass = 'visible-lg hidden-xs visible-md';
+            vm.smallScreenLargeMenuClass = 'hidden-lg hidden-xs hidden-sm';
+            vm.smallScreenSmallMenuClass = 'hidden-lg visible-xs visible-sm';
             vm.sidebarColumnClass = 'col-sm-1  col-xs-1';
             vm.mainColumnClass = 'col-sm-11';
         }
