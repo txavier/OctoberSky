@@ -27,8 +27,12 @@
         vm.finding = { location: { locationName: '' }, date: new Date(), price: null, upcCode: null };
         vm.cities = [];
         vm.searchNewLocation = searchNewLocation;
+        var events = {
+            places_changed: function (searchBox) { }
+        }
+        vm.searchbox = { template: 'searchbox.tpl.html', events: events };
 
-        // Scope variables have to be accessible for the watch statements.
+         //Scope variables have to be accessible for the watch statements.
         $scope.coordsUpdates = 0;
         $scope.dynamicMoveCtr = 0;
         $scope.marker = {};

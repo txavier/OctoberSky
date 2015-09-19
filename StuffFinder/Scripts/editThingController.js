@@ -1,0 +1,119 @@
+(function () {
+    'use strict';
+
+    app.controller('editThingController', editThingController);
+
+    editThingController.$inject = ['$scope', '$location', '$log', '$timeout', '$routeParams', 'authService', 'dataService'];
+
+    function editThingController($scope, $location, $log, $timeout, $routeParams, authService, dataService) {
+
+        var vm = this;
+
+        vm.authentication = {};
+        vm.authentication.userName = authService.authentication.userName;
+        vm.thing = {};
+        vm.thing.categoryId = null;
+        vm.categories = [];
+        vm.addOrUpdate = addOrUpdate;
+        vm.slideInterval = 5000;
+        vm.deleteImage = deleteImage;
+        var slides = vm.slides = [];
+
+        activate();
+
+        function activate() {
+            getCategories();
+            getThing();
+            initiateDroplet();
+
+            return vm;
+        }
+
+        function addSlide(images) {
+            if (images.length == 0) {
+                return;
+            }
+            else {
+                angular.forEach(images, function (image, key) {
+                    this.push({ image: "data:image/jpeg;base64," + image.imageBinary, imageId: image.imageId });
+                }, slides);
+            }
+        };
+
+        function initiateDroplet() {
+            $scope.$on('$dropletReady', function whenDropletReady() {
+                vm.interface.allowedExtensions(['png', 'jpg', 'bmp', 'gif']);
+
+                uploadFiles();
+            });
+        }
+
+        function uploadFiles() {
+            return dataService.getServerUrl().then(function (resource) {
+                var serverUrl = resource;
+
+                vm.interface.setRequestUrl(serverUrl.resourceServerUrl + 'api/thingsApi' + '/files');
+            });
+        }
+
+        function getCategories() {
+            return dataService.getCategories().then(function (data) {
+                vm.categories = data;
+
+                return vm.categories;
+            });
+        }
+
+        function getThing() {
+            return dataService.getThing($routeParams.thingId).then(function (data) {
+                vm.thing = data;
+
+                addSlide(vm.thing.images);
+
+                getCategories().then(function (data) {
+                    if (vm.thing.categoryId) {
+                        vm.thing.category = vm.categories[vm.categories.getIndexBy("categoryId", vm.thing.categoryId)];
+                    }
+                });
+
+                return vm.thing;
+            });
+        }
+
+        Array.prototype.getIndexBy = function (name, value) {
+            for (var i = 0; i < this.length; i++) {
+                if (this[i][name] == value) {
+                    return i;
+                }
+            }
+        }
+
+        function deleteImage(imageId) {
+            return dataService.deleteImage(imageId).then(function (data) {
+                $log.log("Image deletion successful");
+
+                getThing();
+            });
+        }
+
+        function addOrUpdate() {
+            dataService.addOrUpdateThing(vm.thing)
+                .then(function (data) {
+                    vm.interface.setPostData({ id: data.thingId, userName: authService.authentication.userName });
+
+                    vm.interface.uploadFiles();
+
+                    $scope.$apply();
+
+                    history.back();
+                })
+                .catch(handleFailure);
+        }
+
+        function handleFailure(error) {
+            $log.error('Failure notice.' + error.data.message + ': ' + error.data.messageDetail);
+        }
+
+    }
+})();
+//# sourceMappingURL=maps/editThingController.js.map

@@ -1,0 +1,1 @@
+{"version":3,"names":[],"mappings":"","sources":["homeController.js"],"sourcesContent":["'use strict';\r\napp.controller('homeController', ['$scope', function ($scope) {\r\n\r\n    //$(document).ready(function () {\r\n\r\n    //    //$(\".player\").mb_YTPlayer();\r\n\r\n    //});\r\n}]);"],"file":"homeController.js","sourceRoot":"/source/"}

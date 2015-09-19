@@ -1,4 +1,6 @@
-﻿/// <reference path="bower_components/angular-video-bg/angular-video-bg.min.js" />
+﻿/// <reference path="bower_components/angular-simple-logger/dist/angular-simple-logger.min.js" />
+/// <reference path="bower_components/angular-simple-logger/dist/angular-simple-logger.min.js" />
+/// <reference path="bower_components/angular-video-bg/angular-video-bg.min.js" />
 /// <reference path="bower_components/angular-video-bg/angular-video-bg.min.js" />
 /// <vs BeforeBuild='default' />
 ///
@@ -38,16 +40,17 @@ var config = {
 
     //Angular
     angularsrc: [
+        'bower_components/lodash/lodash.min.js',
         'bower_components/angular/angular.min.js',
         'bower_components/angular-resource/angular-resource.min.js',
         'bower_components/angular-route/angular-route.min.js',
+        'bower_components/angular-simple-logger/dist/index.js',
         'bower_components/angular-local-storage/dist/angular-local-storage.min.js',
         //'bower_components/angular-loading-bar/build/loading-bar.min.js',
         'bower_components/angular-animate/angular-animate.min.js',
         'bower_components/angular-sanitize/angular-sanitize.min.js',
         'bower_components/angular-bootstrap/ui-bootstrap.min.js',
         'bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
-        'bower_components/lodash/lodash.min.js',
         'bower_components/angular-google-maps/dist/angular-google-maps.min.js',
         'bower_components/angular-loading-bar/build/loading-bar.min.js',
         'bower_components/ng-droplet/dist/ng-droplet.min.js',
@@ -91,6 +94,7 @@ var config = {
         'app/users/userProfileController.js',
         'app/splash/splashController.js',
         'app/dynFbCommentBox/dynFbCommentBox.js',
+        'app/directives/google-places/google-places.js',
         'shared-directives/shared-directives.js',
         'shared-directives/back-button/back-button.js',
         'shared-directives/ng-enter/ng-enter.js'
@@ -100,6 +104,8 @@ var config = {
     // Angular-Dashboard
     angulardashboardsrc: [
         'bower_components/angular/angular.min.js',
+        'bower_components/lodash/dist/lodash.min.js',
+        'bower_components/angular-simple-logger/index.js',
         'bower_components/angular-resource/angular-resource.min.js',
         'bower_components/angular-route/angular-route.min.js',
         'bower_components/angular-local-storage/dist/angular-local-storage.min.js',
@@ -108,7 +114,6 @@ var config = {
         'bower_components/angular-sanitize/angular-sanitize.min.js',
         'bower_components/angular-bootstrap/ui-bootstrap.min.js',
         'bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
-        'bower_components/lodash/dist/lodash.min.js',
         'bower_components/angular-google-maps/dist/angular-google-maps.min.js',
         'bower_components/angular-loading-bar/build/loading-bar.min.js',
         'bower_components/ng-droplet/dist/ng-droplet.min.js',

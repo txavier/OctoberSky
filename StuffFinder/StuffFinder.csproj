@@ -23,6 +23,7 @@
     <IISExpressUseClassicPipelineMode />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -251,6 +252,7 @@
     <Content Include="app\admin\dashboardEmailSettingsController.js" />
     <Content Include="app\cityNotification\addOrUpdateCityNotificationController.js" />
     <Content Include="app\cityNotification\cityNotificationsController.js" />
+    <Content Include="app\directives\google-places\google-places.js" />
     <Content Include="app\feedback\feedbackController.js" />
     <Content Include="app\locations\addOrUpdateLocationController.js" />
     <Content Include="app\locations\locationsController.js" />

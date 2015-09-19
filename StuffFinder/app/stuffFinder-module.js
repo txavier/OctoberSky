@@ -308,10 +308,32 @@ app.config(function ($routeProvider) {
 app.config(function (uiGmapGoogleMapApiProvider) {
     uiGmapGoogleMapApiProvider.configure({
         key: 'AIzaSyBPUGy5syJHUaDeR_E_FTwgOO4Th8vm63Y',
-        v: '3.17',
-        libraries: 'weather,geometry,visualization'
+        v: '3.20', //defaults to latest 3.X anyhow
+        libraries: 'weather,geometry,visualization,places'
     });
 });
+
+app.run(['$templateCache', function ($templateCache) {
+    $templateCache.put('searchbox.tpl.html', '<input id="pac-input" class="pac-controls" type="text" placeholder="Search">');
+    $templateCache.put('window.tpl.html', '<div ng-controller="WindowCtrl" ng-init="showPlaceDetails(parameter)">{{place.name}}</div>');
+}])
+
+//app.config(function (uiGmapGoogleMapApiProvider) {
+//    uiGmapGoogleMapApiProvider.configure({
+//        key: 'AIzaSyBPUGy5syJHUaDeR_E_FTwgOO4Th8vm63Y',
+//        v: '3.20',
+//        libraries: 'weather,geometry,visualization,places'
+//    });
+//});
+
+//app.config(['uiGmapGoogleMapApiProvider', function(GoogleMapApiProviders) {
+//        GoogleMapApiProviders.configure({
+//            key: 'AIzaSyBPUGy5syJHUaDeR_E_FTwgOO4Th8vm63Y',
+//            v: '3.20',
+//            libraries: 'weather,geometry,visualization,places'
+//        });
+//    }]
+//);
 
 var serviceBase = '';
 

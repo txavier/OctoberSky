@@ -30,16 +30,26 @@
         <div class="form-group" style="padding:14px;">
 
             Location Name
-            <textarea class="form-control" placeholder="The name of the place you found this item" data-ng-model="vm.finding.location.locationName"
+            <textarea class="form-control" googleplace ng-model-options="{ updateOn: 'default blur', debounce: { default: 500, blur: 0 } }" 
+                      placeholder="The name of the place you found this item" 
+                      data-ng-model="vm.finding.location.locationName"
+                      data-ng-change="vm.searchNewLocation(vm.finding.location.locationName)"
                       typeahead="location as location.locationName for location in vm.locations | filter:{locationName:$viewValue} | limitTo:8"></textarea>
         </div>
+        <!--<div>selection is: {{chosenPlace}}</div>
+        <div><input ng-model="chosenPlace" googleplace /></div>-->
         <div class="form-group" style="padding:14px;">
             <button class="btn btn-default" data-ng-click="vm.searchNewLocation(vm.finding.location.locationName)">Find Location</button>
             <p>
                 Click and drag the red marker to the location of the store
             </p>
+            <div id="searchBoxParent"></div>
             <div id="map_canvas">
+                <!--<script type="text/ng-template" id="searchbox.tpl.html">
+                    <input type="text" placeholder="Search Box">
+                </script>-->
                 <ui-gmap-google-map center="vm.map.center" zoom="vm.map.zoom" draggable="true" options="vm.options">
+                    <!--<ui-gmap-search-box template="vm.searchbox.template" events="vm.searchbox.events"></ui-gmap-search-box>-->
                     <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">
                     </ui-gmap-marker>
                 </ui-gmap-google-map>
