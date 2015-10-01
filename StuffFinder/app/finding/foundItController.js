@@ -8,7 +8,7 @@
     function foundItController($scope, $log, $timeout, $http, $location, $routeParams, authService, dataService) {
 
         var vm = this;
-        
+
         vm.thing = {};
         vm.thing.description = null;
         vm.defaultCoordinates = { latitude: 24.416563, longitude: 54.543546 };
@@ -24,15 +24,13 @@
         vm.datepickerDateOptions = { formatYear: 'yy', startingDay: 1 };
         vm.clear = datepickerClear;
         vm.locations = [];
-        vm.finding = { location: { locationName: '' }, date: new Date(), price: null, upcCode: null };
         vm.cities = [];
         vm.searchNewLocation = searchNewLocation;
-        var events = {
-            places_changed: function (searchBox) { }
-        }
-        vm.searchbox = { template: 'searchbox.tpl.html', events: events };
+        vm.finding = { location: { locationName: '', latitude: null, longitude: null }, date: new Date(), price: null, upcCode: null };
+        vm.details = {};
+        vm.overrideCityNameChange = false;
 
-         //Scope variables have to be accessible for the watch statements.
+        //Scope variables have to be accessible for the watch statements.
         $scope.coordsUpdates = 0;
         $scope.dynamicMoveCtr = 0;
         $scope.marker = {};
@@ -56,23 +54,122 @@
             return vm;
         }
 
+        // administrative_area_level_1
+        // Abu Dhabi == أبو ظبي
+        // Al Ain == أبو ظبي
+        // Dubai == إمارة دبيّ
+        // Fujairah == الفجيرة
+        // Ras Al-Khaimah = Ras al Khaimah
+        // Sharjah = إمارة الشارقةّ
+
+        // locality
+        // Ajman == Ajman
+        // Ras Al-Khaimah = Ras Al-Khaimah
+        // Umm Al-Quwain = Umm Al Quwain
         function searchNewLocation(locationName) {
             if (locationName.length > 3) {
-                dataService.searchNewLocation(locationName, (vm.thing && vm.thing.finding && vm.thing.finding.location && vm.thing.finding.location.city && vm.thing.finding.location.city.name) ? vm.thing.finding.location.city.name : 'dubai').then(function (data) {
-                    if (data != null) {
-                        if (!vm.thing.finding) {
-                            vm.thing.finding = { location: { locationName: '' }, date: new Date(), price: null, upcCode: null };
-                        }
-                        vm.thing.finding.location = data;
+                if (vm.details && vm.details.formatted_address) {
+                    vm.thing.finding = {};
 
-                        $scope.finding.location = data;
+                    vm.thing.finding.location = {
+                        latitude: vm.details.geometry.location.lat(),
+                        longitude: vm.details.geometry.location.lng(),
+                        formattedAddress: vm.details.formatted_address,
+                        locationName: locationName,
+                        city: getCityFromDetails(vm.details)
+                    };
 
+                    vm.finding.location = vm.thing.finding.location;
+
+                    $scope.finding.location = vm.thing.finding.location;
+
+                    if (vm.thing.finding.location.city && vm.thing.finding.location.city.name) {
                         vm.finding.location.city = vm.cities[vm.cities.getIndexBy("name", vm.thing.finding.location.city.name)];
                     }
-                });
+
+                    //$scope.$apply();
+
+                    $scope.marker.coords.latitude = vm.thing.finding.location.latitude;
+                    $scope.marker.coords.longitude = vm.thing.finding.location.longitude;
+
+                    vm.map.center.latitude = vm.thing.finding.location.latitude;
+                    vm.map.center.longitude = vm.thing.finding.location.longitude;
+                    vm.map.zoom = 12;
+
+                    vm.overrideCityNameChange = true;
+                }
             }
         }
-        
+
+        function getCityFromDetails(details) {
+            var city = null;
+
+            // Search for city name.
+            for (var i = 0; i < details.address_components.length; i++) {
+                switch (details.address_components[i].long_name) {
+                    case 'Abu Dhabi': {
+                        city = 'Abu Dhabi';
+                        break;
+                    }
+                    case 'Dubai': {
+                        city = 'Dubai';
+                        break;
+                    }
+                    case 'Fujairah': {
+                        city = 'Fujairah';
+                        break;
+                    }
+                    case 'Ras Al-Khaimah': {
+                        city = 'Ras Al-Khaimah';
+                        break;
+                    }
+                    case 'Sharjah': {
+                        city = 'Sharjah';
+                        break;
+                    }
+                    case 'أبو ظبي': {
+                        city = 'Abu Dhabi';
+                        break;
+                    }
+                    case 'إمارة دبيّ': {
+                        city = 'Dubai';
+                        break;
+                    }
+                    case 'الفجيرة': {
+                        city = 'Fujairah';
+                        break;
+                    }
+                    case 'Ras al Khaimah': {
+                        city = 'Ras Al-Khaimah';
+                        break;
+                    }
+                    case 'إمارة الشارقةّ': {
+                        city = 'Sharjah';
+                        break;
+                    }
+                }
+
+                switch (details.address_components[i].long_name) {
+                    case 'Ajman': {
+                        city = 'Ajman';
+                        break;
+                    }
+                    case 'Ras Al-Khaimah': {
+                        city = 'Ras Al-Khaimah';
+                        break;
+                    }
+                    case 'Umm Al Quwain': {
+                        city = 'Umm Al-Quwain';
+                        break;
+                    }
+                }
+            }
+
+            var result = vm.cities[vm.cities.getIndexBy("name", city)];
+
+            return result;
+        }
+
         function getCities() {
             dataService.getCities().then(function (data) {
                 vm.cities = data;
@@ -158,7 +255,7 @@
                         $log.log(lat);
                         $log.log(lon);
 
-                        $http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + lon + '&sensor=false&key=AIzaSyBPUGy5syJHUaDeR_E_FTwgOO4Th8vm63Y')
+                        $http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + lon + '&sensor=false&key=AIzaSyBPUGy5syJHUaDeR_E_FTwgOO4Th8vm63Y&language=en')
                         .success(function (response) {
                             if (response.status === "ZERO_RESULTS") {
                                 vm.finding.location.latitude = lat;
@@ -187,7 +284,7 @@
         $scope.finding.location.latitude = vm.finding.location.latitude;
 
         $scope.$watch('finding.location.locationName', function (current, original) {
-            if (_.isEqual(current, original) || !current.latitude) {
+            if (_.isEqual(current, original) || (current && current.latitude != undefined && !current.latitude)) {
                 return;
             }
 
@@ -226,23 +323,28 @@
         $scope.finding.location.city = vm.finding.location.city;
 
         $scope.$watch('finding.location.city', function (current, original) {
-            if (_.isEqual(current, original) || !current) {
+            if (_.isEqual(current, original) || (current && current.latitude != undefined && !current.latitude)) {
                 vm.finding.location = {};
                 vm.finding.location.locationName = vm.finding.location.locationName || '';
                 vm.finding.location.city = original;
                 return;
             }
 
-            $scope.marker.coords.latitude = current.latitude;
-            $scope.marker.coords.longitude = current.longitude;
+            if (!vm.overrideCityNameChange) {
+                $scope.marker.coords.latitude = current.latitude;
+                $scope.marker.coords.longitude = current.longitude;
 
-            vm.map.center.latitude = current.latitude;
-            vm.map.center.longitude = current.longitude;
+                vm.map.center.latitude = current.latitude;
+                vm.map.center.longitude = current.longitude;
 
-            vm.finding.location.latitude = current.latitude;
-            vm.finding.location.longitude = current.longitude;
+                vm.finding.location.latitude = current.latitude;
+                vm.finding.location.longitude = current.longitude;
 
-            vm.map.zoom = 12;
+                vm.map.zoom = 12;
+            }
+            else {
+                vm.overrideCityNameChange = true;
+            }
         });
 
         $timeout(function () {
@@ -263,8 +365,8 @@
         // End region map.
 
         // Begin region datepicker.
-        
-        function datepickerClear () {
+
+        function datepickerClear() {
             vm.thing.finding.date = null;
         };
 

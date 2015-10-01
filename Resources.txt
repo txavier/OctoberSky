@@ -1,4 +1,4 @@
- -- To enable OAuth2 the following guide was used.
+﻿ -- To enable OAuth2 the following guide was used.
 
 	http://bitoftech.net/2014/06/01/token-based-authentication-asp-net-web-api-2-owin-asp-net-identity/
 
@@ -268,3 +268,18 @@
 	old: <!--<a id="bgndVideo" class="player" data-property="{videoURL:'https://www.youtube.com/watch?v=TDM18lJ18VA',startAt:5,quality:'hd1080',containment:'.video-section', quality:'large', autoPlay:true, mute:true, opacity:1}">bg</a>
 
 	new: <video-bg video-id="'TDM18lJ18VA'" mute="true" loop="true" mobile-image="'/Images/about.png'" content-z-index="99" start="5" style="opacity: 0.3;"></video-bg>
+
+ -- Listing of cities returned from Google Places API
+
+	administrative_area_level_1
+	Abu Dhabi == أبو ظبي
+	Al Ain == أبو ظبي
+	Dubai == إمارة دبيّ
+	Fujairah == الفجيرة
+	Ras Al-Khaimah = Ras al Khaimah
+	Sharjah = إمارة الشارقةّ
+	
+	locality
+	Ajman == Ajman
+	Ras Al-Khaimah = Ras Al-Khaimah
+	Umm Al-Quwain = Umm Al Quwain

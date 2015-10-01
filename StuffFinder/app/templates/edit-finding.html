@@ -29,11 +29,23 @@
         <div class="form-group" style="padding:14px;">
 
             Location Name
-            <textarea class="form-control" placeholder="The name of the place you found this item" data-ng-model="vm.finding.location.locationName"
+            <!--<textarea class="form-control" placeholder="The name of the place you found this item" data-ng-model="vm.finding.location.locationName"
+                      typeahead="location as location.locationName for location in vm.locations | filter:{locationName:$viewValue} | limitTo:8"
+                      data-ng-change="vm.searchNewLocation(vm.finding.location.locationName)"
+                      googleplace 
+                      ng-model-options="{ updateOn: 'default blur', debounce: { default: 500, blur: 0 } }" ></textarea>-->
+            <textarea class="form-control"
+                      data-ng-change="vm.searchNewLocation(vm.finding.location.locationName)"
+                      googleplace
+                      details="vm.details"
+                      ng-model-options="{ updateOn: 'default blur', debounce: { default: 2000, blur: 0 } }"
+                      placeholder="The name of the place you found this item"
+                      data-ng-model="vm.finding.location.locationName"
                       typeahead="location as location.locationName for location in vm.locations | filter:{locationName:$viewValue} | limitTo:8"></textarea>
+
         </div>
         <div class="form-group" style="padding:14px;">
-            <button class="btn btn-default" data-ng-click="vm.searchNewLocation(vm.finding.location.locationName)">Find Location</button>
+            <!--<button class="btn btn-default" data-ng-click="vm.searchNewLocation(vm.finding.location.locationName)">Find Location</button>-->
             <p>
                 Click and drag the red marker to the location of the store
             </p>
